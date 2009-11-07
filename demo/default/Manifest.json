@@ -1,0 +1,34 @@
+{
+  "info" : 
+  {
+    "name" : "Dialog Demo",
+
+    "summary" : "Dialog Demo",
+    "description" : "This is a skeleton for a qooxdoo contribution demo.",
+    
+    "homepage" : "http://demo.qooxdoo.org/contrib/Dialog",
+
+    "license" : "LGPL/EPL",
+    "authors" : 
+    [
+      {
+        "name" : "First Author (uid)",
+        "email" : "first.author@some.domain"
+      }
+    ],
+
+    "version" : "trunk",
+    "qooxdoo-versions": ["0.9-pre"]
+  },
+  
+  "provides" : 
+  {
+    "namespace"   : "dialog.demo",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation",
+    "type"        : "application"
+  }
+}
+

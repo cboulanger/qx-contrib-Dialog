@@ -1,0 +1,34 @@
+{
+  "info" : 
+  {
+    "name" : "Dialog",
+
+    "summary" : "Dialog Contribution",
+    "description" : "The Dialog project provides many often-used widgets required in user interaction, such as alert, confirm, prompt, and others that simplify the web developer's daily work.",
+    
+    "homepage" : "http://contrib.qooxdoo.org/project/Dialog",
+
+    "license" : "LGPL/EPL",
+    "authors" : 
+    [
+      {
+        "name" : "Chritian Boulanger (cboulanger)",
+        "email" : "c.boulanger@qxtransformer.org"
+      }
+    ],
+
+    "version" : "trunk",
+    "qooxdoo-versions": ["trunk"]
+  },
+  
+  "provides" : 
+  {
+    "namespace"   : "dialog",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation",
+    "type"        : "contribution"
+  }
+}
+
