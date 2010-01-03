@@ -109,85 +109,119 @@ qx.Class.define("dialog.demo.Application",
     
     createAlert : function()
     {
-      (new dialog.Alert({
-        message : "Hello World!"
-      })).show();
+      dialog.alert( "Hello World!" );
+//      same as:
+//      (new dialog.Alert({
+//        message : "Hello World!"
+//      })).show();      
     },
     
     createConfirm : function()
     {
-      (new dialog.Confirm({
-        message : "Do you really want to erase your hard drive?",
-        callback : function(result)
-        {
-          (new dialog.Alert({
-            message : "Your answer was:" + result
-          })).show();
-        }
-      })).show();
+      dialog.confirm("Do you really want to erase your hard drive?", function(result){
+        dialog.alert("Your answer was: " + result );
+      });
+//      (new dialog.Confirm({
+//        message : "Do you really want to erase your hard drive?",
+//        callback : function(result)
+//        {
+//          (new dialog.Alert({
+//            message : "Your answer was:" + result
+//          })).show();
+//        }
+//      })).show();
     },   
     
     createPrompt : function()
     {
-      (new dialog.Prompt({
-        message : "Please enter the root password for your server",
-        callback : function(result)
-        {
-          (new dialog.Alert({
-            message : "Your answer was:" + result
-          })).show();
-        }
-      })).show();
+      dialog.prompt("Please enter the root password for your server",function(result){
+        dialog.alert("Your answer was: " + result );
+      });
+      
+//      same as:      
+//      (new dialog.Prompt({
+//        message : "Please enter the root password for your server",
+//        callback : function(result)
+//        {
+//          (new dialog.Alert({
+//            message : "Your answer was:" + result
+//          })).show();
+//        }
+//      })).show();
     },     
     
+    /**
+     * Example for nested callbacks
+     */
     createDialogChain : function()
     {
-      // example for nested callbacks
-      (new dialog.Alert({
-        message  : "This demostrates a series of 'nested' dialogs ",
-        callback : function(){
-          (new dialog.Confirm({
-            message  : "Do you believe in the Loch Ness monster?",
-            callback : function(result){
-              (new dialog.Confirm({
-                message  : "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?",
-                callback : function(result){
-                  (new dialog.Alert({
-                    message  : result ? 
-                      "I tell you a secret: It doesn't exist." :
-                      "All the better."
-                  })).show();                             
-                }
-              })).show();                           
-            }
-          })).show();  
-        }
-      })).show();
+      dialog.alert( "This demostrates a series of 'nested' dialogs ",function(){
+        dialog.confirm( "Do you believe in the Loch Ness monster?", function(result){
+          dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?", function(result){
+            dialog.alert( result ? 
+              "I tell you a secret: It doesn't exist." :
+              "All the better." );
+          });
+        });
+      });
+      
+      
+//      (new dialog.Alert({
+//        message  : "This demostrates a series of 'nested' dialogs ",
+//        callback : function(){
+//          (new dialog.Confirm({
+//            message  : "Do you believe in the Loch Ness monster?",
+//            callback : function(result){
+//              (new dialog.Confirm({
+//                message  : "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?",
+//                callback : function(result){
+//                  (new dialog.Alert({
+//                    message  : result ? 
+//                      "I tell you a secret: It doesn't exist." :
+//                      "All the better."
+//                  })).show();                             
+//                }
+//              })).show();                           
+//            }
+//          })).show();  
+//        }
+//      })).show();
     },    
     
+    /**
+     * Offer a selection of choices to the user
+     */
     createSelect : function()
     {
-      (new dialog.Select({
-        message : "Select the type of record to create:",
-        options : [
+      dialog.select( "Select the type of record to create:", [
           { label:"Database record", value:"database" },
           { label:"World record", value:"world" },
           { label:"Pop record", value:"pop" }
-        ],
-        allowCancel : true,
-        callback : function(result){
-          (new dialog.Alert({
-            message  : "You selected: '" + result + "'"
-          })).show();
-        }
-      })).show();
+        ], function(result){
+          dialog.alert("You selected: '" + result + "'");
+        } 
+      );
+        
+//      (new dialog.Select({
+//        message : "Select the type of record to create:",
+//        options : [
+//          { label:"Database record", value:"database" },
+//          { label:"World record", value:"world" },
+//          { label:"Pop record", value:"pop" }
+//        ],
+//        allowCancel : true,
+//        callback : function(result){
+//          (new dialog.Alert({
+//            message  : "You selected: '" + result + "'"
+//          })).show();
+//        }
+//      })).show();
     },
     
     createForm : function()
     {
-      (new dialog.Form({
-        message : "Please fill in the form",
-        formData : { 
+      var formData =  
+      {
         'username' : 
         {
           'type'  : "TextField",
@@ -220,16 +254,22 @@ qx.Class.define("dialog.demo.Application",
              { 'label' : "ln -s *" }, 
              { 'label' : "rm -Rf /" }
            ]
-        }             
-      },
-      allowCancel : true,
-      callback : function( result )
+        }
+      };
+      dialog.form("Please fill in the form",formData, function( result )
       {
-        (new dialog.Alert(
-          "Thank you for your input: <pre>" + qx.util.Json.stringify(result,true) + "</pre>"
-        )).show();
+        dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
       }
-    })).show();      
+    );      
+//    (new dialog.Form({
+//      message : "Please fill in the form",
+//      formData : formData,
+//      allowCancel : true,
+//      callback : function( result )
+//      {
+//        dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
+//      }
+//    })).show();      
     },
     
     createWizard : function()
@@ -324,14 +364,13 @@ qx.Class.define("dialog.demo.Application",
          }
        }       
       ];
-      var _this = this;
       var wizard = new dialog.Wizard({
         width       : 500,
         maxWidth    : 500,
         pageData    : pageData, 
         allowCancel : true,
         callback : qx.lang.Function.bind( function( map ){
-          this.info( qx.util.Json.stringify( map ) );
+          dialog.alert("Thank you for your input:" + qx.util.Json.stringify(map).replace(/\\/g,"") );
         },this)
       });
       wizard.start();        
