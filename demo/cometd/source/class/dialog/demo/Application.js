@@ -1,10 +1,15 @@
 /* ************************************************************************
 
    Copyright:
-
+     The authors of this code
+     
    License:
+     LGPL: http://www.gnu.org/licenses/lgpl.html
+     EPL: http://www.eclipse.org/org/documents/epl-v10.php
+     See the LICENSE file in the project's top-level directory for details.
 
    Authors:
+     * Christian Boulanger (cboulanger)
 
 ************************************************************************ */
 
@@ -162,7 +167,7 @@ qx.Class.define("dialog.demo.Application",
       {
         if ( data.successful ) 
         {
-          this._cometd.subscribe("/dialog/demo", this, "_onDialogMessage");
+          this._cometd.subscribe("/dialog/demo", this._onDialogMessage, this);
         }
       } 
       else if (data.action == "connect") 
