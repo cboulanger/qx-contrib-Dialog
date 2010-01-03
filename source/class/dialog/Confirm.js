@@ -210,3 +210,14 @@ qx.Class.define("dialog.Confirm",
     } 
   }    
 });
+
+/*
+ * create shortcut command
+ */
+dialog.confirm = function( message, callback )
+{
+  (new dialog.Confirm({
+    "message" : message,
+    "callback" : callback || null
+  })).show();      
+}

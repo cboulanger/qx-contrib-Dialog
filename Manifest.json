@@ -4,7 +4,7 @@
     "name" : "Dialog",
 
     "summary" : "Dialog Contribution",
-    "description" : "The Dialog project provides many often-used widgets required in user interaction, such as alert, confirm, prompt, and others that simplify the web developer's daily work.",
+    "description" : "The dialog package provides many often-used widgets required in user interaction, such as alert, confirm, prompt, and others that simplify the web developer's daily work.",
     
     "homepage" : "http://contrib.qooxdoo.org/project/Dialog",
 

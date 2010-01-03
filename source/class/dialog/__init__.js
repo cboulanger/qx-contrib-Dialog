@@ -1,7 +1,6 @@
 /** <h3> dialog API Documentation </h3>
  *
- * This text will be used in the API documentation of your contribution
- * generated with __generate.py api__. You should replace this text with an
- * overview of your contribution and an introduction on how to use it.
+ * The dialog package provides many often-used widgets required in user interaction, 
+ * such as alert, confirm, prompt, and others that simplify the web developer's daily work.
  *
  */

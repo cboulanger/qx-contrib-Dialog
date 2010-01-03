@@ -40,7 +40,7 @@ qx.Class.define("dialog.Dialog",
   {
   
     /**
-     * Returns a instance of the dialog type
+     * Returns a dialog instance by type
      * @param type {String}
      * @return dialog.Dialog
      */
@@ -52,70 +52,11 @@ qx.Class.define("dialog.Dialog",
        }
        catch(e)
        {
-         this.error(type + "is not a valid dialog type");
+         this.error(type + " is not a valid dialog type");
        }
-    },
-    
-    /**
-     * Turns remote server control on or off. If turned on, you can trigger the
-     * display of dialogs using messages which can come from the server.
-     * @see #_onMessage
-     */
-    allowServerControl : function( value )
-    {
-      var messageName = "dialog.Dialog.createDialog";
-      if ( value )
-      {
-        qx.event.message.Bus.getInstance().subscribe( messageName, this._onMessage,this);
-      }
-      else
-      {
-        qx.event.message.Bus.getInstance().unsubscribe( messageName, this._onMessage,this);
-      }
-    },
-    
-    /**
-     * Handles the message. The message data has to be a map with of the following
-     * structure: <pre>
-     * {
-     *   type : "(alert|confirm|form|login|select|wizard)",
-     *   properties : { the dialog properties WITHOUT a callback },
-     *   service : "the.name.of.the.rpc.service",
-     *   method : "serviceMethod",
-     *   params : [ the, parameters, passed, to, the, service, method ]
-     * }
-     * </pre>
-     */
-    _onMessage : function( message )
-    {
-      var data = message.getData();
-      if ( data.service )
-      {
-        data.properties.callback = function( result )
-        {
-          /*
-           * push the result to the beginning of the parameter array
-           */
-          if ( ! data.params || ! data.params instanceof Array )
-          {
-            data.params = [];
-          }
-          data.params.unshift(result);
-          
-          /*
-           * send request back to server
-           */
-          qx.core.Init.getApplication().executeService( 
-              data.service, data.method, data.params 
-          );
-        }
-      }
-      var widget = dialog.Dialog.getInstanceByType(data.type);
-      widget.set( data.properties );
-      widget.show();
     }
   },
-    
+  
   /*
   *****************************************************************************
      PROPERTIES

@@ -47,22 +47,18 @@ qx.Class.define("dialog.Form",
      *   RadioGroup
      * 
      * <pre>
-     *
-     * { 
-     *   'username' : 
-     *   {
+     * {
+     *  "username" : {   
      *     'type'  : "TextField",
      *     'label' : "User Name", 
      *     'value' : ""
      *   },
-     *   'address' :
-     *   {
+     *   "address" : {
      *     'type'  : "TextArea",
      *     'label' : "Address",
      *     'lines' : 3
      *   },
-     *   'domain'   : 
-     *   {
+     *   "domain" : {
      *     'type'  : "SelectBox", 
      *     'label' : "Domain",
      *     'value' : 1,
@@ -71,8 +67,7 @@ qx.Class.define("dialog.Form",
      *       { 'label' : "Home",    'value' : 1 }
      *     ]
      *   },
-     *   'commands'   : 
-     *   {
+     *   "commands" : {
      *    'type'  : "ComboBox", 
      *     'label' : "Shell command to execute",
      *     'options' : [
@@ -82,6 +77,9 @@ qx.Class.define("dialog.Form",
      *   }   
      * }
      * </pre>
+     * 
+     *
+     * 
      */
     formData : 
     {
@@ -553,3 +551,16 @@ qx.Class.define("dialog.Form",
     }
   }    
 });
+
+/*
+ * create shortcut command
+ */
+dialog.form = function( message, formData, callback )
+{
+  (new dialog.Form({
+    "message" : message,
+    "allowCancel" : true,
+    "formData" : formData,
+    "callback" : callback
+  })).show();      
+}

@@ -149,3 +149,14 @@ qx.Class.define("dialog.Prompt",
     } 
   }    
 });
+
+/*
+ * create shortcut command
+ */
+dialog.prompt = function( message, callback )
+{
+  (new dialog.Prompt({
+    "message" : message,
+    "callback" : callback || null
+  })).show();      
+}
