@@ -94,14 +94,3 @@ qx.Class.define("dialog.Alert",
     }
   }    
 });
-
-/*
- * create shortcut command
- */
-dialog.alert = function( message, callback )
-{
-  (new dialog.Alert({
-    "message" : message,
-    "callback" : callback || null
-  })).show();      
-}

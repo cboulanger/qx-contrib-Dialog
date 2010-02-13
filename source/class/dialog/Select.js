@@ -146,16 +146,3 @@ qx.Class.define("dialog.Select",
     }
   }    
 });
-
-/*
- * create shortcut command
- */
-dialog.select = function( message, options, callback )
-{
-  (new dialog.Select({
-    "message" : message,
-    "allowCancel" : true,
-    "options" : options,
-    "callback" : callback
-  })).show();      
-}

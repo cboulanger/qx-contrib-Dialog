@@ -551,16 +551,3 @@ qx.Class.define("dialog.Form",
     }
   }    
 });
-
-/*
- * create shortcut command
- */
-dialog.form = function( message, formData, callback )
-{
-  (new dialog.Form({
-    "message" : message,
-    "allowCancel" : true,
-    "formData" : formData,
-    "callback" : callback
-  })).show();      
-}

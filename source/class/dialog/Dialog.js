@@ -20,7 +20,10 @@
 /* ************************************************************************
 #asset(qx.icontheme/22/actions/dialog-cancel.png)
 #asset(qx.icontheme/22/actions/dialog-ok.png)
-#ignore(dialog)
+#ignore(dialog.alert)
+#ignore(dialog.confirm)
+#ignore(dialog.prompt)
+#ignore(dialog.select)
 ************************************************************************ */
 
 
@@ -54,6 +57,46 @@ qx.Class.define("dialog.Dialog",
        {
          this.error(type + " is not a valid dialog type");
        }
+    },
+    
+    /**
+     * Initialize the package
+     */    
+    init : function()
+    {
+      /*
+       * create shortcut methods
+       */
+      dialog.alert = function( message, callback )
+      {
+        (new dialog.Alert({
+          "message" : message,
+          "callback" : callback || null
+        })).show();      
+      }      
+      dialog.confirm = function( message, callback )
+      {
+        (new dialog.Confirm({
+          "message" : message,
+          "callback" : callback || null
+        })).show();      
+      }      
+      dialog.prompt = function( message, callback )
+      {
+        (new dialog.Prompt({
+          "message" : message,
+          "callback" : callback || null
+        })).show();      
+      }
+      dialog.select = function( message, options, callback )
+      {
+        (new dialog.Select({
+          "message" : message,
+          "allowCancel" : true,
+          "options" : options,
+          "callback" : callback
+        })).show();      
+      }           
     }
   },
   
