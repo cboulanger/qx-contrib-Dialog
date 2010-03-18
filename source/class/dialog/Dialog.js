@@ -194,7 +194,7 @@ qx.Class.define("dialog.Dialog",
    /**
     * Data event dispatched when widget is hidden
     */
-   "hide"  : "qx.event.type.Hidden"   
+   "hide"  : "qx.event.type.Event"   
   },
   
   /*
