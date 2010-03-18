@@ -50,6 +50,11 @@ qx.Class.define("dialog.demo.Application",
         // support additional cross-browser console. Press F7 to toggle visibility
         qx.log.appender.Console;
       }
+      
+      /*
+       * initialize shortcut commands
+       */
+      dialog.Dialog.init();
     
       /*
        * button data
