@@ -96,7 +96,16 @@ qx.Class.define("dialog.Dialog",
           "options" : options,
           "callback" : callback
         })).show();      
-      }           
+      }       
+      dialog.form = function( message, formData, callback )
+      {
+        (new dialog.Form({
+          message : message,
+          formData : formData,
+          allowCancel : true,
+          callback : callback
+        })).show();            
+      }
     }
   },
   
