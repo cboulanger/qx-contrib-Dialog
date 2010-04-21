@@ -18,8 +18,10 @@
 ************************************************************************ */
 
 /* ************************************************************************
-#asset(qx.icontheme/22/actions/dialog-cancel.png)
-#asset(qx.icontheme/22/actions/dialog-ok.png)
+#asset(qx/icon/${qx.icontheme}/22/actions/dialog-cancel.png)
+#asset(qx/icon/${qx.icontheme}/22/actions/dialog-ok.png)
+#asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
+
 #ignore(dialog.alert)
 #ignore(dialog.confirm)
 #ignore(dialog.prompt)
