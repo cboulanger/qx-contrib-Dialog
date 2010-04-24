@@ -205,7 +205,7 @@ qx.Class.define("dialog.Form",
      */
     _applyFormData : function ( formData, old )
     {
- try{     
+
       /*
        * remove container content, form, controller
        */
@@ -285,6 +285,10 @@ qx.Class.define("dialog.Form",
             formElement.setLiveUpdate(true);
             break;
             
+          case "passwordfield":
+            formElement = new qx.ui.form.PasswordField();
+            break;            
+            
           case "combobox":
             //@todo use data model for list
             formElement = new qx.ui.form.ComboBox();
@@ -348,6 +352,7 @@ qx.Class.define("dialog.Form",
            */
           case "textarea":
           case "textfield":
+          case "passwordfield":
           case "combobox":
             this._formController.addTarget( 
               formElement, "value", key, true, 
@@ -492,7 +497,15 @@ qx.Class.define("dialog.Form",
             );
           }
         }
-
+        
+        /*
+         * if field width is specified
+         */
+        if ( fieldData.width !== undefined )
+        {
+          formElement.setWidth( fieldData.width );
+        }
+        
         /*
          * add label and form element to form
          */
@@ -511,11 +524,7 @@ qx.Class.define("dialog.Form",
        * validate the form
        */
       this._form.getValidationManager().validate();
- }
- catch(e)
- {
-   this.error(e);
- }
+
     },
     
     /**
@@ -545,7 +554,7 @@ qx.Class.define("dialog.Form",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()( qx.util.Serializer.toJson( this.getModel() ) );
+        this.getCallback()( qx.util.Serializer.toNativeObject( this.getModel() ) );
       }
       this.resetCallback();
     }
