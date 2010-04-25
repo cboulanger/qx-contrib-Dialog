@@ -235,7 +235,6 @@ qx.Class.define("dialog.Wizard",
        * bind the enabled state of the "finish" button to the validity of the
        * current form and the state of the "allowFinish" property
        */
-
       form.getValidationManager().bind( "valid", this._finishButton, "enabled", {
         converter : function( value ){
           return value  && _this.getAllowFinish() ? true:false;
@@ -376,7 +375,7 @@ qx.Class.define("dialog.Wizard",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()( qx.util.Json.parse( qx.util.Serializer.toJson( this.getModel() ) ) );
+        this.getCallback()( qx.util.Json.parse( qx.util.Serializer.toNativeObject( this.getModel() ) ) );
       }
       this.resetCallback();
     }

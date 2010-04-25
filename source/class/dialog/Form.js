@@ -482,7 +482,7 @@ qx.Class.define("dialog.Form",
                 if ( ! validatorObj.__asyncInProgress )
                 {
                   validatorObj.__asyncInProgress = true;
-                  qx.core.Init.getApplication().executeService( 
+                  qx.core.Init.getApplication().getRpcManager().execute( 
                     service.name, service.method, [value], function(response)
                     {
                       try {
@@ -504,6 +504,14 @@ qx.Class.define("dialog.Form",
         if ( fieldData.width !== undefined )
         {
           formElement.setWidth( fieldData.width );
+        }
+        
+        /*
+         * placeholder
+         */
+        if ( fieldData.placeholder !== undefined )
+        {
+          formElement.setPlaceholder( fieldData.placeholder );
         }
         
         /*
@@ -530,13 +538,15 @@ qx.Class.define("dialog.Form",
     /**
      * Hook for subclasses to do something with the form, for example
      * in order to attach bindings to the validation manager.
-     * Empty stub to be overridden.
+     * Default behavior: bind the enabled state of the "OK" button to the 
+     * validity of the current form.
+     * 
      * @param form {qx.ui.form.Form}
      * @return {void}
      */
     _onFormReady : function( form )
     {
-      return; 
+      form.getValidationManager().bind( "valid", this._okButton, "enabled" );
     },
         
     /*

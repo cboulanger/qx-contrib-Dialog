@@ -185,7 +185,7 @@ qx.Class.define("dialog.Dialog",
     allowCancel :
     {
       check : "Boolean",
-      init : false,
+      init : true,
       event : "changeAllowCancel"
     }
   },
