@@ -77,7 +77,13 @@ qx.Class.define("dialog.Confirm",
       nullable : true,
       init : "icon/22/actions/dialog-cancel.png",
       event : "changeNoButtonIcon"
-    }      
+    },
+    
+    allowCancel :
+    {
+      refine : true,
+      init : false
+    }
   },
   
   /*
