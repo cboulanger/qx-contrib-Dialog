@@ -157,7 +157,7 @@ qx.Class.define("dialog.Form",
        */
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
-      this._message.setWidth(200);
+      this._message.setMinWidth(200);
       this._message.setAllowStretchX(true);
       hbox.add( this._message );    
       
