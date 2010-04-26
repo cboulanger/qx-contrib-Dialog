@@ -238,7 +238,9 @@ qx.Class.define("dialog.Form",
         var modelData = {};
         for ( var key in formData )
         {
-          modelData[key] = formData[key].value || null;
+          modelData[key] = formData[key].value !== undefined 
+                            ? formData[key].value
+                            : null;
         }
         var model = qx.data.marshal.Json.createModel( modelData );
         this.setModel( model );
@@ -300,15 +302,8 @@ qx.Class.define("dialog.Form",
             
           case "selectbox":
             formElement = new qx.ui.form.SelectBox();
-            var selected = null;
-            //@todo use data model for list
-            fieldData.options.forEach( function( item ){
-              var listItem = new qx.ui.form.ListItem( item.label, item.icon );
-              listItem.setUserData( "value", 
-                item.value !== undefined ?  item.value : item.label
-              );
-              formElement.add( listItem );
-            },this);
+            var model = qx.data.marshal.Json.createModel( fieldData.options );
+            new qx.data.controller.List( model, formElement, "label");
             break;
 
           case "radiogroup":
@@ -371,6 +366,38 @@ qx.Class.define("dialog.Form",
            * single selection form elements
            */
           case "selectbox":
+            var selectables = formElement.getSelectables();
+            this._formController.addTarget( 
+              formElement, "selection", key, true, {  
+                "converter" : function( value )
+                {
+                  var selection=[];
+                  selectables.forEach( function( selectable )
+                  {
+                    //console.warn( key +": " + value + " looking at '" + selectable.getLabel() + "' => " +  selectable.getModel().getValue() );
+                    if ( selectable.getModel().getValue() === value )
+                    {
+                      //console.warn("Getting value for " + key +": " + value + " -> Setting selection to  '" + selectable.getLabel() + "'..");
+                      selection=[selectable];
+                    }
+                  }, this );
+                  
+                  //if(selection.length==0)console.warn("Getting value for " + key +": " + value + " -> No selection found" );                  
+                  return selection;
+                }
+              },
+              {  
+                "converter" : function( selection )
+                {  
+                  var value = selection[0].getModel().getValue();
+                  //console.warn("Selection is " + ( selection.length ? selection[0].getLabel() : "none" ) + " -> Setting value for " + key +": " + value );
+                  return value; 
+                }
+              }
+            );          
+          
+            break;
+            
           case "radiogroup":
             var selectables = formElement.getSelectables();
             this._formController.addTarget( 
@@ -389,7 +416,7 @@ qx.Class.define("dialog.Form",
                       }
                     }, this );
                   }
-                  //console.warn("Value is " + value + " > selection is " + selection);
+                  //console.warn("Getting value for " + key +": " + value + " -> Setting selection to  " + ( selection.length ? selection[0].getLabel() : "none" ) );
                   return selection;
                 }
               },
@@ -397,7 +424,7 @@ qx.Class.define("dialog.Form",
                 "converter" : function( selection )
                 {  
                   var value = selection[0].getUserData("value");
-                  //console.warn("Selection is " + selection + " > Value is " + value);
+                  //console.warn("Selection is " + ( selection.length ? selection[0].getLabel() : "none" ) + " -> Setting value for " + key +": " + value );
                   return value; 
                 }
               }
