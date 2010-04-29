@@ -366,44 +366,50 @@ qx.Class.define("dialog.Form",
            * single selection form elements
            */
           case "selectbox":
-            var selectables = formElement.getSelectables();
             this._formController.addTarget( 
               formElement, "selection", key, true, {  
-                "converter" : function( value )
+                "converter" : qx.lang.Function.bind( function( value )
                 {
-                  var selection=[];
+                  var selected=null;
+                  var selectables = this.getSelectables();
                   selectables.forEach( function( selectable )
                   {
-                    //console.warn( key +": " + value + " looking at '" + selectable.getLabel() + "' => " +  selectable.getModel().getValue() );
+                    var key = this.getUserData("key");
+                    //console.warn( key +": '" + value + "' looking at '" + selectable.getLabel() + "' => " +  selectable.getModel().getValue() );
                     if ( selectable.getModel().getValue() === value )
                     {
-                      //console.warn("Getting value for " + key +": " + value + " -> Setting selection to  '" + selectable.getLabel() + "'..");
-                      selection=[selectable];
+                      //console.warn("Getting value for '" + key +"': " + value + " -> Setting selection to  '" + selectable.getLabel() + "'..");
+                      selected=selectable;
                     }
                   }, this );
                   
-                  //if(selection.length==0)console.warn("Getting value for " + key +": " + value + " -> No selection found" );                  
-                  return selection;
-                }
-              },
-              {  
-                "converter" : function( selection )
+                  if( ! selected )
+                  {
+                    //console.warn("Getting value for " + key +": " + value + " -> No selection found" );
+                    return [selectables[0]];
+                  }
+                  return [selected];
+                }, formElement)
+              },{  
+                "converter" : qx.lang.Function.bind( function( selection )
                 {  
                   var value = selection[0].getModel().getValue();
+                  var key = this.getUserData("key");
                   //console.warn("Selection is " + ( selection.length ? selection[0].getLabel() : "none" ) + " -> Setting value for " + key +": " + value );
                   return value; 
-                }
+                }, formElement)
               }
             );          
           
             break;
             
           case "radiogroup":
-            var selectables = formElement.getSelectables();
+            
             this._formController.addTarget( 
               formElement, "selection", key, true, {  
-                "converter" : function( value )
+                "converter" : qx.lang.Function.bind( function( value )
                 {
+                  var selectables = formElement.getSelectables();
                   var selection = [];
                   if ( value )
                   {
@@ -418,11 +424,11 @@ qx.Class.define("dialog.Form",
                   }
                   //console.warn("Getting value for " + key +": " + value + " -> Setting selection to  " + ( selection.length ? selection[0].getLabel() : "none" ) );
                   return selection;
-                }
+                },formElement)
               },
               {  
                 "converter" : function( selection )
-                {  
+                {   
                   var value = selection[0].getUserData("value");
                   //console.warn("Selection is " + ( selection.length ? selection[0].getLabel() : "none" ) + " -> Setting value for " + key +": " + value );
                   return value; 
