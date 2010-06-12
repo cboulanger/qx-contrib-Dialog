@@ -139,7 +139,7 @@ qx.Class.define("dialog.Wizard",
       this._message.setRich(true);
       this._message.setMinWidth(100);
       this._message.setAllowGrowX(true);
-      hbox.add( this._message );    
+      hbox.add( this._message, {flex:1} );    
       
       /*
        * horizontal line

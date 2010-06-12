@@ -159,14 +159,14 @@ qx.Class.define("dialog.Form",
       this._message.setRich(true);
       this._message.setMinWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.add( this._message );    
+      hbox.add( this._message, {flex:1} );    
       
       /* 
        * Form container  
        */
       this._formContainer = new qx.ui.container.Composite;
       this._formContainer.setLayout( new qx.ui.layout.Grow() );
-      groupboxContainer.add( this._formContainer );
+      groupboxContainer.add( this._formContainer, {flex: 1} );
       
       /*
        * buttons pane
@@ -409,7 +409,7 @@ qx.Class.define("dialog.Form",
               formElement, "selection", key, true, {  
                 "converter" : qx.lang.Function.bind( function( value )
                 {
-                  var selectables = formElement.getSelectables();
+                  var selectables = this.getSelectables();
                   var selection = [];
                   if ( value )
                   {
@@ -558,6 +558,9 @@ qx.Class.define("dialog.Form",
        * render the form
        */
       var view = new dialog.FormRenderer( this._form );
+      view.getLayout().setColumnFlex(0, 0);
+      view.getLayout().setColumnMaxWidth(0, 100); // FIXME Hardcoded is BAD!
+      view.getLayout().setColumnFlex(1, 1);
       view.setAllowGrowX(true);
       this._formContainer.add( view );
       

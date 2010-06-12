@@ -75,7 +75,7 @@ qx.Class.define("dialog.Alert",
       this._message.setRich(true);
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.add( this._message );    
+      hbox.add( this._message, {flex:1} );    
       
       /* 
        * Ok Button 
