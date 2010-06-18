@@ -548,6 +548,29 @@ qx.Class.define("dialog.Form",
         }
         
         /*
+         * events
+         */
+        if ( qx.lang.Type.isObject( fieldData.events ) )
+        {
+          for ( var type in fieldData.events )
+          {  
+            try
+            {
+              var func = eval("("+fieldData.events[type]+")"); // eval is evil, I know.
+              if ( ! qx.lang.Type.isFunction(func) )
+              {
+                throw new Exception();
+              }
+              formElement.addListener(type,func,formElement);
+            }
+            catch(e)
+            {
+              this.warn("Invalid '" + type + "' event handler for form element '" + key + "'.");
+            }
+          }
+        }
+        
+        /*
          * add label and form element to form
          */
         var label = fieldData.label;
