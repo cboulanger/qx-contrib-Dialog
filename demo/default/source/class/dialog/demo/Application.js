@@ -226,7 +226,10 @@ qx.Class.define("dialog.demo.Application",
         {
           'type'  : "TextField",
           'label' : "User Name", 
-          'value' : ""
+          'value' : "",
+          "validation" : {
+              "required" : true
+          } 
         },
         'address' :
         {
