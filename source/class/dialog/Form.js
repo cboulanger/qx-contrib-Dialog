@@ -77,14 +77,12 @@ qx.Class.define("dialog.Form",
      *   }   
      * }
      * </pre>
-     * 
-     *
-     * 
      */
     formData : 
     {
       check : "Map",
       nullable : true,
+      event : "changeFormData",
       apply : "_applyFormData"
     },
     
@@ -94,7 +92,18 @@ qx.Class.define("dialog.Form",
     model :
     {
       check : "qx.core.Object",
-      nullable : true
+      nullable : true,
+      event : "changeModel"
+    },
+    
+    /**
+     * The default width of the column with the field labels
+     */
+    labelColumnWidth :
+    {
+      check : "Integer",
+      nullable : false,
+      init : 100
     }
   },
   
@@ -582,7 +591,7 @@ qx.Class.define("dialog.Form",
        */
       var view = new dialog.FormRenderer( this._form );
       view.getLayout().setColumnFlex(0, 0);
-      view.getLayout().setColumnMaxWidth(0, 100); // FIXME Hardcoded is BAD!
+      view.getLayout().setColumnMaxWidth(0, this.getLabelColumnWidth() ); 
       view.getLayout().setColumnFlex(1, 1);
       view.setAllowGrowX(true);
       this._formContainer.add( view );

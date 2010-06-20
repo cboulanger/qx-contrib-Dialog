@@ -375,7 +375,7 @@ qx.Class.define("dialog.Wizard",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()( qx.util.Json.parse( qx.util.Serializer.toNativeObject( this.getModel() ) ) );
+        this.getCallback()( qx.util.Serializer.toNativeObject( this.getModel() ) );
       }
       this.resetCallback();
     }

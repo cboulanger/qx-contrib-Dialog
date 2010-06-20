@@ -63,51 +63,11 @@ qx.Class.define("dialog.Dialog",
     
     /**
      * Initialize the package
+     * @deprecated
      */    
     init : function()
     {
-      /*
-       * create shortcut methods
-       */
-      dialog.alert = function( message, callback )
-      {
-        (new dialog.Alert({
-          "message" : message,
-          "callback" : callback || null
-        })).show();      
-      }      
-      dialog.confirm = function( message, callback )
-      {
-        (new dialog.Confirm({
-          "message" : message,
-          "callback" : callback || null
-        })).show();      
-      }      
-      dialog.prompt = function( message, callback )
-      {
-        (new dialog.Prompt({
-          "message" : message,
-          "callback" : callback || null
-        })).show();      
-      }
-      dialog.select = function( message, options, callback )
-      {
-        (new dialog.Select({
-          "message" : message,
-          "allowCancel" : true,
-          "options" : options,
-          "callback" : callback
-        })).show();      
-      }       
-      dialog.form = function( message, formData, callback )
-      {
-        (new dialog.Form({
-          message : message,
-          formData : formData,
-          allowCancel : true,
-          callback : callback
-        })).show();            
-      }
+      qx.core.Init.getApplication().warn("Initializing the Dialog package is no longer necessary. Please remove calls to 'dialog.Dialog.init()', which is now deprecated.");
     }
   },
   
@@ -359,9 +319,7 @@ qx.Class.define("dialog.Dialog",
       });      
       return cancelButton;
     },
-    
 
-    
     /*
     ---------------------------------------------------------------------------
        APPLY METHODS
@@ -446,5 +404,56 @@ qx.Class.define("dialog.Dialog",
       }
       this.resetCallback();
     } 
+  },
+  
+  /*
+  *****************************************************************************
+     DEFERRED ACTION
+  *****************************************************************************
+  */   
+  defer : function()
+  {
+    /*
+     * create shortcut methods
+     */
+    dialog.alert = function( message, callback )
+    {
+      (new dialog.Alert({
+        "message" : message,
+        "callback" : callback || null
+      })).show();      
+    }      
+    dialog.confirm = function( message, callback )
+    {
+      (new dialog.Confirm({
+        "message" : message,
+        "callback" : callback || null
+      })).show();      
+    }      
+    dialog.prompt = function( message, callback )
+    {
+      (new dialog.Prompt({
+        "message" : message,
+        "callback" : callback || null
+      })).show();      
+    }
+    dialog.select = function( message, options, callback )
+    {
+      (new dialog.Select({
+        "message" : message,
+        "allowCancel" : true,
+        "options" : options,
+        "callback" : callback
+      })).show();      
+    }       
+    dialog.form = function( message, formData, callback )
+    {
+      (new dialog.Form({
+        message : message,
+        formData : formData,
+        allowCancel : true,
+        callback : callback
+      })).show();            
+    }
   }
 });
