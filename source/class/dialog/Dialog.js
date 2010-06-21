@@ -200,7 +200,7 @@ qx.Class.define("dialog.Dialog",
     /*
      * set a very high Z-Index
      */
-    this.setZIndex( 1E7 );
+    this.setZIndex( 1E5 );
     
     /*
      * make it a focus root
