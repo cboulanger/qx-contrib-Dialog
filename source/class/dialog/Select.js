@@ -141,7 +141,7 @@ qx.Class.define("dialog.Select",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()(value);
+        this.getCallback().call(this.getContext(),value);
       }
     }
   }    

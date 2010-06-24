@@ -144,7 +144,7 @@ qx.Class.define("dialog.Prompt",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()( this.getValue() );
+        this.getCallback().call( this.getContext(), this.getValue() );
       }
     } 
   }    

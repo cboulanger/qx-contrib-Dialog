@@ -187,7 +187,8 @@ qx.Class.define("dialog.Login",
       var loginButton = this._loginButton =  new qx.ui.form.Button(this.tr("Login"));
       loginButton.setAllowStretchX(false);
       loginButton.addListener("execute", function(){
-        this.getCallback()(
+        this.getCallback().call(
+          this.getContext(),
           this._username.getValue(),
           this._password.getValue(),
           this._handleCheckLogin,

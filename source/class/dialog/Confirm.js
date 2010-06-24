@@ -197,7 +197,7 @@ qx.Class.define("dialog.Confirm",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()(true);
+        this.getCallback().call(this.getContext(),true);
       }
       this.resetCallback();
     },  
@@ -211,7 +211,7 @@ qx.Class.define("dialog.Confirm",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()(false);
+        this.getCallback().call(this.getContext(),false);
       }
     } 
   }    

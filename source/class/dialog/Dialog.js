@@ -92,6 +92,15 @@ qx.Class.define("dialog.Dialog",
     },
     
     /**
+     * The context for the callback function
+     */
+    context : 
+    {
+      check : "Object",
+      nullable : true
+    },    
+    
+    /**
      * A banner image/logo that is displayed on the widget,
      * if applicable
      */
@@ -393,7 +402,7 @@ qx.Class.define("dialog.Dialog",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()(true);
+        this.getCallback().call(this.getContext(),true);
       }
       this.resetCallback();
     },  
@@ -407,7 +416,7 @@ qx.Class.define("dialog.Dialog",
       this.hide();
       if( this.getCallback() )
       {
-        this.getCallback()();
+        this.getCallback().call(this.getContext());
       }
       this.resetCallback();
     } 
@@ -423,43 +432,48 @@ qx.Class.define("dialog.Dialog",
     /*
      * create shortcut methods
      */
-    dialog.alert = function( message, callback )
+    dialog.alert = function( message, callback, context )
     {
       (new dialog.Alert({
-        "message" : message,
-        "callback" : callback || null
+        "message"     : message,
+        "callback"    : callback || null,
+        "context"     : context || null
       })).show();      
     }      
-    dialog.confirm = function( message, callback )
+    dialog.confirm = function( message, callback, context )
     {
       (new dialog.Confirm({
-        "message" : message,
-        "callback" : callback || null
+        "message"     : message,
+        "callback"    : callback || null,
+        "context"     : context || null
       })).show();      
     }      
-    dialog.prompt = function( message, callback )
+    dialog.prompt = function( message, callback, context )
     {
       (new dialog.Prompt({
-        "message" : message,
-        "callback" : callback || null
+        "message"     : message,
+        "callback"    : callback || null,
+        "context"     : context || null
       })).show();      
     }
-    dialog.select = function( message, options, callback )
+    dialog.select = function( message, options, callback, context )
     {
       (new dialog.Select({
-        "message" : message,
+        "message"     : message,
         "allowCancel" : true,
-        "options" : options,
-        "callback" : callback
+        "options"     : options,
+        "callback"    : callback,
+        "context"     : context || null
       })).show();      
     }       
-    dialog.form = function( message, formData, callback )
+    dialog.form = function( message, formData, callback, context )
     {
       (new dialog.Form({
-        message : message,
-        formData : formData,
-        allowCancel : true,
-        callback : callback
+         "message"    : message,
+        "formData"    : formData,
+        "allowCancel" : true,
+        "callback"    : callback,
+        "context"     : context || null
       })).show();            
     }
   }
