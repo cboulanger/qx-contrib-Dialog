@@ -195,12 +195,19 @@ qx.Class.define("dialog.Dialog",
     /*
      * automatically add to application's root
      */
-    qx.core.Init.getApplication().getRoot().add(this);
+    var root = qx.core.Init.getApplication().getRoot();
+    root.add(this);
     
     /*
-     * set a very high Z-Index
+     * make sure the dialog is above any opened window
      */
-    this.setZIndex( 1E5 );
+    var maxWindowZIndex = 1E5;
+    var windows = root.getWindows();
+    for (var i = 0; i < windows.length; i++) {
+      var zIndex = windows[i].getZIndex();
+      maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
+    }
+    this.setZIndex( maxWindowZIndex +1 );
     
     /*
      * make it a focus root
