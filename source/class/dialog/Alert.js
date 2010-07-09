@@ -1,11 +1,11 @@
 /* ************************************************************************
 
-   qcl - the qooxdoo component library
+   qooxdoo dialog library
   
-   http://qooxdoo.org/contrib/project/qcl/
+   http://qooxdoo.org/contrib/project#dialog
   
    Copyright:
-     2007-2009 Christian Boulanger
+     2007-2010 Christian Boulanger
   
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
@@ -18,9 +18,8 @@
 ************************************************************************ */
 
 /* ************************************************************************
-#embed(qx.icontheme/48/status/dialog-information.png)
+#asset(qx.icontheme/48/status/dialog-information.png)
 ************************************************************************ */
-
 
 /**
  * A dialog that alerts the user to something.
@@ -92,5 +91,5 @@ qx.Class.define("dialog.Alert",
       buttonPane.add(okButton);
       groupboxContainer.add(buttonPane);
     }
-  }    
+  }
 });

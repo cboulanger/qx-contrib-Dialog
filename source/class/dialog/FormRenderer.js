@@ -1,25 +1,21 @@
 /* ************************************************************************
 
-   qcl - the qooxdoo component library
+   qooxdoo dialog library
   
-   http://qooxdoo.org/contrib/project/qcl/
+   http://qooxdoo.org/contrib/project#dialog
   
    Copyright:
-     2007-2009 Christian Boulanger
-
+     2007-2010 Christian Boulanger
+  
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
      EPL: http://www.eclipse.org/org/documents/epl-v10.php
      See the LICENSE file in the project's top-level directory for details.
-
+  
    Authors:
-     * Christian Boulanger (cboulanger)
-     * Martin Wittemann (martinwittemann) 
-
+   *  Christian Boulanger (cboulanger)
+  
 ************************************************************************ */
-/* ******
-
-** */
 
 /**
  * Form renderer renderer for {@link qx.ui.form.Form}. This is a 

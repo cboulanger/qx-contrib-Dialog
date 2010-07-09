@@ -1,20 +1,24 @@
 /* ************************************************************************
 
+   qooxdoo dialog library
+  
+   http://qooxdoo.org/contrib/project#dialog
+  
    Copyright:
-
+     2007-2010 Christian Boulanger
+  
    License:
-
+     LGPL: http://www.gnu.org/licenses/lgpl.html
+     EPL: http://www.eclipse.org/org/documents/epl-v10.php
+     See the LICENSE file in the project's top-level directory for details.
+  
    Authors:
-
+   *  Christian Boulanger (cboulanger)
+  
 ************************************************************************ */
 
 /* ************************************************************************
-
-#asset(dialog/*)
-#asset(qx/icon/Tango/48/status/dialog-information.png)
-#asset(qx/icon/Tango/22/actions/dialog-ok.png)
-#asset(qx/icon/Tango/22/actions/dialog-cancel.png)
-
+#require(dialog.Dialog)
 ************************************************************************ */
 
 /**
@@ -109,7 +113,7 @@ qx.Class.define("dialog.demo.Application",
     
     createAlert : function()
     {
-      dialog.alert( "Hello World!" );
+      dialog.Dialog.alert( "Hello World!" );
 //      same as:
 //      (new dialog.Alert({
 //        message : "Hello World!"
@@ -118,8 +122,8 @@ qx.Class.define("dialog.demo.Application",
     
     createConfirm : function()
     {
-      dialog.confirm("Do you really want to erase your hard drive?", function(result){
-        dialog.alert("Your answer was: " + result );
+      dialog.Dialog.confirm("Do you really want to erase your hard drive?", function(result){
+        dialog.Dialog.alert("Your answer was: " + result );
       });
 //      (new dialog.Confirm({
 //        message : "Do you really want to erase your hard drive?",
@@ -134,8 +138,8 @@ qx.Class.define("dialog.demo.Application",
     
     createPrompt : function()
     {
-      dialog.prompt("Please enter the root password for your server",function(result){
-        dialog.alert("Your answer was: " + result );
+      dialog.Dialog.prompt("Please enter the root password for your server",function(result){
+        dialog.Dialog.alert("Your answer was: " + result );
       });
       
 //      same as:      
@@ -155,10 +159,10 @@ qx.Class.define("dialog.demo.Application",
      */
     createDialogChain : function()
     {
-      dialog.alert( "This demostrates a series of 'nested' dialogs ",function(){
-        dialog.confirm( "Do you believe in the Loch Ness monster?", function(result){
-          dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?", function(result){
-            dialog.alert( result ? 
+      dialog.Dialog.alert( "This demostrates a series of 'nested' dialogs ",function(){
+        dialog.Dialog.confirm( "Do you believe in the Loch Ness monster?", function(result){
+          dialog.Dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?", function(result){
+            dialog.Dialog.alert( result ? 
               "I tell you a secret: It doesn't exist." :
               "All the better." );
           });
@@ -193,12 +197,12 @@ qx.Class.define("dialog.demo.Application",
      */
     createSelect : function()
     {
-      dialog.select( "Select the type of record to create:", [
+      dialog.Dialog.select( "Select the type of record to create:", [
           { label:"Database record", value:"database" },
           { label:"World record", value:"world" },
           { label:"Pop record", value:"pop" }
         ], function(result){
-          dialog.alert("You selected: '" + result + "'");
+          dialog.Dialog.alert("You selected: '" + result + "'");
         } 
       );
         
@@ -259,9 +263,9 @@ qx.Class.define("dialog.demo.Application",
            ]
         }
       };
-      dialog.form("Please fill in the form",formData, function( result )
+      dialog.Dialog.form("Please fill in the form",formData, function( result )
       {
-        dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
+        dialog.Dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
       }
     );      
 //    (new dialog.Form({
@@ -373,7 +377,7 @@ qx.Class.define("dialog.demo.Application",
         pageData    : pageData, 
         allowCancel : true,
         callback : qx.lang.Function.bind( function( map ){
-          dialog.alert("Thank you for your input:" + qx.util.Json.stringify(map).replace(/\\/g,"") );
+          dialog.Dialog.alert("Thank you for your input:" + qx.util.Json.stringify(map).replace(/\\/g,"") );
         },this)
       });
       wizard.start();        

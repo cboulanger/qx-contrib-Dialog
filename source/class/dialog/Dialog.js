@@ -1,11 +1,11 @@
 /* ************************************************************************
 
-   qcl - the qooxdoo component library
+   qooxdoo dialog library
   
-   http://qooxdoo.org/contrib/project/qcl/
+   http://qooxdoo.org/contrib/project#dialog
   
    Copyright:
-     2007-2009 Christian Boulanger
+     2007-2010 Christian Boulanger
   
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
@@ -21,11 +21,6 @@
 #asset(qx/icon/${qx.icontheme}/22/actions/dialog-cancel.png)
 #asset(qx/icon/${qx.icontheme}/22/actions/dialog-ok.png)
 #asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
-
-#ignore(dialog.alert)
-#ignore(dialog.confirm)
-#ignore(dialog.prompt)
-#ignore(dialog.select)
 ************************************************************************ */
 
 
@@ -68,7 +63,88 @@ qx.Class.define("dialog.Dialog",
     init : function()
     {
       qx.core.Init.getApplication().warn("Initializing the Dialog package is no longer necessary. Please remove calls to 'dialog.Dialog.init()', which is now deprecated.");
-    }
+    },
+    
+    /**
+     * Shortcut for alert dialog
+     * @param message {String}
+     * @param callback {Function}
+     * @param context {Object} 
+     */
+    alert : function( message, callback, context )
+    {
+      (new dialog.Alert({
+        "message"     : message,
+        "callback"    : callback || null,
+        "context"     : context || null
+      })).show();      
+    },
+    
+    /**
+     * Shortcut for confirm dialog
+     * @param message {String}
+     * @param callback {Function}
+     * @param context {Object} 
+     */
+    confirm : function( message, callback, context )
+    {
+      (new dialog.Confirm({
+        "message"     : message,
+        "callback"    : callback || null,
+        "context"     : context || null
+      })).show();      
+    },
+    
+    /**
+     * Shortcut for prompt dialog
+     * @param message {String}
+     * @param callback {Function}
+     * @param context {Object} 
+     */    
+    prompt : function( message, callback, context )
+    {
+      (new dialog.Prompt({
+        "message"     : message,
+        "callback"    : callback || null,
+        "context"     : context || null
+      })).show();      
+    },
+    
+    /**
+     * Shortcut for select dialog
+     * @param message {String}
+     * @param options {Array}
+     * @param callback {Function}
+     * @param context {Object} 
+     */    
+    select : function( message, options, callback, context )
+    {
+      (new dialog.Select({
+        "message"     : message,
+        "allowCancel" : true,
+        "options"     : options,
+        "callback"    : callback || null,
+        "context"     : context || null
+      })).show();      
+    },
+    
+    /**
+     * Shortcut for form dialog
+     * @param message {String}
+     * @param formData {Map}
+     * @param callback {Function}
+     * @param context {Object} 
+     */
+    form : function( message, formData, callback, context )
+    {
+      (new dialog.Form({
+         "message"    : message,
+        "formData"    : formData,
+        "allowCancel" : true,
+        "callback"    : callback,
+        "context"     : context || null
+      })).show();            
+    } 
   },
   
   /*
@@ -156,6 +232,13 @@ qx.Class.define("dialog.Dialog",
       check : "Boolean",
       init : true,
       event : "changeAllowCancel"
+    },
+    
+    // overridden
+    focusable :
+    {
+      refine : true,
+      init : true
     }
   },
   
@@ -372,6 +455,7 @@ qx.Class.define("dialog.Dialog",
         root.blockContent( this.getZIndex()-1 );
       }    
       this.setVisibility("visible");
+      this.focus();
       this.fireEvent("show");
     },
     
@@ -430,51 +514,12 @@ qx.Class.define("dialog.Dialog",
   defer : function()
   {
     /*
-     * create shortcut methods
+     * create shortcut methods for backward compatibility
      */
-    dialog.alert = function( message, callback, context )
-    {
-      (new dialog.Alert({
-        "message"     : message,
-        "callback"    : callback || null,
-        "context"     : context || null
-      })).show();      
-    }      
-    dialog.confirm = function( message, callback, context )
-    {
-      (new dialog.Confirm({
-        "message"     : message,
-        "callback"    : callback || null,
-        "context"     : context || null
-      })).show();      
-    }      
-    dialog.prompt = function( message, callback, context )
-    {
-      (new dialog.Prompt({
-        "message"     : message,
-        "callback"    : callback || null,
-        "context"     : context || null
-      })).show();      
-    }
-    dialog.select = function( message, options, callback, context )
-    {
-      (new dialog.Select({
-        "message"     : message,
-        "allowCancel" : true,
-        "options"     : options,
-        "callback"    : callback,
-        "context"     : context || null
-      })).show();      
-    }       
-    dialog.form = function( message, formData, callback, context )
-    {
-      (new dialog.Form({
-         "message"    : message,
-        "formData"    : formData,
-        "allowCancel" : true,
-        "callback"    : callback,
-        "context"     : context || null
-      })).show();            
-    }
+    dialog.alert = dialog.Dialog.alert;
+    dialog.confirm = dialog.Dialog.confirm;
+    dialog.prompt = dialog.Dialog.prompt;
+    dialog.select = dialog.Dialog.select;
+    dialog.form = dialog.Dialog.form;
   }
 });

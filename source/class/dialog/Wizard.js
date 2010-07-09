@@ -1,11 +1,11 @@
 /* ************************************************************************
 
-   qcl - the qooxdoo component library
+   qooxdoo dialog library
   
-   http://qooxdoo.org/contrib/project/qcl/
+   http://qooxdoo.org/contrib/project#dialog
   
    Copyright:
-     2007-2009 Christian Boulanger
+     2007-2010 Christian Boulanger
   
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
@@ -368,7 +368,6 @@ qx.Class.define("dialog.Wizard",
     
     /** 
      * Finishes the wizard. Calls callback with the result data map
-     * @return {Object}
      */
     finish : function()
     {
