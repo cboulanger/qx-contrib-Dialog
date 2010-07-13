@@ -61,7 +61,7 @@ qx.Class.define("dialog.Login",
      * Data event dispatched when login failed, event data
      * contains a reponse message
      */
-    "loginSucces"  : "qx.event.type.Data"    
+    "loginFailure"  : "qx.event.type.Data"    
   },
   
   /*
@@ -161,6 +161,13 @@ qx.Class.define("dialog.Login",
        */
       this._username = new qx.ui.form.TextField();
       this._password = new qx.ui.form.PasswordField();
+      
+      this._password.addListener("keypress",function(e){
+        if ( e.getKeyIdentifier() == "Enter" ) 
+        {   
+          this._callCallback();
+        }
+      },this);
 
       gridContainer.add(this._username.set({
         allowShrinkX: false,
@@ -186,15 +193,7 @@ qx.Class.define("dialog.Login",
        */
       var loginButton = this._loginButton =  new qx.ui.form.Button(this.tr("Login"));
       loginButton.setAllowStretchX(false);
-      loginButton.addListener("execute", function(){
-        this.getCallback().call(
-          this.getContext(),
-          this._username.getValue(),
-          this._password.getValue(),
-          this._handleCheckLogin,
-          this
-        );
-      }, this);      
+      loginButton.addListener("execute", this._callCallback, this);      
       
       /* 
        * Cancel Button 
@@ -212,20 +211,19 @@ qx.Class.define("dialog.Login",
          buttonPane,{ row : 3, column : 1}
       );
 
-      /* 
-       * Prepare effect as soon as the widget is ready 
-       */
-      this.addListener("appear", this._prepareEffect, this);
     },  
-          
     
     /**
-     * Sets up the effect that is triggered when the login fails
-     * @return {void}
+     * Calls the callback function with the current login data
      */
-    _prepareEffect : function()
+    _callCallback : function()
     {
-      this._effect = new qx.fx.effect.combination.Shake(this.getContainerElement().getDomElement());
+      this.getCallback()(
+        this._username.getValue(),
+        this._password.getValue(),
+        this._handleCheckLogin,
+        this
+      );
     },
     
     /**
@@ -262,8 +260,7 @@ qx.Class.define("dialog.Login",
       }
       else
       {
-        this._effect.start();
-        this.fireDataEvent("loginFail", message );
+        this.fireDataEvent("loginFailure", message );
       }
     },
     
@@ -281,30 +278,6 @@ qx.Class.define("dialog.Login",
       this._password.setValue("");
       this.setMessage(null);
       this.base(arguments);
-    },    
-
-    /**
-    * Sample callback function that takes the username, password and
-    * another callback function as parameters. The passed function
-    * is called with a boolean value (true=authenticated, false=
-    * authentication failed) and a string value which contains 
-    * an error message like so: 
-    * callback.call( context, {Boolean} result, {String} message);
-    * @param username {String}
-    * @param password {String}
-    * @param callback {Function} The callback function
-    * @param context {Object} The execution context
-    */    
-   sampleCallbackFunc : function( username, password, callback, context )
-   {
-      if ( username == "username" && password == "password" )
-      {
-        callback.call( context, true );
-      }
-      else
-      {
-        callback.call( context, false, "<span style='color:red'>Wrong password</span>" );
-      }
     }
-  }    
+  }  
 });

@@ -18,6 +18,7 @@
 ************************************************************************ */
 
 /* ************************************************************************
+#asset(dialog/*)
 #require(dialog.Dialog)
 ************************************************************************ */
 
@@ -87,6 +88,10 @@ qx.Class.define("dialog.demo.Application",
          {
            label : "Wizard",
            method : "createWizard"
+         },             
+         {
+           label : "Login",
+           method : "createLogin"
          }
        ];
     
@@ -376,11 +381,56 @@ qx.Class.define("dialog.demo.Application",
         maxWidth    : 500,
         pageData    : pageData, 
         allowCancel : true,
-        callback : qx.lang.Function.bind( function( map ){
+        callback    : function( map ){
           dialog.Dialog.alert("Thank you for your input:" + qx.util.Json.stringify(map).replace(/\\/g,"") );
-        },this)
+        },
+        context     : this
       });
       wizard.start();        
-    }
+    },
+    
+    /**
+     * Creates a sample login widget
+     */
+    createLogin : function()
+    {
+      var loginWidget = new dialog.Login({
+        image       : "dialog/logo.gif", 
+        text        : "<h3>Please log in</h3><p>Using 'demo'/'demo'</p>",
+        callback    : this.sampleCallbackFunc,
+        context     : this
+      });
+      loginWidget.addListener("loginSuccess", function(e){
+        dialog.Dialog.alert( "You are now logged in. Or at least we pretend." );
+      });
+      loginWidget.addListener("loginFailure", function(e){
+        dialog.Dialog.alert(e.getData());
+      });
+      loginWidget.show();
+    },
+    
+    /**
+    * Sample callback function that takes the username, password and
+    * another callback function as parameters. The passed function
+    * is called with a boolean value (true=authenticated, false=
+    * authentication failed) and a string value which contains 
+    * an error message like so: 
+    * callback.call( context, {Boolean} result, {String} message);
+    * @param username {String}
+    * @param password {String}
+    * @param callback {Function} The callback function
+    * @param context {Object} The execution context
+    */    
+   sampleCallbackFunc : function( username, password, callback, context )
+   {
+      if ( username == "demo" && password == "demo" )
+      {
+        callback.call( context, true );
+      }
+      else
+      {
+        callback.call( context, false, "Wrong password!" );
+      }
+    }    
   }
 });

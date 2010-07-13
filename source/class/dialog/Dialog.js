@@ -469,6 +469,7 @@ qx.Class.define("dialog.Dialog",
       {
         this.getApplicationRoot().unblockContent();
       }
+      this.blur();
       this.fireEvent("hide");
     },
     
