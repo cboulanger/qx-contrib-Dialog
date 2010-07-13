@@ -42,7 +42,20 @@ qx.Class.define("dialog.Login",
       check : "String",
       nullable : true,
       apply : "_applyText"
+    },
+    
+    /**
+     * The name of the font in the theme that should be applied to 
+     * the text
+     */
+    textFont :
+    {
+      check    : "String",
+      nullable : true,
+      init     : "bold",
+      apply    : "_applyTextFont"
     }
+    
   },
   
   /*
@@ -91,6 +104,11 @@ qx.Class.define("dialog.Login",
       this._text.setValue( value );
       this._text.setVisibility( value ? "visible" : "excluded" );
     },    
+    
+    _applyTextFont : function( value )
+    {
+      this._text.setFont( value );
+    },
         
     /*
     ---------------------------------------------------------------------------
@@ -110,7 +128,9 @@ qx.Class.define("dialog.Login",
       var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
         contentPadding: [16, 16, 16, 16]
       });
-      groupboxContainer.setLayout( new qx.ui.layout.VBox );
+      var layout = new qx.ui.layout.VBox(10);
+      layout.setAlignX("center");
+      groupboxContainer.setLayout( layout );
       this.add( groupboxContainer );
       
       /*
@@ -124,9 +144,9 @@ qx.Class.define("dialog.Login",
        * add text
        */
       this._text = new qx.ui.basic.Label();
-      this._text.setRich(true);
       this._text.setAllowStretchX(true);
       this._text.setVisibility("excluded");
+      this.setTextFont("bold");
       
       groupboxContainer.add( this._text );
       

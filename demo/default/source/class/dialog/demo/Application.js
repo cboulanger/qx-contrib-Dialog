@@ -396,7 +396,7 @@ qx.Class.define("dialog.demo.Application",
     {
       var loginWidget = new dialog.Login({
         image       : "dialog/logo.gif", 
-        text        : "<h3>Please log in</h3><p>Using 'demo'/'demo'</p>",
+        text        : "Please log in, using 'demo'/'demo'",
         callback    : this.sampleCallbackFunc,
         context     : this
       });
