@@ -38,7 +38,7 @@ qx.Class.define("dialog.Dialog",
   */     
   statics :
   {
-  
+    
     /**
      * Returns a dialog instance by type
      * @param type {String}
@@ -455,6 +455,7 @@ qx.Class.define("dialog.Dialog",
         root.blockContent( this.getZIndex()-1 );
       }    
       this.setVisibility("visible");
+      this.__previousFocus = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
       this.focus();
       this.fireEvent("show");
     },
@@ -469,7 +470,10 @@ qx.Class.define("dialog.Dialog",
       {
         this.getApplicationRoot().unblockContent();
       }
-      this.blur();
+      if ( this.__previousFocus )
+      {
+        this.__previousFocus.focus();
+      }
       this.fireEvent("hide");
     },
     
