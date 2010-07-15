@@ -472,7 +472,11 @@ qx.Class.define("dialog.Dialog",
       }
       if ( this.__previousFocus )
       {
-        this.__previousFocus.focus();
+        try
+        {
+          this.__previousFocus.focus();
+        }
+        catch( e ){}
       }
       this.fireEvent("hide");
     },
