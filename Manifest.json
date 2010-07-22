@@ -12,13 +12,13 @@
     "authors" : 
     [
       {
-        "name" : "Chritian Boulanger (cboulanger)",
+        "name" : "Christian Boulanger (cboulanger)",
         "email" : "c.boulanger@qxtransformer.org"
       }
     ],
 
     "version" : "trunk",
-    "qooxdoo-versions": ["1.0","1.1","1.2-pre","trunk"]
+    "qooxdoo-versions": ["1.0","1.1","1.2-pre"]
   },
   
   "provides" : 
