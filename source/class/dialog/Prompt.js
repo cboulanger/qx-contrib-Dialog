@@ -100,9 +100,6 @@ qx.Class.define("dialog.Prompt",
       this._textField.addListener("changeValue", function(e){
         this.setValue( e.getData() );
       },this);
-      this.addListener("show",function(){
-        this.setValue("");
-      },this);
       groupboxContainer.add( this._textField );
       
       
