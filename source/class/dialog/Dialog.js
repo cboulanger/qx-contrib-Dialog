@@ -26,6 +26,7 @@
 
 /**
  * Base class for dialog widgets
+ * @todo use childControl system
  */
 qx.Class.define("dialog.Dialog",
 {
@@ -249,15 +250,19 @@ qx.Class.define("dialog.Dialog",
   */    
   events : 
   {   
+    
     /**
-    * Event dispatched when widget is shown
-    */
-   "show" : "qx.event.type.Event",
+     * Dispatched when user clicks on the "OK" Button
+     * @type String
+     */
+    "ok" : "qx.event.type.Event",
+    
+    /**
+     * Dispatched when user clicks on the "Cancel" Button
+     * @type String
+     */
+    "cancel" : "qx.event.type.Event"
    
-   /**
-    * Data event dispatched when widget is hidden
-    */
-   "hide"  : "qx.event.type.Event"   
   },
   
   /*
@@ -363,12 +368,21 @@ qx.Class.define("dialog.Dialog",
     
     /*
     ---------------------------------------------------------------------------
-       PRIVATE MEMBERS
+       "PRIVATE"
     ---------------------------------------------------------------------------
     */  
-    _image : null,
-    _message : null,
-    _okButton : null,
+    
+    __container : null,
+    
+    /*
+    ---------------------------------------------------------------------------
+       "PROTECTED"
+    ---------------------------------------------------------------------------
+    */      
+    
+    _image        : null,
+    _message      : null,
+    _okButton     : null,
     _cancelButton : null,       
     
     /*
@@ -377,14 +391,46 @@ qx.Class.define("dialog.Dialog",
     ---------------------------------------------------------------------------
     */  
     
- 
+    // overridden
+    // @todo implement child control logic
+//    _createChildControlImpl : function(id)
+//    {
+//      var control;
+//
+//      switch(id)
+//      {
+//        case "button-ok":
+//          control = new qx.ui.basic.Label( this.getLabel() );
+//          this._add(control);
+//          break;
+//
+//      }
+//
+//      return control || this.base(arguments, id);
+//    },    
+//    
     /**
+     * Create the content of the dialog. 
      * Extending classes must implement this method.
      */
     _createWidgetContent : function()
     {
       this.error("_createWidgetContent not implemented!");
     },  
+    
+    /**
+     * Creates the default container (groupbox)
+     * @todo make this themeable
+     */
+    _createDialogContainer : function()
+    {
+      this.__container = new qx.ui.groupbox.GroupBox().set({
+        layout : new qx.ui.layout.VBox(10),
+        contentPadding: [16, 16, 16, 16]
+      });
+      this.add( this.__container );
+      return this.__container;
+    },      
     
     /**
      * Create a cancel button
@@ -443,6 +489,19 @@ qx.Class.define("dialog.Dialog",
     */     
     
     /**
+     * Returns the widgets that is the container of the dialog
+     * @return {qx.ui.core.LayoutItem}
+     */
+    getDialogContainer : function()
+    {
+      if ( ! this.__container )
+      {
+        return this._createDialogContainer();
+      }
+      return this.__container;
+    },
+    
+    /**
      * Show the widget. Overriding methods must call this parent method
      */
     show : function()
@@ -457,7 +516,6 @@ qx.Class.define("dialog.Dialog",
       this.setVisibility("visible");
       this.__previousFocus = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
       this.focus();
-      this.fireEvent("show");
     },
     
     /**
@@ -478,7 +536,6 @@ qx.Class.define("dialog.Dialog",
         }
         catch( e ){}
       }
-      this.fireEvent("hide");
     },
     
     /*
@@ -493,6 +550,7 @@ qx.Class.define("dialog.Dialog",
     _handleOk : function()
     {
       this.hide();
+      this.fireEvent("ok");
       if( this.getCallback() )
       {
         this.getCallback().call(this.getContext(),true);
@@ -507,6 +565,7 @@ qx.Class.define("dialog.Dialog",
     _handleCancel : function()
     {
       this.hide();
+      this.fireEvent("cancel");
       if( this.getCallback() )
       {
         this.getCallback().call(this.getContext());
