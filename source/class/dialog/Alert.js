@@ -18,7 +18,7 @@
 ************************************************************************ */
 
 /* ************************************************************************
-#asset(qx.icontheme/48/status/dialog-information.png)
+#asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
 ************************************************************************ */
 
 /**
@@ -64,7 +64,7 @@ qx.Class.define("dialog.Alert",
       /*
        * add image 
        */
-      this._image = new qx.ui.basic.Image("icon/48/status/dialog-information.png");
+      this._image = new qx.ui.basic.Image(this.getImage() || "icon/48/status/dialog-information.png" );
       hbox.add( this._image );
       
       /*

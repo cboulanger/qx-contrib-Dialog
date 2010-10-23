@@ -568,7 +568,7 @@ qx.Class.define("dialog.Form",
               var func = eval("("+fieldData.events[type]+")"); // eval is evil, I know.
               if ( ! qx.lang.Type.isFunction(func) )
               {
-                throw new Exception();
+                throw new Error();
               }
               formElement.addListener(type,func,formElement);
             }

@@ -21,6 +21,15 @@
 #asset(qx/icon/${qx.icontheme}/22/actions/dialog-cancel.png)
 #asset(qx/icon/${qx.icontheme}/22/actions/dialog-ok.png)
 #asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
+#asset(qx/icon/${qx.icontheme}/48/status/dialog-error.png)
+#asset(qx/icon/${qx.icontheme}/48/status/dialog-warning.png)
+
+#ignore(dialog.alert)
+#ignore(dialog.error)
+#ignore(dialog.warning)
+#ignore(dialog.confirm)
+#ignore(dialog.prompt)
+#ignore(dialog.select)
 ************************************************************************ */
 
 
@@ -38,8 +47,8 @@ qx.Class.define("dialog.Dialog",
   *****************************************************************************
   */     
   statics :
-  {
-    
+  {  
+  
     /**
      * Returns a dialog instance by type
      * @param type {String}
@@ -64,6 +73,21 @@ qx.Class.define("dialog.Dialog",
     init : function()
     {
       qx.core.Init.getApplication().warn("Initializing the Dialog package is no longer necessary. Please remove calls to 'dialog.Dialog.init()', which is now deprecated.");
+      var images = ["22/actions/dialog-cancel","22/actions/dialog-ok","48/status/dialog-information","48/status/dialog-error","48/status/dialog-warning"];
+      var decoration = ["form/button","form/button-hovered","form/button-pressed","groupbox/groupbox","shadow/shadow-small","form/button-focused"];
+      
+      for(var i=0;i<images.length;i++)
+      {
+        var p = qx.theme.manager.Icon.getInstance().getTheme().aliases.icon;
+        qx.io.ImageLoader.load("resource/" + p + "/" +images[i]+".png",null,this);
+      }
+      
+      for(var i=0;i<decoration.length;i++)
+      {
+        var p = qx.theme.manager.Decoration.getInstance().getTheme().aliases.decoration;
+        qx.io.ImageLoader.load("resource/" + p + "/" +decoration[i]+".png",null,this);
+      }
+  
     },
     
     /**
@@ -75,9 +99,30 @@ qx.Class.define("dialog.Dialog",
     alert : function( message, callback, context )
     {
       (new dialog.Alert({
-        "message"     : message,
-        "callback"    : callback || null,
-        "context"     : context || null
+        "message"   : message,
+        "callback"  : callback || null,
+        "context"   : context || null,
+        "image"     : "icon/48/status/dialog-information.png"
+      })).show();      
+    },
+
+    error : function( message, callback, context )
+    {
+      (new dialog.Alert({
+        "message"   : message,
+        "callback"  : callback || null,
+        "context"   : context || null,
+        "image"     : "icon/48/status/dialog-error.png"
+      })).show();      
+    },
+    
+    warning : function( message, callback, context )
+    {
+      (new dialog.Alert({
+        "message"   : message,
+        "callback"  : callback || null,
+        "context"   : context || null,
+        "image"     : "icon/48/status/dialog-warning.png"
       })).show();      
     },
     
@@ -117,12 +162,13 @@ qx.Class.define("dialog.Dialog",
      * @param options {Array}
      * @param callback {Function}
      * @param context {Object} 
+     * @param allowCancel {Boolean} Default: true
      */    
-    select : function( message, options, callback, context )
+    select : function( message, options, callback, context, allowCancel )
     {
       (new dialog.Select({
         "message"     : message,
-        "allowCancel" : true,
+        "allowCancel" : typeof allowCancel == "boolean" ? allowCancel : true,
         "options"     : options,
         "callback"    : callback || null,
         "context"     : context || null
@@ -145,8 +191,99 @@ qx.Class.define("dialog.Dialog",
         "callback"    : callback,
         "context"     : context || null
       })).show();            
-    } 
+    }
   },
+  
+  /*
+  *****************************************************************************
+     CONSTRUCTOR
+  *****************************************************************************
+  */   
+  
+  /**
+   * @param properties {Map|String|undefined} If you supply a map, all the 
+   * corresponding properties will be set. If a string is given, use it 
+   * as to set the 'message' property.
+   */
+  construct: function( properties )
+  {
+    this.base(arguments);
+    
+    /*
+     * basic settings
+     */
+    this.set({
+      'visibility' : "hidden",
+      'decorator'  : "shadow-popup"
+    });
+    this.setLayout( new qx.ui.layout.Grow() );
+    
+    /*
+     * automatically add to application's root
+     */
+    var root = qx.core.Init.getApplication().getRoot();
+    root.add(this);
+    
+    /*
+     * make sure the dialog is above any opened window
+     */
+    var maxWindowZIndex = 1E5;
+    var windows = root.getWindows();
+    for (var i = 0; i < windows.length; i++) {
+      var zIndex = windows[i].getZIndex();
+      maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
+    }
+    this.setZIndex( maxWindowZIndex +1 );
+    
+    /*
+     * make it a focus root
+     */
+    qx.ui.core.FocusHandler.getInstance().addRoot(this);
+    
+    /* 
+     * resize event 
+     */
+    this.getApplicationRoot().addListener("resize", function(e)
+    {
+      var bounds = this.getBounds();
+      this.set({
+        marginTop: Math.round( ( qx.bom.Document.getHeight() -bounds.height ) / 2),
+        marginLeft : Math.round( ( qx.bom.Document.getWidth() -bounds.width) / 2)
+      });
+    }, this);
+    
+    /* 
+     * appear event 
+     */
+    this.addListener("appear", function(e)
+    {
+      var bounds = this.getBounds();
+      this.set({
+        marginTop: Math.round( ( qx.bom.Document.getHeight() -bounds.height ) / 2),
+        marginLeft : Math.round( ( qx.bom.Document.getWidth() -bounds.width) / 2)
+      });
+    }, this);   
+    
+    /*
+     * create widget content
+     */
+    this._createWidgetContent();
+    
+    /*
+     * set properties if given
+     */
+    if ( typeof properties == "object" )
+    {
+      this.set(properties);
+    }
+    /*
+     * if argument is a string, assume it is a message
+     */
+    else if ( typeof properties == "string" )
+    {
+      this.setMessage(properties);
+    }
+  },  
   
   /*
   *****************************************************************************
@@ -241,6 +378,8 @@ qx.Class.define("dialog.Dialog",
       refine : true,
       init : true
     }
+    
+    
   },
   
   /*
@@ -254,109 +393,18 @@ qx.Class.define("dialog.Dialog",
     /**
      * Dispatched when user clicks on the "OK" Button
      * @type String
-     */
+    */
     "ok" : "qx.event.type.Event",
-    
-    /**
+   
+   /**
      * Dispatched when user clicks on the "Cancel" Button
      * @type String
-     */
+    */
     "cancel" : "qx.event.type.Event"
    
   },
   
-  /*
-  *****************************************************************************
-     CONSTRUCTOR
-  *****************************************************************************
-  */   
-  
-  /**
-   * @param properties {Map|String|undefined} If you supply a map, all the 
-   * corresponding properties will be set. If a string is given, use it 
-   * as to set the 'message' property.
-   */
-  construct: function( properties )
-  {
-    this.base(arguments);
-    
-    /*
-     * basic settings
-     */
-    this.set({
-      'visibility' : "hidden",
-      'decorator'  : "shadow-popup"
-    });
-    this.setLayout( new qx.ui.layout.Grow() );
-    
-    /*
-     * automatically add to application's root
-     */
-    var root = qx.core.Init.getApplication().getRoot();
-    root.add(this);
-    
-    /*
-     * make sure the dialog is above any opened window
-     */
-    var maxWindowZIndex = 1E5;
-    var windows = root.getWindows();
-    for (var i = 0; i < windows.length; i++) {
-      var zIndex = windows[i].getZIndex();
-      maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
-    }
-    this.setZIndex( maxWindowZIndex +1 );
-    
-    /*
-     * make it a focus root
-     */
-    qx.ui.core.FocusHandler.getInstance().addRoot(this);
-    
-    /* 
-     * resize event 
-     */
-    this.getApplicationRoot().addListener("resize", function(e)
-    {
-      var bounds = this.getBounds();
-      this.set({
-        marginTop: Math.round( ( qx.bom.Document.getHeight() -bounds.height ) / 2),
-        marginLeft : Math.round( ( qx.bom.Document.getWidth() -bounds.width) / 2)
-      });
-    }, this);
-    
-    /* 
-     * appear event 
-     */
-    this.addListener("appear", function(e)
-    {
-      var bounds = this.getBounds();
-      this.set({
-        marginTop: Math.round( ( qx.bom.Document.getHeight() -bounds.height ) / 2),
-        marginLeft : Math.round( ( qx.bom.Document.getWidth() -bounds.width) / 2)
-      });
-    }, this);   
-    
-    /*
-     * create widget content
-     */
-    this._createWidgetContent();
-    
-    /*
-     * set properties if given
-     */
-    if ( typeof properties == "object" )
-    {
-      this.set(properties);
-    }
-    /*
-     * if argument is a string, assume it is a message
-     */
-    else if ( typeof properties == "string" )
-    {
-      this.setMessage(properties);
-    }
-      
-      
-  },
+
   
   /*
   *****************************************************************************
@@ -380,9 +428,9 @@ qx.Class.define("dialog.Dialog",
     ---------------------------------------------------------------------------
     */      
     
-    _image        : null,
-    _message      : null,
-    _okButton     : null,
+    _image : null,
+    _message : null,
+    _okButton : null,
     _cancelButton : null,       
     
     /*
@@ -582,12 +630,16 @@ qx.Class.define("dialog.Dialog",
   defer : function()
   {
     /*
-     * create shortcut methods for backward compatibility
+     * create shortcut methods for backward compatibility. This will
+     * be deprecated in a future release, please use only the 
+     * dialog.Dialog.* methods
      */
-    dialog.alert = dialog.Dialog.alert;
-    dialog.confirm = dialog.Dialog.confirm;
-    dialog.prompt = dialog.Dialog.prompt;
-    dialog.select = dialog.Dialog.select;
-    dialog.form = dialog.Dialog.form;
+    dialog.alert    = dialog.Dialog.alert;
+    dialog.error    = dialog.Dialog.error;
+    dialog.warning  = dialog.Dialog.warning;
+    dialog.confirm  = dialog.Dialog.confirm;
+    dialog.prompt   = dialog.Dialog.prompt;
+    dialog.select   = dialog.Dialog.select;
+    dialog.form     = dialog.Dialog.form;
   }
 });

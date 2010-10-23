@@ -66,6 +66,14 @@ qx.Class.define("dialog.demo.Application",
            method : "createAlert"
          },
          {
+           label : "Warning",
+           method : "createWarning"
+         },
+         {
+           label : "Error",
+           method : "createError"
+         },         
+         {
            label : "Confirm",
            method : "createConfirm"
          },
@@ -124,6 +132,16 @@ qx.Class.define("dialog.demo.Application",
 //        message : "Hello World!"
 //      })).show();      
     },
+    
+    createWarning : function()
+    {
+      dialog.Dialog.warning( "I warned you!" );     
+    },    
+    
+    createError : function()
+    {
+      dialog.Dialog.error( "Error, error, error, errr....!" );     
+    },        
     
     createConfirm : function()
     {
