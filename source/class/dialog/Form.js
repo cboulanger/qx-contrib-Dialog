@@ -220,13 +220,23 @@ qx.Class.define("dialog.Form",
        */
       if ( this._formController )
       {
-        this.getModel().removeAllBindings();
-        this._formController.dispose();
+        // work around a problem with removeAllBindings
+        try
+        {
+          this.getModel().removeAllBindings();
+          this._formController.dispose();
+        }
+        catch(e){}
       }
       if ( this._form )
       {
-        this._form.getValidationManager().removeAllBindings();
-        this._form.dispose();
+        // work around a problem with removeAllBindings
+        try
+        {
+          this._form.getValidationManager().removeAllBindings();
+          this._form.dispose();
+        }
+        catch(e){}
       }
       this._formContainer.removeAll();
       
