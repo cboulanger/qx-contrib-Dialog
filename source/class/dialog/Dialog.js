@@ -142,17 +142,22 @@ qx.Class.define("dialog.Dialog",
     },
     
     /**
-     * Shortcut for prompt dialog
+     * Shortcut for prompt dialog.
+     * The value argument was forgotten in the initial implementation and
+     * comes last for backwards compatibility. This might change in a future 
+     * release.
      * @param message {String}
      * @param callback {Function}
      * @param context {Object} 
+     * @param value {String}
      */    
-    prompt : function( message, callback, context )
+    prompt : function( message, callback, context, value )
     {
       (new dialog.Prompt({
         "message"     : message,
         "callback"    : callback || null,
-        "context"     : context || null
+        "context"     : context || null,
+        "value"       : value || null
       })).show();      
     },
     
