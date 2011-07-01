@@ -624,7 +624,9 @@ qx.Class.define("dialog.Form",
      */
     _onFormReady : function( form )
     {
-      form.getValidationManager().bind( "valid", this._okButton, "enabled" );
+      form.getValidationManager().bind( "valid", this._okButton, "enabled", {
+        converter : function(value){return value || false;}
+      } );
     },
         
     /*
