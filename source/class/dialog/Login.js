@@ -168,7 +168,7 @@ qx.Class.define("dialog.Login",
       /* 
        * Labels 
        */
-      var labels = ["Name", "Password"];
+      var labels = [this.tr("Name"), this.tr("Password") ];
       for (var i=0; i<labels.length; i++) {
         gridContainer.add(new qx.ui.basic.Label(labels[i]).set({
           allowShrinkX: false,

@@ -31,11 +31,11 @@
   {
     "APPLICATION"  : "dialog",
     "APPLICATION_MAIN_CLASS" : "${APPLICATION}.demo.Demo",
-    "QOOXDOO_PATH" : "../../qooxdoo/0.9-pre",
+    "QOOXDOO_PATH" : "../../qooxdoo/1.5",
     //"QXTHEME"      : "dialog.theme.modern.Theme",
     "QXTHEME"      : "qx.theme.Modern",
     "API_EXCLUDE"  : ["qx.test.*", "dialog.demo.*"],
-    "LOCALES"      : [ "en" ],
+    "LOCALES"      : [ "en","de","fr" ],
     "CACHE"        : "${TMPDIR}/cache",
     "ROOT"         : "."
   }

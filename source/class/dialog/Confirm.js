@@ -153,6 +153,7 @@ qx.Class.define("dialog.Confirm",
       yesButton.addListener("execute", this._handleYes, this );
       this.bind("yesButtonLabel", yesButton, "label");
       this.bind("yesButtonIcon",  yesButton, "icon");
+      yesButton.setLabel( this.tr("yes") );
       
       /* 
        * No button 
@@ -162,6 +163,7 @@ qx.Class.define("dialog.Confirm",
       noButton.addListener("execute", this._handleNo, this );
       this.bind("noButtonLabel",noButton, "label" );
       this.bind("noButtonIcon", noButton, "icon" );
+      noButton.setLabel( this.tr("no") );
       
       /* 
        * Cancel Button 
