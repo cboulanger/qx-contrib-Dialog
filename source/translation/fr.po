@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: you@your.org\n"
 "POT-Creation-Date: 2011-07-21 20:11+0100\n"
-"PO-Revision-Date: 2011-07-21 20:11+0100\n"
-"Last-Translator: you <you@your.org>\n"
+"PO-Revision-Date: 2011-07-22 01:44+0100\n"
+"Last-Translator: Apertio SAS <contact@apertio.fr>\n"
 "Language-Team: Team <yourteam@your.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -17,19 +17,19 @@ msgstr "Oui"
 
 #: dialog/Confirm.js:166
 msgid "no"
-msgstr "No"
+msgstr "Non"
 
 #: dialog/Dialog.js:494
 msgid "OK"
-msgstr "D'accord"
+msgstr "OK"
 
 #: dialog/Dialog.js:508
 msgid "Cancel"
-msgstr "Aborter"
+msgstr "Annuler"
 
 #: dialog/Login.js:171
 msgid "Name"
-msgstr "Nom"
+msgstr "Identifiant"
 
 #: dialog/Login.js:171
 msgid "Password"
@@ -41,12 +41,12 @@ msgstr "Se connecter"
 
 #: dialog/Wizard.js:183
 msgid "Back"
-msgstr "A l'arrière"
+msgstr "Précédent"
 
 #: dialog/Wizard.js:192
 msgid "Next"
-msgstr "Avant"
+msgstr "Suivant"
 
 #: dialog/Wizard.js:206
 msgid "Finish"
-msgstr "Finir"
+msgstr "Terminer"
