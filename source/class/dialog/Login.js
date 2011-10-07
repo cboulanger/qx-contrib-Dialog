@@ -99,12 +99,21 @@ qx.Class.define("dialog.Login",
     ---------------------------------------------------------------------------
     */ 
 
+		/**
+		 * Apply function used by proterty {@link #text}
+		 * @param value {String} New value
+		 * @param old {String} Old value
+		 */
     _applyText : function( value, old )
     {
       this._text.setValue( value );
       this._text.setVisibility( value ? "visible" : "excluded" );
     },    
     
+		/**
+		 * Apply function used by proterty {@link #textFont}
+		 * @param value {String} New value
+		 */
     _applyTextFont : function( value )
     {
       this._text.setFont( value );
@@ -257,10 +266,9 @@ qx.Class.define("dialog.Login",
     /**
      * Handler function called with the result of the authentication
      * process.
-     * @param result {Boolean}
+     * @param result {Boolean} The state of login success
      * @param message {String|Null} Optional HTML message that might contain
      * error information, such as "Wrong password".
-     * @return
      */
     _handleCheckLogin : function( result, message )
     {

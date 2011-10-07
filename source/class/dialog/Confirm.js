@@ -47,6 +47,9 @@ qx.Class.define("dialog.Confirm",
   */     
   properties :
   {
+		/**
+		 * Label used for the "yes button"
+		 */
     yesButtonLabel :
     {
       check : "String",
@@ -55,6 +58,9 @@ qx.Class.define("dialog.Confirm",
       event : "changeYesButtonLabel"
     },
 
+		/**
+		 * Icon used for the "yes button"
+		 */
     yesButtonIcon :
     {
       check : "String",
@@ -63,6 +69,9 @@ qx.Class.define("dialog.Confirm",
       event : "changeYesButtonIcon"
     },    
     
+		/**
+		 * Label used for the "no button"
+		 */
     noButtonLabel :
     {
       check : "String",
@@ -71,6 +80,9 @@ qx.Class.define("dialog.Confirm",
       event : "changeNoButtonLabel"
     },
 
+		/**
+		 * Icon used for the "no button"
+		 */
     noButtonIcon :
     {
       check : "String",
@@ -79,6 +91,9 @@ qx.Class.define("dialog.Confirm",
       event : "changeNoButtonIcon"
     },
     
+		/**
+		 * This property controls the display of a cancel button
+		 */
     allowCancel :
     {
       refine : true,
@@ -98,7 +113,7 @@ qx.Class.define("dialog.Confirm",
     ---------------------------------------------------------------------------
        PRIVATE MEMBERS
     ---------------------------------------------------------------------------
-    */  
+    */
     _yesButton : null,
     _noButton  : null,
     
@@ -142,8 +157,6 @@ qx.Class.define("dialog.Confirm",
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
       hbox.add( this._message, {flex:1} );    
-      
-      var _this = this;
       
       /* 
        * Yes button 

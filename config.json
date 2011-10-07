@@ -34,7 +34,7 @@
     "QOOXDOO_PATH" : "../../qooxdoo/1.5",
     //"QXTHEME"      : "dialog.theme.modern.Theme",
     "QXTHEME"      : "qx.theme.Modern",
-    "API_EXCLUDE"  : ["qx.test.*", "dialog.demo.*"],
+    "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.demo.*", "${APPLICATION}.theme.*"],
     "LOCALES"      : [ "en","de","fr" ],
     "CACHE"        : "${TMPDIR}/cache",
     "ROOT"         : "."

@@ -214,8 +214,7 @@ qx.Class.define("dialog.Wizard",
     /**
      * Add bindings to the validation manager to control the state of 
      * the wizard buttons. 
-     * @param form {qx.ui.form.Form}
-     * @return {void}
+     * @param form {qx.ui.form.Form} The form to bind
      */
     _onFormReady : function( form )
     {
@@ -251,8 +250,8 @@ qx.Class.define("dialog.Wizard",
     /**
      * Apply the page data. This initializes the response
      * data model
-     * @param pageData
-     * @param old
+     * @param pageData {Array} The new page data
+     * @param old {Array} The old page data
      * @return
      */
     _applyPageData : function ( pageData, old )
@@ -290,9 +289,8 @@ qx.Class.define("dialog.Wizard",
    /**
     * Go to a given wizard page. This recreates the 
     * form.
-    * @param page {Integer}
-    * @param old {Integer}
-    * @return
+    * @param page {Integer} The new page
+    * @param old {Integer} The old page
     */
    _applyPage : function ( page, old )
    {

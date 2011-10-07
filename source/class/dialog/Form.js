@@ -208,9 +208,10 @@ qx.Class.define("dialog.Form",
     
     /**
      * Constructs the form on-the-fly
-     * @param formData
-     * @param old
-     * @return
+     * @param formData The form data map
+     * @param old The old value
+     * 
+     * @lint ignoreDeprecated(alert,eval)
      */
     _applyFormData : function ( formData, old )
     {
@@ -331,7 +332,7 @@ qx.Class.define("dialog.Form",
             {
               formElement.setUserData("orientation", fieldData.orientation );
             }
-            var selected = null;
+            //var selected = null;
             fieldData.options.forEach( function( item )
             {
               var radioButton = new qx.ui.form.RadioButton( item.label );
@@ -393,7 +394,7 @@ qx.Class.define("dialog.Form",
                   var selectables = this.getSelectables();
                   selectables.forEach( function( selectable )
                   {
-                    var key = this.getUserData("key");
+                    //var key = this.getUserData("key");
                     //console.warn( key +": '" + value + "' looking at '" + selectable.getLabel() + "' => " +  selectable.getModel().getValue() );
                     if ( selectable.getModel().getValue() === value )
                     {
@@ -413,7 +414,7 @@ qx.Class.define("dialog.Form",
                 "converter" : qx.lang.Function.bind( function( selection )
                 {  
                   var value = selection[0].getModel().getValue();
-                  var key = this.getUserData("key");
+                  //var key = this.getUserData("key");
                   //console.warn("Selection is " + ( selection.length ? selection[0].getLabel() : "none" ) + " -> Setting value for " + key +": " + value );
                   return value; 
                 }, formElement)
@@ -619,8 +620,7 @@ qx.Class.define("dialog.Form",
      * Default behavior: bind the enabled state of the "OK" button to the 
      * validity of the current form.
      * 
-     * @param form {qx.ui.form.Form}
-     * @return {void}
+     * @param form {qx.ui.form.Form} The form to bind
      */
     _onFormReady : function( form )
     {

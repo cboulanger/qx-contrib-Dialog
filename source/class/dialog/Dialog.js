@@ -51,7 +51,7 @@ qx.Class.define("dialog.Dialog",
   
     /**
      * Returns a dialog instance by type
-     * @param type {String}
+     * @param type {String} The dialog type to get
      * @return dialog.Dialog
      */
     getInstanceByType : function(type)
@@ -92,9 +92,9 @@ qx.Class.define("dialog.Dialog",
     
     /**
      * Shortcut for alert dialog
-     * @param message {String}
-     * @param callback {Function}
-     * @param context {Object} 
+     * @param message {String} The message to display
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
      */
     alert : function( message, callback, context )
     {
@@ -106,6 +106,12 @@ qx.Class.define("dialog.Dialog",
       })).show();      
     },
 
+    /**
+     * Shortcut for error dialog
+     * @param message {String} The message to display
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
+     */
     error : function( message, callback, context )
     {
       (new dialog.Alert({
@@ -116,6 +122,12 @@ qx.Class.define("dialog.Dialog",
       })).show();      
     },
     
+    /**
+     * Shortcut for warning dialog
+     * @param message {String} The message to display
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
+     */
     warning : function( message, callback, context )
     {
       (new dialog.Alert({
@@ -128,9 +140,9 @@ qx.Class.define("dialog.Dialog",
     
     /**
      * Shortcut for confirm dialog
-     * @param message {String}
-     * @param callback {Function}
-     * @param context {Object} 
+     * @param message {String} The message to display
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
      */
     confirm : function( message, callback, context )
     {
@@ -146,10 +158,10 @@ qx.Class.define("dialog.Dialog",
      * The value argument was forgotten in the initial implementation and
      * comes last for backwards compatibility. This might change in a future 
      * release.
-     * @param message {String}
-     * @param callback {Function}
-     * @param context {Object} 
-     * @param value {String}
+     * @param message {String} The message to display
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
+     * @param value {String} The default value of the prompt textfield
      */    
     prompt : function( message, callback, context, value )
     {
@@ -163,10 +175,10 @@ qx.Class.define("dialog.Dialog",
     
     /**
      * Shortcut for select dialog
-     * @param message {String}
-     * @param options {Array}
-     * @param callback {Function}
-     * @param context {Object} 
+     * @param message {String} The message to display
+     * @param options {Array} Options to select from
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
      * @param allowCancel {Boolean} Default: true
      */    
     select : function( message, options, callback, context, allowCancel )
@@ -182,10 +194,10 @@ qx.Class.define("dialog.Dialog",
     
     /**
      * Shortcut for form dialog
-     * @param message {String}
-     * @param formData {Map}
-     * @param callback {Function}
-     * @param context {Object} 
+     * @param message {String} The message to display
+     * @param formData {Map} Map of form data. See {@link dialog.Form.formData}
+     * @param callback {Function} The callback function
+     * @param context {Object} The context to use with the callback function
      */
     form : function( message, formData, callback, context )
     {
@@ -426,6 +438,7 @@ qx.Class.define("dialog.Dialog",
     */  
     
     __container : null,
+		__previousFocus : null,
     
     /*
     ---------------------------------------------------------------------------

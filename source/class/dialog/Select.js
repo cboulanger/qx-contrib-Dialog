@@ -135,6 +135,7 @@ qx.Class.define("dialog.Select",
     /**
      * Handle click on a button. Calls callback with
      * the value set in the options map.
+     * @param value {var} The passed value
      */
     _handleSelection : function( value )
     {
