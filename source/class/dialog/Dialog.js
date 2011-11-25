@@ -230,7 +230,7 @@ qx.Class.define("dialog.Dialog",
     /*
      * make sure the dialog is above any opened window
      */
-    var maxWindowZIndex = 1E5;
+    var maxWindowZIndex = 0;
     var windows = root.getWindows();
     for (var i = 0; i < windows.length; i++) {
       var zIndex = windows[i].getZIndex();
@@ -566,8 +566,10 @@ qx.Class.define("dialog.Dialog",
         var root = this.getApplicationRoot();
         root.setBlockerOpacity( this.getBlockerOpacity() );
         root.setBlockerColor( this.getBlockerColor() );  
-        root.blockContent( this.getZIndex()-1 );
-      }    
+        var zIndex = this.getZIndex();
+        this.setZIndex( zIndex + 1 );
+        new qx.util.DeferredCall(function(){ root.blockContent( zIndex ) }).schedule();
+      }   
       this.setVisibility("visible");
       this.__previousFocus = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
       this.focus();
