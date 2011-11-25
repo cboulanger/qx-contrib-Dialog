@@ -72,23 +72,9 @@ qx.Class.define("dialog.Dialog",
      */    
     init : function()
     {
-      qx.core.Init.getApplication().warn("Initializing the Dialog package is no longer necessary. Please remove calls to 'dialog.Dialog.init()', which is now deprecated.");
-      var images = ["22/actions/dialog-cancel","22/actions/dialog-ok","48/status/dialog-information","48/status/dialog-error","48/status/dialog-warning"];
-      var decoration = ["form/button","form/button-hovered","form/button-pressed","groupbox/groupbox","shadow/shadow-small","form/button-focused"];
-      
-      for(var i=0;i<images.length;i++)
-      {
-        var p = qx.theme.manager.Icon.getInstance().getTheme().aliases.icon;
-        qx.io.ImageLoader.load("resource/" + p + "/" +images[i]+".png",null,this);
-      }
-      
-      for(var i=0;i<decoration.length;i++)
-      {
-        var p = qx.theme.manager.Decoration.getInstance().getTheme().aliases.decoration;
-        qx.io.ImageLoader.load("resource/" + p + "/" +decoration[i]+".png",null,this);
-      }
-  
+      qx.core.Init.getApplication().warn("Initializing the Dialog package is no longer necessary. Please remove calls to 'dialog.Dialog.init()', which is now deprecated.");  
     },
+    
     
     /**
      * Shortcut for alert dialog
@@ -658,6 +644,6 @@ qx.Class.define("dialog.Dialog",
     dialog.confirm  = dialog.Dialog.confirm;
     dialog.prompt   = dialog.Dialog.prompt;
     dialog.select   = dialog.Dialog.select;
-    dialog.form     = dialog.Dialog.form;
+    dialog.form     = dialog.Dialog.form;    
   }
 });
