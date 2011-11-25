@@ -494,6 +494,9 @@ qx.Class.define("dialog.Dialog",
       okButton.setIcon("icon/22/actions/dialog-ok.png")
       okButton.setAllowStretchX(false);
       okButton.addListener("execute", this._handleOk, this);  
+      this.addListener("appear",function(){
+        okButton.focus();
+      },this);
       return okButton;
     },
     
