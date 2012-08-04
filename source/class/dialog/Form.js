@@ -306,6 +306,13 @@ qx.Class.define("dialog.Form",
             formElement = new qx.ui.form.TextField();
             formElement.setLiveUpdate(true);
             break;
+			
+          case "datefield":
+            formElement = new qx.ui.form.DateField();
+			if (fieldData.dateFormat != null) {
+				formElement.setDateFormat(fieldData.dateFormat);
+			}
+            break;
             
           case "passwordfield":
             formElement = new qx.ui.form.PasswordField();
@@ -369,6 +376,7 @@ qx.Class.define("dialog.Form",
           case "textfield":
           case "passwordfield":
           case "combobox":
+		  case "datefield":
             this._formController.addTarget( 
               formElement, "value", key, true, 
               null,
