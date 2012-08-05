@@ -1,38 +1,44 @@
 /* ************************************************************************
 
    qooxdoo dialog library
-  
+
    http://qooxdoo.org/contrib/project#dialog
-  
+
    Copyright:
      2007-2010 Christian Boulanger
-  
+
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
      EPL: http://www.eclipse.org/org/documents/epl-v10.php
      See the LICENSE file in the project's top-level directory for details.
-  
+
    Authors:
    *  Christian Boulanger (cboulanger)
-  
+
 ************************************************************************ */
 
 /**
- * A dialog for authentication and login
+ * A dialog for authentication and login. 
+ * 
+ * Please note that (since 0.6) the API has changed:
+ * The "callback" property is now used not for the authentication, but as an 
+ * (optional) final callback after authentication has take place. It will be 
+ * called with an truthy value (the error message/object) if authentication has 
+ * FAILED or with a falsy value (null/undefined) if it was SUCCESSFUL. The 
+ * authenticating function must now be stored in the checkCredentials property.  
  */
 qx.Class.define("dialog.Login",
 {
   extend : dialog.Dialog,
-  
-  
+
   /*
   *****************************************************************************
      PROPERTIES
   *****************************************************************************
-  */     
+  */
   properties :
   {
-  
+
     /**
      * A html text that is displayed below the image (if present)
      * and above the login
@@ -43,9 +49,9 @@ qx.Class.define("dialog.Login",
       nullable : true,
       apply : "_applyText"
     },
-    
+
     /**
-     * The name of the font in the theme that should be applied to 
+     * The name of the font in the theme that should be applied to
      * the text
      */
     textFont :
@@ -54,82 +60,95 @@ qx.Class.define("dialog.Login",
       nullable : true,
       init     : "bold",
       apply    : "_applyTextFont"
+    },
+
+    /**
+     * An asyncronous function to check the given credentials.
+     * The function signature is (username, password, callback).
+     * In case the login fails, the callback must be called with a string
+     * that can be alerted to the user or the error object if the problem is not
+     * due to authentication itself. If the login succeeds, the argument
+     * must be undefined or null.
+     */
+    checkCredentials :
+    {
+        check : "Function",
+        nullable : false
     }
-    
   },
-  
+
   /*
   *****************************************************************************
      EVENTS
   *****************************************************************************
-  */    
-  events : 
+  */
+  events :
   {
     /**
      * Event dispatched when login was successful
      */
     "loginSuccess" : "qx.event.type.Event",
-    
+
     /**
      * Data event dispatched when login failed, event data
      * contains a reponse message
      */
-    "loginFailure"  : "qx.event.type.Data"    
+    "loginFailure"  : "qx.event.type.Data"
   },
-  
+
   /*
   *****************************************************************************
      MEMBERS
   *****************************************************************************
-  */     
+  */
   members :
   {
     /*
     ---------------------------------------------------------------------------
        PRIVATE MEMBERS
     ---------------------------------------------------------------------------
-    */  
+    */
     _text : null,
     _username : null,
     _password : null,
     
     /*
     ---------------------------------------------------------------------------
-       APPLY AND PRIVATE METHODS
+     APPLY AND PRIVATE METHODS
     ---------------------------------------------------------------------------
-    */ 
+    */
 
-		/**
-		 * Apply function used by proterty {@link #text}
-		 * @param value {String} New value
-		 * @param old {String} Old value
-		 */
+    /**
+    * Apply function used by proterty {@link #text}
+    * @param value {String} New value
+    * @param old {String} Old value
+    */
     _applyText : function( value, old )
     {
       this._text.setValue( value );
       this._text.setVisibility( value ? "visible" : "excluded" );
-    },    
-    
-		/**
-		 * Apply function used by proterty {@link #textFont}
-		 * @param value {String} New value
-		 */
+    },
+
+	/**
+	 * Apply function used by proterty {@link #textFont}
+	 * @param value {String} New value
+	 */
     _applyTextFont : function( value )
     {
       this._text.setFont( value );
     },
-        
+
     /*
     ---------------------------------------------------------------------------
        WIDGET LAYOUT
     ---------------------------------------------------------------------------
-    */     
-    
+    */
+
     /**
      * Create the main content of the widget
      */
     _createWidgetContent : function()
-    {      
+    {
 
       /*
        * groupbox
@@ -141,14 +160,14 @@ qx.Class.define("dialog.Login",
       layout.setAlignX("center");
       groupboxContainer.setLayout( layout );
       this.add( groupboxContainer );
-      
+
       /*
-       * add image 
+       * add image
        */
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       groupboxContainer.add( this._image );
-      
+
       /*
        * add text
        */
@@ -156,11 +175,11 @@ qx.Class.define("dialog.Login",
       this._text.setAllowStretchX(true);
       this._text.setVisibility("excluded");
       this.setTextFont("bold");
-      
+
       groupboxContainer.add( this._text );
-      
-      /* 
-       * grid layout with login fields  
+
+      /*
+       * grid layout with login fields
        */
       var gridContainer = new qx.ui.container.Composite;
       var gridLayout = new qx.ui.layout.Grid(9, 5);
@@ -173,9 +192,9 @@ qx.Class.define("dialog.Login",
       gridContainer.setMinWidth(200);
       gridContainer.setMaxWidth(300);
       groupboxContainer.add( gridContainer );
-      
-      /* 
-       * Labels 
+
+      /*
+       * Labels
        */
       var labels = [this.tr("Name"), this.tr("Password") ];
       for (var i=0; i<labels.length; i++) {
@@ -185,15 +204,15 @@ qx.Class.define("dialog.Login",
         }), {row: i, column : 0});
       }
 
-      /* 
-       * Text fields  
+      /*
+       * Text fields
        */
       this._username = new qx.ui.form.TextField();
       this._password = new qx.ui.form.PasswordField();
-      
+
       this._password.addListener("keypress",function(e){
-        if ( e.getKeyIdentifier() == "Enter" ) 
-        {   
+        if ( e.getKeyIdentifier() == "Enter" )
+        {
           this._callCallback();
         }
       },this);
@@ -215,20 +234,20 @@ qx.Class.define("dialog.Login",
       this._message.setRich(true);
       this._message.setAllowStretchX(true);
       this._message.setVisibility("excluded");
-      groupboxContainer.add( this._message );    
-      
-      /* 
-       * Login Button 
+      groupboxContainer.add( this._message );
+
+      /*
+       * Login Button
        */
       var loginButton = this._loginButton =  new qx.ui.form.Button(this.tr("Login"));
       loginButton.setAllowStretchX(false);
-      loginButton.addListener("execute", this._callCallback, this);      
-      
-      /* 
-       * Cancel Button 
+      loginButton.addListener("execute", this._callCheckCredentials, this);
+
+      /*
+       * Cancel Button
        */
       var cancelButton = this._createCancelButton();
-      
+
       /*
        * buttons pane
        */
@@ -240,21 +259,23 @@ qx.Class.define("dialog.Login",
          buttonPane,{ row : 3, column : 1}
       );
 
-    },  
-    
+    },
+
     /**
-     * Calls the callback function with the current login data
+     * Calls the checkCredentials callback function with username, password and
+     * the final callback, bound to the context object.
      */
-    _callCallback : function()
+    _callCheckCredentials : function()
     {
-      this.getCallback()(
+      this.getCheckCredentials()(
         this._username.getValue(),
         this._password.getValue(),
-        this._handleCheckLogin,
-        this
+        typeof Function.prototype.bind === "function" ? 
+          this._handleCheckCredentials.bind(this) :
+          qx.lang.Function.bind( this._handleCheckCredentials, this )
       );
     },
-    
+
     /**
      * Handle click on cancel button
      */
@@ -262,50 +283,58 @@ qx.Class.define("dialog.Login",
     {
       this.hide();
     },
-    
+
     /**
      * Handler function called with the result of the authentication
      * process.
-     * @param result {Boolean} The state of login success
-     * @param message {String|Null} Optional HTML message that might contain
-     * error information, such as "Wrong password".
+     * @param err {String|Error|null} If null, the authentication was successful
+     * and the "loginSuccess" event is dispatched. If String or Error, the 
+     * "loginFailure" event is dispatched with the error message/object. Finally,
+     * the callback function in the callback property is called with null (success)
+     * or the error value.
      */
-    _handleCheckLogin : function( result, message )
+    _handleCheckCredentials : function( err )
     {
       /*
        * clear password field and message label
        */
       this._password.setValue("");
       this.setMessage(null);
-       
+
       /*
        * check result
        */
-      if ( result )
+      if ( err )
       {
-        this.fireEvent("loginSuccess");
-        this.hide();
+        this.fireDataEvent("loginFailure", err );
       }
       else
       {
-        this.fireDataEvent("loginFailure", message );
+        this.fireEvent("loginSuccess");
+        this.hide();        
+      }
+      
+      // Call final callback
+      if( this.getCallback() )
+      {
+        this.getCallback()(err);
       }
     },
-    
+
     /*
     ---------------------------------------------------------------------------
       API METHODS
     ---------------------------------------------------------------------------
-    */     
-   
+    */
+
     /**
     * @override
-    */    
+    */
     hide : function()
     {
       this._password.setValue("");
       this.setMessage(null);
       this.base(arguments);
     }
-  }  
+  }
 });

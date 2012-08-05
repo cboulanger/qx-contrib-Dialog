@@ -282,9 +282,11 @@ qx.Class.define("dialog.demo.Application",
            ]
         }
       };
+      var _this = this;
       dialog.Dialog.form("Please fill in the form",formData, function( result )
       {
-        dialog.Dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
+        dialog.Dialog.alert("Thank you for your input. See log for result.");
+        _this.debug(qx.util.Serializer.toJson(result));
       }
     );      
 //    (new dialog.Form({
@@ -396,7 +398,8 @@ qx.Class.define("dialog.demo.Application",
         pageData    : pageData, 
         allowCancel : true,
         callback    : function( map ){
-          dialog.Dialog.alert("Thank you for your input:" + qx.util.Json.stringify(map).replace(/\\/g,"") );
+          dialog.Dialog.alert("Thank you for your input. See log for result.");
+          this.debug(qx.util.Serializer.toJson(map));
         },
         context     : this
       });
@@ -411,40 +414,58 @@ qx.Class.define("dialog.demo.Application",
       var loginWidget = new dialog.Login({
         image       : "dialog/logo.gif", 
         text        : "Please log in, using 'demo'/'demo'",
-        callback    : this.sampleCallbackFunc,
-        context     : this
+        checkCredentials : this.checkCredentials,
+        callback    : this.finalCallback
       });
+      
+      // you can optionally attach event listeners, for example to 
+      // do some animation (for example, an Mac OS-like "shake" effect)
       loginWidget.addListener("loginSuccess", function(e){
-        dialog.Dialog.alert( "You are now logged in. Or at least we pretend." );
+        // do something to indicated that the user has logged in!
       });
       loginWidget.addListener("loginFailure", function(e){
-        dialog.Dialog.alert(e.getData());
+       // User rejected! Shake your login widget!
       });
       loginWidget.show();
     },
     
     /**
-    * Sample callback function that takes the username, password and
-    * another callback function as parameters. The passed function
-    * is called with a boolean value (true=authenticated, false=
-    * authentication failed) and a string value which contains 
-    * an error message like so: 
-    * callback.call( context, {Boolean} result, {String} message);
+    * Sample asyncronous function for checking credentials that takes the 
+    * username, password and a callback function as parameters. After performing
+    * the authentication, the callback is called with the result, which should
+    * be undefined or null if successful, and the error message if the 
+    * authentication failed. If the problem was not the authentication, but some
+    * other exception, you could pass an error object.
     * @param username {String}
     * @param password {String}
     * @param callback {Function} The callback function
-    * @param context {Object} The execution context
     */    
-   sampleCallbackFunc : function( username, password, callback, context )
+   checkCredentials : function( username, password, callback )
    {
       if ( username == "demo" && password == "demo" )
       {
-        callback.call( context, true );
+        callback();
       }
       else
       {
-        callback.call( context, false, "Wrong password!" );
+        callback( "Wrong password!" );
       }
-    }    
+    },
+    
+    /**
+     * Sample final callback to react on the result of the authentication
+     * @param err {String|Error|undefined|null}
+     */
+    finalCallback : function(err)
+    {
+      if( err)
+      {
+        dialog.Dialog.alert( err );
+      }
+      else
+      {  
+        dialog.Dialog.alert( "You are now logged in. Or at least we pretend." );
+      }
+    }
   }
 });
