@@ -21,10 +21,13 @@
  * A dialog for authentication and login. 
  * 
  * Please note that (since 0.6) the API has changed:
- * The "callback" property is now used not for the authentication, but as an 
- * (optional) final callback after authentication has take place. It will be 
- * called with an truthy value (the error message/object) if authentication has 
- * FAILED or with a falsy value (null/undefined) if it was SUCCESSFUL. The 
+ * 
+ * The "callback" property containing a function is now used no longer  used for
+ * the authentication, but as an (optional) final callback after authentication 
+ * has take place. This final callback will be called with an truthy value as 
+ * first argument (the error message/object) if authentication has FAILED or with
+ * a falsy value (null/undefined) as first argument, plus with a second optional 
+ * argument (that can contain user information) if it was SUCCESSFUL. The 
  * authenticating function must now be stored in the checkCredentials property.  
  */
 qx.Class.define("dialog.Login",
@@ -68,7 +71,8 @@ qx.Class.define("dialog.Login",
      * In case the login fails, the callback must be called with a string
      * that can be alerted to the user or the error object if the problem is not
      * due to authentication itself. If the login succeeds, the argument
-     * must be undefined or null.
+     * must be undefined or null. You can pass a second argument containing
+     * user information.
      */
     checkCredentials :
     {
@@ -87,7 +91,7 @@ qx.Class.define("dialog.Login",
     /**
      * Event dispatched when login was successful
      */
-    "loginSuccess" : "qx.event.type.Event",
+    "loginSuccess" : "qx.event.type.Data",
 
     /**
      * Data event dispatched when login failed, event data
@@ -285,15 +289,17 @@ qx.Class.define("dialog.Login",
     },
 
     /**
-     * Handler function called with the result of the authentication
-     * process.
+     * Handler function called from the function that checks the credentials 
+     * with the result of the authentication process.
+     * 
      * @param err {String|Error|null} If null, the authentication was successful
      * and the "loginSuccess" event is dispatched. If String or Error, the 
      * "loginFailure" event is dispatched with the error message/object. Finally,
      * the callback function in the callback property is called with null (success)
      * or the error value.
+     * @param data Optional second argument wich can contain user information
      */
-    _handleCheckCredentials : function( err )
+    _handleCheckCredentials : function( err, data )
     {
       /*
        * clear password field and message label
@@ -310,14 +316,14 @@ qx.Class.define("dialog.Login",
       }
       else
       {
-        this.fireEvent("loginSuccess");
+        this.fireDataEvent("loginSuccess", data);
         this.hide();        
       }
       
       // Call final callback
       if( this.getCallback() )
       {
-        this.getCallback()(err);
+        this.getCallback()(err, data);
       }
     },
 

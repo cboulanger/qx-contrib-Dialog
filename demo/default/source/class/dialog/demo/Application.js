@@ -438,17 +438,18 @@ qx.Class.define("dialog.demo.Application",
     * other exception, you could pass an error object.
     * @param username {String}
     * @param password {String}
-    * @param callback {Function} The callback function
+    * @param callback {Function} The callback function that needs to be called with
+    * (err, data) as arguments
     */    
    checkCredentials : function( username, password, callback )
    {
       if ( username == "demo" && password == "demo" )
       {
-        callback();
+        callback( null, username);
       }
       else
       {
-        callback( "Wrong password!" );
+        callback( "Wrong username or password!" );
       }
     },
     
@@ -456,7 +457,7 @@ qx.Class.define("dialog.demo.Application",
      * Sample final callback to react on the result of the authentication
      * @param err {String|Error|undefined|null}
      */
-    finalCallback : function(err)
+    finalCallback : function(err, data)
     {
       if( err)
       {
@@ -464,7 +465,7 @@ qx.Class.define("dialog.demo.Application",
       }
       else
       {  
-        dialog.Dialog.alert( "You are now logged in. Or at least we pretend." );
+        dialog.Dialog.alert( "User '" + data + "' is now logged in. Or at least we pretend." );
       }
     }
   }
