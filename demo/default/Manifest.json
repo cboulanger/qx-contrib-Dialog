@@ -6,7 +6,7 @@
     "summary" : "Dialog Demo",
     "description" : "This is a demo for the dialog widgets, called from client code",
     
-    "homepage" : "http://demo.qooxdoo.org/contrib/Dialog",
+    "homepage" : "https://github.com/cboulanger/qx-contrib-Dialog",
 
     "license" : "LGPL/EPL",
     "authors" : 
@@ -18,7 +18,7 @@
     ],
 
     "version" : "trunk",
-    "qooxdoo-versions": ["1.*","2.0"]
+    "qooxdoo-versions": ["2.0","2.1pre"]
   },
   
   "provides" : 
