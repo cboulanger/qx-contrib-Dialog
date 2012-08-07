@@ -11,4 +11,4 @@ A set of often used dialog widgets for the qooxdoo framework.
 - Select
 - Wizard
 
-Documentation will follow soon.
+See demo/default/source/class/dialog/demo/Application.js for examples how to use the widgets.
