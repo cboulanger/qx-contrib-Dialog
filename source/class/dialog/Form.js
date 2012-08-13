@@ -45,6 +45,7 @@ qx.Class.define("dialog.Form",
      *   ComboBox
      *   SelectBox
      *   RadioGroup
+     *   CheckBox
      * 
      * <pre>
      * {
@@ -354,6 +355,10 @@ qx.Class.define("dialog.Form",
             formElement = new qx.ui.form.TextField(); // dummy
             formElement.setUserData("excluded",true);
             break;
+
+          case "checkbox":
+            formElement = new qx.ui.form.CheckBox(fieldData.label);
+            break;
             
           default:
             this.error("Invalid form field type:" + fieldData.type);
@@ -388,6 +393,14 @@ qx.Class.define("dialog.Form",
                 }
               }
             );  
+            break;
+
+          /**
+           * checkbox form element
+           */
+          case "checkbox":
+            this._formController.addTarget(
+                formElement, "value", key, true, null);
             break;
 
           /*

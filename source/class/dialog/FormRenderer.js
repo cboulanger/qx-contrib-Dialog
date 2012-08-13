@@ -102,6 +102,15 @@ qx.Class.define("dialog.FormRenderer",
           label.setRich(true);
           this._add( label,  {row: this._row, column: 0, colSpan : 2 } );
         }
+
+        /**
+         * If CheckBox, assign the whole width to the widget.
+         */
+        else if ( item instanceof qx.ui.form.CheckBox )
+        {
+            this._add( widget, {row: this._row, column:0, colSpan: 2 } );
+            this._getLayout().getCellWidget(this._row,0).setAlignX("left");
+        }
         
         /*
          * if the label is null, use the full width for the widget
