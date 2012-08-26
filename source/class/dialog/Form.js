@@ -209,8 +209,8 @@ qx.Class.define("dialog.Form",
     
     /**
      * Constructs the form on-the-fly
-     * @param formData The form data map
-     * @param old The old value
+     * @param formData {Map} The form data map
+     * @param old {Map|null} The old value
      * 
      * @lint ignoreDeprecated(alert,eval)
      */

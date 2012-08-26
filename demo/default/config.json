@@ -25,7 +25,8 @@
     "source-hybrid",
     "test",
     "test-source",
-    "translation"
+    "translation",
+    "info"
   ],
 
   "let" :
