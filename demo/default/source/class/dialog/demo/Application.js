@@ -285,7 +285,13 @@ qx.Class.define("dialog.demo.Application",
             'type' : "Checkbox",
             'label' : "Save form details",
             'value' : true
-        }
+        },
+        "executeDate" : {
+          "type" : "datefield",
+          "dateFormat" : new qx.util.format.DateFormat("dd.MM.yyyy HH:mm"),
+          "value" : new Date(),
+          "label" : "Execute At"
+       }
       };
       var _this = this;
       dialog.Dialog.form("Please fill in the form",formData, function( result )
@@ -358,6 +364,10 @@ qx.Class.define("dialog.demo.Application",
                "required" : true,
                "validator" : qx.util.Validate.email()
              }
+           },
+           "birthday" : {
+             "type" : "datefield",
+             "label": "Birthday"             
            }
          }
        },
