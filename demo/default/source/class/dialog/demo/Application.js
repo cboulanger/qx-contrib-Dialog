@@ -280,6 +280,11 @@ qx.Class.define("dialog.demo.Application",
              { 'label' : "ln -s *" }, 
              { 'label' : "rm -Rf /" }
            ]
+        },
+        'save_details' : {
+            'type' : "Checkbox",
+            'label' : "Save form details",
+            'value' : true
         }
       };
       var _this = this;
