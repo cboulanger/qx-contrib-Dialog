@@ -102,6 +102,18 @@ qx.Class.define("dialog.Prompt",
       },this);
       groupboxContainer.add( this._textField );
       
+      /*
+       * React on enter
+       */
+      this._textField.addListener("keypress", function (e) {
+          if (e.getKeyIdentifier().toLowerCase() == "enter") {
+              this.hide();
+              this.fireEvent("ok");
+              if (this.getCallback()) {
+                  this.getCallback().call(this.getContext(), this._textField.getValue());
+              }
+          }
+      }, this);
       
       /*
        * buttons pane
