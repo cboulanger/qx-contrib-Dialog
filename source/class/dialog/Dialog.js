@@ -213,12 +213,19 @@ qx.Class.define("dialog.Dialog",
     this.base(arguments);
     
     /*
-     * basic settings
+     * basic settings; checking teme to ignore shadow if it could not
+     * be used
      */
-    this.set({
-      'visibility' : "hidden",
-      'decorator'  : "shadow-popup"
-    });
+    if ("indigo" in qx.theme) {
+      this.set({
+        'visibility': "hidden"
+      });
+    } else {
+      this.set({
+        'visibility': "hidden",
+        'decorator': "shadow-popup"
+      });
+    };
     this.setLayout( new qx.ui.layout.Grow() );
     
     /*
