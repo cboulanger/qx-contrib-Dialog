@@ -100,6 +100,23 @@ qx.Class.define("dialog.Prompt",
       this._textField.addListener("changeValue", function(e){
         this.setValue( e.getData() );
       },this);
+
+      // focus on appear */
+      this._textField.addListener("appear", function(e) {
+        this.focus();
+      },this._textField);
+
+      this._textField.addListener("keyup",function(e) {
+        // Enter key
+        if (e.getKeyCode()==13) {
+            return this._handleOk();
+        }
+        // Escape key
+        if (e.getKeyCode()==27) {
+            return this._handleCancel();
+        }
+      },this);
+
       groupboxContainer.add( this._textField );
       
       /*
