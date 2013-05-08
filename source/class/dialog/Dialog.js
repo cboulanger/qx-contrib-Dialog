@@ -32,6 +32,16 @@
 #ignore(dialog.select)
 ************************************************************************ */
 
+// for qooxdoo > 2.x 
+/**
+ * @lint ignoreUndefined(dialog.alert)
+ * @lint ignoreUndefined(dialog.error)
+ * @lint ignoreUndefined(dialog.warning)
+ * @lint ignoreUndefined(dialog.confirm)
+ * @lint ignoreUndefined(dialog.prompt)
+ * @lint ignoreUndefined(dialog.form)
+ * @lint ignoreUndefined(dialog.select)
+ */
 
 /**
  * Base class for dialog widgets
