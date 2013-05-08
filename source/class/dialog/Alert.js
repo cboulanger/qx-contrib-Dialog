@@ -90,6 +90,13 @@ qx.Class.define("dialog.Alert",
       buttonPane.setLayout(bpLayout);
       buttonPane.add(okButton);
       groupboxContainer.add(buttonPane);
+
+      /*
+       * focus OK button on appear
+       */
+      this.addListener("appear",function() {
+        okButton.focus();
+      });
     }
   }
 });
