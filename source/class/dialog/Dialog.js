@@ -76,14 +76,6 @@ qx.Class.define("dialog.Dialog",
        }
     },
     
-    /**
-     * Initialize the package
-     * @deprecated
-     */    
-    init : function()
-    {
-      qx.core.Init.getApplication().warn("Initializing the Dialog package is no longer necessary. Please remove calls to 'dialog.Dialog.init()', which is now deprecated.");  
-    },
     
     
     /**
@@ -221,39 +213,15 @@ qx.Class.define("dialog.Dialog",
   construct: function( properties )
   {
     this.base(arguments);
-    
-    /*
-     * basic settings; checking teme to ignore shadow if it could not
-     * be used
-     */
-    if ("indigo" in qx.theme) {
-      this.set({
-        'visibility': "hidden"
-      });
-    } else {
-      this.set({
-        'visibility': "hidden",
-        'decorator': "shadow-popup"
-      });
-    };
+    this.set({
+       'visibility': "hidden"
+    });
     this.setLayout( new qx.ui.layout.Grow() );
-    
     /*
      * automatically add to application's root
      */
     var root = qx.core.Init.getApplication().getRoot();
     root.add(this);
-    
-    /*
-     * make sure the dialog is above any opened window
-     */
-    var maxWindowZIndex = 0;
-    var windows = root.getWindows();
-    for (var i = 0; i < windows.length; i++) {
-      var zIndex = windows[i].getZIndex();
-      maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
-    }
-    this.setZIndex( maxWindowZIndex +1 );
     
     /*
      * make it a focus root
@@ -263,7 +231,7 @@ qx.Class.define("dialog.Dialog",
     /* 
      * resize event 
      */
-    this.getApplicationRoot().addListener("resize", function(e)
+    root.addListener("resize", function(e)
     {
       var bounds = this.getBounds();
       this.set({
@@ -580,12 +548,22 @@ qx.Class.define("dialog.Dialog",
     {
       if ( this.isUseBlocker() )
       {
-        var root = this.getApplicationRoot();
-        root.setBlockerOpacity( this.getBlockerOpacity() );
-        root.setBlockerColor( this.getBlockerColor() );  
-        var zIndex = this.getZIndex();
-        this.setZIndex( zIndex + 1 );
-        new qx.util.DeferredCall(function(){ root.blockContent( zIndex ) }).schedule();
+        var root = qx.core.Init.getApplication().getRoot();
+        this.__blocker = new qx.ui.core.Blocker(root);
+        this.__blocker.setOpacity( this.getBlockerOpacity() );
+        this.__blocker.setColor( this.getBlockerColor() );  
+        
+        /*
+        * make sure the dialog is above any opened window
+        */
+        var maxWindowZIndex = root.getZIndex();
+        var windows = root.getWindows();
+        for (var i = 0; i < windows.length; i++) {
+          var zIndex = windows[i].getZIndex();
+          maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
+        }
+        this.setZIndex( maxWindowZIndex +1 );
+        this.__blocker.blockContent( maxWindowZIndex );
       }   
       this.setVisibility("visible");
       this.__previousFocus = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
@@ -600,7 +578,7 @@ qx.Class.define("dialog.Dialog",
       this.setVisibility("hidden");
       if ( this.isUseBlocker() )
       {
-        this.getApplicationRoot().unblockContent();
+        this.__blocker.unblock();
       }
       if ( this.__previousFocus )
       {
@@ -645,27 +623,9 @@ qx.Class.define("dialog.Dialog",
         this.getCallback().call(this.getContext());
       }
       this.resetCallback();
-    } 
-  },
-  
-  /*
-  *****************************************************************************
-     DEFERRED ACTION
-  *****************************************************************************
-  */   
-  defer : function()
-  {
-    /*
-     * create shortcut methods for backward compatibility. This will
-     * be deprecated in a future release, please use only the 
-     * dialog.Dialog.* methods
-     */
-    dialog.alert    = dialog.Dialog.alert;
-    dialog.error    = dialog.Dialog.error;
-    dialog.warning  = dialog.Dialog.warning;
-    dialog.confirm  = dialog.Dialog.confirm;
-    dialog.prompt   = dialog.Dialog.prompt;
-    dialog.select   = dialog.Dialog.select;
-    dialog.form     = dialog.Dialog.form;    
+    },
+    __blocker: null      
   }
+  
+  
 });
