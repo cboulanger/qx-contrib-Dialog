@@ -17,35 +17,24 @@
   
 ************************************************************************ */
 
-/* ************************************************************************
-#asset(qx/icon/${qx.icontheme}/22/actions/dialog-cancel.png)
-#asset(qx/icon/${qx.icontheme}/22/actions/dialog-ok.png)
-#asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
-#asset(qx/icon/${qx.icontheme}/48/status/dialog-error.png)
-#asset(qx/icon/${qx.icontheme}/48/status/dialog-warning.png)
-
-#ignore(dialog.alert)
-#ignore(dialog.error)
-#ignore(dialog.warning)
-#ignore(dialog.confirm)
-#ignore(dialog.prompt)
-#ignore(dialog.select)
-************************************************************************ */
-
-// for qooxdoo > 2.x 
 /**
- * @lint ignoreUndefined(dialog.alert)
- * @lint ignoreUndefined(dialog.error)
- * @lint ignoreUndefined(dialog.warning)
- * @lint ignoreUndefined(dialog.confirm)
- * @lint ignoreUndefined(dialog.prompt)
- * @lint ignoreUndefined(dialog.form)
- * @lint ignoreUndefined(dialog.select)
+ * @ignore(dialog.alert)
+ * @ignore(dialog.error)
+ * @ignore(dialog.warning)
+ * @ignore(dialog.confirm)
+ * @ignore(dialog.prompt)
+ * @ignore(dialog.form)
+ * @ignore(dialog.select)
+ * @asset(qx/icon/${qx.icontheme}/22/actions/dialog-cancel.png)
+ * @asset(qx/icon/${qx.icontheme}/22/actions/dialog-ok.png)
+ * @asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
+ * @asset(qx/icon/${qx.icontheme}/48/status/dialog-error.png)
+ * @asset(qx/icon/${qx.icontheme}/48/status/dialog-warning.png)
  */
 
 /**
  * Base class for dialog widgets
- * @todo use childControl system
+ * 
  */
 qx.Class.define("dialog.Dialog",
 {
@@ -62,7 +51,7 @@ qx.Class.define("dialog.Dialog",
     /**
      * Returns a dialog instance by type
      * @param type {String} The dialog type to get
-     * @return dialog.Dialog
+     * @return {dialog.Dialog}
      */
     getInstanceByType : function(type)
     {      
@@ -380,13 +369,13 @@ qx.Class.define("dialog.Dialog",
     
     /**
      * Dispatched when user clicks on the "OK" Button
-     * @type String
+     * @type {String}
     */
     "ok" : "qx.event.type.Event",
    
    /**
      * Dispatched when user clicks on the "Cancel" Button
-     * @type String
+     * @type {String}
     */
     "cancel" : "qx.event.type.Event"
    
