@@ -252,7 +252,6 @@ qx.Class.define("dialog.Wizard",
      * data model
      * @param pageData {Array} The new page data
      * @param old {Array} The old page data
-     * @return
      */
     _applyPageData : function ( pageData, old )
     {

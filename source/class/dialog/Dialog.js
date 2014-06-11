@@ -211,6 +211,9 @@ qx.Class.define("dialog.Dialog",
      */
     var root = qx.core.Init.getApplication().getRoot();
     root.add(this);
+    this.__blocker = new qx.ui.core.Blocker(root);
+    this.__blocker.setOpacity( this.getBlockerOpacity() );
+    this.__blocker.setColor( this.getBlockerColor() );  
     
     /*
      * make it a focus root
@@ -399,6 +402,7 @@ qx.Class.define("dialog.Dialog",
     
     __container : null,
 		__previousFocus : null,
+		__blocker : null,
     
     /*
     ---------------------------------------------------------------------------
@@ -537,14 +541,10 @@ qx.Class.define("dialog.Dialog",
     {
       if ( this.isUseBlocker() )
       {
-        var root = qx.core.Init.getApplication().getRoot();
-        this.__blocker = new qx.ui.core.Blocker(root);
-        this.__blocker.setOpacity( this.getBlockerOpacity() );
-        this.__blocker.setColor( this.getBlockerColor() );  
-        
         /*
         * make sure the dialog is above any opened window
         */
+        var root = qx.core.Init.getApplication().getRoot();
         var maxWindowZIndex = root.getZIndex();
         var windows = root.getWindows();
         for (var i = 0; i < windows.length; i++) {
