@@ -2,7 +2,7 @@
 
    qooxdoo dialog library
   
-   http://qooxdoo.org/contrib/project#dialog
+   http://qooxdoo.org/contrib/catalog/#Dialog
   
    Copyright:
      2007-2014 Christian Boulanger
