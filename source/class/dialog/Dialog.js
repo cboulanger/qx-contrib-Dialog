@@ -357,9 +357,19 @@ qx.Class.define("dialog.Dialog",
     {
       refine : true,
       init : true
+    },
+    
+    /**
+     * Whether the dialog is shown. If true, call the show() method. If false,
+     * call the hide() method.
+     */
+    show :
+    {
+      check    : "Boolean",
+      nullable : true,
+      event    : "changeShow",
+      apply    : "_applyShow"
     }
-    
-    
   },
   
   /*
