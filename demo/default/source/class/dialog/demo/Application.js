@@ -96,6 +96,14 @@ qx.Class.define("dialog.demo.Application",
          {
            label : "Login",
            method : "createLogin"
+         },             
+         {
+           label : "Progress",
+           method : "createProgress"
+         },             
+         {
+           label : "Progress with Log",
+           method : "createProgressWithLog"
          }
        ];
     
@@ -482,6 +490,49 @@ qx.Class.define("dialog.demo.Application",
       {  
         dialog.Dialog.alert( "User '" + data + "' is now logged in. Or at least we pretend." );
       }
+    },
+    
+    createProgress : function()
+    {
+       var progressWidget = new dialog.Progress();
+       progressWidget.show();
+  
+       var counter = 0;
+       (function incrementProgress()
+       {
+          progressWidget.set({
+           progress : counter,
+           message  : counter + "% completed"
+          });
+          if( counter++ == 100 )return;
+          qx.lang.Function.delay(incrementProgress,100);
+      })();
+    },    
+    
+    createProgressWithLog : function()
+    {
+      var progressWidget = new dialog.Progress({
+          showLog : true,
+          okButtonText : "Continue"
+       });
+       progressWidget.show();
+  
+       var counter = 0;
+       (function textProgress()
+       {
+          progressWidget.set({
+           progress : counter,
+           message  : counter + "% completed"
+          });
+  
+          if ( counter % 10 == 0 )
+          {
+           progressWidget.setNewLogText( counter + "% completed" );
+          }
+  
+          if( counter++ == 100 )return;
+          qx.lang.Function.delay(textProgress,100);
+      })();
     }
   }
 });
