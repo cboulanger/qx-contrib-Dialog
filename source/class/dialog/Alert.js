@@ -16,13 +16,11 @@
    *  Christian Boulanger (cboulanger)
   
 ************************************************************************ */
-
-/* ************************************************************************
-#asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
-************************************************************************ */
+/*global qx dialog*/
 
 /**
  * A dialog that alerts the user to something.
+ * @asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
  */
 qx.Class.define("dialog.Alert",
 {

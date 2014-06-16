@@ -16,6 +16,7 @@
    *  Christian Boulanger (cboulanger)
   
 ************************************************************************ */
+/*global qx dialog*/
 
 /**
  * Form renderer renderer for {@link qx.ui.form.Form}. This is a 

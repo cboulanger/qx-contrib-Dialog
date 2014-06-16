@@ -16,6 +16,7 @@
    *  Christian Boulanger (cboulanger)
   
 ************************************************************************ */
+/*global qx dialog*/
 
 /**
  * @ignore(dialog.alert)

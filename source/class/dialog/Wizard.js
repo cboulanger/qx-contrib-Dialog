@@ -16,6 +16,7 @@
    *  Christian Boulanger (cboulanger)
   
 ************************************************************************ */
+/*global qx dialog*/
 
 /**
  * A wizard-type widget that constructs the wizard pages on-the-fly, using 

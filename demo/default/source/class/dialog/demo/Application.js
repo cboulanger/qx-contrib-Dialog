@@ -16,19 +16,16 @@
    *  Christian Boulanger (cboulanger)
   
 ************************************************************************ */
-
-/* ************************************************************************
-#asset(dialog/*)
-#require(dialog.Dialog)
-************************************************************************ */
+/*global qx dialog*/
 
 /**
  * This is the main application class of your custom application "dialog"
+ * @asset(dialog/*)
+ * @require(dialog.Dialog)
  */
 qx.Class.define("dialog.demo.Application",
 {
   extend : qx.application.Standalone,
-
 
   /*
   *****************************************************************************

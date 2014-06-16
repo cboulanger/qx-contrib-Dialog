@@ -16,6 +16,7 @@
    *  Christian Boulanger (cboulanger)
   
 ************************************************************************ */
+/*global qx dialog*/
 
 /**
  * Dialog that offers the user a choice of alternative buttons to select from.
