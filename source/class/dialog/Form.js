@@ -26,6 +26,8 @@
 
 /**
  * A dialog with a form that is constructed on-the-fly
+ * 
+ * 
  */
 qx.Class.define("dialog.Form",
 {
@@ -251,22 +253,26 @@ qx.Class.define("dialog.Form",
       }
       
       /*
-       * if a model doesn't exist, create it from the
-       * form data
+       * if a model exist, dispose it first
        */
-      if ( ! this.getModel() )  
+      if ( this.getModel() )  
       {
-        var modelData = {};
-        for ( var key in formData )
-        {
-          modelData[key] = formData[key].value !== undefined 
-                            ? formData[key].value
-                            : null;
-        }
-        var model = qx.data.marshal.Json.createModel( modelData );
-        this.setModel( model );
+        this.getModel().removeAllBindings();
+        this.getModel().dispose();
       }
       
+      /*
+       * set up model
+       */
+      var modelData = {};
+      for ( var key in formData )
+      {
+        modelData[key] = formData[key].value !== undefined 
+                          ? formData[key].value
+                          : null;
+      }
+      var model = qx.data.marshal.Json.createModel( modelData );
+      this.setModel( model );
       
       /*
        * create new form and form controller
