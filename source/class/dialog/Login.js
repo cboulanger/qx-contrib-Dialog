@@ -218,7 +218,7 @@ qx.Class.define("dialog.Login",
       this._password.addListener("keypress",function(e){
         if ( e.getKeyIdentifier() == "Enter" )
         {
-          this._callCallback();
+          this._callCheckCredentials();
         }
       },this);
 
