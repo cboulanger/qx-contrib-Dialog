@@ -50,3 +50,6 @@ msgstr "Weiter"
 #: dialog/Wizard.js:206
 msgid "Finish"
 msgstr "Beenden"
+
+msgid "Forgot Password?"
+msgstr "Passwort vergessen?"

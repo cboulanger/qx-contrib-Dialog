@@ -79,7 +79,28 @@ qx.Class.define("dialog.Login",
     {
         check : "Function",
         nullable : false
+    },
+    
+    /**
+     * Whether to show a button with "Forgot Password?"
+     */
+    showForgotPassword :
+    {
+      check : "Boolean",
+      nullable : false,
+      init : false,
+      event : "changeShowForgotPassword"
+    },
+    
+    /**
+     * The function that is called when the user clicks on the "Forgot Password?"
+     * button
+     */
+    forgotPasswordHandler :
+    {
+      check: "Function"
     }
+    
   },
 
   /*
@@ -195,7 +216,7 @@ qx.Class.define("dialog.Login",
       gridContainer.setLayout(gridLayout);
       gridContainer.setAlignX("center");
       gridContainer.setMinWidth(200);
-      gridContainer.setMaxWidth(300);
+      gridContainer.setMaxWidth(400);
       groupboxContainer.add( gridContainer );
 
       /*
@@ -252,14 +273,26 @@ qx.Class.define("dialog.Login",
        * Cancel Button
        */
       var cancelButton = this._createCancelButton();
+      
+      /*
+       * Forgot Password Button
+       */
+      var forgotPasswordButton = new qx.ui.form.Button(this.tr("Forgot Password?"));
+      forgotPasswordButton.addListener("click",function(){
+        this.getForgotPasswordHandler()();
+      },this);
+      this.bind("showForgotPassword", forgotPasswordButton, "visibility", {
+        converter : function(v){ return v ? "visible" : "excluded" }
+      });
 
       /*
        * buttons pane
        */
-      var buttonPane = new qx.ui.container.Composite;
+      var buttonPane = new qx.ui.container.Composite();
       buttonPane.setLayout(new qx.ui.layout.HBox(5));
       buttonPane.add(loginButton);
       buttonPane.add(cancelButton);
+      buttonPane.add(forgotPasswordButton);
       gridContainer.add(
          buttonPane,{ row : 3, column : 1}
       );
@@ -298,7 +331,7 @@ qx.Class.define("dialog.Login",
      * "loginFailure" event is dispatched with the error message/object. Finally,
      * the callback function in the callback property is called with null (success)
      * or the error value.
-     * @param data Optional second argument wich can contain user information
+     * @param data {unknown|undefined} Optional second argument wich can contain user information
      */
     _handleCheckCredentials : function( err, data )
     {

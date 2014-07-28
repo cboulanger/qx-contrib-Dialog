@@ -435,7 +435,9 @@ qx.Class.define("dialog.demo.Application",
         image       : "dialog/logo.gif", 
         text        : "Please log in, using 'demo'/'demo'",
         checkCredentials : this.checkCredentials,
-        callback    : this.finalCallback
+        callback    : this.finalCallback,
+        showForgotPassword : true,
+        forgotPasswordHandler : function(){window.alert("Too bad. I cannot remember it either.");}
       });
       
       // you can optionally attach event listeners, for example to 
