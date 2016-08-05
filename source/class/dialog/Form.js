@@ -293,7 +293,7 @@ qx.Class.define("dialog.Form", {
 
           case "textfield":
             formElement = new qx.ui.form.TextField();
-            fieldData.maxLength && formElement.setMaxWidth(fieldData.maxLength);
+            fieldData.maxLength && formElement.setMaxLength(fieldData.maxLength);
             formElement.setLiveUpdate(true);
             break;
 
