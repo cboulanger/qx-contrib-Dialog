@@ -66,7 +66,7 @@ qx.Class.define("dialog.Confirm",
     {
       check : "String",
       nullable : true,
-      init : "icon/22/actions/dialog-ok.png",
+      init : "dialog/icon/273-checkmark.svg",
       event : "changeYesButtonIcon"
     },    
     
@@ -88,7 +88,7 @@ qx.Class.define("dialog.Confirm",
     {
       check : "String",
       nullable : true,
-      init : "icon/22/actions/dialog-cancel.png",
+      init : "dialog/icon/272-cross.svg",
       event : "changeNoButtonIcon"
     },
     
@@ -167,6 +167,11 @@ qx.Class.define("dialog.Confirm",
       yesButton.addListener("execute", this._handleYes, this );
       this.bind("yesButtonLabel", yesButton, "label");
       this.bind("yesButtonIcon",  yesButton, "icon");
+			yesButton.getChildControl("icon").set({
+				width: 16,
+				height: 16,
+				scale: true
+			});
       yesButton.setLabel( this.tr("yes") );
       
       /* 
@@ -177,6 +182,11 @@ qx.Class.define("dialog.Confirm",
       noButton.addListener("execute", this._handleNo, this );
       this.bind("noButtonLabel",noButton, "label" );
       this.bind("noButtonIcon", noButton, "icon" );
+			noButton.getChildControl("icon").set({
+				width: 16,
+				height: 16,
+				scale: true
+			});
       noButton.setLabel( this.tr("no") );
       
       /* 

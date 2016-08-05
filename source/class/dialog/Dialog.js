@@ -26,11 +26,11 @@
  * @ignore(dialog.prompt)
  * @ignore(dialog.form)
  * @ignore(dialog.select)
- * @asset(qx/icon/${qx.icontheme}/22/actions/dialog-cancel.png)
- * @asset(qx/icon/${qx.icontheme}/22/actions/dialog-ok.png)
- * @asset(qx/icon/${qx.icontheme}/48/status/dialog-information.png)
- * @asset(qx/icon/${qx.icontheme}/48/status/dialog-error.png)
- * @asset(qx/icon/${qx.icontheme}/48/status/dialog-warning.png)
+ * @asset(dialog/icon/272-cross.svg)
+ * @asset(dialog/icon/273-checkmark.svg)
+ * @asset(dialog/icon/264-warning.svg)
+ * @asset(dialog/icon/269-info.svg)
+ * @asset(dialog/icon/270-cancel-circle.svg)
  */
 
 /**
@@ -80,7 +80,7 @@ qx.Class.define("dialog.Dialog",
         "message"   : message,
         "callback"  : callback || null,
         "context"   : context || null,
-        "image"     : "icon/48/status/dialog-information.png"
+        "image"     : "dialog/icon/269-info.svg"
       })).show();      
     },
 
@@ -96,7 +96,7 @@ qx.Class.define("dialog.Dialog",
         "message"   : message,
         "callback"  : callback || null,
         "context"   : context || null,
-        "image"     : "icon/48/status/dialog-error.png"
+        "image"     : "dialog/icon/270-cancel-circle.svg"
       })).show();      
     },
     
@@ -112,7 +112,7 @@ qx.Class.define("dialog.Dialog",
         "message"   : message,
         "callback"  : callback || null,
         "context"   : context || null,
-        "image"     : "icon/48/status/dialog-warning.png"
+        "image"     : "dialog/icon/264-warning.svg"
       })).show();      
     },
     
@@ -480,7 +480,12 @@ qx.Class.define("dialog.Dialog",
     _createOkButton : function()
     {
       var okButton = this._okButton =  new qx.ui.form.Button(this.tr("OK"));
-      okButton.setIcon("icon/22/actions/dialog-ok.png")
+      okButton.setIcon("dialog/icon/273-checkmark.svg");
+			okButton.getChildControl("icon").set({
+				width: 16,
+				height: 16,
+				scale: true
+			});
       okButton.setAllowStretchX(false);
       okButton.addListener("execute", this._handleOk, this);  
       this.addListener("appear",function(){
@@ -498,7 +503,12 @@ qx.Class.define("dialog.Dialog",
     {
       var cancelButton = this._cancelButton =  new qx.ui.form.Button(this.tr("Cancel"));
       cancelButton.setAllowStretchX(false);
-      cancelButton.setIcon("icon/22/actions/dialog-cancel.png");
+      cancelButton.setIcon("dialog/icon/272-cross.svg");
+			cancelButton.getChildControl("icon").set({
+				width: 16,
+				height: 16,
+				scale: true
+			});
       cancelButton.addListener("execute", this._handleCancel, this);  
       this.bind("allowCancel",cancelButton,"visibility",{
         converter : function( value )

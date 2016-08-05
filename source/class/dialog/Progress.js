@@ -229,10 +229,15 @@ qx.Class.define("dialog.Progress",
       cancelButton.set({
         label  : null,
         height : 20,
-        icon   : "bibliograph/icon/16/cancel.png",
+        icon   : "dialog/icon/273-checkmark.svg",
         alignY : "middle",
         visibility : "excluded"
       });
+			cancelButton.getChildControl("icon").set({
+				width: 16,
+				height: 16,
+				scale: true
+			});
       hbox.add(cancelButton);
       this.bind("showProgressBar",hbox, "visibility",{
         converter : function(v){ return v ? "visible" : "excluded"; }

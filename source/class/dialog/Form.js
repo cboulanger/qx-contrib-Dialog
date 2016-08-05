@@ -133,6 +133,7 @@ qx.Class.define("dialog.Form",
     _form : null,
     _formValidator : null,
     _formController : null,
+    getForm:function(){return this._form;},
     
     /*
     ---------------------------------------------------------------------------
@@ -521,7 +522,7 @@ qx.Class.define("dialog.Form",
                */
               else if ( validator.charAt(0) == "/" )
               {
-                validator = qx.util.Validate.regExp( new RegExp( validator.substr( 1, validator.length-2 ) ) );
+                validator = qx.util.Validate.regExp( new RegExp( validator.substr( 1, validator.length-2 ) ), fieldData.validation.errorMessage );
               }
 
               /*
