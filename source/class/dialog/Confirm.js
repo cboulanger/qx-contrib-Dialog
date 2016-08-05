@@ -66,7 +66,7 @@ qx.Class.define("dialog.Confirm",
     {
       check : "String",
       nullable : true,
-      init : "dialog/icon/273-checkmark.svg",
+      init : "dialog/273-checkmark.svg",
       event : "changeYesButtonIcon"
     },    
     
@@ -88,7 +88,7 @@ qx.Class.define("dialog.Confirm",
     {
       check : "String",
       nullable : true,
-      init : "dialog/icon/272-cross.svg",
+      init : "dialog/272-cross.svg",
       event : "changeNoButtonIcon"
     },
     

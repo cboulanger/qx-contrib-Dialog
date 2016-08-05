@@ -26,11 +26,11 @@
  * @ignore(dialog.prompt)
  * @ignore(dialog.form)
  * @ignore(dialog.select)
- * @asset(dialog/icon/272-cross.svg)
- * @asset(dialog/icon/273-checkmark.svg)
- * @asset(dialog/icon/264-warning.svg)
- * @asset(dialog/icon/269-info.svg)
- * @asset(dialog/icon/270-cancel-circle.svg)
+ * @asset(dialog/272-cross.svg)
+ * @asset(dialog/273-checkmark.svg)
+ * @asset(dialog/264-warning.svg)
+ * @asset(dialog/269-info.svg)
+ * @asset(dialog/270-cancel-circle.svg)
  */
 
 /**
@@ -80,7 +80,7 @@ qx.Class.define("dialog.Dialog",
         "message"   : message,
         "callback"  : callback || null,
         "context"   : context || null,
-        "image"     : "dialog/icon/269-info.svg"
+        "image"     : "dialog/269-info.svg"
       })).show();      
     },
 
@@ -96,7 +96,7 @@ qx.Class.define("dialog.Dialog",
         "message"   : message,
         "callback"  : callback || null,
         "context"   : context || null,
-        "image"     : "dialog/icon/270-cancel-circle.svg"
+        "image"     : "dialog/270-cancel-circle.svg"
       })).show();      
     },
     
@@ -112,7 +112,7 @@ qx.Class.define("dialog.Dialog",
         "message"   : message,
         "callback"  : callback || null,
         "context"   : context || null,
-        "image"     : "dialog/icon/264-warning.svg"
+        "image"     : "dialog/264-warning.svg"
       })).show();      
     },
     
@@ -480,7 +480,7 @@ qx.Class.define("dialog.Dialog",
     _createOkButton : function()
     {
       var okButton = this._okButton =  new qx.ui.form.Button(this.tr("OK"));
-      okButton.setIcon("dialog/icon/273-checkmark.svg");
+      okButton.setIcon("dialog/273-checkmark.svg");
 			okButton.getChildControl("icon").set({
 				width: 16,
 				height: 16,
@@ -503,7 +503,7 @@ qx.Class.define("dialog.Dialog",
     {
       var cancelButton = this._cancelButton =  new qx.ui.form.Button(this.tr("Cancel"));
       cancelButton.setAllowStretchX(false);
-      cancelButton.setIcon("dialog/icon/272-cross.svg");
+      cancelButton.setIcon("dialog/272-cross.svg");
 			cancelButton.getChildControl("icon").set({
 				width: 16,
 				height: 16,

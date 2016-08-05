@@ -20,7 +20,7 @@
 
 /**
  * A dialog that alerts the user to something.
- * @asset(dialog/icon/269-info.svg)
+ * @asset(dialog/269-info.svg)
  */
 qx.Class.define("dialog.Alert",
 {
@@ -62,7 +62,7 @@ qx.Class.define("dialog.Alert",
       /*
        * add image 
        */
-      this._image = new qx.ui.basic.Image(this.getImage() || "dialog/icon/269-info.svg" );
+      this._image = new qx.ui.basic.Image(this.getImage() || "dialog/269-info.svg" );
       hbox.add( this._image );
       
       /*
