@@ -14,9 +14,10 @@ qx.Class.define("dialog.Alert", {
      * 
      */
     _createWidgetContent: function() {
-      var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
-        contentPadding: [16, 16, 16, 16]
-      });
+      //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
+      //  contentPadding: [16, 16, 16, 16]
+      //});
+      var groupboxContainer = new qx.ui.container.Composite();
       groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
       this.add(groupboxContainer);
       var hbox = new qx.ui.container.Composite;

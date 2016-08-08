@@ -73,7 +73,8 @@ qx.Class.define("dialog.Wizard", {
      * 
      */
     _createWidgetContent: function() {
-      var groupboxContainer = new qx.ui.groupbox.GroupBox();
+      //var groupboxContainer = new qx.ui.groupbox.GroupBox();
+      var groupboxContainer = new qx.ui.container.Composite();
       groupboxContainer.setPadding(0);
       groupboxContainer.setLayout(new qx.ui.layout.VBox(0));
       this.add(groupboxContainer);

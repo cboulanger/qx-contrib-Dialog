@@ -122,9 +122,10 @@ qx.Class.define("dialog.Login", {
      * 
      */
     _createWidgetContent: function() {
-      var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
-        contentPadding: [16, 16, 16, 16]
-      });
+      //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
+      //  contentPadding: [16, 16, 16, 16]
+      //});
+      var groupboxContainer = new qx.ui.container.Composite();
       var layout = new qx.ui.layout.VBox(10);
       layout.setAlignX("center");
       groupboxContainer.setLayout(layout);

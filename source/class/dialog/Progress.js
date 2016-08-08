@@ -145,10 +145,11 @@ qx.Class.define("dialog.Progress", {
      * 
      */
     _createWidgetContent: function() {
-      var container = new qx.ui.groupbox.GroupBox().set({
-        contentPadding: [16, 16, 16, 16],
-        width: 300
-      });
+      //var container = new qx.ui.groupbox.GroupBox().set({
+      //  contentPadding: [16, 16, 16, 16],
+      //  width: 300
+      //});
+       var groupboxContainer = new qx.ui.container.Composite().set({width: 300});
       container.setLayout(new qx.ui.layout.VBox(5));
       this.add(container);
       var hbox = new qx.ui.container.Composite();

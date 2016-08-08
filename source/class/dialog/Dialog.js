@@ -322,9 +322,12 @@ qx.Class.define("dialog.Dialog", {
      * 
      */
     _createDialogContainer: function() {
-      this.__container = new qx.ui.groupbox.GroupBox().set({
-        layout: new qx.ui.layout.VBox(10),
-        contentPadding: [16, 16, 16, 16]
+      //this.__container = new qx.ui.groupbox.GroupBox().set({
+      //  layout: new qx.ui.layout.VBox(10),
+      //  contentPadding: [16, 16, 16, 16]
+      //});
+      this.__container = new qx.ui.container.Composite().set({
+        layout: new qx.ui.layout.VBox(10)
       });
       this.add(this.__container);
       return this.__container;
