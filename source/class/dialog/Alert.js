@@ -23,7 +23,11 @@ qx.Class.define("dialog.Alert", {
       var hbox = new qx.ui.container.Composite;
       hbox.setLayout(new qx.ui.layout.HBox(10));
       groupboxContainer.add(hbox);
-      this._image = new qx.ui.basic.Image(this.getImage() || "dialog/269-info.svg");
+      this._image = new qx.ui.basic.Image(this.getImage() || "dialog/269-info.svg").set({
+        scale: true,
+        height: 32,
+        width: 32
+      });
       hbox.add(this._image);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);

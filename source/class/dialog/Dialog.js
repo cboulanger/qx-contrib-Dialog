@@ -183,7 +183,8 @@ qx.Class.define("dialog.Dialog", {
       showClose: false,
       showMaximize: false,
       showMinimize: false,
-      showStatusbar: false
+      showStatusbar: false,
+      caption: 'RΞDΔKTR'
     });
     this.setLayout(new qx.ui.layout.Grow());
     var root = qx.core.Init.getApplication().getRoot();
