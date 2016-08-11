@@ -18,6 +18,39 @@ qx.Class.define("dialog.Prompt", {
       nullable: true,
       apply: "_applyValue",
       event: "changeValue"
+    },
+    /**
+     *
+     *
+     *
+     */
+    placeholder: {
+      check: "String",
+      nullable: true,
+      apply: "_applyPlaceholder",
+      event: "changePlaceholder"
+    },
+    /**
+     *
+     *
+     *
+     */
+    filter: {
+      check: "RegExp",
+      nullable: true,
+      apply: "_applyFilter",
+      event: "changeFilter"
+    },
+    /**
+     *
+     *
+     *
+     */
+    maxLength: {
+      check: "Integer",
+      nullable: true,
+      apply: "_applyMaxLength",
+      event: "changeMaxLength"
     }
   },
   members: {
@@ -48,6 +81,15 @@ qx.Class.define("dialog.Prompt", {
       this._textField.addListener("changeValue", function(e) {
         this.setValue(e.getData());
       }, this);
+      this._textField.addListener("changePlaceholder", function(e) {
+        this.setPlaceholder(e.getData());
+      }, this);
+      this._textField.addListener("changeFilter", function(e) {
+        this.setFilter(e.getData());
+      }, this);
+      this._textField.addListener("changeMaxLength", function(e) {
+        this.setMaxLength(e.getData());
+      }, this);
       this._textField.addListener("appear", function(e) {
         qx.lang.Function.delay(this.focus, 1, this);
       }, this._textField);
@@ -77,8 +119,37 @@ qx.Class.define("dialog.Prompt", {
       buttonPane.add(this._createCancelButton());
       groupboxContainer.add(buttonPane);
     },
+    /**
+     *
+     *
+     *
+     */
     _applyValue: function(value, old) {
       this._textField.setValue(value);
+    },
+    /**
+     *
+     *
+     *
+     */
+    _applyPlaceholder: function(value, old) {
+      this._textField.setPlaceholder(value);
+    },
+    /**
+     *
+     *
+     *
+     */
+    _applyFilter: function(value, old) {
+      this._textField.setFilter(value);
+    },
+    /**
+     *
+     *
+     *
+     */
+    _applyMaxLength: function(value, old) {
+      this._textField.setMaxLength(value);
     },
     /**
      * 
