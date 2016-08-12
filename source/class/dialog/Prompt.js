@@ -16,7 +16,6 @@ qx.Class.define("dialog.Prompt", {
     value: {
       check: "String",
       nullable: true,
-      apply: "_applyValue",
       event: "changeValue"
     },
     /**
@@ -27,8 +26,7 @@ qx.Class.define("dialog.Prompt", {
     placeholder: {
       check: "String",
       nullable: true,
-      apply: "_applyPlaceholder",
-      event: "changePlaceholder"
+      apply: "_applyPlaceholder"
     },
     /**
      *
@@ -38,8 +36,7 @@ qx.Class.define("dialog.Prompt", {
     filter: {
       check: "RegExp",
       nullable: true,
-      apply: "_applyFilter",
-      event: "changeFilter"
+      apply: "_applyFilter"
     },
     /**
      *
@@ -49,8 +46,7 @@ qx.Class.define("dialog.Prompt", {
     maxLength: {
       check: "Integer",
       nullable: true,
-      apply: "_applyMaxLength",
-      event: "changeMaxLength"
+      apply: "_applyMaxLength"
     }
   },
   members: {
@@ -78,18 +74,8 @@ qx.Class.define("dialog.Prompt", {
         flex: 1
       });
       this._textField = new qx.ui.form.TextField();
-      this._textField.addListener("changeValue", function(e) {
-        this.setValue(e.getData());
-      }, this);
-      this._textField.addListener("changePlaceholder", function(e) {
-        this.setPlaceholder(e.getData());
-      }, this);
-      this._textField.addListener("changeFilter", function(e) {
-        this.setFilter(e.getData());
-      }, this);
-      this._textField.addListener("changeMaxLength", function(e) {
-        this.setMaxLength(e.getData());
-      }, this);
+ 			this.bind("value", this._textField, "value");
+			this._textField.bind("value", this, "value");
       this._textField.addListener("appear", function(e) {
         qx.lang.Function.delay(this.focus, 1, this);
       }, this._textField);
@@ -118,14 +104,6 @@ qx.Class.define("dialog.Prompt", {
       buttonPane.add(this._createOkButton());
       buttonPane.add(this._createCancelButton());
       groupboxContainer.add(buttonPane);
-    },
-    /**
-     *
-     *
-     *
-     */
-    _applyValue: function(value, old) {
-      this._textField.setValue(value);
     },
     /**
      *
