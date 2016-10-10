@@ -86,6 +86,13 @@ qx.Class.define("dialog.Form", {
     _form: null,
     _formValidator: null,
     _formController: null,
+    /**
+     * 
+     * Return the form
+     * 
+     * @return {qx.ui.form.Form}
+     *
+     */
     getForm: function() {
       return this._form;
     },
@@ -388,8 +395,6 @@ qx.Class.define("dialog.Form", {
     /**
      * 
      * Handle click on ok button. Calls callback with the result map
-     * 
-     * @override
      * 
      */
     _handleOk: function() {

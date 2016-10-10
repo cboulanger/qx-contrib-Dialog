@@ -10,7 +10,9 @@ qx.Class.define("dialog.Confirm", {
      * 
      * Returns singleton instance of this class. This method has to
      * be part of any subclass extending this widget.
-     * 
+     *
+     * @return {Object}
+     *
      */
     getInstance: function() {
       return this.superclass.getInstance(this.classname);

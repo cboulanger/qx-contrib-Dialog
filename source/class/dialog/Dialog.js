@@ -319,7 +319,7 @@ qx.Class.define("dialog.Dialog", {
      * 
      * Creates the default container (groupbox)
      * 
-     * @todo make this themeable
+     * @return {qx.ui.container.Composite}
      * 
      */
     _createDialogContainer: function() {
