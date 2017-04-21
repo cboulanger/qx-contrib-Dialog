@@ -1,19 +1,19 @@
 /**
- * 
+ *
  * A widget with a progress bar and a log.
- * 
+ *
  */
 qx.Class.define("dialog.Progress", {
   extend: dialog.Dialog,
   properties: {
     /**
-     * 
+     *
      * The percentage of the progress, 0-100
-     * 
+     *
      */
     progress: {
       check: function(value) {
-        return qx.lang.Type.isNumber(value) && value >= 0 && value <= 100
+        return qx.lang.Type.isNumber(value) && value >= 0 && value <= 100;
       },
       init: 0,
       nullable: false,
@@ -21,9 +21,9 @@ qx.Class.define("dialog.Progress", {
       apply: "_applyProgress"
     },
     /**
-     * 
+     *
      * The content of the log
-     * 
+     *
      */
     logContent: {
       check: "String",
@@ -31,9 +31,9 @@ qx.Class.define("dialog.Progress", {
       event: "changeLogContent"
     },
     /**
-     * 
+     *
      * New text that should be written to the log
-     * 
+     *
      */
     newLogText: {
       check: "String",
@@ -42,10 +42,10 @@ qx.Class.define("dialog.Progress", {
       apply: "_applyNewLogText"
     },
     /**
-     * 
+     *
      * Whether or not the progress bar is visible
      * (default: true)
-     * 
+     *
      */
     showProgressBar: {
       check: "Boolean",
@@ -54,10 +54,10 @@ qx.Class.define("dialog.Progress", {
       event: "changeShowProgressBar"
     },
     /**
-     * 
+     *
      * Whether or not the log is visible
      * (default: false)
-     * 
+     *
      */
     showLog: {
       check: "Boolean",
@@ -66,10 +66,10 @@ qx.Class.define("dialog.Progress", {
       event: "changeShowLog"
     },
     /**
-     * 
+     *
      * The text of the OK button. If null, hide the button.
      * (default: null)
-     * 
+     *
      */
     okButtonText: {
       check: "String",
@@ -79,9 +79,9 @@ qx.Class.define("dialog.Progress", {
       apply: "_applyOkButtonText"
     },
     /**
-     * 
+     *
      * Whether to hide the widget when the progress is at 100%
-     * 
+     *
      */
     hideWhenCompleted: {
       check: "Boolean",
@@ -91,9 +91,9 @@ qx.Class.define("dialog.Progress", {
   },
   members: {
     /**
-     * 
+     *
      * Will be moved into dialog.Dialog
-     * 
+     *
      */
     _applyShow: function(value, old) {
       if (value === true) {
@@ -110,9 +110,9 @@ qx.Class.define("dialog.Progress", {
       }
     },
     /**
-     * 
+     *
      * Adds new text to the log
-     * 
+     *
      */
     _applyNewLogText: function(value, old) {
       if (value) {
@@ -123,9 +123,9 @@ qx.Class.define("dialog.Progress", {
       }
     },
     /**
-     * 
+     *
      * Apply the OK Button text
-     * 
+     *
      */
     _applyOkButtonText: function(value, old) {
       if (value === null) {
@@ -139,17 +139,17 @@ qx.Class.define("dialog.Progress", {
     _progressBar: null,
     _logView: null,
     /**
-     * 
+     *
      * Create the content of the dialog.
      * Extending classes must implement this method.
-     * 
+     *
      */
     _createWidgetContent: function() {
       //var container = new qx.ui.groupbox.GroupBox().set({
       //  contentPadding: [16, 16, 16, 16],
       //  width: 300
       //});
-       var groupboxContainer = new qx.ui.container.Composite().set({width: 300});
+      var container = new qx.ui.container.Composite().set({width: 300});
       container.setLayout(new qx.ui.layout.VBox(5));
       this.add(container);
       var hbox = new qx.ui.container.Composite();
