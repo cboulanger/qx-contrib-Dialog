@@ -540,7 +540,14 @@ qx.Class.define("dialog.demo.Application",
             }
           }
 
-          if( counter++ == 100 ) return;
+          if( counter++ == 100 ) {
+            var msg = cancelled ? "Cancelled." : "Completed.";
+            progressWidget.set({
+             newLogText : msg,
+             message  : msg
+            });
+            return;
+          }
           if( cancelled ){
             qx.lang.Function.delay(textProgress,5);
           } else {
