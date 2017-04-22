@@ -1,30 +1,30 @@
 /**
- * 
+ *
  * A dialog with a form that is constructed on-the-fly
- * 
+ *
  * @require(dialog.FormRenderer)
  * @require(qx.util.Serializer)
  * @require(qx.util.Validate)
- * 
+ *
  */
 qx.Class.define("dialog.Form", {
   extend: dialog.Dialog,
   properties: {
     /**
-     *    
-     * Data to create a form with multiple fields. 
-     * So far implemented: 
-     *   TextField / TextArea 
+     *
+     * Data to create a form with multiple fields.
+     * So far implemented:
+     *   TextField / TextArea
      *   ComboBox
      *   SelectBox
      *   RadioGroup
      *   CheckBox
-     * 
+     *
      * <pre>
      * {
-     *  "username" : {   
+     *  "username" : {
      *     'type'  : "TextField",
-     *     'label' : "User Name", 
+     *     'label' : "User Name",
      *     'value' : ""
      *   },
      *   "address" : {
@@ -33,25 +33,25 @@ qx.Class.define("dialog.Form", {
      *     'lines' : 3
      *   },
      *   "domain" : {
-     *     'type'  : "SelectBox", 
+     *     'type'  : "SelectBox",
      *     'label' : "Domain",
      *     'value' : 1,
      *     'options' : [
-     *       { 'label' : "Company", 'value' : 0 }, 
+     *       { 'label' : "Company", 'value' : 0 },
      *       { 'label' : "Home",    'value' : 1 }
      *     ]
      *   },
      *   "commands" : {
-     *    'type'  : "ComboBox", 
+     *    'type'  : "ComboBox",
      *     'label' : "Shell command to execute",
      *     'options' : [
-     *       { 'label' : "ln -s *" }, 
+     *       { 'label' : "ln -s *" },
      *       { 'label' : "rm -Rf /" }
      *     ]
-     *   }   
+     *   }
      * }
      * </pre>
-     * 
+     *
      */
     formData: {
       check: "Map",
@@ -60,9 +60,9 @@ qx.Class.define("dialog.Form", {
       apply: "_applyFormData"
     },
     /**
-     * 
+     *
      * The model of the result data
-     * 
+     *
      */
     model: {
       check: "qx.core.Object",
@@ -70,9 +70,9 @@ qx.Class.define("dialog.Form", {
       event: "changeModel"
     },
     /**
-     * 
+     *
      * The default width of the column with the field labels
-     * 
+     *
      */
     labelColumnWidth: {
       check: "Integer",
@@ -87,9 +87,9 @@ qx.Class.define("dialog.Form", {
     _formValidator: null,
     _formController: null,
     /**
-     * 
+     *
      * Return the form
-     * 
+     *
      * @return {qx.ui.form.Form}
      *
      */
@@ -97,9 +97,9 @@ qx.Class.define("dialog.Form", {
       return this._form;
     },
     /**
-     * 
+     *
      * Create the main content of the widget
-     * 
+     *
      */
     _createWidgetContent: function() {
       //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
@@ -134,14 +134,14 @@ qx.Class.define("dialog.Form", {
       buttonPane.add(cancelButton);
     },
     /**
-     * 
+     *
      * Constructs the form on-the-fly
-     * 
+     *
      * @param formData {Map} The form data map
      * @param old {Map|null} The old value
-     * 
+     *
      * @lint ignoreDeprecated(alert,eval)
-     * 
+     *
      */
     _applyFormData: function(formData, old) {
       if (this._formController) {
@@ -189,12 +189,12 @@ qx.Class.define("dialog.Form", {
             break;
           case "textfield":
             formElement = new qx.ui.form.TextField();
-            fieldData.maxLength && formElement.setMaxLength(fieldData.maxLength);
+            if(fieldData.maxLength) formElement.setMaxLength(fieldData.maxLength);
             formElement.setLiveUpdate(true);
             break;
           case "datefield":
             formElement = new qx.ui.form.DateField();
-            if (fieldData.dateFormat != null) {
+            if (fieldData.dateFormat) {
               formElement.setDateFormat(fieldData.dateFormat);
             }
             break;
@@ -210,7 +210,7 @@ qx.Class.define("dialog.Form", {
             break;
           case "selectbox":
             formElement = new qx.ui.form.SelectBox();
-            var model = qx.data.marshal.Json.createModel(fieldData.options);
+            model = qx.data.marshal.Json.createModel(fieldData.options);
             new qx.data.controller.List(model, formElement, "label");
             break;
           case "radiogroup":
@@ -310,7 +310,7 @@ qx.Class.define("dialog.Form", {
             formElement.setRequired(true);
           }
           if (fieldData.validation.validator) {
-            var validator = fieldData.validation.validator;
+            validator = fieldData.validation.validator;
             if (typeof validator == "string") {
               if (qx.util.Validate[validator]) {
                 validator = qx.util.Validate[validator]();
@@ -326,7 +326,7 @@ qx.Class.define("dialog.Form", {
           }
           if (fieldData.validation.service) {
             var service = fieldData.validation.service;
-            var _this = this;
+            _this = this;
             validator = new qx.ui.form.validation.AsyncValidator(function(validatorObj, value) {
               if (!validatorObj.__asyncInProgress) {
                 validatorObj.__asyncInProgress = true;
@@ -338,8 +338,8 @@ qx.Class.define("dialog.Form", {
                       validatorObj.setValid(valid);
                       validatorObj.__asyncInProgress = false;
                     } catch (e) {
-                      alert(e)
-                    };
+                      alert(e);
+                    }
                   });
               }
             });
@@ -375,15 +375,32 @@ qx.Class.define("dialog.Form", {
       this._formContainer.add(view);
       this._form.getValidationManager().validate();
     },
+
     /**
-     * 
+     * Create OK Button
+     * unlike our superclass, we do not add an appear listener to focus OK
+     * cherry-picked from from https://github.com/derrell/qx-contrib-Dialog/commit/c656f1cb98cbd1e61456566b63b5a4926dfe9cef
+     * @override
+     * @return {qx.ui.form.Button}
+     */
+    _createOkButton : function()
+    {
+      var okButton = this._okButton =  new qx.ui.form.Button(this.tr("OK"));
+      okButton.setIcon("dialog/273-checkmark.svg");
+      okButton.setAllowStretchX(false);
+      okButton.addListener("execute", this._handleOk, this);
+      return okButton;
+    },
+
+    /**
+     *
      * Hook for subclasses to do something with the form, for example
      * in order to attach bindings to the validation manager.
-     * Default behavior: bind the enabled state of the "OK" button to the 
+     * Default behavior: bind the enabled state of the "OK" button to the
      * validity of the current form.
-     * 
+     *
      * @param form {qx.ui.form.Form} The form to bind
-     * 
+     *
      */
     _onFormReady: function(form) {
       form.getValidationManager().bind("valid", this._okButton, "enabled", {
@@ -392,15 +409,19 @@ qx.Class.define("dialog.Form", {
         }
       });
     },
+
     /**
-     * 
      * Handle click on ok button. Calls callback with the result map
-     * 
+     * @override
      */
-    _handleOk: function() {
+    _handleOk : function()
+    {
       this.hide();
-      if (this.getCallback()) {
-        this.getCallback()(qx.util.Serializer.toNativeObject(this.getModel()));
+      if( this.getCallback() )
+      {
+        this.getCallback().call(
+          this.getContext(),
+          qx.util.Serializer.toNativeObject( this.getModel() ) );
       }
       this.resetCallback();
     }

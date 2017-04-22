@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * Base class for dialog widgets
- * 
+ *
  * @ignore(dialog.alert)
  * @ignore(dialog.error)
  * @ignore(dialog.warning)
@@ -14,34 +14,34 @@
  * @asset(dialog/264-warning.svg)
  * @asset(dialog/269-info.svg)
  * @asset(dialog/270-cancel-circle.svg)
- * 
+ *
  */
 qx.Class.define("dialog.Dialog", {
   extend: qx.ui.window.Window,
   statics: {
     /**
-     * 
+     *
      * Returns a dialog instance by type
-     * 
+     *
      * @param type {String} The dialog type to get
      * @return {dialog.Dialog}
-     * 
+     *
      */
     getInstanceByType: function(type) {
       try {
-        return new dialog[qx.lang.String.firstUp(type)];
+        return new dialog[qx.lang.String.firstUp(type)]();
       } catch (e) {
         this.error(type + " is not a valid dialog type");
       }
     },
     /**
-     * 
+     *
      * Shortcut for alert dialog
-     * 
+     *
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     * 
+     *
      */
     alert: function(message, callback, context) {
       (new dialog.Alert({
@@ -52,13 +52,13 @@ qx.Class.define("dialog.Dialog", {
       })).show();
     },
     /**
-     * 
+     *
      * Shortcut for error dialog
-     * 
+     *
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     * 
+     *
      */
     error: function(message, callback, context) {
       (new dialog.Alert({
@@ -69,13 +69,13 @@ qx.Class.define("dialog.Dialog", {
       })).show();
     },
     /**
-     * 
+     *
      * Shortcut for warning dialog
-     * 
+     *
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     * 
+     *
      */
     warning: function(message, callback, context) {
       (new dialog.Alert({
@@ -86,13 +86,13 @@ qx.Class.define("dialog.Dialog", {
       })).show();
     },
     /**
-     * 
+     *
      * Shortcut for confirm dialog
-     * 
+     *
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     * 
+     *
      */
     confirm: function(message, callback, context) {
       (new dialog.Confirm({
@@ -102,17 +102,17 @@ qx.Class.define("dialog.Dialog", {
       })).show();
     },
     /**
-     * 
+     *
      * Shortcut for prompt dialog.
      * The value argument was forgotten in the initial implementation and
-     * comes last for backwards compatibility. This might change in a future 
+     * comes last for backwards compatibility. This might change in a future
      * release.
-     * 
+     *
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param value {String} The default value of the prompt textfield
-     * 
+     *
      */
     prompt: function(message, callback, context, value) {
       (new dialog.Prompt({
@@ -123,15 +123,15 @@ qx.Class.define("dialog.Dialog", {
       })).show();
     },
     /**
-     * 
+     *
      * Shortcut for select dialog
-     * 
+     *
      * @param message {String} The message to display
      * @param options {Array} Options to select from
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param allowCancel {Boolean} Default: true
-     * 
+     *
      */
     select: function(message, options, callback, context, allowCancel) {
       (new dialog.Select({
@@ -143,14 +143,14 @@ qx.Class.define("dialog.Dialog", {
       })).show();
     },
     /**
-     * 
+     *
      * Shortcut for form dialog
-     * 
+     *
      * @param message {String} The message to display
      * @param formData {Map} Map of form data. See {@link dialog.Form.formData}
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     * 
+     *
      */
     form: function(message, formData, callback, context) {
       (new dialog.Form({
@@ -163,11 +163,11 @@ qx.Class.define("dialog.Dialog", {
     }
   },
   /**
-   * 
-   * @param properties {Map|String|undefined} If you supply a map, all the 
-   * corresponding properties will be set. If a string is given, use it 
+   *
+   * @param properties {Map|String|undefined} If you supply a map, all the
+   * corresponding properties will be set. If a string is given, use it
    * as to set the 'message' property.
-   * 
+   *
    */
   construct: function(properties) {
     this.base(arguments);
@@ -183,8 +183,7 @@ qx.Class.define("dialog.Dialog", {
       showClose: false,
       showMaximize: false,
       showMinimize: false,
-      showStatusbar: false,
-      caption: 'RΞDΔKTR'
+      showStatusbar: false
     });
     this.setLayout(new qx.ui.layout.Grow());
     var root = qx.core.Init.getApplication().getRoot();
@@ -213,31 +212,31 @@ qx.Class.define("dialog.Dialog", {
   },
   properties: {
     /**
-     * 
-     * Callback function that will be called when the user 
+     *
+     * Callback function that will be called when the user
      * has interacted with the widget. See sample callback
-     * method supplied in the source code of each dialog 
+     * method supplied in the source code of each dialog
      * widget.
-     * 
+     *
      */
     callback: {
       check: "Function",
       nullable: true
     },
     /**
-     * 
+     *
      * The context for the callback function
-     * 
+     *
      */
     context: {
       check: "Object",
       nullable: true
     },
     /**
-     * 
+     *
      * A banner image/logo that is displayed on the widget,
      * if applicable
-     * 
+     *
      */
     image: {
       check: "String",
@@ -245,9 +244,9 @@ qx.Class.define("dialog.Dialog", {
       apply: "_applyImage"
     },
     /**
-     * 
+     *
      * The message that is displayed
-     * 
+     *
      */
     message: {
       check: "String",
@@ -255,9 +254,9 @@ qx.Class.define("dialog.Dialog", {
       apply: "_applyMessage"
     },
     /**
-     * 
+     *
      * Whether to allow cancelling the dialog
-     * 
+     *
      */
     allowCancel: {
       check: "Boolean",
@@ -269,10 +268,10 @@ qx.Class.define("dialog.Dialog", {
       init: true
     },
     /**
-     * 
+     *
      * Whether the dialog is shown. If true, call the show() method. If false,
      * call the hide() method.
-     * 
+     *
      */
     show: {
       check: "Boolean",
@@ -283,19 +282,19 @@ qx.Class.define("dialog.Dialog", {
   },
   events: {
     /**
-     * 
+     *
      * Dispatched when user clicks on the "OK" Button
-     * 
+     *
      * @type {String}
-     * 
+     *
      */
     "ok": "qx.event.type.Event",
     /**
-     * 
+     *
      * Dispatched when user clicks on the "Cancel" Button
-     * 
+     *
      * @type {String}
-     * 
+     *
      */
     "cancel": "qx.event.type.Event"
   },
@@ -307,20 +306,20 @@ qx.Class.define("dialog.Dialog", {
     _okButton: null,
     _cancelButton: null,
     /**
-     * 
-     * Create the content of the dialog. 
+     *
+     * Create the content of the dialog.
      * Extending classes must implement this method.
-     * 
+     *
      */
     _createWidgetContent: function() {
       this.error("_createWidgetContent not implemented!");
     },
     /**
-     * 
+     *
      * Creates the default container (groupbox)
-     * 
+     *
      * @return {qx.ui.container.Composite}
-     * 
+     *
      */
     _createDialogContainer: function() {
       //this.__container = new qx.ui.groupbox.GroupBox().set({
@@ -334,11 +333,11 @@ qx.Class.define("dialog.Dialog", {
       return this.__container;
     },
     /**
-     * 
+     *
      * Create a cancel button
-     * 
+     *
      * @return {qx.ui.form.Button}
-     * 
+     *
      */
     _createOkButton: function() {
       var okButton = this._okButton = new qx.ui.form.Button(this.tr("OK"));
@@ -356,12 +355,12 @@ qx.Class.define("dialog.Dialog", {
       return okButton;
     },
     /**
-     * 
+     *
      * Create a cancel button, which is hidden by default and will be shown
      * if allowCancel property is set to true.
-     * 
+     *
      * @return {qx.ui.form.Button}
-     * 
+     *
      */
     _createCancelButton: function() {
       var cancelButton = this._cancelButton = new qx.ui.form.Button(this.tr("Cancel"));
@@ -389,11 +388,11 @@ qx.Class.define("dialog.Dialog", {
       this._message.setVisibility(value ? "visible" : "excluded");
     },
     /**
-     * 
+     *
      * Returns the widgets that is the container of the dialog
-     * 
+     *
      * @return {qx.ui.core.LayoutItem}
-     * 
+     *
      */
     getDialogContainer: function() {
       if (!this.__container) {
@@ -402,9 +401,9 @@ qx.Class.define("dialog.Dialog", {
       return this.__container;
     },
     /**
-     * 
+     *
      * Show the widget. Overriding methods must call this parent method
-     * 
+     *
      */
     show: function() {
       this.setVisibility("visible");
@@ -412,9 +411,9 @@ qx.Class.define("dialog.Dialog", {
       this.focus();
     },
     /**
-     * 
+     *
      * Hide the widget. Overriding methods must call this parent method
-     * 
+     *
      */
     hide: function() {
       this.setVisibility("hidden");
@@ -425,9 +424,9 @@ qx.Class.define("dialog.Dialog", {
       }
     },
     /**
-     * 
+     *
      * Handle click on ok button. Calls callback with a "true" argument
-     * 
+     *
      */
     _handleOk: function() {
       this.hide();
@@ -438,10 +437,10 @@ qx.Class.define("dialog.Dialog", {
       this.resetCallback();
     },
     /**
-     * 
-     * Handle click on cancel button. Calls callback with 
+     *
+     * Handle click on cancel button. Calls callback with
      * an "undefined" argument
-     * 
+     *
      */
     _handleCancel: function() {
       this.hide();
