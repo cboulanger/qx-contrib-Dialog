@@ -41,14 +41,16 @@ qx.Class.define("dialog.Dialog", {
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
+     * @param caption {String} The caption of the dialog window
      *
      */
-    alert: function(message, callback, context) {
+    alert: function(message, callback, context, caption) {
       (new dialog.Alert({
         "message": message,
         "callback": callback || null,
         "context": context || null,
-        "image": "dialog/269-info.svg"
+        "image": "dialog/269-info.svg",
+        "caption": caption || ""
       })).show();
     },
     /**
@@ -58,14 +60,16 @@ qx.Class.define("dialog.Dialog", {
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
+     * @param caption {String} The caption of the dialog window
      *
      */
-    error: function(message, callback, context) {
+    error: function(message, callback, context, caption) {
       (new dialog.Alert({
         "message": message,
         "callback": callback || null,
         "context": context || null,
-        "image": "dialog/270-cancel-circle.svg"
+        "image": "dialog/270-cancel-circle.svg",
+        "caption": caption || ""
       })).show();
     },
     /**
@@ -75,14 +79,15 @@ qx.Class.define("dialog.Dialog", {
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     *
+     * @param caption {String} The caption of the dialog window
      */
-    warning: function(message, callback, context) {
+    warning: function(message, callback, context, caption) {
       (new dialog.Alert({
         "message": message,
         "callback": callback || null,
         "context": context || null,
-        "image": "dialog/264-warning.svg"
+        "image": "dialog/264-warning.svg",
+        "caption": caption || ""
       })).show();
     },
     /**
@@ -92,13 +97,14 @@ qx.Class.define("dialog.Dialog", {
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     *
+     * @param caption {String} The caption of the dialog window
      */
-    confirm: function(message, callback, context) {
+    confirm: function(message, callback, context, caption) {
       (new dialog.Confirm({
         "message": message,
         "callback": callback || null,
-        "context": context || null
+        "context": context || null,
+        "caption": caption || ""
       })).show();
     },
     /**
@@ -107,19 +113,20 @@ qx.Class.define("dialog.Dialog", {
      * The value argument was forgotten in the initial implementation and
      * comes last for backwards compatibility. This might change in a future
      * release.
-     *
+     * @param caption {String} The caption of the dialog window
      * @param message {String} The message to display
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param value {String} The default value of the prompt textfield
      *
      */
-    prompt: function(message, callback, context, value) {
+    prompt: function(message, callback, context, value, caption) {
       (new dialog.Prompt({
         "message": message,
         "callback": callback || null,
         "context": context || null,
-        "value": value || null
+        "value": value || null,
+        "caption": caption || ""
       })).show();
     },
     /**
@@ -131,15 +138,16 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param allowCancel {Boolean} Default: true
-     *
+     * @param caption {String} The caption of the dialog window
      */
-    select: function(message, options, callback, context, allowCancel) {
+    select: function(message, options, callback, context, allowCancel, caption) {
       (new dialog.Select({
         "message": message,
         "allowCancel": typeof allowCancel == "boolean" ? allowCancel : true,
         "options": options,
         "callback": callback || null,
-        "context": context || null
+        "context": context || null,
+        "caption": caption || ""
       })).show();
     },
     /**
@@ -150,15 +158,16 @@ qx.Class.define("dialog.Dialog", {
      * @param formData {Map} Map of form data. See {@link dialog.Form.formData}
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     *
+     * @param caption {String} The caption of the dialog window
      */
-    form: function(message, formData, callback, context) {
+    form: function(message, formData, callback, context, caption) {
       (new dialog.Form({
         "message": message,
         "formData": formData,
         "allowCancel": true,
         "callback": callback,
-        "context": context || null
+        "context": context || null,
+        "caption": caption || ""
       })).show();
     }
   },

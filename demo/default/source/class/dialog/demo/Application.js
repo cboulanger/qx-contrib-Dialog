@@ -114,7 +114,9 @@ qx.Class.define("dialog.demo.Application",
       vbox.add( title );
       buttons.forEach(function(button){
         var btn = new qx.ui.form.Button( button.label );
-        btn.addListener("execute",this[button.method],this);
+        btn.addListener("execute",function(){
+          this[button.method](button.label);
+        },this);
         if ( button.enabled !== undefined )
         {
           btn.setEnabled(button.enabled);
@@ -125,46 +127,49 @@ qx.Class.define("dialog.demo.Application",
 
     },
 
-    createAlert : function()
+    createAlert : function(caption)
     {
-      dialog.Dialog.alert( "Hello World!" );
+      dialog.Dialog.alert( "Hello World!", null, null, caption );
 //      same as:
 //      (new dialog.Alert({
-//        message : "Hello World!"
+//        message : "Hello World!",
+//        caption : caption
 //      })).show();
     },
 
-    createWarning : function()
+    createWarning : function(caption)
     {
-      dialog.Dialog.warning( "I warned you!" );
+      dialog.Dialog.warning( "I warned you!", null, null, caption );
     },
 
-    createError : function()
+    createError : function(caption)
     {
-      dialog.Dialog.error( "Error, error, error, errr....!" );
+      dialog.Dialog.error( "Error, error, error, errr....!", null, null, caption );
     },
 
-    createConfirm : function()
+    createConfirm : function(caption)
     {
       dialog.Dialog.confirm("Do you really want to erase your hard drive?", function(result){
-        dialog.Dialog.alert("Your answer was: " + result );
-      });
+        dialog.Dialog.alert("Your answer was: " + result, null, null, caption );
+      }, this, caption);
 //      (new dialog.Confirm({
 //        message : "Do you really want to erase your hard drive?",
 //        callback : function(result)
 //        {
 //          (new dialog.Alert({
-//            message : "Your answer was:" + result
+//            message : "Your answer was:" + result,
+//            caption : caption
 //          })).show();
-//        }
+//        },
+//        caption : caption
 //      })).show();
     },
 
-    createPrompt : function()
+    createPrompt : function(caption)
     {
       dialog.Dialog.prompt("Please enter the root password for your server",function(result){
         dialog.Dialog.alert("Your answer was: " + result );
-      });
+      }, this, "", caption);
 
 //      same as:
 //      (new dialog.Prompt({
@@ -172,54 +177,34 @@ qx.Class.define("dialog.demo.Application",
 //        callback : function(result)
 //        {
 //          (new dialog.Alert({
-//            message : "Your answer was:" + result
+//            message : "Your answer was:" + result,
+//            caption : caption
 //          })).show();
-//        }
+//        },
+//        caption : caption
 //      })).show();
     },
 
     /**
      * Example for nested callbacks
      */
-    createDialogChain : function()
+    createDialogChain : function(caption)
     {
       dialog.Dialog.alert( "This demostrates a series of 'nested' dialogs ",function(){
         dialog.Dialog.confirm( "Do you believe in the Loch Ness monster?", function(result){
           dialog.Dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?", function(result){
             dialog.Dialog.alert( result ?
               "I tell you a secret: It doesn't exist." :
-              "All the better." );
-          });
-        });
-      });
-
-
-//      (new dialog.Alert({
-//        message  : "This demostrates a series of 'nested' dialogs ",
-//        callback : function(){
-//          (new dialog.Confirm({
-//            message  : "Do you believe in the Loch Ness monster?",
-//            callback : function(result){
-//              (new dialog.Confirm({
-//                message  : "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?",
-//                callback : function(result){
-//                  (new dialog.Alert({
-//                    message  : result ?
-//                      "I tell you a secret: It doesn't exist." :
-//                      "All the better."
-//                  })).show();
-//                }
-//              })).show();
-//            }
-//          })).show();
-//        }
-//      })).show();
+              "All the better.", null, null, caption );
+          }, this, caption);
+        }, this, caption);
+      }, this, caption);
     },
 
     /**
      * Offer a selection of choices to the user
      */
-    createSelect : function()
+    createSelect : function(caption)
     {
       dialog.Dialog.select( "Select the type of record to create:", [
           { label:"Database record", value:"database" },
@@ -227,7 +212,7 @@ qx.Class.define("dialog.demo.Application",
           { label:"Pop record", value:"pop" }
         ], function(result){
           dialog.Dialog.alert("You selected: '" + result + "'");
-        }
+        }, this, true, caption
       );
 
 //      (new dialog.Select({
@@ -238,6 +223,7 @@ qx.Class.define("dialog.demo.Application",
 //          { label:"Pop record", value:"pop" }
 //        ],
 //        allowCancel : true,
+//        caption : caption,
 //        callback : function(result){
 //          (new dialog.Alert({
 //            message  : "You selected: '" + result + "'"
@@ -246,7 +232,7 @@ qx.Class.define("dialog.demo.Application",
 //      })).show();
     },
 
-    createForm : function()
+    createForm : function(caption)
     {
       var formData =
       {
@@ -303,12 +289,13 @@ qx.Class.define("dialog.demo.Application",
       {
         dialog.Dialog.alert("Thank you for your input. See log for result.");
         _this.debug(qx.util.Serializer.toJson(result));
-      }
+      }, this, caption
     );
 //    (new dialog.Form({
 //      message : "Please fill in the form",
 //      formData : formData,
 //      allowCancel : true,
+//      caption : caption,
 //      callback : function( result )
 //      {
 //        dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
@@ -316,7 +303,7 @@ qx.Class.define("dialog.demo.Application",
 //    })).show();
     },
 
-    createWizard : function()
+    createWizard : function(caption)
     {
       /*
        * wizard widget
@@ -421,7 +408,8 @@ qx.Class.define("dialog.demo.Application",
           dialog.Dialog.alert("Thank you for your input. See log for result.");
           this.debug(qx.util.Serializer.toJson(map));
         },
-        context     : this
+        context     : this,
+        caption     : caption
       });
       wizard.start();
     },
@@ -429,7 +417,7 @@ qx.Class.define("dialog.demo.Application",
     /**
      * Creates a sample login widget
      */
-    createLogin : function()
+    createLogin : function(caption)
     {
       var loginWidget = new dialog.Login({
         image       : "dialog/logo.gif",
@@ -437,6 +425,7 @@ qx.Class.define("dialog.demo.Application",
         checkCredentials : this.checkCredentials,
         callback    : this.finalCallback,
         showForgotPassword : true,
+        caption : caption,
         forgotPasswordHandler : function(){window.alert("Too bad. I cannot remember it either.");}
       });
 
@@ -491,9 +480,9 @@ qx.Class.define("dialog.demo.Application",
       }
     },
 
-    createProgress : function()
+    createProgress : function(caption)
     {
-       var progressWidget = new dialog.Progress();
+       var progressWidget = new dialog.Progress({caption:caption});
        progressWidget.show();
 
        var counter = 0;
@@ -508,10 +497,11 @@ qx.Class.define("dialog.demo.Application",
       })();
     },
 
-    createProgressWithLog : function()
+    createProgressWithLog : function(caption)
     {
       var progressWidget = new dialog.Progress({
           showLog : true,
+          caption : caption,
           okButtonText : "Continue"
        });
        progressWidget.show();
@@ -524,7 +514,7 @@ qx.Class.define("dialog.demo.Application",
            message  : counter + "% completed"
           });
 
-          if ( counter % 10 == 0 )
+          if ( counter % 10 === 0 )
           {
            progressWidget.setNewLogText( counter + "% completed" );
           }
