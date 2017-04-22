@@ -87,6 +87,17 @@ qx.Class.define("dialog.Progress", {
       check: "Boolean",
       nullable: false,
       init: true
+    },
+
+    /**
+     *
+     * Whether to hide the widget when the progress is at 100%
+     *
+     */
+    hideWhenCancelled: {
+      check: "Boolean",
+      nullable: false,
+      init: true
     }
   },
   members: {
@@ -107,6 +118,7 @@ qx.Class.define("dialog.Progress", {
         if (this.isHideWhenCompleted()) {
           this.hide();
         }
+        this._cancelButton.setEnabled(false);
       }
     },
     /**
@@ -138,6 +150,7 @@ qx.Class.define("dialog.Progress", {
     },
     _progressBar: null,
     _logView: null,
+
     /**
      *
      * Create the content of the dialog.
@@ -167,20 +180,15 @@ qx.Class.define("dialog.Progress", {
       hbox.add(this._progressBar, {
         flex: 1
       });
-      var cancelButton = this._createCancelButton();
-      cancelButton.set({
-        label: null,
-        height: 20,
-        icon: "dialog/icon/273-checkmark.svg",
-        alignY: "middle",
+
+      this._cancelButton = this._createCancelButton();
+      this._cancelButton.set({
+        icon: null,
+        maxHeight : 20,
+        alignY : "middle",
         visibility: "excluded"
       });
-      cancelButton.getChildControl("icon").set({
-        width: 16,
-        height: 16,
-        scale: true
-      });
-      hbox.add(cancelButton);
+      hbox.add(this._cancelButton);
       this.bind("showProgressBar", hbox, "visibility", {
         converter: function(v) {
           return v ? "visible" : "excluded";
@@ -207,17 +215,35 @@ qx.Class.define("dialog.Progress", {
       });
       this.bind("logContent", this._logView, "value");
       this._logView.bind("value", this, "logContent");
-      var okButton = this._createOkButton();
-      okButton.set({
+      this._okButton = this._createOkButton();
+      this._okButton.set({
         visibility: "excluded",
         enabled: false,
         alignX: "center",
         icon: null
       });
       this._progressBar.addListener("complete", function() {
-        okButton.setEnabled(true);
+        this._okButton.setEnabled(true);
       }, this);
-      container.add(okButton, {});
+      container.add(this._okButton, {});
+    },
+
+    /**
+     * Handle click on cancel button. Calls callback with
+     * an "undefined" argument
+     * @override Overridden to be able to observe hideWhenCancelled
+     * property
+     */
+    _handleCancel: function() {
+      if ( this.isHideWhenCancelled() )
+      {
+        this.hide();
+      }
+      this.fireEvent("cancel");
+      if (this.getCallback()) {
+        this.getCallback().call(this.getContext());
+      }
+      this.resetCallback();
     }
   }
 });

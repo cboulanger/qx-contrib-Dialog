@@ -482,7 +482,10 @@ qx.Class.define("dialog.demo.Application",
 
     createProgress : function(caption)
     {
-       var progressWidget = new dialog.Progress({caption:caption});
+       var progressWidget = new dialog.Progress({
+         caption      : caption,
+         allowCancel  : true
+       });
        progressWidget.show();
 
        var counter = 0;
@@ -490,7 +493,8 @@ qx.Class.define("dialog.demo.Application",
        {
           progressWidget.set({
            progress : counter,
-           message  : counter + "% completed"
+           message  : counter + "% completed",
+           allowCancel : true
           });
           if( counter++ == 100 )return;
           qx.lang.Function.delay(incrementProgress,100);
@@ -502,26 +506,56 @@ qx.Class.define("dialog.demo.Application",
       var progressWidget = new dialog.Progress({
           showLog : true,
           caption : caption,
-          okButtonText : "Continue"
+          okButtonText : "Continue",
+          allowCancel : true,
+          hideWhenCancelled : false,
+          callback : callback,
+          context : this
        });
        progressWidget.show();
 
        var counter = 0;
+       var cancelled = false;
+       var abortMessage = false;
        (function textProgress()
        {
-          progressWidget.set({
-           progress : counter,
-           message  : counter + "% completed"
-          });
+          if( cancelled ){
+            progressWidget.set({
+             progress : counter,
+             message  : "Aborting..."
+            });
+            if( ! abortMessage ){
+              progressWidget.setNewLogText( "Aborting..." );
+              abortMessage = true;
+            }
 
-          if ( counter % 10 === 0 )
-          {
-           progressWidget.setNewLogText( counter + "% completed" );
+          }else{
+            progressWidget.set({
+             progress : counter,
+             message  : counter + "% completed"
+            });
+            if ( counter % 10 === 0 )
+            {
+             progressWidget.setNewLogText( counter + "% completed" );
+            }
           }
 
-          if( counter++ == 100 )return;
-          qx.lang.Function.delay(textProgress,100);
+          if( counter++ == 100 ) return;
+          if( cancelled ){
+            qx.lang.Function.delay(textProgress,5);
+          } else {
+            qx.lang.Function.delay(textProgress,100);
+          }
       })();
+
+      function callback(result)
+      {
+        if (result===undefined){
+          // user clicked on "cancel" button, can also be intercepted by listening
+          // to the "cancel event"
+          cancelled = true;
+        }
+      }
     }
   }
 });
