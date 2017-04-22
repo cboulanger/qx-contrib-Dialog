@@ -105,12 +105,12 @@ qx.Class.define("dialog.Form", {
       //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
       //  contentPadding: [16, 16, 16, 16]
       //});
-      var groupboxContainer = new qx.ui.container.Composite();
-      groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
-      this.add(groupboxContainer);
-      var hbox = new qx.ui.container.Composite;
+      var container = new qx.ui.container.Composite();
+      container.setLayout(new qx.ui.layout.VBox(10));
+      this.add(container);
+      var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
-      groupboxContainer.add(hbox);
+      container.add(hbox);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
       this._message.setMinWidth(200);
@@ -118,16 +118,16 @@ qx.Class.define("dialog.Form", {
       hbox.add(this._message, {
         flex: 1
       });
-      this._formContainer = new qx.ui.container.Composite;
+      this._formContainer = new qx.ui.container.Composite();
       this._formContainer.setLayout(new qx.ui.layout.Grow());
-      groupboxContainer.add(this._formContainer, {
+      container.add(this._formContainer, {
         flex: 1
       });
-      var buttonPane = new qx.ui.container.Composite;
-      var bpLayout = new qx.ui.layout.HBox(5)
+      var buttonPane = new qx.ui.container.Composite();
+      var bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
-      groupboxContainer.add(buttonPane);
+      container.add(buttonPane);
       var okButton = this._createOkButton();
       buttonPane.add(okButton);
       var cancelButton = this._createCancelButton();

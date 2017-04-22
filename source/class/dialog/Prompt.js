@@ -1,17 +1,17 @@
 /**
- * 
+ *
  * Confirmation popup singleton
- * 
+ *
  */
 qx.Class.define("dialog.Prompt", {
   extend: dialog.Dialog,
   properties: {
     /**
-     * 
+     *
      * The default value of the textfield
-     * 
+     *
      * @type {String}
-     * 
+     *
      */
     value: {
       check: "String",
@@ -52,20 +52,20 @@ qx.Class.define("dialog.Prompt", {
   members: {
     _textField: null,
     /**
-     * 
+     *
      * Create the main content of the widget
-     * 
+     *
      */
     _createWidgetContent: function() {
       //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
       //  contentPadding: [16, 16, 16, 16]
       //});
-      var groupboxContainer = new qx.ui.container.Composite();
-      groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
-      this.add(groupboxContainer);
-      var hbox = new qx.ui.container.Composite;
+      var container = new qx.ui.container.Composite();
+      container.setLayout(new qx.ui.layout.VBox(10));
+      this.add(container);
+      var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
-      groupboxContainer.add(hbox);
+      container.add(hbox);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
       this._message.setWidth(200);
@@ -87,7 +87,7 @@ qx.Class.define("dialog.Prompt", {
           return this._handleCancel();
         }
       }, this);
-      groupboxContainer.add(this._textField);
+      container.add(this._textField);
       this._textField.addListener("keypress", function(e) {
         if (e.getKeyIdentifier().toLowerCase() == "enter") {
           this.hide();
@@ -97,13 +97,13 @@ qx.Class.define("dialog.Prompt", {
           }
         }
       }, this);
-      var buttonPane = new qx.ui.container.Composite;
-      var bpLayout = new qx.ui.layout.HBox(5)
+      var buttonPane = new qx.ui.container.Composite();
+      var bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
       buttonPane.add(this._createOkButton());
       buttonPane.add(this._createCancelButton());
-      groupboxContainer.add(buttonPane);
+      container.add(buttonPane);
     },
     /**
      *
@@ -130,9 +130,9 @@ qx.Class.define("dialog.Prompt", {
       this._textField.setMaxLength(value);
     },
     /**
-     * 
+     *
      * Handle click on the OK button
-     * 
+     *
      */
     _handleOk: function() {
       this.hide();

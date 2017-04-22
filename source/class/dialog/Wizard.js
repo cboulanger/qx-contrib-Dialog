@@ -73,14 +73,13 @@ qx.Class.define("dialog.Wizard", {
      *
      */
     _createWidgetContent: function() {
-      //var groupboxContainer = new qx.ui.groupbox.GroupBox();
-      var groupboxContainer = new qx.ui.container.Composite();
-      groupboxContainer.setPadding(0);
-      groupboxContainer.setLayout(new qx.ui.layout.VBox(0));
-      this.add(groupboxContainer);
+      var container = new qx.ui.container.Composite();
+      container.setPadding(0);
+      container.setLayout(new qx.ui.layout.VBox(0));
+      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
-      groupboxContainer.add(hbox);
+      container.add(hbox);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
       this._message.setMinWidth(100);
@@ -91,23 +90,23 @@ qx.Class.define("dialog.Wizard", {
       var line = new qx.ui.core.Widget();
       line.setHeight(2);
       line.setBackgroundColor("gray");
-      groupboxContainer.add(line);
+      container.add(line);
       var formContainer = this._formContainer = new qx.ui.container.Composite();
       formContainer.setPadding(16);
       formContainer.setLayout(new qx.ui.layout.Grow());
       formContainer.setMinWidth(300);
       formContainer.setMinHeight(200);
-      groupboxContainer.add(formContainer);
+      container.add(formContainer);
       line = new qx.ui.core.Widget();
       line.setHeight(2);
       line.setMarginBottom(5);
       line.setBackgroundColor("gray");
-      groupboxContainer.add(line);
+      container.add(line);
       var buttonPane = new qx.ui.container.Composite();
       var bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("right");
       buttonPane.setLayout(bpLayout);
-      groupboxContainer.add(buttonPane);
+      container.add(buttonPane);
       this._backButton = new qx.ui.form.Button("< " + this.tr("Back"));
       this._backButton.addListener("execute", this.goBack, this);
       this.bind("allowBack", this._backButton, "enabled");
