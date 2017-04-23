@@ -21,13 +21,14 @@ Change log
 ----------
 
 v1.3
-- bumped qooxdoo version to 5.1
-- changed base widget from qx.ui.GroupBox to a modal qx.ui.window.Window (merged
-  from jbruwes/qooxdialog).
-  - Added caption parameter to shorthand methods.
-  - Since a modal window has its own blocker, the  default coloured blocker has
+- Bumped qooxdoo version to 5.1
+- Merged changes from jbruwes/qooxdialog
+  - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
+  - new black and white SVG icons
+- Added caption parameter to shorthand methods.
+- Since a modal window has its own blocker, the  default coloured blocker has
   been removed. If you want the old behavior, call `dialog.Dialog.useBlocker(true)`.
-  - prettified with the default settings of https://github.com/prettier/prettier
+- Prettified with the default settings of https://github.com/prettier/prettier
 - Progress Widge enhancements:
   - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
     similar actions to be displayed after the cancel button has been pressed.
