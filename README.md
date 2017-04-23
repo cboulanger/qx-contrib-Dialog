@@ -15,10 +15,21 @@ A set of often used dialog widgets for the qooxdoo framework.
 - Progress
 
 Demo: http://cboulanger.github.io/qx-contrib-Dialog/build/index.html
+
 API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/api/index.html#dialog
 
 See demo/default/source/class/dialog/demo/Application.js for examples how to use
 the widgets.
+
+Installation:
+-------------
+- Download and extract ZIP to a folder in your project
+- in your qooxdoo project's config.json "jobs"/"libraries"/"library" section, add
+  ```
+  {
+    "manifest": "path/to/qx-contrib-Dialog/Manifest.json"
+  }
+  ```
 
 Changelog
 ----------
@@ -53,4 +64,4 @@ v1.0
 TODO
 ----
 - Tab and focus handling is still buggy: Users can tab into non-modal widgets.
-- Rewrite using child controls, to make dialogs truly themeable. 
+- Rewrite using child controls, to make dialogs truly themeable.
