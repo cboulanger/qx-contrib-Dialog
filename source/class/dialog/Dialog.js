@@ -503,22 +503,26 @@ qx.Class.define("dialog.Dialog", {
       this.__previousFocus = qx.ui.core.FocusHandler
         .getInstance()
         .getActiveWidget();
-      this.focus();
+      if( this.__previousFocus ){
+        this.__previousFocus.blur();
+        //this.__previousFocus.setFocusable(false);
+      }
     },
 
     /**
      * Hide the widget. Overriding methods must call this parent method
      */
     hide: function() {
-      this.setVisibility("hidden");
       if (this.isUseBlocker() || dialog.Dialog.__useBlocker) {
         this.__blocker.unblock();
       }
       if (this.__previousFocus) {
         try {
+          //this.__previousFocus.setFocusable(true);
           this.__previousFocus.focus();
         } catch (e) {}
       }
+      this.setVisibility("hidden");
     },
 
     /**
