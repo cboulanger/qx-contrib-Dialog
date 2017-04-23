@@ -112,6 +112,11 @@ qx.Class.define("dialog.demo.Application",
       var title = new qx.ui.basic.Label("<h2>Dialog Demo</h2>");
       title.setRich(true);
       vbox.add( title );
+      var blockerCheckBox = new qx.ui.form.CheckBox("Use coloured blocker (like < v.1.3)");
+      blockerCheckBox.addListener("changeValue",function(e){
+        dialog.Dialog.useBlocker(e.getData());
+      });
+      vbox.add(blockerCheckBox);
       buttons.forEach(function(button){
         var btn = new qx.ui.form.Button( button.label );
         btn.addListener("execute",function(){

@@ -19,6 +19,23 @@
 qx.Class.define("dialog.Dialog", {
   extend: qx.ui.window.Window,
   statics: {
+
+    /**
+     * for backwards-compability
+     * @type {Boolean}
+     */
+    __useBlocker : false,
+
+    /**
+     * Enforce the use of a coloured blocker, if this is what you
+     * want. Added for backwards-compability with pre-1.2 versions
+     * @param  value {Boolean}
+     * @return {void}
+     */
+    useBlocker : function(value){
+      dialog.Dialog.__useBlocker = value;
+    },
+
     /**
      *
      * Returns a dialog instance by type
@@ -197,6 +214,12 @@ qx.Class.define("dialog.Dialog", {
     this.setLayout(new qx.ui.layout.Grow());
     var root = qx.core.Init.getApplication().getRoot();
     root.add(this);
+
+    // use blocker (for backwards-compability)
+    this.__blocker = new qx.ui.core.Blocker(root);
+    this.__blocker.setOpacity( this.getBlockerOpacity() );
+    this.__blocker.setColor( this.getBlockerColor() );
+
     qx.ui.core.FocusHandler.getInstance().addRoot(this);
     root.addListener("resize", function(e) {
       var bounds = this.getBounds();
@@ -287,8 +310,36 @@ qx.Class.define("dialog.Dialog", {
       nullable: true,
       event: "changeShow",
       apply: "_applyShow"
+    },
+
+    /**
+    * Whether to block the ui while the widget is displayed
+    */
+    useBlocker :
+    {
+     check : "Boolean",
+     init : false
+    },
+
+    /**
+    * The blocker's color
+    */
+    blockerColor :
+    {
+     check : "String",
+     init : "black"
+    },
+
+    /**
+    * The blocker's opacity
+    */
+    blockerOpacity :
+    {
+     check : "Number",
+     init : 0.5
     }
   },
+
   events: {
     /**
      *
@@ -307,6 +358,8 @@ qx.Class.define("dialog.Dialog", {
      */
     "cancel": "qx.event.type.Event"
   },
+
+
   members: {
     __container: null,
     __previousFocus: null,
@@ -415,6 +468,19 @@ qx.Class.define("dialog.Dialog", {
      *
      */
     show: function() {
+      if ( this.isUseBlocker() || dialog.Dialog.__useBlocker )
+      {
+        // make sure the dialog is above any opened window
+        var root = qx.core.Init.getApplication().getRoot();
+        var maxWindowZIndex = root.getZIndex();
+        var windows = root.getWindows();
+        for (var i = 0; i < windows.length; i++) {
+          var zIndex = windows[i].getZIndex();
+          maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
+        }
+        this.setZIndex( maxWindowZIndex +1 );
+        this.__blocker.blockContent( maxWindowZIndex );
+      }
       this.setVisibility("visible");
       this.__previousFocus = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
       this.focus();
@@ -426,6 +492,10 @@ qx.Class.define("dialog.Dialog", {
      */
     hide: function() {
       this.setVisibility("hidden");
+      if ( this.isUseBlocker() || dialog.Dialog.__useBlocker )
+      {
+        this.__blocker.unblock();
+      }
       if (this.__previousFocus) {
         try {
           this.__previousFocus.focus();
