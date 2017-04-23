@@ -1,7 +1,7 @@
 qooxdoo Dialog widgets
 ======================
 
-see http://qooxdoo.org/contrib/catalog/#Dialog
+see http://cboulanger.github.io/qx-contrib-Dialog/
 
 A set of often used dialog widgets for the qooxdoo framework.
 
@@ -14,10 +14,13 @@ A set of often used dialog widgets for the qooxdoo framework.
 - Wizard
 - Progress
 
+Demo: http://cboulanger.github.io/qx-contrib-Dialog/build/index.html
+API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/api/index.html#dialog
+
 See demo/default/source/class/dialog/demo/Application.js for examples how to use
 the widgets.
 
-Change log
+Changelog
 ----------
 
 v1.3
@@ -46,3 +49,8 @@ v1.1
 
 v1.0
 - compatible with qooxdoo v3.5
+
+TODO
+----
+- Tab and focus handling is still buggy: Users can tab into non-modal widgets.
+- Rewrite using child controls, to make dialogs truly themeable. 
