@@ -556,7 +556,7 @@ qx.Class.define("dialog.Dialog", {
 
     /**
      * Handles the press on the 'Escape' key
-     * @param  {qx.event.type.KeyInput} e
+     * @param  e {qx.event.type.KeyInput}
      */
     _handleEscape: function(e) {
       if (this.isSeeable() && this.isCancelOnEscape() && e.getKeyCode() == 27) {
