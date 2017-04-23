@@ -488,7 +488,9 @@ qx.Class.define("dialog.Dialog", {
     },
 
     /**
-     * Show the widget. Overriding methods must call this parent method
+     * Show the widget. Overriding methods must call this parent method.
+     * Returns the widget instance for chaining.
+     * @return {dialog.Dialog} The widget instance
      */
     show: function() {
       if (this.isUseBlocker() || dialog.Dialog.__useBlocker) {
@@ -511,10 +513,13 @@ qx.Class.define("dialog.Dialog", {
         this.__previousFocus.blur();
         //this.__previousFocus.setFocusable(false);
       }
+      return this;
     },
 
     /**
-     * Hide the widget. Overriding methods must call this parent method
+     * Hide the widget. Overriding methods must call this parent method.
+     * Returns the widget instance for chaining.
+     * @return {dialog.Dialog} The widget instance
      */
     hide: function() {
       if (this.isUseBlocker() || dialog.Dialog.__useBlocker) {
@@ -527,6 +532,7 @@ qx.Class.define("dialog.Dialog", {
         } catch (e) {}
       }
       this.setVisibility("hidden");
+      return this;
     },
 
     /**
