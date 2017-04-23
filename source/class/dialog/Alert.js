@@ -53,9 +53,6 @@ qx.Class.define("dialog.Alert", {
       buttonPane.setLayout(bpLayout);
       buttonPane.add(okButton);
       container.add(buttonPane);
-      // User can get rid of alert by pressing escape
-      // TODO this doesn't work: the keypress is not caught!
-      okButton.addListener("keypress",this._handleEscape,this);
     },
 
     /**

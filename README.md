@@ -28,6 +28,11 @@ v1.3
   - Since a modal window has its own blocker, the  default coloured blocker has
   been removed. If you want the old behavior, call `dialog.Dialog.useBlocker(true)`.
   - prettified with the default settings of https://github.com/prettier/prettier
+- Progress Widge enhancements:
+  - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
+    similar actions to be displayed after the cancel button has been pressed.
+- Added 'cancelOnEscape' property (default: false) which triggers the 'cancel'
+  button action if the user presses the Escape key and 'allowCancel' is true.
 
 v1.2
 - fixed a bug that prevented submitting the login dialog by pressing enter
