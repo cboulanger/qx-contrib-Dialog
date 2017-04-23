@@ -1,18 +1,29 @@
+/* ************************************************************************
+
+   qooxdoo dialog library
+   https://github.com/cboulanger/qx-contrib-Dialog
+
+   Copyright:
+     2007-2017 Christian Boulanger and others
+
+   License:
+     LGPL: http://www.gnu.org/licenses/lgpl.html
+     EPL: http://www.eclipse.org/org/documents/epl-v10.php
+     See the LICENSE file in the project's top-level directory for details.
+
+************************************************************************ */
+/*global qx dialog*/
+
 /**
- *
- * Confirmation popup singleton
- *
+ * A dialog widget used to confirm a question or proposed course of action
  */
 qx.Class.define("dialog.Confirm", {
   extend: dialog.Dialog,
   statics: {
     /**
-     *
      * Returns singleton instance of this class. This method has to
      * be part of any subclass extending this widget.
-     *
      * @return {Object}
-     *
      */
     getInstance: function() {
       return this.superclass.getInstance(this.classname);
@@ -20,9 +31,7 @@ qx.Class.define("dialog.Confirm", {
   },
   properties: {
     /**
-     *
      * Label used for the "yes button"
-     *
      */
     yesButtonLabel: {
       check: "String",
@@ -30,10 +39,9 @@ qx.Class.define("dialog.Confirm", {
       init: "Yes",
       event: "changeYesButtonLabel"
     },
+
     /**
-     *
      * Icon used for the "yes button"
-     *
      */
     yesButtonIcon: {
       check: "String",
@@ -41,10 +49,9 @@ qx.Class.define("dialog.Confirm", {
       init: "dialog/273-checkmark.svg",
       event: "changeYesButtonIcon"
     },
+
     /**
-     *
      * Label used for the "no button"
-     *
      */
     noButtonLabel: {
       check: "String",
@@ -52,10 +59,9 @@ qx.Class.define("dialog.Confirm", {
       init: "No",
       event: "changeNoButtonLabel"
     },
+
     /**
-     *
      * Icon used for the "no button"
-     *
      */
     noButtonIcon: {
       check: "String",
@@ -63,28 +69,24 @@ qx.Class.define("dialog.Confirm", {
       init: "dialog/272-cross.svg",
       event: "changeNoButtonIcon"
     },
+
     /**
-     *
      * This property controls the display of a cancel button
-     *
      */
     allowCancel: {
       refine: true,
       init: false
     }
   },
+
   members: {
     _yesButton: null,
     _noButton: null,
+
     /**
-     *
      * Create the main content of the widget
-     *
      */
     _createWidgetContent: function() {
-      //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
-      //  contentPadding: [16, 16, 16, 16]
-      //});
       var groupboxContainer = new qx.ui.container.Composite();
       groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
       this.add(groupboxContainer);
@@ -101,7 +103,8 @@ qx.Class.define("dialog.Confirm", {
       hbox.add(this._message, {
         flex: 1
       });
-      var yesButton = this._yesButton = new qx.ui.form.Button();
+      // yes button
+      var yesButton = (this._yesButton = new qx.ui.form.Button());
       yesButton.setAllowStretchX(true);
       yesButton.addListener("execute", this._handleYes, this);
       this.bind("yesButtonLabel", yesButton, "label");
@@ -112,7 +115,8 @@ qx.Class.define("dialog.Confirm", {
         scale: true
       });
       yesButton.setLabel(this.tr("yes"));
-      var noButton = this._noButton = new qx.ui.form.Button();
+      // no button
+      var noButton = (this._noButton = new qx.ui.form.Button());
       noButton.setAllowStretchX(true);
       noButton.addListener("execute", this._handleNo, this);
       this.bind("noButtonLabel", noButton, "label");
@@ -133,11 +137,10 @@ qx.Class.define("dialog.Confirm", {
       buttonPane.add(cancelButton);
       groupboxContainer.add(buttonPane);
     },
+
     /**
-     *
      * Handle click on yes button. Calls callback with
      * a "true" value
-     *
      */
     _handleYes: function() {
       this.hide();
@@ -146,11 +149,10 @@ qx.Class.define("dialog.Confirm", {
       }
       this.resetCallback();
     },
+
     /**
-     *
      * Handle click on no button. Calls callback with
      * a "false" value
-     *
      */
     _handleNo: function() {
       this.hide();

@@ -27,6 +27,7 @@ v1.3
   - Added caption parameter to shorthand methods.
   - Since a modal window has its own blocker, the  default coloured blocker has
   been removed. If you want the old behavior, call `dialog.Dialog.useBlocker(true)`.
+  - prettified with the default settings of https://github.com/prettier/prettier
 
 v1.2
 - fixed a bug that prevented submitting the login dialog by pressing enter

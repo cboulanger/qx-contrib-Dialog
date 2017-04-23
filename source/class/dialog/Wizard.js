@@ -1,25 +1,36 @@
+/* ************************************************************************
+
+   qooxdoo dialog library
+   https://github.com/cboulanger/qx-contrib-Dialog
+
+   Copyright:
+     2007-2017 Christian Boulanger and others
+
+   License:
+     LGPL: http://www.gnu.org/licenses/lgpl.html
+     EPL: http://www.eclipse.org/org/documents/epl-v10.php
+     See the LICENSE file in the project's top-level directory for details.
+
+************************************************************************ */
+/*global qx dialog*/
+
 /**
- *
  * A wizard-type widget that constructs the wizard pages on-the-fly, using
  * functionality from dialog.Form.
- *
  */
 qx.Class.define("dialog.Wizard", {
   extend: dialog.Form,
   properties: {
     /**
-     *
      * An array of maps that sets the properties of this widget
-     *
      */
     pageData: {
       check: "Array",
       apply: "_applyPageData"
     },
+
     /**
-     *
      * The number of the page in the wizard
-     *
      */
     page: {
       check: "Integer",
@@ -28,34 +39,30 @@ qx.Class.define("dialog.Wizard", {
     },
 
     /**
-     *
      * Whether to allow the user to go to the previous
      * wizard page
-     *
      */
     allowBack: {
       check: "Boolean",
       init: false,
       event: "changeAllowBack"
     },
+
     /**
-     *
      * Whether to allow the user to go to the next
      * wizard page
-     *
      */
     allowNext: {
       check: "Boolean",
       init: false,
       event: "changeAllowNext"
     },
+
     /**
-     *
      * Whether to allow the user to finish the wizard. Automatically
      * set to 'true' on the last page of the wizard. The "Finish" button
      * is enabled if this property is 'true' AND all the form entries pass
      * the validation tests.
-     *
      */
     allowFinish: {
       check: "Boolean",
@@ -63,14 +70,14 @@ qx.Class.define("dialog.Wizard", {
       event: "changeAllowFinish"
     }
   },
+
   members: {
     _backButton: null,
     _nextButton: null,
     _finishButton: null,
+
     /**
-     *
      * Create the main content of the widget
-     *
      */
     _createWidgetContent: function() {
       var container = new qx.ui.container.Composite();
@@ -91,7 +98,8 @@ qx.Class.define("dialog.Wizard", {
       line.setHeight(2);
       line.setBackgroundColor("gray");
       container.add(line);
-      var formContainer = this._formContainer = new qx.ui.container.Composite();
+      var formContainer = (this._formContainer = new qx.ui.container
+        .Composite());
       formContainer.setPadding(16);
       formContainer.setLayout(new qx.ui.layout.Grow());
       formContainer.setMinWidth(300);
@@ -123,13 +131,11 @@ qx.Class.define("dialog.Wizard", {
       this._finishButton.setEnabled(false);
       buttonPane.add(this._finishButton);
     },
+
     /**
-     *
      * Add bindings to the validation manager to control the state of
      * the wizard buttons.
-     *
      * @param form {qx.ui.form.Form} The form to bind
-     *
      */
     _onFormReady: function(form) {
       var _this = this;
@@ -144,14 +150,12 @@ qx.Class.define("dialog.Wizard", {
         }
       });
     },
+
     /**
-     *
      * Apply the page data. This initializes the response
      * data model
-     *
      * @param pageData {Array} The new page data
      * @param old {Array} The old page data
-     *
      */
     _applyPageData: function(pageData, old) {
       this._backButton.setEnabled(false);
@@ -172,14 +176,12 @@ qx.Class.define("dialog.Wizard", {
         this.setModel(null);
       }
     },
+
     /**
-     *
      * Go to a given wizard page. This recreates the
      * form.
-     *
      * @param page {Integer} The new page
      * @param old {Integer} The old page
-     *
      */
     _applyPage: function(page, old) {
       var pageData = this.getPageData()[page];
@@ -194,19 +196,17 @@ qx.Class.define("dialog.Wizard", {
       }
       this.set(pageData);
     },
+
     /**
-     *
      * Starts the wizard
-     *
      */
     start: function() {
       this.show();
       this.setPage(0);
     },
+
     /**
-     *
      * Goes to the previous wizard button
-     *
      */
     goBack: function() {
       var page = this.getPage();
@@ -215,10 +215,9 @@ qx.Class.define("dialog.Wizard", {
       }
       this.setPage(--page);
     },
+
     /**
-     *
      * Goes to the next wizard page
-     *
      */
     goForward: function() {
       var page = this.getPage();
@@ -227,15 +226,17 @@ qx.Class.define("dialog.Wizard", {
       }
       this.setPage(++page);
     },
+
     /**
-     *
      * Finishes the wizard. Calls callback with the result data map
-     *
      */
     finish: function() {
       this.hide();
       if (this.getCallback()) {
-        this.getCallback().call(this.getContext(), qx.util.Serializer.toNativeObject(this.getModel()));
+        this.getCallback().call(
+          this.getContext(),
+          qx.util.Serializer.toNativeObject(this.getModel())
+        );
       }
       this.resetCallback();
     }

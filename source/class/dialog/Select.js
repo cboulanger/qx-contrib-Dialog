@@ -1,15 +1,28 @@
+/* ************************************************************************
+
+   qooxdoo dialog library
+   https://github.com/cboulanger/qx-contrib-Dialog
+
+   Copyright:
+     2007-2017 Christian Boulanger and others
+
+   License:
+     LGPL: http://www.gnu.org/licenses/lgpl.html
+     EPL: http://www.eclipse.org/org/documents/epl-v10.php
+     See the LICENSE file in the project's top-level directory for details.
+
+************************************************************************ */
+/*global qx dialog*/
+
 /**
- *
  * Dialog that offers the user a choice of alternative buttons to select from.
- *
  */
 qx.Class.define("dialog.Select", {
   extend: dialog.Dialog,
   properties: {
+
     /**
-     *
      * An array of maps [ { label: "Foo", icon : "icon/22/...", value : "foo" },...]
-     *
      */
     options: {
       check: "Array",
@@ -17,16 +30,12 @@ qx.Class.define("dialog.Select", {
       event: "changeOptions"
     }
   },
+
   members: {
     /**
-     *
      * Create the main content of the widget
-     *
      */
     _createWidgetContent: function() {
-      //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
-      //  contentPadding: [16, 16, 16, 16]
-      //});
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
@@ -61,13 +70,11 @@ qx.Class.define("dialog.Select", {
       }, this);
       container.add(buttonPane);
     },
+
     /**
-     *
      * Handle click on a button. Calls callback with
      * the value set in the options map.
-     *
      * @param value {var} The passed value
-     *
      */
     _handleSelection: function(value) {
       this.hide();

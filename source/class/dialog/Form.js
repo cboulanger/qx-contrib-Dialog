@@ -1,17 +1,30 @@
+/* ************************************************************************
+
+   qooxdoo dialog library
+   https://github.com/cboulanger/qx-contrib-Dialog
+
+   Copyright:
+     2007-2017 Christian Boulanger and others
+
+   License:
+     LGPL: http://www.gnu.org/licenses/lgpl.html
+     EPL: http://www.eclipse.org/org/documents/epl-v10.php
+     See the LICENSE file in the project's top-level directory for details.
+
+************************************************************************ */
+/*global qx dialog*/
+
 /**
- *
  * A dialog with a form that is constructed on-the-fly
  *
  * @require(dialog.FormRenderer)
  * @require(qx.util.Serializer)
  * @require(qx.util.Validate)
- *
  */
 qx.Class.define("dialog.Form", {
   extend: dialog.Dialog,
   properties: {
     /**
-     *
      * Data to create a form with multiple fields.
      * So far implemented:
      *   TextField / TextArea
@@ -59,20 +72,18 @@ qx.Class.define("dialog.Form", {
       event: "changeFormData",
       apply: "_applyFormData"
     },
+
     /**
-     *
      * The model of the result data
-     *
      */
     model: {
       check: "qx.core.Object",
       nullable: true,
       event: "changeModel"
     },
+
     /**
-     *
      * The default width of the column with the field labels
-     *
      */
     labelColumnWidth: {
       check: "Integer",
@@ -80,31 +91,25 @@ qx.Class.define("dialog.Form", {
       init: 100
     }
   },
-  events: {},
+
   members: {
     _formContainer: null,
     _form: null,
     _formValidator: null,
     _formController: null,
+
     /**
-     *
      * Return the form
-     *
      * @return {qx.ui.form.Form}
-     *
      */
     getForm: function() {
       return this._form;
     },
+
     /**
-     *
      * Create the main content of the widget
-     *
      */
     _createWidgetContent: function() {
-      //var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
-      //  contentPadding: [16, 16, 16, 16]
-      //});
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
@@ -133,15 +138,12 @@ qx.Class.define("dialog.Form", {
       var cancelButton = this._createCancelButton();
       buttonPane.add(cancelButton);
     },
+
     /**
-     *
      * Constructs the form on-the-fly
-     *
      * @param formData {Map} The form data map
      * @param old {Map|null} The old value
-     *
      * @lint ignoreDeprecated(alert,eval)
-     *
      */
     _applyFormData: function(formData, old) {
       if (this._formController) {
@@ -166,9 +168,9 @@ qx.Class.define("dialog.Form", {
       }
       var modelData = {};
       for (var key in formData) {
-        modelData[key] = formData[key].value !== undefined ?
-          formData[key].value :
-          null;
+        modelData[key] = formData[key].value !== undefined
+          ? formData[key].value
+          : null;
       }
       var model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);
@@ -189,7 +191,8 @@ qx.Class.define("dialog.Form", {
             break;
           case "textfield":
             formElement = new qx.ui.form.TextField();
-            if(fieldData.maxLength) formElement.setMaxLength(fieldData.maxLength);
+            if (fieldData.maxLength)
+              formElement.setMaxLength(fieldData.maxLength);
             formElement.setLiveUpdate(true);
             break;
           case "datefield":
@@ -220,7 +223,8 @@ qx.Class.define("dialog.Form", {
             }
             fieldData.options.forEach(function(item) {
               var radioButton = new qx.ui.form.RadioButton(item.label);
-              radioButton.setUserData("value",
+              radioButton.setUserData(
+                "value",
                 item.value !== undefined ? item.value : item.label
               );
               formElement.add(radioButton);
@@ -244,21 +248,37 @@ qx.Class.define("dialog.Form", {
           case "passwordfield":
           case "combobox":
           case "datefield":
-            this._formController.addTarget(formElement, "value", key, true, null, {
-              "converter": function(value) {
-                _this._form.getValidationManager().validate();
-                return value;
+            this._formController.addTarget(
+              formElement,
+              "value",
+              key,
+              true,
+              null,
+              {
+                converter: function(value) {
+                  _this._form.getValidationManager().validate();
+                  return value;
+                }
               }
-            });
+            );
             break;
           case "checkbox":
             this._formController.addTarget(
-              formElement, "value", key, true, null);
+              formElement,
+              "value",
+              key,
+              true,
+              null
+            );
             break;
           case "selectbox":
             this._formController.addTarget(
-              formElement, "selection", key, true, {
-                "converter": qx.lang.Function.bind(function(value) {
+              formElement,
+              "selection",
+              key,
+              true,
+              {
+                converter: qx.lang.Function.bind(function(value) {
                   var selected = null;
                   var selectables = this.getSelectables();
                   selectables.forEach(function(selectable) {
@@ -271,8 +291,9 @@ qx.Class.define("dialog.Form", {
                   }
                   return [selected];
                 }, formElement)
-              }, {
-                "converter": qx.lang.Function.bind(function(selection) {
+              },
+              {
+                converter: qx.lang.Function.bind(function(selection) {
                   var value = selection[0].getModel().getValue();
                   return value;
                 }, formElement)
@@ -281,8 +302,12 @@ qx.Class.define("dialog.Form", {
             break;
           case "radiogroup":
             this._formController.addTarget(
-              formElement, "selection", key, true, {
-                "converter": qx.lang.Function.bind(function(value) {
+              formElement,
+              "selection",
+              key,
+              true,
+              {
+                converter: qx.lang.Function.bind(function(value) {
                   var selectables = this.getSelectables();
                   var selection = [];
                   if (value) {
@@ -295,8 +320,9 @@ qx.Class.define("dialog.Form", {
                   }
                   return selection;
                 }, formElement)
-              }, {
-                "converter": function(selection) {
+              },
+              {
+                converter: function(selection) {
                   var value = selection[0].getUserData("value");
                   return value;
                 }
@@ -315,26 +341,41 @@ qx.Class.define("dialog.Form", {
               if (qx.util.Validate[validator]) {
                 validator = qx.util.Validate[validator]();
               } else if (validator.charAt(0) == "/") {
-                validator = qx.util.Validate.regExp(new RegExp(validator.substr(1, validator.length - 2)), fieldData.validation.errorMessage);
+                validator = qx.util.Validate.regExp(
+                  new RegExp(validator.substr(1, validator.length - 2)),
+                  fieldData.validation.errorMessage
+                );
               } else {
                 this.error("Invalid string validator.");
               }
-            } else if (!(validator instanceof qx.ui.form.validation.AsyncValidator) &&
-              typeof validator != "function") {
+            } else if (
+              !(validator instanceof qx.ui.form.validation.AsyncValidator) &&
+              typeof validator != "function"
+            ) {
               this.error("Invalid validator.");
             }
           }
           if (fieldData.validation.service) {
             var service = fieldData.validation.service;
             _this = this;
-            validator = new qx.ui.form.validation.AsyncValidator(function(validatorObj, value) {
+            validator = new qx.ui.form.validation.AsyncValidator(function(
+              validatorObj,
+              value
+            ) {
               if (!validatorObj.__asyncInProgress) {
                 validatorObj.__asyncInProgress = true;
-                qx.core.Init.getApplication().getRpcManager().execute(
-                  service.name, service.method, [value],
-                  function(response) {
+                qx.core.Init
+                  .getApplication()
+                  .getRpcManager()
+                  .execute(service.name, service.method, [value], function(
+                    response
+                  ) {
                     try {
-                      var valid = (response && typeof response == "object" && response.data) ? response.data : response;
+                      var valid = response &&
+                        typeof response == "object" &&
+                        response.data
+                        ? response.data
+                        : response;
                       validatorObj.setValid(valid);
                       validatorObj.__asyncInProgress = false;
                     } catch (e) {
@@ -360,7 +401,13 @@ qx.Class.define("dialog.Form", {
               }
               formElement.addListener(type, func, formElement);
             } catch (e) {
-              this.warn("Invalid '" + type + "' event handler for form element '" + key + "'.");
+              this.warn(
+                "Invalid '" +
+                  type +
+                  "' event handler for form element '" +
+                  key +
+                  "'."
+              );
             }
           }
         }
@@ -383,9 +430,8 @@ qx.Class.define("dialog.Form", {
      * @override
      * @return {qx.ui.form.Button}
      */
-    _createOkButton : function()
-    {
-      var okButton = this._okButton =  new qx.ui.form.Button(this.tr("OK"));
+    _createOkButton: function() {
+      var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
       okButton.setIcon("dialog/273-checkmark.svg");
       okButton.setAllowStretchX(false);
       okButton.addListener("execute", this._handleOk, this);
@@ -393,14 +439,11 @@ qx.Class.define("dialog.Form", {
     },
 
     /**
-     *
      * Hook for subclasses to do something with the form, for example
      * in order to attach bindings to the validation manager.
      * Default behavior: bind the enabled state of the "OK" button to the
      * validity of the current form.
-     *
      * @param form {qx.ui.form.Form} The form to bind
-     *
      */
     _onFormReady: function(form) {
       form.getValidationManager().bind("valid", this._okButton, "enabled", {
@@ -414,14 +457,13 @@ qx.Class.define("dialog.Form", {
      * Handle click on ok button. Calls callback with the result map
      * @override
      */
-    _handleOk : function()
-    {
+    _handleOk: function() {
       this.hide();
-      if( this.getCallback() )
-      {
+      if (this.getCallback()) {
         this.getCallback().call(
           this.getContext(),
-          qx.util.Serializer.toNativeObject( this.getModel() ) );
+          qx.util.Serializer.toNativeObject(this.getModel())
+        );
       }
       this.resetCallback();
     }
