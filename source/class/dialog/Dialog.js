@@ -265,6 +265,9 @@ qx.Class.define("dialog.Dialog", {
     } else if (typeof properties == "string") {
       this.setMessage(properties);
     }
+
+    // escape key
+    qx.core.Init.getApplication().getRoot().addListener("keyup",this._handleEscape,this);
   },
 
   properties: {
@@ -315,10 +318,15 @@ qx.Class.define("dialog.Dialog", {
       event: "changeAllowCancel"
     },
 
-    // focusable: {
-    //   refine: true,
-    //   init: true
-    // },
+    /**
+     * Whether to triger the cancel button on pressing the "escape" key
+     * (default: true). Depends on the 'allowCancel' property.
+     */
+    cancelOnEscape: {
+      check: "Boolean",
+      init: true
+    },
+
     /**
      * Whether the dialog is shown. If true, call the show() method. If false,
      * call the hide() method.
@@ -390,10 +398,6 @@ qx.Class.define("dialog.Dialog", {
      * @return {qx.ui.container.Composite}
      */
     _createDialogContainer: function() {
-      //this.__container = new qx.ui.groupbox.GroupBox().set({
-      //  layout: new qx.ui.layout.VBox(10),
-      //  contentPadding: [16, 16, 16, 16]
-      //});
       this.__container = new qx.ui.container.Composite().set({
         layout: new qx.ui.layout.VBox(10)
       });
@@ -402,7 +406,7 @@ qx.Class.define("dialog.Dialog", {
     },
 
     /**
-     * Create a cancel button
+     * Create an OK button
      * @return {qx.ui.form.Button}
      */
     _createOkButton: function() {
@@ -544,10 +548,20 @@ qx.Class.define("dialog.Dialog", {
     _handleCancel: function() {
       this.hide();
       this.fireEvent("cancel");
-      if (this.getCallback()) {
+      if (this.isAllowCancel() && this.getCallback()) {
         this.getCallback().call(this.getContext());
       }
       this.resetCallback();
+    },
+
+    /**
+     * Handles the press on the 'Escape' key
+     * @param  {qx.event.type.KeyInput} e
+     */
+    _handleEscape: function(e) {
+      if (this.isSeeable() && this.isCancelOnEscape() && e.getKeyCode() == 27) {
+        this._handleCancel();
+      }
     }
   }
 });

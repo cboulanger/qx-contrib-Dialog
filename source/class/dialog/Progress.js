@@ -241,7 +241,7 @@ qx.Class.define("dialog.Progress", {
         this.hide();
       }
       this.fireEvent("cancel");
-      if (this.getCallback()) {
+      if (this.isAllowCancel() && this.getCallback()) {
         this.getCallback().call(this.getContext());
       }
       this.resetCallback();

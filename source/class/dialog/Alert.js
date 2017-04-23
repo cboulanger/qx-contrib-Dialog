@@ -53,9 +53,18 @@ qx.Class.define("dialog.Alert", {
       buttonPane.setLayout(bpLayout);
       buttonPane.add(okButton);
       container.add(buttonPane);
-      this.addListener("appear", function() {
-        okButton.focus();
-      });
-    }
+      // User can get rid of alert by pressing escape
+      // TODO this doesn't work: the keypress is not caught!
+      okButton.addListener("keypress",this._handleEscape,this);
+    },
+
+    /**
+     * @override
+     */
+     _handleEscape: function(e) {
+       if (e.getKeyCode() == 27) {
+         this._handleOk();
+       }
+     }
   }
 });
