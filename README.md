@@ -41,7 +41,7 @@ v1.3
   - new black and white SVG icons
 - Added promise() method returning a Promise as an alternative to callbacks
 - Promisified all shorthand methods (dialog.alert, ...), resulting in massively
-  better readability [see Demo app](demo/default/source/class/dialog/demo/Application.js#193)
+  better readability [see Demo app](demo/default/source/class/dialog/demo/Application.js#L193)
 - Added caption parameter to shorthand methods.
 - Since a modal window has its own blocker, the  default coloured blocker has
   been removed. If you want the old behavior, call `dialog.Dialog.useBlocker(true)`.
