@@ -130,7 +130,12 @@ qx.Class.define("dialog.demo.Application",
 
     createAlert : function(caption)
     {
-      dialog.Dialog.alert( "Hello World!", null, null, caption );
+      dialog.Dialog.alert( "Hello World!" )
+      .set({caption:caption})
+      .promise()
+      .then(function(){
+        alert("It worked!");
+      });
 //      same as:
 //      (new dialog.Alert({
 //        message : "Hello World!",

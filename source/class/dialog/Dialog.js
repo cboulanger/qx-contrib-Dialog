@@ -66,12 +66,11 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param caption {String} The caption of the dialog window
+     * @return {dialog.Alert} The widget instance
      */
     alert: function(message, callback, context, caption) {
-      new dialog.Alert({
+      return new dialog.Alert({
         message: message,
-        callback: callback || null,
-        context: context || null,
         image: "dialog/269-info.svg",
         caption: caption || ""
       }).show();
@@ -533,6 +532,19 @@ qx.Class.define("dialog.Dialog", {
       }
       this.setVisibility("hidden");
       return this;
+    },
+
+    /**
+     * Promise interface method, avoids callbacks
+     * @return {Promise} A promise that resolves with the result of the dialog
+     * action
+     */
+    promise: function(callback){
+      return new Promise(function(resolve, reject) {
+        this.setCallback(function(value){
+          resolve(value);
+        });
+      }.bind(this));
     },
 
     /**
