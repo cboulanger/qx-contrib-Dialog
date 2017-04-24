@@ -190,11 +190,11 @@ qx.Class.define("dialog.Dialog", {
      * @return {dialog.Alert} The widget instance
      */
     form: function(message, formData, callback, context, caption) {
-      new dialog.Form({
+      return new dialog.Form({
         message: message,
         formData: formData,
         allowCancel: true,
-        callback: callback,
+        callback: callback || null,
         context: context || null,
         caption: caption || ""
       }).show();
@@ -545,11 +545,12 @@ qx.Class.define("dialog.Dialog", {
      * @return {Promise} A promise that resolves with the result of the dialog
      * action
      */
-    promise: function(callback){
+    promise: function(){
       return new Promise(function(resolve, reject) {
         this.setCallback(function(value){
+          this.resetCallback();
           resolve(value);
-        });
+        }.bind(this));
       }.bind(this));
     },
 

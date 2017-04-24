@@ -125,9 +125,10 @@ qx.Class.define("dialog.Progress", {
     _applyProgress: function(value, old) {
       if (value == 100) {
         if (this.isHideWhenCompleted()) {
-          this.hide();
+          this._handleOk();
+        } else {
+          this._cancelButton.setEnabled(false);
         }
-        this._cancelButton.setEnabled(false);
       }
     },
 

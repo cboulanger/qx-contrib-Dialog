@@ -39,11 +39,14 @@ v1.3
 - Merged changes from jbruwes/qooxdialog
   - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
   - new black and white SVG icons
+- Added promise() method returning a Promise as an alternative to callbacks
+- Promisified all shorthand methods (dialog.alert, ...), resulting in massively
+  better readability [see Demo app](blob/master/demo/default/source/class/dialog/demo/Application.js#193)
 - Added caption parameter to shorthand methods.
 - Since a modal window has its own blocker, the  default coloured blocker has
   been removed. If you want the old behavior, call `dialog.Dialog.useBlocker(true)`.
 - Prettified with the default settings of https://github.com/prettier/prettier
-- Progress Widge enhancements:
+- Progress Widget enhancements:
   - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
     similar actions to be displayed after the cancel button has been pressed.
 - Added 'cancelOnEscape' property (default: false) which triggers the 'cancel'

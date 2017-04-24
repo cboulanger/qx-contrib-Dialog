@@ -130,13 +130,10 @@ qx.Class.define("dialog.demo.Application",
 
     createAlert : function(caption)
     {
-      dialog.Dialog.alert( "Hello World!" )
-      .set({caption:caption})
-      .promise()
-      .then(function(){
-        alert("It worked!");
-      });
-//      same as:
+      dialog.Dialog.alert( "Hello World!" ).set({caption:caption});
+//    same as:
+//      dialog.Dialog.alert(  "Hello World!", null, null, caption );
+//    or:
 //      (new dialog.Alert({
 //        message : "Hello World!",
 //        caption : caption
@@ -155,9 +152,18 @@ qx.Class.define("dialog.demo.Application",
 
     createConfirm : function(caption)
     {
-      dialog.Dialog.confirm("Do you really want to erase your hard drive?", function(result){
-        dialog.Dialog.alert("Your answer was: " + result, null, null, caption );
-      }, this, caption);
+      dialog.Dialog.confirm("Do you really want to erase your hard drive?")
+      .set({caption:caption})
+      .promise()
+      .then(function(result){
+        return dialog.Dialog.alert("Your answer was: " + result).promise()
+        .set({caption:caption + " 2"});
+      });
+//    same as:
+//      dialog.Dialog.confirm("Do you really want to erase your hard drive?", function(result){
+//        dialog.Dialog.alert("Your answer was: " + result, null, null, caption );
+//      }, this, caption);
+//    or:
 //      (new dialog.Confirm({
 //        message : "Do you really want to erase your hard drive?",
 //        callback : function(result)
@@ -173,22 +179,12 @@ qx.Class.define("dialog.demo.Application",
 
     createPrompt : function(caption)
     {
-      dialog.Dialog.prompt("Please enter the root password for your server",function(result){
-        dialog.Dialog.alert("Your answer was: " + result );
-      }, this, "", caption);
-
-//      same as:
-//      (new dialog.Prompt({
-//        message : "Please enter the root password for your server",
-//        callback : function(result)
-//        {
-//          (new dialog.Alert({
-//            message : "Your answer was:" + result,
-//            caption : caption
-//          })).show();
-//        },
-//        caption : caption
-//      })).show();
+      dialog.Dialog.prompt("Please enter the root password for your server")
+      .set({caption:caption})
+      .promise()
+      .then(function(result){
+        return dialog.Dialog.alert("Your answer was: " + result );
+      });
     },
 
     /**
@@ -196,15 +192,23 @@ qx.Class.define("dialog.demo.Application",
      */
     createDialogChain : function(caption)
     {
-      dialog.Dialog.alert( "This demostrates a series of 'nested' dialogs ",function(){
-        dialog.Dialog.confirm( "Do you believe in the Loch Ness monster?", function(result){
-          dialog.Dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?", function(result){
-            dialog.Dialog.alert( result ?
-              "I tell you a secret: It doesn't exist." :
-              "All the better.", null, null, caption );
-          }, this, caption);
-        }, this, caption);
-      }, this, caption);
+      dialog.Dialog.alert( "This demostrates a series of 'nested' dialogs ")
+      .set({caption:caption})
+      .promise()
+      .then(function(){
+        return dialog.Dialog.confirm( "Do you believe in the Loch Ness monster?")
+        .set({caption:caption + " 2"})
+        .promise();
+      })
+      .then(function(result){
+        return dialog.Dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?")
+        .set({caption:caption + " 3"})
+        .promise();
+      })
+      .then(function(result){
+        return dialog.Dialog.alert( result ? "I tell you a secret: It doesn't exist." : "Good to know.")
+        .set({caption:caption + " 4"});
+      });
     },
 
     /**
@@ -213,14 +217,19 @@ qx.Class.define("dialog.demo.Application",
     createSelect : function(caption)
     {
       dialog.Dialog.select( "Select the type of record to create:", [
-          { label:"Database record", value:"database" },
-          { label:"World record", value:"world" },
-          { label:"Pop record", value:"pop" }
-        ], function(result){
-          dialog.Dialog.alert("You selected: '" + result + "'");
-        }, this, true, caption
-      );
+        { label:"Database record", value:"database" },
+        { label:"World record", value:"world" },
+        { label:"Pop record", value:"pop" }
+      ])
+      .set({caption:caption})
+      .promise()
+      .then(function(result){
+        return dialog.Dialog.alert("You selected: '" + result + "'")
+        .set({caption:caption + " 2"})
+        .promise();
+      });
 
+//    same as:
 //      (new dialog.Select({
 //        message : "Select the type of record to create:",
 //        options : [
@@ -290,13 +299,18 @@ qx.Class.define("dialog.demo.Application",
           "label" : "Execute At"
        }
       };
-      var _this = this;
-      dialog.Dialog.form("Please fill in the form",formData, function( result )
-      {
-        dialog.Dialog.alert("Thank you for your input. See log for result.");
-        _this.debug(qx.util.Serializer.toJson(result));
-      }, this, caption
-    );
+
+      dialog.Dialog.form("Please fill in the form", formData )
+      .set({caption:caption})
+      .promise()
+      .then(function( result ){
+        this.debug(qx.util.Serializer.toJson(result));
+        return dialog.Dialog.alert("Thank you for your input. See log for result.")
+        .set({caption:caption + " 2"})
+        .promise();
+      }.bind(this));
+
+//    same as:
 //    (new dialog.Form({
 //      message : "Please fill in the form",
 //      formData : formData,
@@ -492,7 +506,11 @@ qx.Class.define("dialog.demo.Application",
          caption      : caption,
          allowCancel  : true
        });
-       progressWidget.show();
+       progressWidget.show()
+       .promise()
+       .then(function(result){
+         console.log("Progress widget returned: " + result);
+       });
 
        var counter = 0;
        (function incrementProgress()
@@ -509,19 +527,25 @@ qx.Class.define("dialog.demo.Application",
 
     createProgressWithLog : function(caption)
     {
+      var cancelled = false; // used in closures
       var progressWidget = new dialog.Progress({
           showLog : true,
           caption : caption,
           okButtonText : "Continue",
           allowCancel : true,
-          hideWhenCancelled : false,
-          callback : callback,
-          context : this
+          hideWhenCancelled : false
        });
-       progressWidget.show();
-
+       progressWidget.show()
+       .promise()
+       .then(function(result){
+         if (!result){
+           // user clicked on "cancel" button, can also be intercepted by listening
+           // to the "cancel event"
+           cancelled = true;
+         }
+         console.log("Progress widget returned: " + result);
+       });
        var counter = 0;
-       var cancelled = false;
        var abortMessage = false;
        (function textProgress()
        {
@@ -560,15 +584,6 @@ qx.Class.define("dialog.demo.Application",
             qx.lang.Function.delay(textProgress,100);
           }
       })();
-
-      function callback(result)
-      {
-        if (result===undefined){
-          // user clicked on "cancel" button, can also be intercepted by listening
-          // to the "cancel event"
-          cancelled = true;
-        }
-      }
     }
   }
 });
