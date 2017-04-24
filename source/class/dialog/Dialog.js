@@ -82,9 +82,10 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param caption {String} The caption of the dialog window
+     * @return {dialog.Alert} The widget instance
      */
     error: function(message, callback, context, caption) {
-      new dialog.Alert({
+      return new dialog.Alert({
         message: message,
         callback: callback || null,
         context: context || null,
@@ -99,9 +100,10 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param caption {String} The caption of the dialog window
+     * @return {dialog.Alert} The widget instance
      */
     warning: function(message, callback, context, caption) {
-      new dialog.Alert({
+      return new dialog.Alert({
         message: message,
         callback: callback || null,
         context: context || null,
@@ -116,9 +118,10 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param caption {String} The caption of the dialog window
+     * @return {dialog.Alert} The widget instance
      */
     confirm: function(message, callback, context, caption) {
-      new dialog.Confirm({
+      return new dialog.Confirm({
         message: message,
         callback: callback || null,
         context: context || null,
@@ -136,10 +139,11 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param value {String} The default value of the prompt textfield
+     * @return {dialog.Alert} The widget instance
      *
      */
     prompt: function(message, callback, context, value, caption) {
-      new dialog.Prompt({
+      return new dialog.Prompt({
         message: message,
         callback: callback || null,
         context: context || null,
@@ -156,6 +160,7 @@ qx.Class.define("dialog.Dialog", {
      * @param context {Object} The context to use with the callback function
      * @param allowCancel {Boolean} Default: true
      * @param caption {String} The caption of the dialog window
+     * @return {dialog.Alert} The widget instance
      */
     select: function(
       message,
@@ -165,7 +170,7 @@ qx.Class.define("dialog.Dialog", {
       allowCancel,
       caption
     ) {
-      new dialog.Select({
+      return new dialog.Select({
         message: message,
         allowCancel: typeof allowCancel == "boolean" ? allowCancel : true,
         options: options,
@@ -182,6 +187,7 @@ qx.Class.define("dialog.Dialog", {
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
      * @param caption {String} The caption of the dialog window
+     * @return {dialog.Alert} The widget instance
      */
     form: function(message, formData, callback, context, caption) {
       new dialog.Form({
