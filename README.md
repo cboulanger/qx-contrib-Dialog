@@ -36,7 +36,7 @@ Changelog
 
 v1.3
 - Bumped qooxdoo version to 5.1
-- Merged changes from jbruwes/qooxdialog
+- Merged changes from https://github.com/jbruwes/qooxdialog
   - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
   - new black and white SVG icons
 - Added promise() method returning a Promise as an alternative to callbacks
@@ -48,9 +48,9 @@ v1.3
 - Prettified with the default settings of https://github.com/prettier/prettier
 - Added 'cancelOnEscape' property (default: true) which triggers the 'cancel'
   button action if the user presses the Escape key and 'allowCancel' is true.
-  - Progress Widget enhancements:
-    - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
-      similar actions to be displayed after the cancel button has been pressed.  
+- Progress Widget enhancements:
+  - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
+    similar actions to be displayed after the cancel button has been pressed.  
 
 v1.2
 - fixed a bug that prevented submitting the login dialog by pressing enter
