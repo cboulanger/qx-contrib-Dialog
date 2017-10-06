@@ -23,6 +23,7 @@
  * @ignore(dialog.prompt)
  * @ignore(dialog.form)
  * @ignore(dialog.select)
+ * @ignore(Promise)
  * @asset(dialog/272-cross.svg)
  * @asset(dialog/273-checkmark.svg)
  * @asset(dialog/264-warning.svg)
