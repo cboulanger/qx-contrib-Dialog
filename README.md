@@ -35,7 +35,7 @@ Changelog
 ----------
 
 v1.3
-- Bumped qooxdoo version to 5.1
+- Compatible with qooxdoo 5.x and 6.x: added support for new JS compiler
 - Merged changes from https://github.com/jbruwes/qooxdialog
   - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
   - new black and white SVG icons
