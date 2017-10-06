@@ -242,93 +242,95 @@ qx.Class.define("dialog.Form", {
         }
         formElement.setUserData("key", key);
         var _this = this;
-        switch (fieldData.type.toLowerCase()) {
-          case "textarea":
-          case "textfield":
-          case "passwordfield":
-          case "combobox":
-          case "datefield":
-            this._formController.addTarget(
-              formElement,
-              "value",
-              key,
-              true,
-              null,
-              {
-                converter: function(value) {
-                  _this._form.getValidationManager().validate();
-                  return value;
-                }
-              }
-            );
-            break;
-          case "checkbox":
-            this._formController.addTarget(
-              formElement,
-              "value",
-              key,
-              true,
-              null
-            );
-            break;
-          case "selectbox":
-            this._formController.addTarget(
-              formElement,
-              "selection",
-              key,
-              true,
-              {
-                converter: qx.lang.Function.bind(function(value) {
-                  var selected = null;
-                  var selectables = this.getSelectables();
-                  selectables.forEach(function(selectable) {
-                    if (selectable.getModel().getValue() === value) {
-                      selected = selectable;
-                    }
-                  }, this);
-                  if (!selected) {
-                    return [selectables[0]];
+        if( typeof fieldData.type == "string") {
+          switch (fieldData.type.toLowerCase()) {
+            case "textarea":
+            case "textfield":
+            case "passwordfield":
+            case "combobox":
+            case "datefield":
+              this._formController.addTarget(
+                formElement,
+                "value",
+                key,
+                true,
+                null,
+                {
+                  converter: function(value) {
+                    _this._form.getValidationManager().validate();
+                    return value;
                   }
-                  return [selected];
-                }, formElement)
-              },
-              {
-                converter: qx.lang.Function.bind(function(selection) {
-                  var value = selection[0].getModel().getValue();
-                  return value;
-                }, formElement)
-              }
-            );
-            break;
-          case "radiogroup":
-            this._formController.addTarget(
-              formElement,
-              "selection",
-              key,
-              true,
-              {
-                converter: qx.lang.Function.bind(function(value) {
-                  var selectables = this.getSelectables();
-                  var selection = [];
-                  if (value) {
+                }
+              );
+              break;
+            case "checkbox":
+              this._formController.addTarget(
+                formElement,
+                "value",
+                key,
+                true,
+                null
+              );
+              break;
+            case "selectbox":
+              this._formController.addTarget(
+                formElement,
+                "selection",
+                key,
+                true,
+                {
+                  converter: qx.lang.Function.bind(function(value) {
+                    var selected = null;
+                    var selectables = this.getSelectables();
                     selectables.forEach(function(selectable) {
-                      var sValue = selectable.getUserData("value");
-                      if (sValue === value) {
-                        selection = [selectable];
+                      if (selectable.getModel().getValue() === value) {
+                        selected = selectable;
                       }
                     }, this);
-                  }
-                  return selection;
-                }, formElement)
-              },
-              {
-                converter: function(selection) {
-                  var value = selection[0].getUserData("value");
-                  return value;
+                    if (!selected) {
+                      return [selectables[0]];
+                    }
+                    return [selected];
+                  }, formElement)
+                },
+                {
+                  converter: qx.lang.Function.bind(function(selection) {
+                    var value = selection[0].getModel().getValue();
+                    return value;
+                  }, formElement)
                 }
-              }
-            );
-            break;
+              );
+              break;
+            case "radiogroup":
+              this._formController.addTarget(
+                formElement,
+                "selection",
+                key,
+                true,
+                {
+                  converter: qx.lang.Function.bind(function(value) {
+                    var selectables = this.getSelectables();
+                    var selection = [];
+                    if (value) {
+                      selectables.forEach(function(selectable) {
+                        var sValue = selectable.getUserData("value");
+                        if (sValue === value) {
+                          selection = [selectable];
+                        }
+                      }, this);
+                    }
+                    return selection;
+                  }, formElement)
+                },
+                {
+                  converter: function(selection) {
+                    var value = selection[0].getUserData("value");
+                    return value;
+                  }
+                }
+              );
+              break;
+          }
         }
         var validator = null;
         if (formElement && fieldData.validation) {
