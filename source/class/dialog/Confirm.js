@@ -1,234 +1,164 @@
 /* ************************************************************************
 
    qooxdoo dialog library
-  
-   http://qooxdoo.org/contrib/catalog/#Dialog
-  
+   https://github.com/cboulanger/qx-contrib-Dialog
+
    Copyright:
-     2007-2014 Christian Boulanger
-  
+     2007-2017 Christian Boulanger and others
+
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
      EPL: http://www.eclipse.org/org/documents/epl-v10.php
      See the LICENSE file in the project's top-level directory for details.
-  
-   Authors:
-   *  Christian Boulanger (cboulanger)
-  
+
 ************************************************************************ */
 /*global qx dialog*/
 
 /**
- * Confirmation popup singleton
+ * A dialog widget used to confirm a question or proposed course of action
  */
-qx.Class.define("dialog.Confirm",
-{
-  extend : dialog.Dialog,
-  
-  /*
-  *****************************************************************************
-     STATIC METHODS
-  *****************************************************************************
-  */     
-  statics:
-  {
+qx.Class.define("dialog.Confirm", {
+  extend: dialog.Dialog,
+  statics: {
     /**
      * Returns singleton instance of this class. This method has to
      * be part of any subclass extending this widget.
+     * @return {Object}
      */
-    getInstance : function()
-    {
+    getInstance: function() {
       return this.superclass.getInstance(this.classname);
     }
   },
-  /*
-  *****************************************************************************
-     PROPERTIES
-  *****************************************************************************
-  */     
-  properties :
-  {
-		/**
-		 * Label used for the "yes button"
-		 */
-    yesButtonLabel :
-    {
-      check : "String",
-      nullable : false,
-      init : "Yes",
-      event : "changeYesButtonLabel"
+  properties: {
+    /**
+     * Label used for the "yes button"
+     */
+    yesButtonLabel: {
+      check: "String",
+      nullable: false,
+      init: "Yes",
+      event: "changeYesButtonLabel"
     },
 
-		/**
-		 * Icon used for the "yes button"
-		 */
-    yesButtonIcon :
-    {
-      check : "String",
-      nullable : true,
-      init : "icon/22/actions/dialog-ok.png",
-      event : "changeYesButtonIcon"
-    },    
-    
-		/**
-		 * Label used for the "no button"
-		 */
-    noButtonLabel :
-    {
-      check : "String",
-      nullable : false,
-      init : "No",
-      event : "changeNoButtonLabel"
+    /**
+     * Icon used for the "yes button"
+     */
+    yesButtonIcon: {
+      check: "String",
+      nullable: true,
+      init: "dialog/273-checkmark.svg",
+      event: "changeYesButtonIcon"
     },
 
-		/**
-		 * Icon used for the "no button"
-		 */
-    noButtonIcon :
-    {
-      check : "String",
-      nullable : true,
-      init : "icon/22/actions/dialog-cancel.png",
-      event : "changeNoButtonIcon"
+    /**
+     * Label used for the "no button"
+     */
+    noButtonLabel: {
+      check: "String",
+      nullable: false,
+      init: "No",
+      event: "changeNoButtonLabel"
     },
-    
-		/**
-		 * This property controls the display of a cancel button
-		 */
-    allowCancel :
-    {
-      refine : true,
-      init : false
+
+    /**
+     * Icon used for the "no button"
+     */
+    noButtonIcon: {
+      check: "String",
+      nullable: true,
+      init: "dialog/272-cross.svg",
+      event: "changeNoButtonIcon"
+    },
+
+    /**
+     * This property controls the display of a cancel button
+     */
+    allowCancel: {
+      refine: true,
+      init: false
     }
   },
-  
-  /*
-  *****************************************************************************
-     MEMBERS
-  *****************************************************************************
-  */     
-  members :
-  {
-    
-    /*
-    ---------------------------------------------------------------------------
-       PRIVATE MEMBERS
-    ---------------------------------------------------------------------------
-    */
-    _yesButton : null,
-    _noButton  : null,
-    
-    /*
-    ---------------------------------------------------------------------------
-       WIDGET LAYOUT
-    ---------------------------------------------------------------------------
-    */     
-    
+
+  members: {
+    _yesButton: null,
+    _noButton: null,
+
     /**
      * Create the main content of the widget
      */
-    _createWidgetContent : function()
-    {      
-
-      /*
-       * groupbox
-       */
-      var groupboxContainer = new qx.ui.groupbox.GroupBox().set({
-        contentPadding: [16, 16, 16, 16]
-      });
-      groupboxContainer.setLayout( new qx.ui.layout.VBox(10) );
-      this.add( groupboxContainer );
-
-      var hbox = new qx.ui.container.Composite;
-      hbox.setLayout( new qx.ui.layout.HBox(10) );
-      groupboxContainer.add( hbox );
-      
-      /*
-       * add image 
-       */
+    _createWidgetContent: function() {
+      var groupboxContainer = new qx.ui.container.Composite();
+      groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
+      this.add(groupboxContainer);
+      var hbox = new qx.ui.container.Composite();
+      hbox.setLayout(new qx.ui.layout.HBox(10));
+      groupboxContainer.add(hbox);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
-      hbox.add( this._image );
-      
-      /*
-       * Add message label
-       */
+      hbox.add(this._image);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.add( this._message, {flex:1} );    
-      
-      /* 
-       * Yes button 
-       */
-      var yesButton = this._yesButton =  new qx.ui.form.Button;
+      hbox.add(this._message, {
+        flex: 1
+      });
+      // yes button
+      var yesButton = (this._yesButton = new qx.ui.form.Button());
       yesButton.setAllowStretchX(true);
-      yesButton.addListener("execute", this._handleYes, this );
+      yesButton.addListener("execute", this._handleYes, this);
       this.bind("yesButtonLabel", yesButton, "label");
-      this.bind("yesButtonIcon",  yesButton, "icon");
-      yesButton.setLabel( this.tr("yes") );
-      
-      /* 
-       * No button 
-       */
-      var noButton = this._noButton = new qx.ui.form.Button;
+      this.bind("yesButtonIcon", yesButton, "icon");
+      yesButton.getChildControl("icon").set({
+        width: 16,
+        height: 16,
+        scale: true
+      });
+      yesButton.setLabel(this.tr("yes"));
+      // no button
+      var noButton = (this._noButton = new qx.ui.form.Button());
       noButton.setAllowStretchX(true);
-      noButton.addListener("execute", this._handleNo, this );
-      this.bind("noButtonLabel",noButton, "label" );
-      this.bind("noButtonIcon", noButton, "icon" );
-      noButton.setLabel( this.tr("no") );
-      
-      /* 
-       * Cancel Button 
-       */
+      noButton.addListener("execute", this._handleNo, this);
+      this.bind("noButtonLabel", noButton, "label");
+      this.bind("noButtonIcon", noButton, "icon");
+      noButton.getChildControl("icon").set({
+        width: 16,
+        height: 16,
+        scale: true
+      });
+      noButton.setLabel(this.tr("no"));
       var cancelButton = this._createCancelButton();
-      
-      /*
-       * buttons pane
-       */
-      var buttonPane = new qx.ui.container.Composite;
-      var bpLayout = new qx.ui.layout.HBox(5)
+      var buttonPane = new qx.ui.container.Composite();
+      var bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
-      buttonPane.setLayout( bpLayout );
-      buttonPane.add( yesButton );
-      buttonPane.add( noButton );
-      buttonPane.add( cancelButton );
+      buttonPane.setLayout(bpLayout);
+      buttonPane.add(yesButton);
+      buttonPane.add(noButton);
+      buttonPane.add(cancelButton);
       groupboxContainer.add(buttonPane);
-        
     },
-    
-    /*
-    ---------------------------------------------------------------------------
-       EVENT HANDLERS
-    ---------------------------------------------------------------------------
-    */     
-    
+
     /**
      * Handle click on yes button. Calls callback with
      * a "true" value
      */
-    _handleYes : function()
-    {
+    _handleYes: function() {
       this.hide();
-      if( this.getCallback() )
-      {
-        this.getCallback().call(this.getContext(),true);
+      if (this.getCallback()) {
+        this.getCallback().call(this.getContext(), true);
       }
       this.resetCallback();
-    },  
+    },
 
     /**
-     * Handle click on no button. Calls callback with 
+     * Handle click on no button. Calls callback with
      * a "false" value
      */
-    _handleNo : function()
-    {
+    _handleNo: function() {
       this.hide();
-      if( this.getCallback() )
-      {
-        this.getCallback().call(this.getContext(),false);
+      if (this.getCallback()) {
+        this.getCallback().call(this.getContext(), false);
       }
-    } 
+    }
   }
 });

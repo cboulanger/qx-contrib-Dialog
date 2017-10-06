@@ -15,7 +15,6 @@
     "clean",
     "distclean",
     "fix",
-    "inspector",
     "lint",
     "migration",
     "pretty",
