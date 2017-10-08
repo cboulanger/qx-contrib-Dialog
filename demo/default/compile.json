@@ -4,7 +4,7 @@
     "theme": "dialog.demo.theme.Theme",
     "name": "dialog.demo"
   } ],
-  "libraries": [ "../../qooxdoo/framework", "." ],
+  "libraries": [ "../../../qooxdoo/framework", ".", "../.." ],
   "targets": [ {
     "type": "source",
     "outputPath": "source-output"
