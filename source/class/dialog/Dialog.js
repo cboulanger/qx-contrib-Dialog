@@ -72,6 +72,8 @@ qx.Class.define("dialog.Dialog", {
     alert: function(message, callback, context, caption) {
       return new dialog.Alert({
         message: message,
+        callback: callback || null,
+        context: context || null,
         image: "dialog/269-info.svg",
         caption: caption || ""
       }).show();
