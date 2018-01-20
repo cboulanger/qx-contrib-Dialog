@@ -24,11 +24,11 @@
  * @ignore(dialog.form)
  * @ignore(dialog.select)
  * @ignore(Promise)
- * @asset(dialog/272-cross.svg)
- * @asset(dialog/273-checkmark.svg)
- * @asset(dialog/264-warning.svg)
- * @asset(dialog/269-info.svg)
- * @asset(dialog/270-cancel-circle.svg)
+ * 
+ * @require(qx.theme.icon.IcoMoonFree)
+ * @require(qx.theme.icon.Tangp)
+ * @require(qx.theme.icon.Oxygen)
+ * 
  */
 qx.Class.define("dialog.Dialog", {
   extend: qx.ui.window.Window,
@@ -74,7 +74,7 @@ qx.Class.define("dialog.Dialog", {
         message: message,
         callback: callback || null,
         context: context || null,
-        image: "dialog/269-info.svg",
+        image: "info",
         caption: caption || ""
       }).show();
     },
@@ -92,7 +92,7 @@ qx.Class.define("dialog.Dialog", {
         message: message,
         callback: callback || null,
         context: context || null,
-        image: "dialog/270-cancel-circle.svg",
+        image: "error",
         caption: caption || ""
       }).show();
     },
@@ -110,7 +110,7 @@ qx.Class.define("dialog.Dialog", {
         message: message,
         callback: callback || null,
         context: context || null,
-        image: "dialog/264-warning.svg",
+        image: "warning",
         caption: caption || ""
       }).show();
     },
@@ -419,7 +419,7 @@ qx.Class.define("dialog.Dialog", {
      */
     _createOkButton: function() {
       var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
-      okButton.setIcon("dialog/273-checkmark.svg");
+      okButton.setIcon("ok");
       okButton.getChildControl("icon").set({
         width: 16,
         height: 16,
@@ -447,7 +447,7 @@ qx.Class.define("dialog.Dialog", {
         this.tr("Cancel")
       ));
       cancelButton.setAllowStretchX(false);
-      cancelButton.setIcon("dialog/272-cross.svg");
+      cancelButton.setIcon("cancel");
       cancelButton.getChildControl("icon").set({
         width: 16,
         height: 16,
@@ -518,7 +518,9 @@ qx.Class.define("dialog.Dialog", {
         .getInstance()
         .getActiveWidget();
       if( this.__previousFocus ){
-        this.__previousFocus.blur();
+        try {
+          this.__previousFocus.blur();
+        } catch(e) {}
         //this.__previousFocus.setFocusable(false);
       }
       return this;

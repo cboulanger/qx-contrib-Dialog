@@ -16,7 +16,7 @@
 
 /**
  * A dialog that alerts the user to something.
- * @asset(dialog/269-info.svg)
+ * 
  */
 qx.Class.define("dialog.Alert", {
   extend: dialog.Dialog,
@@ -32,7 +32,7 @@ qx.Class.define("dialog.Alert", {
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._image = new qx.ui.basic.Image(
-        this.getImage() || "dialog/269-info.svg"
+        this.getImage() || "info"
       ).set({
         scale: true,
         height: 32,

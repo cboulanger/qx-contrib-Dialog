@@ -42,8 +42,6 @@ qx.Class.define("dialog.demo.Application",
 
       // support native logging capabilities, e.g. Firebug for Firefox
       qx.log.appender.Native;
-      // support additional cross-browser console. Press F7 to toggle visibility
-      qx.log.appender.Console;
 
       /*
        * button data
@@ -101,18 +99,70 @@ qx.Class.define("dialog.demo.Application",
        ];
 
       /*
-       * button layout
+       * button panel
        */
       var vbox = new qx.ui.container.Composite();
       vbox.setLayout(new qx.ui.layout.VBox(5));
       var title = new qx.ui.basic.Label("<h2>Dialog Demo</h2>");
       title.setRich(true);
       vbox.add( title );
+
+      // check box
       var blockerCheckBox = new qx.ui.form.CheckBox("Use coloured blocker (like < v.1.3)");
       blockerCheckBox.addListener("changeValue",function(e){
         dialog.Dialog.useBlocker(e.getData());
       });
       vbox.add(blockerCheckBox);
+
+      // theme  & icon selection
+      vbox.add(new qx.ui.basic.Label("Select theme and icon theme:"));
+      
+      var metathemes = [];
+      var iconthemes = [];
+      var themes = qx.Theme.getAll();
+      for (var key in themes) {
+        var theme = themes[key];
+        if (theme.type === "meta") {
+          metathemes.push( { 
+            label : theme.name,
+            name : theme.name
+          });
+        }
+        if (theme.type === "other") {
+          iconthemes.push( { 
+            label : theme.title,
+            name : theme.name
+          });
+        }
+      } 
+      var themeModel = qx.data.marshal.Json.createModel( metathemes );
+      var iconModel  = qx.data.marshal.Json.createModel( iconthemes );
+
+      function setTheme(theme_name) {
+        var theme = qx.Theme.getByName(theme_name);
+        if (theme) {
+          qx.theme.manager.Meta.getInstance().setTheme(theme); }
+      }      
+
+      var themeSelectBox = new qx.ui.form.VirtualSelectBox(themeModel);
+      themeSelectBox.set({
+        labelPath: "label"
+      });
+      vbox.add(themeSelectBox);
+      themeSelectBox.addListener("changeSelection", function(e) {
+        console.info("changeSelection: " + e.getData()[0]);
+      },this);      
+      var iconSelectBox = new qx.ui.form.VirtualSelectBox(iconModel);
+      iconSelectBox.set({
+        labelPath: "label"
+      });
+      vbox.add(iconSelectBox);
+      iconSelectBox.addListener("changeSelection", function(e) {
+        console.info("changeSelection: " + e.getData()[0]);
+      }, this);
+
+      // buttons
+      vbox.add(new qx.ui.basic.Label("Now try the dialog widgets:"));
       buttons.forEach(function(button){
         var btn = new qx.ui.form.Button( button.label );
         btn.addListener("execute",function(){

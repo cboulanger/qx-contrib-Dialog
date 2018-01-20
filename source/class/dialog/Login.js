@@ -265,6 +265,7 @@ qx.Class.define("dialog.Login", {
       this.setMessage(null);
       if (err) {
         this.fireDataEvent("loginFailure", err);
+        this._password.focus();
       } else {
         this.fireDataEvent("loginSuccess", data);
         this.hide();
