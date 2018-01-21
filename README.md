@@ -1,4 +1,4 @@
-# qooxdoo Dialog widgets
+# Qooxdoo Dialog Widgets
 
 see http://cboulanger.github.io/qx-contrib-Dialog/
 
@@ -36,7 +36,7 @@ examples how to use the widgets.
   
 ### Install icon theme
 From v1.3.0 on, the contrib allows you to 
-use your custom icons for the dialogs. However, this means that the icons will not work out of the box. You MUST use [one of the shipped icon themes](source/class/dialog/theme/icon) in your application or write your own, defining the aliases "dialog.icon.cancel" etc. with the path to the icon that should be used. Those paths also need to be put into a `@asset` compiler hin`.
+use custom icons for the dialogs. However, this means that the icons will not work out of the box. You MUST use [one of the shipped icon themes](source/class/dialog/theme/icon) in your application's [meta theme](demo/default/source/class/dialog/theme/Theme.js) or write your own, defining the aliases "dialog.icon.cancel" etc. with the path to the icon that should be used. Those paths also need to be put into a `@asset` compiler hint.
 See, for example, [this theme class](source/class/dialog/theme/icon/IcoMoonFree.js).
 
 
