@@ -25,10 +25,6 @@
  * @ignore(dialog.select)
  * @ignore(Promise)
  * 
- * @require(qx.theme.icon.IcoMoonFree)
- * @require(qx.theme.icon.Tangp)
- * @require(qx.theme.icon.Oxygen)
- * 
  */
 qx.Class.define("dialog.Dialog", {
   extend: qx.ui.window.Window,

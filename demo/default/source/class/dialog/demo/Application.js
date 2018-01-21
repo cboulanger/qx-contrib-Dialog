@@ -136,7 +136,7 @@ qx.Class.define("dialog.demo.Application",
           //
         }
         if (theme.name.indexOf("dialog.theme.icon") != -1) {
-          let button = new qx.ui.form.RadioButton(theme.title);
+          var button = new qx.ui.form.RadioButton(theme.title);
           button.setModel(theme);
           radioButtonGroupHBox.add( button );
         }
