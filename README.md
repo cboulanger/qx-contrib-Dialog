@@ -1,5 +1,4 @@
-qooxdoo Dialog widgets
-======================
+# qooxdoo Dialog widgets
 
 see http://cboulanger.github.io/qx-contrib-Dialog/
 
@@ -21,8 +20,12 @@ API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/api/index.html#dialog
 See [Demo app](demo/default/source/class/dialog/demo/Application.js) for
 examples how to use the widgets.
 
-Installation:
--------------
+## Installation:
+
+### Using the new CLI/compiler (qx >= v6)
+`qx contrib install cboulanger/qx-contrib-Dialog`
+
+### Using the generator (qx <= v5)
 - Download and extract ZIP to a folder in your project
 - in your qooxdoo project's config.json "jobs"/"libraries"/"library" section, add
   ```
@@ -30,9 +33,14 @@ Installation:
     "manifest": "path/to/qx-contrib-Dialog/Manifest.json"
   }
   ```
+  
+### Install icon theme
+From v1.3.0 on, the contrib allows you to 
+use your custom icons for the dialogs. However, this means that the icons will not work out of the box. You MUST use [one of the shipped icon themes](source/class/dialog/theme/icon) in your application or write your own, defining the aliases "dialog.icon.cancel" etc. with the path to the icon that should be used. Those paths also need to be put into a `@asset` compiler hin`.
+See, for example, [this theme class](source/class/dialog/theme/icon/IcoMoonFree.js).
 
-Changelog
-----------
+
+## Changelog
 
 v1.3
 - Compatible with qooxdoo 5.x and 6.x: added support for new JS compiler
@@ -65,7 +73,7 @@ v1.1
 v1.0
 - compatible with qooxdoo v3.5
 
-TODO
-----
+## TODO
+- The form widget needs to use an array instead of a map for defining form fields (breaking change in v2.0)
 - Tab and focus handling is still buggy: Users can tab into non-modal widgets.
 - Rewrite using child controls, to make dialogs truly themeable.
