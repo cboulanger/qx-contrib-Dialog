@@ -1,35 +1,33 @@
 {
-  "info" : 
-  {
-    "name" : "Dialog Demo",
-
-    "summary" : "Dialog Demo",
-    "description" : "This is a demo for the dialog widgets",
-    
-    "homepage" : "https://github.com/cboulanger/qx-contrib-Dialog",
-
-    "license" : "LGPL/EPL",
-    "authors" : 
-    [
+  "info": {
+    "name": "Dialog Demo",
+    "summary": "Dialog Demo",
+    "description": "This is a demo for the dialog widgets",
+    "homepage": "https://github.com/cboulanger/qx-contrib-Dialog",
+    "license": "LGPL/EPL",
+    "authors": [
       {
-        "name" : "Christian Boulanger (cboulanger)",
-        "email" : "info@bibliograph.org"
+        "name": "Christian Boulanger (cboulanger)",
+        "email": "info@bibliograph.org"
       }
     ],
-
-    "version" : "1.3.0",
-    "qooxdoo-versions": ["3.5","4.0","4.1","5.0","6.0"],
-    "qooxdoo-range": "3.x - 6.x"
+    "version": "1.3.1",
+    "qooxdoo-versions": [
+      "3.5",
+      "4.0",
+      "4.1",
+      "5.0",
+      "6.0",
+      "6.0.0-alpha"
+    ],
+    "qooxdoo-range": "3.x - 6.x || 6.0.0-alpha"
   },
-  
-  "provides" : 
-  {
-    "namespace"   : "dialog.demo",
-    "encoding"    : "utf-8",
-    "class"       : "source/class",
-    "resource"    : "source/resource",
-    "translation" : "source/translation",
-    "type"        : "application"
+  "provides": {
+    "namespace": "dialog.demo",
+    "encoding": "utf-8",
+    "class": "source/class",
+    "resource": "source/resource",
+    "translation": "source/translation",
+    "type": "application"
   }
 }
-
