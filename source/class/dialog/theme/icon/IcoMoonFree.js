@@ -14,12 +14,13 @@
  * @asset(dialog/icon/IcoMoonFree/264-warning.svg)
  * @asset(dialog/icon/IcoMoonFree/269-info.svg)
  * @asset(dialog/icon/IcoMoonFree/270-cancel-circle.svg)
+ * @asset(qx/icon/Oxygen/16/apps/office-calendar.png)
  */
 qx.Theme.define("dialog.theme.icon.IcoMoonFree",
 {
   title : "IcoMoonFree",
   aliases : {
-    "icon" : "dialog/icon/IcoMoonFree",
+    "icon" : "qx/icon/Oxygen",
     "cancel" : "dialog/icon/IcoMoonFree/272-cross.svg",
     "ok"     : "dialog/icon/IcoMoonFree/273-checkmark.svg",
     "info"   : "dialog/icon/IcoMoonFree/269-info.svg",

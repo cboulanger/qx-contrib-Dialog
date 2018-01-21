@@ -24,6 +24,7 @@
  * @asset(qx/icon/Oxygen/48/status/dialog-information.png)
  * @asset(qx/icon/Oxygen/48/status/dialog-error.png)
  * @asset(qx/icon/Oxygen/48/status/dialog-warning.png)
+ * @asset(qx/icon/Oxygen/16/apps/office-calendar.png)
  */
 qx.Theme.define("dialog.theme.icon.Oxygen",
 {

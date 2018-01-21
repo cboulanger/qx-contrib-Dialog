@@ -114,55 +114,36 @@ qx.Class.define("dialog.demo.Application",
       });
       vbox.add(blockerCheckBox);
 
-      // theme  & icon selection
-      vbox.add(new qx.ui.basic.Label("Select theme and icon theme:"));
-      
+      // icon theme switcher
+      var labelHBox = new qx.ui.basic.Label("<strong>Icon Theme</strong>");
+      labelHBox.setRich(true);
+      vbox.add(labelHBox);
+      var radioButtonGroupHBox = new qx.ui.form.RadioButtonGroup();
+      radioButtonGroupHBox.setLayout(new qx.ui.layout.HBox(5));
+      vbox.add(radioButtonGroupHBox);
+      radioButtonGroupHBox.addListener("changeSelection", function(e){
+        var theme = e.getData()[0].getModel();
+        qx.theme.manager.Icon.getInstance().setTheme(theme);
+      });
+
+      // icon theme
       var metathemes = [];
       var iconthemes = [];
       var themes = qx.Theme.getAll();
       for (var key in themes) {
         var theme = themes[key];
         if (theme.type === "meta") {
-          metathemes.push( { 
-            label : theme.name,
-            name : theme.name
-          });
+          //
         }
-        if (theme.type === "other") {
-          iconthemes.push( { 
-            label : theme.title,
-            name : theme.name
-          });
+        if (theme.name.indexOf("dialog.theme.icon") != -1) {
+          let button = new qx.ui.form.RadioButton(theme.title);
+          button.setModel(theme);
+          radioButtonGroupHBox.add( button );
         }
       } 
-      var themeModel = qx.data.marshal.Json.createModel( metathemes );
-      var iconModel  = qx.data.marshal.Json.createModel( iconthemes );
-
-      function setTheme(theme_name) {
-        var theme = qx.Theme.getByName(theme_name);
-        if (theme) {
-          qx.theme.manager.Meta.getInstance().setTheme(theme); }
-      }      
-
-      var themeSelectBox = new qx.ui.form.VirtualSelectBox(themeModel);
-      themeSelectBox.set({
-        labelPath: "label"
-      });
-      vbox.add(themeSelectBox);
-      themeSelectBox.addListener("changeSelection", function(e) {
-        console.info("changeSelection: " + e.getData()[0]);
-      },this);      
-      var iconSelectBox = new qx.ui.form.VirtualSelectBox(iconModel);
-      iconSelectBox.set({
-        labelPath: "label"
-      });
-      vbox.add(iconSelectBox);
-      iconSelectBox.addListener("changeSelection", function(e) {
-        console.info("changeSelection: " + e.getData()[0]);
-      }, this);
 
       // buttons
-      vbox.add(new qx.ui.basic.Label("Now try the dialog widgets:"));
+      vbox.add(new qx.ui.basic.Label("Try out the following dialog widgets:"));
       buttons.forEach(function(button){
         var btn = new qx.ui.form.Button( button.label );
         btn.addListener("execute",function(){
@@ -206,8 +187,10 @@ qx.Class.define("dialog.demo.Application",
       .set({caption:caption})
       .promise()
       .then(function(result){
-        return dialog.Dialog.alert("Your answer was: " + result).promise()
-        .set({caption:caption + " 2"});
+        return 
+          dialog.Dialog.alert("Your answer was: " + result)
+          .set({caption:caption + " 2"})
+          .promise();
       });
 //    same as:
 //      dialog.Dialog.confirm("Do you really want to erase your hard drive?", function(result){

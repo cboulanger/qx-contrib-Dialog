@@ -1,9 +1,10 @@
 /**
  * The theme(s) of the demo application
- * @require(qx.theme.Classic)
- * @require(qx.theme.Modern)
- * @require(qx.theme.Indigo)
- * @require(qx.theme.Simple)
+ * 
+ * @require(dialog.theme.icon.IcoMoonFree)
+ * @require(dialog.theme.icon.Oxygen)
+ * @require(dialog.theme.icon.Tango)
+ * 
  */
 
 qx.Theme.define("dialog.demo.theme.Theme",
