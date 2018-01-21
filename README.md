@@ -38,7 +38,8 @@ v1.3
 - Compatible with qooxdoo 5.x and 6.x: added support for new JS compiler
 - Merged changes from https://github.com/jbruwes/qooxdialog
   - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
-  - new black and white SVG icons
+- Added new black and white SVG icons from https://icomoon.io/#preview-free, added support
+  for live icon theme switching
 - Added promise() method returning a Promise as an alternative to callbacks
 - Promisified all shorthand methods (dialog.alert, ...), resulting in massively
   better readability [see Demo app](demo/default/source/class/dialog/demo/Application.js#L193)
