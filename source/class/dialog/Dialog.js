@@ -70,7 +70,7 @@ qx.Class.define("dialog.Dialog", {
         message: message,
         callback: callback || null,
         context: context || null,
-        image: "info",
+        image: "dialog.icon.info",
         caption: caption || ""
       }).show();
     },
@@ -88,7 +88,7 @@ qx.Class.define("dialog.Dialog", {
         message: message,
         callback: callback || null,
         context: context || null,
-        image: "error",
+        image: "dialog.icon.error",
         caption: caption || ""
       }).show();
     },
@@ -106,7 +106,7 @@ qx.Class.define("dialog.Dialog", {
         message: message,
         callback: callback || null,
         context: context || null,
-        image: "warning",
+        image: "dialog.icon.warning",
         caption: caption || ""
       }).show();
     },
@@ -415,7 +415,7 @@ qx.Class.define("dialog.Dialog", {
      */
     _createOkButton: function() {
       var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
-      okButton.setIcon("ok");
+      okButton.setIcon("dialog.icon.ok");
       okButton.getChildControl("icon").set({
         width: 16,
         height: 16,
@@ -443,7 +443,7 @@ qx.Class.define("dialog.Dialog", {
         this.tr("Cancel")
       ));
       cancelButton.setAllowStretchX(false);
-      cancelButton.setIcon("cancel");
+      cancelButton.setIcon("dialog.icon.cancel");
       cancelButton.getChildControl("icon").set({
         width: 16,
         height: 16,

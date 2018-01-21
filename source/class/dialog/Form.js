@@ -434,7 +434,7 @@ qx.Class.define("dialog.Form", {
      */
     _createOkButton: function() {
       var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
-      okButton.setIcon("ok");
+      okButton.setIcon("dialog.icon.ok");
       okButton.setAllowStretchX(false);
       okButton.addListener("execute", this._handleOk, this);
       return okButton;

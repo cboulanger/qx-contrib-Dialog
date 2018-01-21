@@ -31,10 +31,10 @@ qx.Theme.define("dialog.theme.icon.Oxygen",
   title : "Oxygen",
   aliases : {
     "icon" : "qx/icon/Oxygen",
-    "cancel" : "qx/icon/Oxygen/22/actions/dialog-cancel.png",
-    "ok"     : "qx/icon/Oxygen/22/actions/dialog-ok.png",
-    "info"   : "qx/icon/Oxygen/48/status/dialog-information.png",
-    "error"  : "qx/icon/Oxygen/48/status/dialog-error.png",
-    "warning" : "qx/icon/Oxygen/48/status/dialog-warning.png"
+    "dialog.icon.cancel" : "qx/icon/Oxygen/22/actions/dialog-cancel.png",
+    "dialog.icon.ok"     : "qx/icon/Oxygen/22/actions/dialog-ok.png",
+    "dialog.icon.info"   : "qx/icon/Oxygen/48/status/dialog-information.png",
+    "dialog.icon.error"  : "qx/icon/Oxygen/48/status/dialog-error.png",
+    "dialog.icon.warning" : "qx/icon/Oxygen/48/status/dialog-warning.png"
   }
 });

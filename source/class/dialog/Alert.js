@@ -32,7 +32,7 @@ qx.Class.define("dialog.Alert", {
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._image = new qx.ui.basic.Image(
-        this.getImage() || "info"
+        this.getImage() || "dialog.icon.info"
       ).set({
         scale: true,
         height: 32,
