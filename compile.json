@@ -1,15 +1,15 @@
 {
   "applications": [
     {
+      "title" : "Dialog Contrib Demo",
       "class": "dialog.demo.Application",
-      "theme": "dialog.demo.theme.Theme",
+      "theme": "dialog.theme.Theme",
       "name": "dialog.demo"
     }
   ],
   "libraries": [
-    "../../../qooxdoo/framework", 
-    ".", 
-    "../.."
+    "../qooxdoo/framework", 
+    "."
   ],
   "targets": [
     {
@@ -26,8 +26,5 @@
     }
   ],
   "defaultTarget": "source",
-  "locales": ["en"],
-  "environment" : {
-
-  }
+  "locales": ["en"]
 }

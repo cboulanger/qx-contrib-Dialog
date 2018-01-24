@@ -1,11 +1,16 @@
+# generator
 test/
 api/
-/qooxdoo/
-/demo/default/*output
-/demo/default/build
-demo/default/source/script
+build/
+source/script
+
+# compiler
+*output
 db.json
 resource-db.json
+
+# other stuff
+qooxdoo/
 npm-debug.log
 .DS_Store
 .c9

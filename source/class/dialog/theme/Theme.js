@@ -7,7 +7,7 @@
  * 
  */
 
-qx.Theme.define("dialog.demo.theme.Theme",
+qx.Theme.define("dialog.theme.Theme",
 {
   meta :
   {
