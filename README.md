@@ -40,7 +40,7 @@ use custom icons for the dialogs. However, this means that the icons will not wo
 See, for example, [this theme class](source/class/dialog/theme/icon/IcoMoonFree.js).
 
 ## Changelog
-v1.3.2
+v1.3.3
 - integrate demo application into library code, now you can simply do `qx serve` to run the demo.
 
 v1.3.1
