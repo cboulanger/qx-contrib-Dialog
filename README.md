@@ -36,13 +36,17 @@ examples how to use the widgets.
   
 ### Install icon theme
 From v1.3.0 on, the contrib allows you to 
-use custom icons for the dialogs. However, this means that the icons will not work out of the box. You MUST use [one of the shipped icon themes](source/class/dialog/theme/icon) in your application's [meta theme](demo/default/source/class/dialog/theme/Theme.js) or write your own, defining the aliases "dialog.icon.cancel" etc. with the path to the icon that should be used. Those paths also need to be put into a `@asset` compiler hint.
+use custom icons for the dialogs. However, this means that the icons will not work out of the box. You must use or extend [one of the shipped icon themes](source/class/dialog/theme/icon) in your application's meta theme (see [this example](source/class/dialog/theme/Theme.js)) or copy the alias definitions from one of them into your own icon theme. You can also use your own choice of icons by writing an icon theme which defines defining the aliases "dialog.icon.(ok|cancel|info|warning|error)" with the paths to the icons. Those paths also need to be put into a `@asset` compiler hint.
 See, for example, [this theme class](source/class/dialog/theme/icon/IcoMoonFree.js).
 
-
 ## Changelog
+v1.3.2
+- integrate demo application into library code, now you can simply do `qx serve` to run the demo.
 
-v1.3
+v1.3.1
+- fix alias names
+
+v1.3.0
 - Compatible with qooxdoo 5.x and 6.x: added support for new JS compiler
 - Merged changes from https://github.com/jbruwes/qooxdialog
   - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
