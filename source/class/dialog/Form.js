@@ -196,12 +196,14 @@ qx.Class.define("dialog.Form", {
             formElement.setLiveUpdate(true);
             break;
           case "datefield":
+          case "date":
             formElement = new qx.ui.form.DateField();
             if (fieldData.dateFormat) {
               formElement.setDateFormat(fieldData.dateFormat);
             }
             break;
           case "passwordfield":
+          case "password":
             formElement = new qx.ui.form.PasswordField();
             break;
           case "combobox":
@@ -393,6 +395,9 @@ qx.Class.define("dialog.Form", {
         }
         if (fieldData.placeholder !== undefined) {
           formElement.setPlaceholder(fieldData.placeholder);
+        }
+        if (fieldData.enabled !== undefined) {
+          formElement.setEnabled(fieldData.enabled);
         }
         if (qx.lang.Type.isObject(fieldData.events)) {
           for (var type in fieldData.events) {
