@@ -336,9 +336,11 @@ qx.Class.define("dialog.Form", {
         }
         var validator = null;
         if (formElement && fieldData.validation) {
+          // required field
           if (fieldData.validation.required) {
             formElement.setRequired(true);
           }
+          // sync validation
           if (fieldData.validation.validator) {
             validator = fieldData.validation.validator;
             if (typeof validator == "string") {
@@ -352,44 +354,50 @@ qx.Class.define("dialog.Form", {
               } else {
                 this.error("Invalid string validator.");
               }
-            } else if (
-              !(validator instanceof qx.ui.form.validation.AsyncValidator) &&
-              typeof validator != "function"
-            ) {
+            } else if (!(validator instanceof qx.ui.form.validation.AsyncValidator) && typeof validator !== "function") {
               this.error("Invalid validator.");
             }
           }
-          if (fieldData.validation.service) {
-            var service = fieldData.validation.service;
-            _this = this;
-            validator = new qx.ui.form.validation.AsyncValidator(function(
-              validatorObj,
-              value
-            ) {
-              if (!validatorObj.__asyncInProgress) {
-                validatorObj.__asyncInProgress = true;
-                qx.core.Init
-                  .getApplication()
-                  .getRpcManager()
-                  .execute(service.name, service.method, [value], function(
-                    response
-                  ) {
-                    try {
-                      var valid = response &&
-                        typeof response == "object" &&
-                        response.data
-                        ? response.data
-                        : response;
-                      validatorObj.setValid(valid);
-                      validatorObj.__asyncInProgress = false;
-                    } catch (e) {
-                      alert(e);
-                    }
+          // async validation
+          if ( qx.lang.Type.isString(fieldData.validation.proxy) &&
+            qx.lang.Type.isString(fieldData.validation.method)
+          ) {
+            /**
+             * fieldData.validation.proxy
+             * the name of a global variable (or path) to a function that acts as the proxy of
+             * the 'send' or 'execute' function of a preconfigured JsonRpc client. The function
+             * receives the following parameters: service method (string), parameters (array)
+             * and callback (function). It proxies the parameters to the given JsonRpc method and
+             * calls the callback with the result (true if valid, false if not) received from the
+             * server. The JsonRpc service name is preconfigured by the server and cannot be
+             * changed by the client.
+             */
+            // clean
+            var proxy = fieldData.validation.proxy.replace(/;\n/g,"");
+            try {
+              eval( 'proxy = ' +  proxy + ';' );
+            } catch (e) {
+              this.warn("Invalid proxy name");
+            }
+            if( typeof proxy == "function" ){
+              var method = fieldData.validation.method;
+              var message = fieldData.validation.invalidMessage;
+              var _this = this;
+              var validationFunc = function(validatorObj, value) {
+                if (!validatorObj.__asyncInProgress) {
+                  validatorObj.__asyncInProgress = true;
+                  proxy(method, [value], function (valid) {
+                    validatorObj.setValid(valid, message || this.tr('Value is invalid'));
+                    validatorObj.__asyncInProgress = false;
                   });
-              }
-            });
+                }
+              };
+              validator = new qx.ui.form.validation.AsyncValidator(validationFunc);
+            }
           }
         }
+
+        // other widget properties @todo: allow to set all properties
         if (fieldData.width !== undefined) {
           formElement.setWidth(fieldData.width);
         }
@@ -399,6 +407,7 @@ qx.Class.define("dialog.Form", {
         if (fieldData.enabled !== undefined) {
           formElement.setEnabled(fieldData.enabled);
         }
+        // events
         if (qx.lang.Type.isObject(fieldData.events)) {
           for (var type in fieldData.events) {
             try {
@@ -408,13 +417,7 @@ qx.Class.define("dialog.Form", {
               }
               formElement.addListener(type, func, formElement);
             } catch (e) {
-              this.warn(
-                "Invalid '" +
-                  type +
-                  "' event handler for form element '" +
-                  key +
-                  "'."
-              );
+              this.warn( "Invalid '"+type+"' event handler for form element '"+key+"'.");
             }
           }
         }
