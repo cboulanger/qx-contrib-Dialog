@@ -4,7 +4,7 @@
    https://github.com/cboulanger/qx-contrib-Dialog
 
    Copyright:
-     2007-2017 Christian Boulanger and others
+     2007-2018 Christian Boulanger and others
 
    License:
      LGPL: http://www.gnu.org/licenses/lgpl.html
@@ -12,7 +12,9 @@
      See the LICENSE file in the project's top-level directory for details.
 
 ************************************************************************ */
-/*global qx dialog*/
+
+/* global qx dialog*/
+/* eslint-env es4 */
 
 /**
  * A dialog with a form that is constructed on-the-fly
@@ -102,14 +104,14 @@ qx.Class.define("dialog.Form", {
      * Return the form
      * @return {qx.ui.form.Form}
      */
-    getForm: function() {
+    getForm: function () {
       return this._form;
     },
 
     /**
      * Create the main content of the widget
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function () {
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
@@ -145,18 +147,20 @@ qx.Class.define("dialog.Form", {
      * @param old {Map|null} The old value
      * @lint ignoreDeprecated(alert,eval)
      */
-    _applyFormData: function(formData, old) {
+    _applyFormData: function (formData, old) {
       if (this._formController) {
         try {
           this.getModel().removeAllBindings();
           this._formController.dispose();
-        } catch (e) {}
+        } catch (e) {
+        }
       }
       if (this._form) {
         try {
           this._form.getValidationManager().removeAllBindings();
           this._form.dispose();
-        } catch (e) {}
+        } catch (e) {
+        }
       }
       this._formContainer.removeAll();
       if (!formData) {
@@ -169,8 +173,8 @@ qx.Class.define("dialog.Form", {
       var modelData = {};
       for (var key in formData) {
         modelData[key] = formData[key].value !== undefined
-          ? formData[key].value
-          : null;
+        ? formData[key].value
+        : null;
       }
       var model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);
@@ -208,7 +212,7 @@ qx.Class.define("dialog.Form", {
             break;
           case "combobox":
             formElement = new qx.ui.form.ComboBox();
-            fieldData.options.forEach(function(item) {
+            fieldData.options.forEach(function (item) {
               var listItem = new qx.ui.form.ListItem(item.label, item.icon);
               formElement.add(listItem);
             });
@@ -223,11 +227,11 @@ qx.Class.define("dialog.Form", {
             if (fieldData.orientation) {
               formElement.setUserData("orientation", fieldData.orientation);
             }
-            fieldData.options.forEach(function(item) {
+            fieldData.options.forEach(function (item) {
               var radioButton = new qx.ui.form.RadioButton(item.label);
               radioButton.setUserData(
-                "value",
-                item.value !== undefined ? item.value : item.label
+              "value",
+              item.value !== undefined ? item.value : item.label
               );
               formElement.add(radioButton);
             }, this);
@@ -244,96 +248,72 @@ qx.Class.define("dialog.Form", {
         }
         formElement.setUserData("key", key);
         var _this = this;
-        if( typeof fieldData.type == "string") {
+        if (typeof fieldData.type == "string") {
           switch (fieldData.type.toLowerCase()) {
             case "textarea":
             case "textfield":
             case "passwordfield":
             case "combobox":
             case "datefield":
-              this._formController.addTarget(
-                formElement,
-                "value",
-                key,
-                true,
-                null,
-                {
-                  converter: function(value) {
-                    _this._form.getValidationManager().validate();
-                    return value;
-                  }
+              this._formController.addTarget(formElement, "value", key, true, null, {
+                converter: function (value) {
+                  _this._form.getValidationManager().validate();
+                  return value;
                 }
-              );
+              });
               break;
             case "checkbox":
-              this._formController.addTarget(
-                formElement,
-                "value",
-                key,
-                true,
-                null
-              );
+              this._formController.addTarget(formElement, "value", key, true, null);
               break;
             case "selectbox":
-              this._formController.addTarget(
-                formElement,
-                "selection",
-                key,
-                true,
-                {
-                  converter: qx.lang.Function.bind(function(value) {
-                    var selected = null;
-                    var selectables = this.getSelectables();
-                    selectables.forEach(function(selectable) {
-                      if (selectable.getModel().getValue() === value) {
-                        selected = selectable;
-                      }
-                    }, this);
-                    if (!selected) {
-                      return [selectables[0]];
+              this._formController.addTarget(formElement, "selection", key, true, {
+                converter: qx.lang.Function.bind(function (value) {
+                  var selected = null;
+                  var selectables = this.getSelectables();
+                  selectables.forEach(function (selectable) {
+                    if (selectable.getModel().getValue() === value) {
+                      selected = selectable;
                     }
-                    return [selected];
-                  }, formElement)
-                },
-                {
-                  converter: qx.lang.Function.bind(function(selection) {
-                    var value = selection[0].getModel().getValue();
-                    return value;
-                  }, formElement)
-                }
-              );
+                  }, this);
+                  if (!selected) {
+                    return [selectables[0]];
+                  }
+                  return [selected];
+                }, formElement)
+              }, {
+                converter: qx.lang.Function.bind(function (selection) {
+                  var value = selection[0].getModel().getValue();
+                  return value;
+                }, formElement)
+              });
               break;
             case "radiogroup":
-              this._formController.addTarget(
-                formElement,
-                "selection",
-                key,
-                true,
-                {
-                  converter: qx.lang.Function.bind(function(value) {
-                    var selectables = this.getSelectables();
-                    var selection = [];
-                    if (value) {
-                      selectables.forEach(function(selectable) {
-                        var sValue = selectable.getUserData("value");
-                        if (sValue === value) {
-                          selection = [selectable];
-                        }
-                      }, this);
-                    }
-                    return selection;
-                  }, formElement)
-                },
-                {
-                  converter: function(selection) {
-                    var value = selection[0].getUserData("value");
-                    return value;
+              this._formController.addTarget(formElement, "selection", key, true, {
+                converter: qx.lang.Function.bind(function (value) {
+                  var selectables = this.getSelectables();
+                  var selection = [];
+                  if (value) {
+                    selectables.forEach(function (selectable) {
+                      var sValue = selectable.getUserData("value");
+                      if (sValue === value) {
+                        selection = [selectable];
+                      }
+                    }, this);
                   }
+                  return selection;
+                }, formElement)
+              }, {
+                converter: function (selection) {
+                  var value = selection[0].getUserData("value");
+                  return value;
                 }
-              );
+              });
               break;
           }
         }
+        /**
+         * Validation
+         */
         var validator = null;
         if (formElement && fieldData.validation) {
           // required field
@@ -348,8 +328,8 @@ qx.Class.define("dialog.Form", {
                 validator = qx.util.Validate[validator]();
               } else if (validator.charAt(0) == "/") {
                 validator = qx.util.Validate.regExp(
-                  new RegExp(validator.substr(1, validator.length - 2)),
-                  fieldData.validation.errorMessage
+                new RegExp(validator.substr(1, validator.length - 2)),
+                fieldData.validation.errorMessage
                 );
               } else {
                 this.error("Invalid string validator.");
@@ -359,8 +339,8 @@ qx.Class.define("dialog.Form", {
             }
           }
           // async validation
-          if ( qx.lang.Type.isString(fieldData.validation.proxy) &&
-            qx.lang.Type.isString(fieldData.validation.method)
+          if (qx.lang.Type.isString(fieldData.validation.proxy) &&
+          qx.lang.Type.isString(fieldData.validation.method)
           ) {
             /**
              * fieldData.validation.proxy
@@ -373,17 +353,17 @@ qx.Class.define("dialog.Form", {
              * changed by the client.
              */
             // clean
-            var proxy = fieldData.validation.proxy.replace(/;\n/g,"");
+            var proxy = fieldData.validation.proxy.replace(/;\n/g, "");
             try {
-              eval( 'proxy = ' +  proxy + ';' );
+              eval('proxy = ' + proxy + ';');
             } catch (e) {
               this.warn("Invalid proxy name");
             }
-            if( typeof proxy == "function" ){
+            if (typeof proxy == "function") {
               var method = fieldData.validation.method;
               var message = fieldData.validation.invalidMessage;
               var _this = this;
-              var validationFunc = function(validatorObj, value) {
+              var validationFunc = function (validatorObj, value) {
                 if (!validatorObj.__asyncInProgress) {
                   validatorObj.__asyncInProgress = true;
                   proxy(method, [value], function (valid) {
@@ -397,7 +377,9 @@ qx.Class.define("dialog.Form", {
           }
         }
 
-        // other widget properties @todo: allow to set all properties
+        /**
+         * other widget properties @todo: allow to set all properties
+         */
         if (fieldData.width !== undefined) {
           formElement.setWidth(fieldData.width);
         }
@@ -407,7 +389,10 @@ qx.Class.define("dialog.Form", {
         if (fieldData.enabled !== undefined) {
           formElement.setEnabled(fieldData.enabled);
         }
-        // events
+
+        /**
+         * Events
+         */
         if (qx.lang.Type.isObject(fieldData.events)) {
           for (var type in fieldData.events) {
             try {
@@ -417,10 +402,12 @@ qx.Class.define("dialog.Form", {
               }
               formElement.addListener(type, func, formElement);
             } catch (e) {
-              this.warn( "Invalid '"+type+"' event handler for form element '"+key+"'.");
+              this.warn("Invalid '" + type + "' event handler for form element '" + key + "'.");
             }
           }
         }
+
+        // Putting it all together
         var label = fieldData.label;
         this._form.add(formElement, label, validator);
       }
@@ -440,7 +427,7 @@ qx.Class.define("dialog.Form", {
      * @override
      * @return {qx.ui.form.Button}
      */
-    _createOkButton: function() {
+    _createOkButton: function () {
       var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
       okButton.setIcon("dialog.icon.ok");
       okButton.setAllowStretchX(false);
@@ -455,9 +442,9 @@ qx.Class.define("dialog.Form", {
      * validity of the current form.
      * @param form {qx.ui.form.Form} The form to bind
      */
-    _onFormReady: function(form) {
+    _onFormReady: function (form) {
       form.getValidationManager().bind("valid", this._okButton, "enabled", {
-        converter: function(value) {
+        converter: function (value) {
           return value || false;
         }
       });
@@ -467,12 +454,12 @@ qx.Class.define("dialog.Form", {
      * Handle click on ok button. Calls callback with the result map
      * @override
      */
-    _handleOk: function() {
+    _handleOk: function () {
       this.hide();
       if (this.getCallback()) {
         this.getCallback().call(
-          this.getContext(),
-          qx.util.Serializer.toNativeObject(this.getModel())
+        this.getContext(),
+        qx.util.Serializer.toNativeObject(this.getModel())
         );
       }
       this.resetCallback();
