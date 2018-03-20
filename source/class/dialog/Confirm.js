@@ -46,7 +46,7 @@ qx.Class.define("dialog.Confirm", {
     yesButtonIcon: {
       check: "String",
       nullable: true,
-      init: "ok",
+      init: "dialog.icon.ok",
       event: "changeYesButtonIcon"
     },
 
@@ -66,7 +66,7 @@ qx.Class.define("dialog.Confirm", {
     noButtonIcon: {
       check: "String",
       nullable: true,
-      init: "cancel",
+      init: "dialog.icon.cancel",
       event: "changeNoButtonIcon"
     },
 
