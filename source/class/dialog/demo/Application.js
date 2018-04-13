@@ -330,7 +330,16 @@ qx.Class.define("dialog.demo.Application",
           "dateFormat" : new qx.util.format.DateFormat("dd.MM.yyyy HH:mm"),
           "value" : new Date(),
           "label" : "Execute At"
-       }
+        },
+        "area": {
+          "type": "spinner",
+          "label": "Area",
+          "value": 25.5,
+          "min": -10,
+          "max": 100,
+          "step": 0.5,
+          "fractionsDigits": {min: 1, max: 7}
+        }
       };
 
       dialog.Dialog.form("Please fill in the form", formData )

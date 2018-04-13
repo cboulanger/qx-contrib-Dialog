@@ -243,6 +243,29 @@ qx.Class.define("dialog.Form", {
           case "checkbox":
             formElement = new qx.ui.form.CheckBox(fieldData.label);
             break;
+          case "spinner":
+            formElement = new qx.ui.form.Spinner();
+            if (fieldData.min) {
+              formElement.setMinimum(fieldData.min);
+            }
+            if (fieldData.max) {
+              formElement.setMaximum(fieldData.max);
+            }
+            if (fieldData.step) {
+              formElement.setSingleStep(fieldData.step);
+            }
+            if(fieldData.fractionsDigits) {
+              var fd = fieldData.fractionsDigits;
+              var nf = new qx.util.format.NumberFormat();
+              if(fd.min) {
+                nf.setMinimumFractionDigits(fd.min);
+              }
+              if(fd.max) {
+                nf.setMaximumFractionDigits(fd.max);
+              }
+              formElement.setNumberFormat(nf);
+            }
+            break;
           default:
             this.error("Invalid form field type:" + fieldData.type);
         }
@@ -255,6 +278,7 @@ qx.Class.define("dialog.Form", {
             case "passwordfield":
             case "combobox":
             case "datefield":
+            case "spinner":
               this._formController.addTarget(formElement, "value", key, true, null, {
                 converter: function (value) {
                   _this._form.getValidationManager().validate();
