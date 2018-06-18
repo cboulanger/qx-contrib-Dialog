@@ -125,11 +125,12 @@ qx.Class.define("dialog.Form", {
       hbox.add(this._message, {
         flex: 1
       });
+      // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
+      var formTag = new dialog.FormTag();
       this._formContainer = new qx.ui.container.Composite();
       this._formContainer.setLayout(new qx.ui.layout.Grow());
-      container.add(this._formContainer, {
-        flex: 1
-      });
+      formTag.add( this._formContainer, {flex: 1} );
+      container.add(formTag, { flex: 1 });
       var buttonPane = new qx.ui.container.Composite();
       var bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
@@ -209,6 +210,7 @@ qx.Class.define("dialog.Form", {
           case "passwordfield":
           case "password":
             formElement = new qx.ui.form.PasswordField();
+            formElement.getContentElement().setAttribute("autocomplete", "password");            
             break;
           case "combobox":
             formElement = new qx.ui.form.ComboBox();

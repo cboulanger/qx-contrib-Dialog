@@ -123,11 +123,14 @@ qx.Class.define("dialog.Login", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
+      // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
+      var formTag = new dialog.FormTag();
       var container = new qx.ui.container.Composite();
+      formTag.add(container, {flex:1});
       var layout = new qx.ui.layout.VBox(10);
       layout.setAlignX("center");
       container.setLayout(layout);
-      this.add(container);
+      this.add(formTag);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       container.add(this._image);
@@ -162,6 +165,7 @@ qx.Class.define("dialog.Login", {
       }
       this._username = new qx.ui.form.TextField();
       this._password = new qx.ui.form.PasswordField();
+      this._password .getContentElement().setAttribute("autocomplete", "password");
       this._password.addListener(
         "keypress",
         function(e) {
