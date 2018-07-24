@@ -45,13 +45,13 @@ open a new terminal and start the tests with `tests/run.sh`. When the tests succ
 server process in the first tab.
 
 ## Changelog
-v1.4.0
+### v1.4.0
 - Added TextCafe UI tests
-v1.3.3
+### v1.3.3
 - integrate demo application into library code, now you can simply do `qx serve` to run the demo.
-v1.3.1
+### v1.3.1
 - fix alias names
-v1.3.0
+### v1.3.0
 - Compatible with qooxdoo 5.x and 6.x: added support for new JS compiler
 - Merged changes from https://github.com/jbruwes/qooxdialog
   - replaced base widget qx.ui.GroupBox with modal qx.ui.window.Window
@@ -69,14 +69,14 @@ v1.3.0
 - Progress Widget enhancements:
   - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
     similar actions to be displayed after the cancel button has been pressed.  
-v1.2
+### v1.2
 - fixed a bug that prevented submitting the login dialog by pressing enter
   (patch by @novij)
 - added "Forgot Password?" button to login widget
-v1.1
+### v1.1
 - compatible with qooxdoo v4.0
 - Progress dialog widget added
-v1.0
+### v1.0
 - compatible with qooxdoo v3.5
 
 ## TODO
