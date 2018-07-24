@@ -1,87 +1,83 @@
 #
 msgid ""
-msgstr "Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: you@your.org\n"
-"POT-Creation-Date: 2011-07-21 20:11+0100\n"
-"PO-Revision-Date: 2011-07-21 20:11+0100\n"
-"Last-Translator: you <you@your.org>\n"
-"Language-Team: Team <yourteam@your.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2011-07-21 20:11+0100\nPO-Revision-Date: 2011-07-21 20:11+0100\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\n"
 
-#: dialog.Confirm:117
+#: dialog.Confirm:117 dialog/Confirm.js:117
 msgid "yes"
 msgstr ""
 
-#: dialog.Confirm:129
+#: dialog.Confirm:129 dialog/Confirm.js:129
 msgid "no"
 msgstr ""
 
-#: dialog.Form:436
+#: dialog.Form:436 dialog/Dialog.js:417 dialog/Form.js:457
 msgid "OK"
 msgstr ""
 
-#: dialog.Dialog:443
+#: dialog.Dialog:443 dialog/Dialog.js:443
 msgid "Cancel"
 msgstr ""
 
-#: dialog.Login:150
+#: dialog.Login:150 dialog/Login.js:153
 msgid "Name"
 msgstr ""
 
-#: dialog.Login:150
+#: dialog.Login:150 dialog/Login.js:153
 msgid "Password"
 msgstr ""
 
-#: dialog.Login:200
+#: dialog.Login:200 dialog/Login.js:204
 msgid "Login"
 msgstr ""
 
-#: dialog.Wizard:118
+#: dialog.Wizard:118 dialog/Wizard.js:118
 msgid "Back"
 msgstr ""
 
-#: dialog.Wizard:123
+#: dialog.Wizard:123 dialog/Wizard.js:123
 msgid "Next"
 msgstr ""
 
-#: dialog.Wizard:129
+#: dialog.Wizard:129 dialog/Wizard.js:129
 msgid "Finish"
 msgstr ""
 
-#: qx.util.Validate:90
+#: qx.util.Validate:90 qx/util/Validate.js:90
 msgid "%1 is not a number."
 msgstr ""
 
-#: qx.util.Validate:129
+#: qx.util.Validate:129 qx/util/Validate.js:129
 msgid "'%1' is not an email address."
 msgstr ""
 
-#: qx.util.Validate:166
+#: qx.util.Validate:166 qx/util/Validate.js:166
 msgid "%1 is not a string."
 msgstr ""
 
-#: qx.util.Validate:202
+#: qx.util.Validate:202 qx/util/Validate.js:202
 msgid "%1 is not an url."
 msgstr ""
 
-#: qx.util.Validate:243
+#: qx.util.Validate:243 qx/util/Validate.js:243
 msgid "%1 is not a color! %2"
 msgstr ""
 
-#: qx.util.Validate:267
+#: qx.util.Validate:267 qx/util/Validate.js:267
 msgid "%1 is not in the range from [%2, %3]."
 msgstr ""
 
-#: qx.util.Validate:290
+#: qx.util.Validate:290 qx/util/Validate.js:290
 msgid "%1 is not in %2"
 msgstr ""
 
-#: qx.util.Validate:314
+#: qx.util.Validate:314 qx/util/Validate.js:314
 msgid "%1 does not fit %2."
 msgstr ""
 
-#: dialog.Login:206
+#: dialog.Login:206 dialog/Login.js:210
 msgid "Forgot Password?"
+msgstr ""
+
+#: dialog/Form.js:396
+msgid "Value is invalid"
 msgstr ""
