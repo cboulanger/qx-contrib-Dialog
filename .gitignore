@@ -6,11 +6,9 @@ source/script
 
 # compiler
 *output
-db.json
-resource-db.json
 
 # other stuff
-qooxdoo/
+node_modules
 npm-debug.log
 .DS_Store
 .c9

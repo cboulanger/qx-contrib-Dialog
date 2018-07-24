@@ -11,8 +11,8 @@
         "email": "info@bibliograph.org"
       }
     ],
-    "version": "1.3.5",
-    "qooxdoo-range": "5.x - 6.0.0-alpha"
+    "version": "1.3.6",
+    "qooxdoo-range": "5.x | 6.0.0-* | 6.x"
   },
   "provides": {
     "namespace": "dialog",
