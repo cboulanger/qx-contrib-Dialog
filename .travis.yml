@@ -1,0 +1,41 @@
+language: node_js
+node_js: "stable"
+
+#cache:
+#  directories:
+#    - node_modules
+
+dist: trusty
+sudo: required
+
+addons:
+  firefox: latest
+  apt:
+    sources:
+     - google-chrome
+    packages:
+     - google-chrome-stable fluxbox
+
+before_install:
+  - stty cols 80
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+  - fluxbox >/dev/null 2>&1 &
+  - npm install
+  - pushd node_modules/qxcompiler 
+  - npm link
+  - popd
+  - qx compile --target=build
+  - ls -al build-output/dialog.demo
+  - qx serve --target=build &
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local-dir: build-compiled
+  on:
+    branch: master

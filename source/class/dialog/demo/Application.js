@@ -21,7 +21,7 @@
  */
 qx.Class.define("dialog.demo.Application",
 {
-  extend : qx.application.Standalone,
+  extend: qx.application.Standalone,
 
   /*
   *****************************************************************************
@@ -29,13 +29,13 @@ qx.Class.define("dialog.demo.Application",
   *****************************************************************************
   */
 
-    members :
+    members:
     {
     /**
      * This method contains the initial application code and gets called
      * during startup of the application
      */
-    main : function()
+    main: function()
     {
       // Call super class
       this.base(arguments);
@@ -43,58 +43,84 @@ qx.Class.define("dialog.demo.Application",
       // support native logging capabilities, e.g. Firebug for Firefox
       qx.log.appender.Native;
 
+      // patch until we have a proper widget ID system
+      qx.Mixin.define("MWidgetId", {
+        properties:{
+          widgetId:{ check: "String", apply: "_applyWidgetId"}
+        },
+        members:{
+          _applyWidgetId: function(value,oldValue){
+            this.getContentElement().setAttribute('id',value,true);
+          }
+        }
+      });
+      qx.Class.include( qx.ui.core.Widget, MWidgetId);
+
+
       /*
        * button data
        */
       var buttons =
       [
          {
-           label : "Alert",
-           method : "createAlert"
+           label: "Alert",
+           id: "alert",
+           method: "createAlert"
          },
          {
-           label : "Warning",
-           method : "createWarning"
+           label: "Warning",
+           id: "warning",
+           method: "createWarning"
          },
          {
-           label : "Error",
-           method : "createError"
+           label: "Error",
+           id: "error",
+           method: "createError"
          },
          {
-           label : "Confirm",
-           method : "createConfirm"
+           label: "Confirm",
+           id: "confirm",
+           method: "createConfirm"
          },
          {
-           label : "Prompt",
-           method : "createPrompt"
+           label: "Prompt",
+           id: "prompt",
+           method: "createPrompt"
          },
          {
-           label : "Dialog Chain",
-           method : "createDialogChain"
+           label: "Dialog Chain",
+           id: "dialog",
+           method: "createDialogChain"
          },
          {
-           label : "Select among choices",
-           method : "createSelect"
+           label: "Select among choices",
+           id: "select",
+           method: "createSelect"
          },
          {
-           label : "Form",
-           method : "createForm"
+           label: "Form",
+           id: "form",
+           method: "createForm"
          },
          {
-           label : "Wizard",
-           method : "createWizard"
+           label: "Wizard",
+           id: "wizard",
+           method: "createWizard"
          },
          {
-           label : "Login",
-           method : "createLogin"
+           label: "Login",
+           id: "login",
+           method: "createLogin"
          },
          {
-           label : "Progress",
-           method : "createProgress"
+           label: "Progress",
+           id: "progress",
+           method: "createProgress"
          },
          {
-           label : "Progress with Log",
-           method : "createProgressWithLog"
+           label: "Progress with Log",
+           id: "progress_with_log",
+           method: "createProgressWithLog"
          }
        ];
 
@@ -146,11 +172,12 @@ qx.Class.define("dialog.demo.Application",
       vbox.add(new qx.ui.basic.Label("Try out the following dialog widgets:"));
       buttons.forEach(function(button){
         var btn = new qx.ui.form.Button( button.label );
+        var btnId = 'app:button:' + button.id;
+        btn.setWidgetId(btnId);
         btn.addListener("execute",function(){
           this[button.method](button.label);
         },this);
-        if ( button.enabled !== undefined )
-        {
+        if ( button.enabled !== undefined ){
           btn.setEnabled(button.enabled);
         }
         vbox.add(btn);
@@ -159,177 +186,216 @@ qx.Class.define("dialog.demo.Application",
 
     },
 
-    createAlert : function(caption)
+    createAlert: function(caption)
     {
-      dialog.Dialog.alert( "Hello World!" ).set({caption:caption});
+      dialog.Dialog
+        .alert( "Hello World!" )
+        .set({
+          caption: caption,
+          widgetId: 'app:window:alert'
+        });
 //    same as:
 //      dialog.Dialog.alert(  "Hello World!", null, null, caption );
 //    or:
 //      (new dialog.Alert({
-//        message : "Hello World!",
-//        caption : caption
+//        message: "Hello World!",
+//        caption: caption
 //      })).show();
     },
 
-    createWarning : function(caption)
+    createWarning: function(caption)
     {
-      dialog.Dialog.warning( "I warned you!", null, null, caption );
+      dialog.Dialog
+        .warning( "I warned you!", null, null, caption )
+        .setWidgetId('app:window:warning');
     },
 
-    createError : function(caption)
+    createError: function(caption)
     {
-      dialog.Dialog.error( "Error, error, error, errr....!", null, null, caption );
+      dialog.Dialog
+        .error( "Error, error, error, errr....!", null, null, caption )
+        .setWidgetId('app:window:error');;
     },
 
-    createConfirm : function(caption)
+    createConfirm: function(caption)
     {
-      dialog.Dialog.confirm("Do you really want to erase your hard drive?")
-      .set({caption:caption})
-      .promise()
-      .then(function(result){
-        return 
-          dialog.Dialog.alert("Your answer was: " + result)
-          .set({caption:caption + " 2"})
-          .promise();
-      });
+      var confirm = dialog.Dialog
+        .confirm("Do you really want to erase your hard drive?")
+        .set({
+          caption: caption,
+          widgetId: 'app:window:confirm'
+        })
+        .promise()
+        .then(function(result){
+          return 
+            dialog.Dialog.alert("Your answer was: " + result)
+            .set({caption:caption + " 2"})
+            .promise();
+        });
 //    same as:
 //      dialog.Dialog.confirm("Do you really want to erase your hard drive?", function(result){
 //        dialog.Dialog.alert("Your answer was: " + result, null, null, caption );
 //      }, this, caption);
 //    or:
 //      (new dialog.Confirm({
-//        message : "Do you really want to erase your hard drive?",
-//        callback : function(result)
+//        message: "Do you really want to erase your hard drive?",
+//        callback: function(result)
 //        {
 //          (new dialog.Alert({
-//            message : "Your answer was:" + result,
-//            caption : caption
+//            message: "Your answer was:" + result,
+//            caption: caption
 //          })).show();
 //        },
-//        caption : caption
+//        caption: caption
 //      })).show();
     },
 
-    createPrompt : function(caption)
+    createPrompt: function(caption)
     {
-      dialog.Dialog.prompt("Please enter the root password for your server")
-      .set({caption:caption})
-      .promise()
-      .then(function(result){
-        return dialog.Dialog.alert("Your answer was: " + result );
-      });
+      var prompt = dialog.Dialog
+        .prompt("Please enter the root password for your server")
+        .set({
+          caption: caption,
+          widgetId: 'app:window:prompt'
+        })
+        .promise()
+        .then(function(result){
+          dialog.Dialog.alert("Your answer was: " + result )
+          .set({
+            caption: caption + " 2",
+            widgetId: 'app:window:prompt2'
+          });
+        });
     },
 
     /**
      * Example for nested callbacks
      */
-    createDialogChain : function(caption)
+    createDialogChain: function(caption)
     {
       dialog.Dialog.alert( "This demostrates a series of 'nested' dialogs ")
-      .set({caption:caption})
+      .set({
+        caption: caption,
+        widgetId: 'app:window:dialog'
+      })
       .promise()
       .then(function(){
         return dialog.Dialog.confirm( "Do you believe in the Loch Ness monster?")
-        .set({caption:caption + " 2"})
+        .set({
+          caption: caption + " 2",
+          widgetId: 'app:window:dialog2'
+        })
         .promise();
       })
       .then(function(result){
         return dialog.Dialog.confirm( "You really " + (result?"":"don't ")  + "believe in the Loch Ness monster?")
-        .set({caption:caption + " 3"})
+        .set({
+          caption: caption + " 3",
+          widgetId: 'app:window:dialog3'
+        })
         .promise();
       })
       .then(function(result){
-        return dialog.Dialog.alert( result ? "I tell you a secret: It doesn't exist." : "Good to know.")
-        .set({caption:caption + " 4"});
+        return dialog.Dialog.alert( result ? "I tell you a secret: It doesn't exist.": "Good to know.")
+        .set({
+          caption: caption + " 4",
+          widgetId: 'app:window:dialog4'
+        });
       });
     },
 
     /**
      * Offer a selection of choices to the user
      */
-    createSelect : function(caption)
+    createSelect: function(caption)
     {
       dialog.Dialog.select( "Select the type of record to create:", [
         { label:"Database record", value:"database" },
         { label:"World record", value:"world" },
         { label:"Pop record", value:"pop" }
       ])
-      .set({caption:caption})
+      .set({
+        caption: caption,
+        widgetId: 'app:window:select'
+      })
       .promise()
       .then(function(result){
         return dialog.Dialog.alert("You selected: '" + result + "'")
-        .set({caption:caption + " 2"})
+        .set({
+          caption: caption + " 2",
+          widgetId: 'app:window:select2'
+        })
         .promise();
       });
 
 //    same as:
 //      (new dialog.Select({
-//        message : "Select the type of record to create:",
-//        options : [
+//        message: "Select the type of record to create:",
+//        options: [
 //          { label:"Database record", value:"database" },
 //          { label:"World record", value:"world" },
 //          { label:"Pop record", value:"pop" }
 //        ],
-//        allowCancel : true,
-//        caption : caption,
-//        callback : function(result){
+//        allowCancel: true,
+//        caption: caption,
+//        callback: function(result){
 //          (new dialog.Alert({
-//            message  : "You selected: '" + result + "'"
+//            message: "You selected: '" + result + "'"
 //          })).show();
 //        }
 //      })).show();
     },
 
-    createForm : function(caption)
+    createForm: function(caption)
     {
       var formData =
       {
-        'username' :
+        'username':
         {
-          'type'  : "TextField",
-          'label' : "User Name",
-          'value' : "",
-          "validation" : {
-              "required" : true
+          'type': "TextField",
+          'label': "User Name",
+          'value': "",
+          "validation": {
+              "required": true
           }
         },
-        'address' :
+        'address':
         {
-          'type'  : "TextArea",
-          'label' : "Address",
-          'lines' : 3,
-          'value' : ""
+          'type': "TextArea",
+          'label': "Address",
+          'lines': 3,
+          'value': ""
         },
-        'domain'   :
+        'domain':
         {
-          'type'  : "SelectBox",
-          'label' : "Domain",
-          'value' : 1,
-          'options' : [
-             { 'label' : "Company", 'value' : 0 },
-             { 'label' : "Home",    'value' : 1 }
+          'type': "SelectBox",
+          'label': "Domain",
+          'value': 1,
+          'options': [
+             { 'label': "Company", 'value': 0 },
+             { 'label': "Home",    'value': 1 }
            ]
         },
-        'commands'   :
+        'commands':
         {
-         'type'  : "ComboBox",
-          'label' : "Shell command to execute",
-          'value' : "",
-          'options' : [
-             { 'label' : "ln -s *" },
-             { 'label' : "rm -Rf /" }
+         'type': "ComboBox",
+          'label': "Shell command to execute",
+          'value': "",
+          'options': [
+             { 'label': "ln -s *" },
+             { 'label': "rm -Rf /" }
            ]
         },
-        'save_details' : {
-            'type' : "Checkbox",
-            'label' : "Save form details",
-            'value' : true
+        'save_details': {
+            'type': "Checkbox",
+            'label': "Save form details",
+            'value': true
         },
-        "executeDate" : {
-          "type" : "datefield",
-          "dateFormat" : new qx.util.format.DateFormat("dd.MM.yyyy HH:mm"),
-          "value" : new Date(),
-          "label" : "Execute At"
+        "executeDate": {
+          "type": "datefield",
+          "dateFormat": new qx.util.format.DateFormat("dd.MM.yyyy HH:mm"),
+          "value": new Date(),
+          "label": "Execute At"
         },
         "area": {
           "type": "spinner",
@@ -343,29 +409,36 @@ qx.Class.define("dialog.demo.Application",
       };
 
       dialog.Dialog.form("Please fill in the form", formData )
-      .set({caption:caption})
+      .set({
+        caption: caption,
+        widgetId: 'app:window:form'
+      })
       .promise()
       .then(function( result ){
         this.debug(qx.util.Serializer.toJson(result));
-        return dialog.Dialog.alert("Thank you for your input. See log for result.")
-        .set({caption:caption + " 2"})
-        .promise();
+        return dialog.Dialog
+          .alert("Thank you for your input. See log for result.")
+          .set({
+            caption: caption + " 2",
+            widgetId: 'app:window:form2'
+          })
+          .promise();
       }.bind(this));
 
 //    same as:
 //    (new dialog.Form({
-//      message : "Please fill in the form",
-//      formData : formData,
-//      allowCancel : true,
-//      caption : caption,
-//      callback : function( result )
+//      message: "Please fill in the form",
+//      formData: formData,
+//      allowCancel: true,
+//      caption: caption,
+//      callback: function( result )
 //      {
 //        dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
 //      }
 //    })).show();
     },
 
-    createWizard : function(caption)
+    createWizard: function(caption)
     {
       /*
        * wizard widget
@@ -373,105 +446,106 @@ qx.Class.define("dialog.demo.Application",
       var pageData =
       [
        {
-         "message" : "<p style='font-weight:bold'>Create new account</p><p>Please create a new mail account.</p><p>Select the type of account you wish to create</p>",
-         "formData" : {
-           "accountTypeLabel" : {
-             "type" : "label",
-             "label" : "Please select the type of account you wish to create."
+         "message": "<p style='font-weight:bold'>Create new account</p><p>Please create a new mail account.</p><p>Select the type of account you wish to create</p>",
+         "formData": {
+           "accountTypeLabel": {
+             "type": "label",
+             "label": "Please select the type of account you wish to create."
            },
-           "accountType" : {
-             "type" : "radiogroup",
+           "accountType": {
+             "type": "radiogroup",
              "label": "Account Type",
-             "options" :
+             "options":
              [
-              { "label" : "E-Mail", "value" : "email" },
-              { "label" : ".mac", "value" : ".mac" },
-              { "label" : "RSS-Account", "value" : "rss" },
-              { "label" : "Google Mail", "value" : "google" },
-              { "label" : "Newsgroup Account", "value" : "news" }
+              { "label": "E-Mail", "value": "email" },
+              { "label": ".mac", "value": ".mac" },
+              { "label": "RSS-Account", "value": "rss" },
+              { "label": "Google Mail", "value": "google" },
+              { "label": "Newsgroup Account", "value": "news" }
              ]
            }
          }
        },
        {
-         "message" : "<p style='font-weight:bold'>Identity</p><p>This information will be sent to the receiver of your messages.</p>",
-         "formData" : {
-           "label1" : {
-             "type" : "label",
-             "label" : "Please enter your name as it should appear in the 'From' field of the sent message. "
+         "message": "<p style='font-weight:bold'>Identity</p><p>This information will be sent to the receiver of your messages.</p>",
+         "formData": {
+           "label1": {
+             "type": "label",
+             "label": "Please enter your name as it should appear in the 'From' field of the sent message. "
            },
-           "fullName" : {
-             "type" : "textfield",
+           "fullName": {
+             "type": "textfield",
              "label": "Your Name",
-             "validation" : {
-               "required" : true
+             "validation": {
+               "required": true
              }
            },
-           "label2" : {
-             "type" : "label",
-             "label" : "Please enter your email address. This is the address used by others to send you messages."
+           "label2": {
+             "type": "label",
+             "label": "Please enter your email address. This is the address used by others to send you messages."
            },
-           "email" : {
-             "type" : "textfield",
+           "email": {
+             "type": "textfield",
              "label": "E-Mail Address",
-             "validation" : {
-               "required" : true,
-               "validator" : qx.util.Validate.email()
+             "validation": {
+               "required": true,
+               "validator": qx.util.Validate.email()
              }
            },
-           "birthday" : {
-             "type" : "datefield",
+           "birthday": {
+             "type": "datefield",
              "label": "Birthday"
            }
          }
        },
        {
-         "message" : "<p style='font-weight:bold'>Account</p><p>Bla bla bla.</p>",
-         "formData" : {
-           "serverType" : {
-             "type" : "radiogroup",
-             "orientation" : "horizontal",
+         "message": "<p style='font-weight:bold'>Account</p><p>Bla bla bla.</p>",
+         "formData": {
+           "serverType": {
+             "type": "radiogroup",
+             "orientation": "horizontal",
              "label": "Select the type of email server",
-             "options" :
+             "options":
                [
-                { "label" : "POP", "value" : "pop" },
-                { "label" : "IMAP", "value" : "imap" }
+                { "label": "POP", "value": "pop" },
+                { "label": "IMAP", "value": "imap" }
                ]
            },
-           "serverAddressLabel" : {
-             "type" : "label",
-             "label" : "Please enter the server for the account."
+           "serverAddressLabel": {
+             "type": "label",
+             "label": "Please enter the server for the account."
            },
-           "serverAddress" : {
-             "type" : "textfield",
+           "serverAddress": {
+             "type": "textfield",
              "label": "E-Mail Server",
-             "validation" : {
-               "required" : true
+             "validation": {
+               "required": true
              }
            }
          }
        },
        {
-         "message" : "<p style='font-weight:bold'>Username</p><p>Bla bla bla.</p>",
-         "formData" : {
-           "emailUserName" : {
-             "type" : "textfield",
+         "message": "<p style='font-weight:bold'>Username</p><p>Bla bla bla.</p>",
+         "formData": {
+           "emailUserName": {
+             "type": "textfield",
              "label": "Inbox server user name:"
            }
          }
        }
       ];
       var wizard = new dialog.Wizard({
-        width       : 500,
-        maxWidth    : 500,
-        pageData    : pageData,
-        allowCancel : true,
-        callback    : function( map ){
+        widgetId: 'app:window:wizard',
+        width : 500,
+        maxWidth: 500,
+        pageData: pageData,
+        allowCancel: true,
+        callback: function( map ){
           dialog.Dialog.alert("Thank you for your input. See log for result.");
           this.debug(qx.util.Serializer.toJson(map));
         },
-        context     : this,
-        caption     : caption
+        context: this,
+        caption: caption
       });
       wizard.start();
     },
@@ -479,16 +553,17 @@ qx.Class.define("dialog.demo.Application",
     /**
      * Creates a sample login widget
      */
-    createLogin : function(caption)
+    createLogin: function(caption)
     {
       var loginWidget = new dialog.Login({
-        image       : "dialog/logo.gif",
-        text        : "Please log in, using 'demo'/'demo'",
-        checkCredentials : this.checkCredentials,
-        callback    : this.finalCallback,
-        showForgotPassword : true,
-        caption : caption,
-        forgotPasswordHandler : function(){window.alert("Too bad. I cannot remember it either.");}
+        widgetId: 'app:window:login',
+        image: "dialog/logo.gif",
+        text: "Please log in, using 'demo'/'demo'",
+        checkCredentials: this.checkCredentials,
+        callback: this.finalCallback,
+        showForgotPassword: true,
+        caption: caption,
+        forgotPasswordHandler: function(){window.alert("Too bad. I cannot remember it either.");}
       });
 
       // you can optionally attach event listeners, for example to
@@ -514,14 +589,11 @@ qx.Class.define("dialog.demo.Application",
     * @param callback {Function} The callback function that needs to be called with
     * (err, data) as arguments
     */
-   checkCredentials : function( username, password, callback )
+   checkCredentials: function( username, password, callback )
    {
-      if ( username == "demo" && password == "demo" )
-      {
+      if ( username == "demo" && password == "demo" ) {
         callback( null, username);
-      }
-      else
-      {
+      } else {
         callback( "Wrong username or password!" );
       }
     },
@@ -530,23 +602,31 @@ qx.Class.define("dialog.demo.Application",
      * Sample final callback to react on the result of the authentication
      * @param err {String|Error|undefined|null}
      */
-    finalCallback : function(err, data)
+    finalCallback: function(err, data)
     {
-      if( err)
-      {
-        dialog.Dialog.alert( err );
-      }
-      else
-      {
-        dialog.Dialog.alert( "User '" + data + "' is now logged in. Or at least we pretend." );
+      if (err) {
+        dialog.Dialog
+          .alert(err)
+          .set({
+            caption: "Login Error",
+            widgetId: "app:window:loginError"
+          });
+      } else {
+        dialog.Dialog
+          .alert( "User '" + data + "' is now logged in. Or at least we pretend." )
+          .set({
+            caption: "Login Success",
+            widgetId: "app:window:loginSuccess"
+          });
       }
     },
 
-    createProgress : function(caption)
+    createProgress: function(caption)
     {
        var progressWidget = new dialog.Progress({
-         caption      : caption,
-         allowCancel  : true
+         widgetId: 'app:window:progress',
+         caption: caption,
+         allowCancel: true
        });
        progressWidget.show()
        .promise()
@@ -555,27 +635,27 @@ qx.Class.define("dialog.demo.Application",
        });
 
        var counter = 0;
-       (function incrementProgress()
-       {
+       (function incrementProgress() {
           progressWidget.set({
-           progress : counter,
-           message  : counter + "% completed",
-           allowCancel : true
+           progress: counter,
+           message: counter + "% completed",
+           allowCancel: true
           });
           if( counter++ == 100 )return;
           qx.lang.Function.delay(incrementProgress,100);
       })();
     },
 
-    createProgressWithLog : function(caption)
+    createProgressWithLog: function(caption)
     {
       var cancelled = false; // used in closures
       var progressWidget = new dialog.Progress({
-          showLog : true,
-          caption : caption,
-          okButtonText : "Continue",
-          allowCancel : true,
-          hideWhenCancelled : false
+        widgetId: 'app:window:progress_with_log',
+        showLog: true,
+        caption: caption,
+        okButtonText: "Continue",
+        allowCancel: true,
+        hideWhenCancelled: false
        });
        progressWidget.show()
        .promise()
@@ -589,12 +669,11 @@ qx.Class.define("dialog.demo.Application",
        });
        var counter = 0;
        var abortMessage = false;
-       (function textProgress()
-       {
+       (function textProgress() {
           if( cancelled ){
             progressWidget.set({
-             progress : counter,
-             message  : "Aborting..."
+             progress: counter,
+             message: "Aborting..."
             });
             if( ! abortMessage ){
               progressWidget.setNewLogText( "Aborting..." );
@@ -603,8 +682,8 @@ qx.Class.define("dialog.demo.Application",
 
           }else{
             progressWidget.set({
-             progress : counter,
-             message  : counter + "% completed"
+             progress: counter,
+             message: counter + "% completed"
             });
             if ( counter % 10 === 0 )
             {
@@ -613,10 +692,10 @@ qx.Class.define("dialog.demo.Application",
           }
 
           if( counter++ == 100 ) {
-            var msg = cancelled ? "Cancelled." : "Completed.";
+            var msg = cancelled ? "Cancelled.": "Completed.";
             progressWidget.set({
-             newLogText : msg,
-             message  : msg
+             newLogText: msg,
+             message: msg
             });
             return;
           }

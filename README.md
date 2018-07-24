@@ -39,13 +39,18 @@ From v1.3.0 on, the contrib allows you to
 use custom icons for the dialogs. However, this means that the icons will not work out of the box. You must use or extend [one of the shipped icon themes](source/class/dialog/theme/icon) in your application's meta theme (see [this example](source/class/dialog/theme/Theme.js)) or copy the alias definitions from one of them into your own icon theme. You can also use your own choice of icons by writing an icon theme which defines defining the aliases "dialog.icon.(ok|cancel|info|warning|error)" with the paths to the icons. Those paths also need to be put into a `@asset` compiler hint.
 See, for example, [this theme class](source/class/dialog/theme/icon/IcoMoonFree.js).
 
+## Testing
+To manually run the tests, execute `test/install.sh` first. Once the message 'Compiled 0 classes' appears,
+open a new terminal and start the tests with `tests/run.sh`. When the tests succeed, you can kill the
+server process in the first tab.
+
 ## Changelog
+v1.4.0
+- Added TextCafe UI tests
 v1.3.3
 - integrate demo application into library code, now you can simply do `qx serve` to run the demo.
-
 v1.3.1
 - fix alias names
-
 v1.3.0
 - Compatible with qooxdoo 5.x and 6.x: added support for new JS compiler
 - Merged changes from https://github.com/jbruwes/qooxdialog
@@ -64,16 +69,13 @@ v1.3.0
 - Progress Widget enhancements:
   - added 'hideWhenCancelled' property (default: true) to allow "cleanup" or
     similar actions to be displayed after the cancel button has been pressed.  
-
 v1.2
 - fixed a bug that prevented submitting the login dialog by pressing enter
   (patch by @novij)
 - added "Forgot Password?" button to login widget
-
 v1.1
 - compatible with qooxdoo v4.0
 - Progress dialog widget added
-
 v1.0
 - compatible with qooxdoo v3.5
 

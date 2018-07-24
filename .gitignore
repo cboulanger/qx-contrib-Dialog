@@ -8,8 +8,10 @@ source/script
 *output
 
 # other stuff
-node_modules
+qooxdoo/
+node_modules/
 npm-debug.log
 .DS_Store
 .c9
 .c9revisions
+.vscode

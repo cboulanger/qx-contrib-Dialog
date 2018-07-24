@@ -265,11 +265,20 @@ qx.Class.define("dialog.Login", {
      * user information
      */
     _handleCheckCredentials: function(err, data) {
-      this._password.setValue("");
+      //this._password.setValue("");
       this.setMessage(null);
       if (err) {
         this.fireDataEvent("loginFailure", err);
-        this._password.focus();
+        this._username.addListenerOnce('focus', function(){
+          qx.event.Timer.once(function(){
+            this._username.selectAllText();
+          }, this, 100);
+        }, this);
+        this._password.addListenerOnce('focus', function(){
+          qx.event.Timer.once(function(){
+            this._password.selectAllText();
+          }, this, 100);
+        }, this);
       } else {
         this.fireDataEvent("loginSuccess", data);
         this.hide();

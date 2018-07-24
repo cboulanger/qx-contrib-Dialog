@@ -1,0 +1,25 @@
+{
+  "name": "qx-contrib-dialog",
+  "version": "1.4.0",
+  "description": "see http://cboulanger.github.io/qx-contrib-Dialog/",
+  "main": "index.js",
+  "dependencies": {
+    "qooxdoo-sdk": "^6.0.0-alpha-20180529",
+    "qxcompiler": "^0.2.13",
+    "testcafe": "^0.20.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npx testcafe chrome,firefox tests/testcafe.js  --app-init-delay 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cboulanger/qx-contrib-Dialog.git"
+  },
+  "author": "Christian Boulanger (info@bibliograph.org)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cboulanger/qx-contrib-Dialog/issues"
+  },
+  "homepage": "https://github.com/cboulanger/qx-contrib-Dialog#readme"
+}
