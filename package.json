@@ -6,7 +6,7 @@
   "dependencies": {
     "qooxdoo-sdk": "^6.0.0-alpha-20180529",
     "qxcompiler": "^0.2.13",
-    "testcafe": "^0.20.4"
+    "testcafe": "^0.20.5"
   },
   "devDependencies": {},
   "scripts": {
