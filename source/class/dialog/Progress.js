@@ -158,10 +158,9 @@ qx.Class.define("dialog.Progress", {
     _logView: null,
 
     /**
-     * Create the content of the dialog.
-     * Extending classes must implement this method.
+     * @inheritdoc
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite().set({ width: 300 });
       container.setLayout(new qx.ui.layout.VBox(5));
       this.add(container);

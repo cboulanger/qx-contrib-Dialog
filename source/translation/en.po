@@ -10,11 +10,14 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: dialog.Form:436 dialog/Dialog.js:417 dialog/Form.js:457
+#: dialog.Form:436 dialog/Dialog.js:417 dialog/Dialog.js:425
+#: dialog/Dialog.js:433 dialog/Form.js:457 dialog/Form.js:566
+#: dialog/Form.js:681 dialog/Form.js:685 dialog/Form.js:683
 msgid "OK"
 msgstr ""
 
-#: dialog.Dialog:443 dialog/Dialog.js:443
+#: dialog.Dialog:443 dialog/Dialog.js:443 dialog/Dialog.js:451
+#: dialog/Dialog.js:459
 msgid "Cancel"
 msgstr ""
 
@@ -38,7 +41,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: dialog.Wizard:129 dialog/Wizard.js:129
+#: dialog.Wizard:129 dialog/Wizard.js:129 dialog/Wizard.js:128
 msgid "Finish"
 msgstr ""
 
@@ -78,6 +81,7 @@ msgstr ""
 msgid "Forgot Password?"
 msgstr ""
 
-#: dialog/Form.js:396
+#: dialog/Form.js:396 dialog/Form.js:505 dialog/Form.js:579 dialog/Form.js:580
+#: dialog/Form.js:584 dialog/Form.js:582
 msgid "Value is invalid"
 msgstr ""

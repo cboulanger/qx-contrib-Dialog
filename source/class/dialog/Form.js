@@ -25,16 +25,208 @@
  */
 qx.Class.define("dialog.Form", {
   extend: dialog.Dialog,
+  
+  construct : function(properties)
+  {
+    // Initialize form instances to an empty map which will be updated as
+    // formItems are added.  After the formData has been applied, this
+    // property will contain a map containing the form item instances, with
+    // the key being the name used in formData, and the value being the item
+    // element. In particular, the afterFormFunction, which receives the form
+    // as its second parameter, may reference this member to gain access to
+    // the form elements created for the form.
+    this._formElements = {};
+
+    this.base(arguments, properties);
+  },  
+  
   properties: {
     /**
      * Data to create a form with multiple fields.
+     * @see 
+     */
+    formData: {
+      check: "Map",
+      nullable: true,
+      event: "changeFormData",
+      apply: "_applyFormData"
+    },
+
+    /**
+     * The model of the result data
+     */
+    model: {
+      check: "qx.core.Object",
+      nullable: true,
+      event: "changeModel"
+    },
+
+    /**
+     * The default width of the column with the field labels
+     */
+    labelColumnWidth: {
+      check: "Integer",
+      nullable: false,
+      init: 100
+    },
+    
+    /**
+     * Function to call to create and configure a form renderer. If null, a
+     * single-column form renderer is automatically instantiated and
+     * configured. The function is passed a single argument, the form object.
+     */
+    setupFormRendererFunction :
+    {
+      check : "Function",
+      nullable : true,
+      init : null
+    },
+
+    /**
+     * Function to call just before creating the form's input fields. This
+     * allows additional, non-form widgets to be added. The function is called
+     * one two arguments: the container in which the form fields should be
+     * placed, and the form object itself (this).
+     */
+    beforeFormFunction :
+    {
+      check : "Function",
+      nullable : true,
+      init : null
+    },
+
+    /*
+     * Function to call with the internal form, allowing the user to do things
+     * such as set up a form validator (vs. field validators) on the form. The
+     * function is called with two arguments: the internal qx.ui.form.Form
+     * object, and the current dialog.Form object. An attempt is made to call
+     * the function in the context specified in the form data, but that may
+     * not work properly if the context property is not yet set at the time at
+     * the form is created.
+     */
+    formReadyFunction :
+    {
+      check : "Function",
+      nullable : true,
+      init : null,
+      event : "formReadyFunctionChanged"
+    },
+
+    /**
+     * Function to call just after creating the form's input fields. This
+     * allows additional, non-form widgets to be added. The function is called
+     * one two arguments: the container in which the form fields should be
+     * placed, and the form object itself (this).
+     */
+    afterFormFunction :
+    {
+      check : "Function",
+      nullable : true,
+      init : null
+    },
+
+    /**
+     * Function to call just after creating the form's buttons. This allows
+     * additional, additional widgets to be added. The function is called with
+     * two arguments: the container in which the buttons were placed, and the
+     * form object itself (this).
+     */
+    afterButtonsFunction :
+    {
+      check : "Function",
+      nullable : true,
+      init : null
+    }    
+    
+  },
+
+  members: {
+    _formContainer: null,
+    _form: null,
+    _formValidator: null,
+    _formController: null,
+    _formElements : null,
+
+    /**
+     * Return the form
+     * @return {qx.ui.form.Form}
+     */
+    getForm: function () {
+      return this._form;
+    },
+
+    /**
+     * @inheritdoc
+     */
+    _createWidgetContent: function(properties) {
+      // Handle properties that must be set before _applyFormData
+      if (properties.setupFormRendererFunction) {
+        this.setSetupFormRendererFunction(properties.setupFormRendererFunction);
+      }    	
+      var container = new qx.ui.container.Composite();
+      container.setLayout(new qx.ui.layout.VBox(10));
+      this.add(container);
+      var hbox = new qx.ui.container.Composite();
+      hbox.setLayout(new qx.ui.layout.HBox(10));
+      container.add(hbox);
+      this._message = new qx.ui.basic.Label();
+      this._message.setRich(true);
+      this._message.setMinWidth(200);
+      this._message.setAllowStretchX(true);
+      hbox.add(this._message, {
+        flex: 1
+      });
+      
+      // If requested, call the before-form function to add some fields
+      var f;
+      if (typeof properties.beforeFormFunction == "function") {
+        f = properties.beforeFormFunction.bind(properties.context);
+        f(container, this);
+      }
+      
+      // wrap fields in form tag to avoid Chrome warnings, 
+      // see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
+      var formTag = new dialog.FormTag();
+      this._formContainer = new qx.ui.container.Composite();
+      this._formContainer.setLayout(new qx.ui.layout.Grow());
+      formTag.add( this._formContainer, {flex: 1} );
+      container.add(formTag, { flex: 1 });
+      
+      // If requested, call the after-form function to add some fields
+      if (typeof properties.afterFormFunction == "function") {
+        f = properties.afterFormFunction.bind(properties.context);
+        f(container, this);
+      }      
+      
+      // Buttons
+      var buttonPane = new qx.ui.container.Composite();
+      var bpLayout = new qx.ui.layout.HBox(5);
+      bpLayout.setAlignX("center");
+      buttonPane.setLayout(bpLayout);
+      container.add(buttonPane);
+      buttonPane.add(this._createOkButton());
+      buttonPane.add(this._createCancelButton());
+      
+      // If requested, call the after-buttons function
+      if (typeof properties.afterButtonsFunction == "function") {
+        f = properties.afterButtonsFunction.bind(properties.context);
+        f(buttonPane, this);
+      }      
+    },
+
+    /**
+     * Constructs the form on-the-fly
      * So far implemented:
-     *   TextField / TextArea
-     *   ComboBox
-     *   SelectBox
-     *   RadioGroup
-     *   CheckBox
-     *
+     *  - CheckBox
+     *  - ComboBox
+     *  - DateField
+     *  - GroupHeader 
+     *  - PasswordField
+     *  - RadioGroup
+     *  - SelectBox
+     *  - Spinner
+     *  - TextField / TextArea 
+     * 
      * <pre>
      * {
      *  "username" : {
@@ -66,89 +258,12 @@ qx.Class.define("dialog.Form", {
      *   }
      * }
      * </pre>
-     *
-     */
-    formData: {
-      check: "Map",
-      nullable: true,
-      event: "changeFormData",
-      apply: "_applyFormData"
-    },
-
-    /**
-     * The model of the result data
-     */
-    model: {
-      check: "qx.core.Object",
-      nullable: true,
-      event: "changeModel"
-    },
-
-    /**
-     * The default width of the column with the field labels
-     */
-    labelColumnWidth: {
-      check: "Integer",
-      nullable: false,
-      init: 100
-    }
-  },
-
-  members: {
-    _formContainer: null,
-    _form: null,
-    _formValidator: null,
-    _formController: null,
-
-    /**
-     * Return the form
-     * @return {qx.ui.form.Form}
-     */
-    getForm: function () {
-      return this._form;
-    },
-
-    /**
-     * Create the main content of the widget
-     */
-    _createWidgetContent: function () {
-      var container = new qx.ui.container.Composite();
-      container.setLayout(new qx.ui.layout.VBox(10));
-      this.add(container);
-      var hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
-      container.add(hbox);
-      this._message = new qx.ui.basic.Label();
-      this._message.setRich(true);
-      this._message.setMinWidth(200);
-      this._message.setAllowStretchX(true);
-      hbox.add(this._message, {
-        flex: 1
-      });
-      // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
-      var formTag = new dialog.FormTag();
-      this._formContainer = new qx.ui.container.Composite();
-      this._formContainer.setLayout(new qx.ui.layout.Grow());
-      formTag.add( this._formContainer, {flex: 1} );
-      container.add(formTag, { flex: 1 });
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
-      container.add(buttonPane);
-      var okButton = this._createOkButton();
-      buttonPane.add(okButton);
-      var cancelButton = this._createCancelButton();
-      buttonPane.add(cancelButton);
-    },
-
-    /**
-     * Constructs the form on-the-fly
      * @param formData {Map} The form data map
      * @param old {Map|null} The old value
      * @lint ignoreDeprecated(alert,eval)
      */
     _applyFormData: function (formData, old) {
+      //  remove container content, form, controller
       if (this._formController) {
         try {
           this.getModel().removeAllBindings();
@@ -164,13 +279,16 @@ qx.Class.define("dialog.Form", {
         }
       }
       this._formContainer.removeAll();
+      // if form is to be deleted
       if (!formData) {
         return;
       }
+      // if a model exist, dispose it first
       if (this.getModel()) {
         this.getModel().removeAllBindings();
         this.getModel().dispose();
       }
+      // setup model
       var modelData = {};
       for (var key in formData) {
         modelData[key] = formData[key].value !== undefined
@@ -179,15 +297,34 @@ qx.Class.define("dialog.Form", {
       }
       var model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);
+      // create new form and form controller
       this._form = new qx.ui.form.Form();
       this._formController = new qx.data.controller.Object(this.getModel());
+      // hooks for subclasses or users to do something with the new form
       this._onFormReady(this._form);
+      var f = this.getFormReadyFunction();
+      if (f) {
+        f.call(this.getContext(), this._form, this);
+      } else {
+        this.addListenerOnce(
+          "formReadyFunctionChanged",
+          function() {
+            f = this.getFormReadyFunction();
+            if (f) {
+              f.call(this.getContext(), this._form, this);
+            }
+          },
+          this.getContext());
+      }
+      // loop through form data array
       for (var key in formData) {
         var fieldData = formData[key];
         var formElement = null;
         switch (fieldData.type.toLowerCase()) {
           case "groupheader":
             this._form.addGroupHeader(fieldData.value);
+            formElement = new qx.ui.form.TextField(); // dummy
+            formElement.setUserData("excluded",true);            
             break;
           case "textarea":
             formElement = new qx.ui.form.TextArea();
@@ -196,8 +333,9 @@ qx.Class.define("dialog.Form", {
             break;
           case "textfield":
             formElement = new qx.ui.form.TextField();
-            if (fieldData.maxLength)
+            if (fieldData.maxLength) {
               formElement.setMaxLength(fieldData.maxLength);
+            }
             formElement.setLiveUpdate(true);
             break;
           case "datefield":
@@ -267,10 +405,28 @@ qx.Class.define("dialog.Form", {
               }
               formElement.setNumberFormat(nf);
             }
-            break;
+            break;  
+          case "list":
+            formElement = new qx.ui.form.List();
+            if (fieldData.selectionMode) {
+              formElement.setSelectionMode(fieldData.selectionMode);
+            }
+            if (fieldData.dragSelection) {
+              var mode = formElement.getSelectionMode();
+              if (mode == "single" || mode == "one") {
+                this.debug("Drag selection not available in " + mode);
+              } else {
+                formElement.setDragSelection(fieldData.dragSelection);
+              }
+            }
+            var model = qx.data.marshal.Json.createModel( fieldData.options );
+            new qx.data.controller.List( model, formElement, "label");
+            break;            
           default:
             this.error("Invalid form field type:" + fieldData.type);
         }
+        // Add form element to controller so that result data
+        // model is updated when form element value changes
         formElement.setUserData("key", key);
         var _this = this;
         if (typeof fieldData.type == "string") {
@@ -281,15 +437,13 @@ qx.Class.define("dialog.Form", {
             case "combobox":
             case "datefield":
             case "spinner":
-              this._formController.addTarget(formElement, "value", key, true, null, {
-                converter: function (value) {
-                  _this._form.getValidationManager().validate();
-                  return value;
-                }
-              });
-              break;
             case "checkbox":
+              // validate the form on leving the form element
+              formElement.addListener("blur", function(e){
+                _this._form.getValidationManager().validate();
+              });
               this._formController.addTarget(formElement, "value", key, true, null);
+              
               break;
             case "selectbox":
               this._formController.addTarget(formElement, "selection", key, true, {
@@ -335,6 +489,37 @@ qx.Class.define("dialog.Form", {
                 }
               });
               break;
+            case "spinner":
+              this._formController.addTarget(
+                formElement, "value", key, true, null);
+              break;
+  
+            case "list":
+              this._formController.addTarget( 
+                formElement, "selection", key, true, {  
+                  "converter" : qx.lang.Function.bind( function( value ) {
+                    var selected=[];
+                    var selectables = this.getSelectables();
+                    selectables.forEach( function( selectable ) {
+                      if ((value instanceof Array ||
+                           value instanceof qx.data.Array) &&
+                          value.includes(selectable.getModel().getValue())) {
+                        selected.push(selectable);
+                      }
+                    }, this );
+                    return selected;
+                  }, formElement)
+                },{  
+                  "converter" : qx.lang.Function.bind( function( selection ) {  
+                    var value = [];
+                    selection.forEach( function ( selected ) {
+                      value.push(selected.getModel().getValue());
+                    });
+                    return value; 
+                  }, formElement)
+                }
+              );          
+              break;
           }
         }
         /**
@@ -342,7 +527,6 @@ qx.Class.define("dialog.Form", {
          */
         var validator = null;
         if (formElement && fieldData.validation) {
-          // required field
           if (fieldData.validation.required) {
             formElement.setRequired(true);
           }
@@ -350,9 +534,11 @@ qx.Class.define("dialog.Form", {
           if (fieldData.validation.validator) {
             validator = fieldData.validation.validator;
             if (typeof validator == "string") {
+              // if a validation factory exists, use this
               if (qx.util.Validate[validator]) {
                 validator = qx.util.Validate[validator]();
               } else if (validator.charAt(0) == "/") {
+                // use regular expression to validate
                 validator = qx.util.Validate.regExp(
                 new RegExp(validator.substr(1, validator.length - 2)),
                 fieldData.validation.errorMessage
@@ -404,8 +590,9 @@ qx.Class.define("dialog.Form", {
         }
 
         /**
-         * other widget properties @todo: allow to set all properties
+         * other widget properties
          */
+        // width, placeholder, enabled are deprecated, use generic property setter instead
         if (fieldData.width !== undefined) {
           formElement.setWidth(fieldData.width);
         }
@@ -415,18 +602,31 @@ qx.Class.define("dialog.Form", {
         if (fieldData.enabled !== undefined) {
           formElement.setEnabled(fieldData.enabled);
         }
+        // generic property setter
+        if ( typeof fieldData.properties == "object" ) {
+          formElement.set( fieldData.properties );
+        }
+        // generic userdata settings
+        if ( typeof fieldData.userdata == "object" ) {
+          Object.keys( fieldData.userdata ).forEach(
+            function(key) {
+              formElement.setUserData(key, fieldData.userdata[key]);
+            });
+        }        
 
         /**
          * Events
          */
         if (qx.lang.Type.isObject(fieldData.events)) {
           for (var type in fieldData.events) {
+            var func;
             try {
-              var func = eval("(" + fieldData.events[type] + ")"); // eval is evil, I know.
-              if (!qx.lang.Type.isFunction(func)) {
+              func = fieldData.events[type];
+              if ( qx.lang.Type.isFunction(func)) {
+                formElement.addListener(type, func, formElement);
+              } else {
                 throw new Error();
               }
-              formElement.addListener(type, func, formElement);
             } catch (e) {
               this.warn("Invalid '" + type + "' event handler for form element '" + key + "'.");
             }
@@ -437,19 +637,45 @@ qx.Class.define("dialog.Form", {
         var label = fieldData.label;
         this._form.add(formElement, label, validator);
       }
-      var view = new dialog.FormRenderer(this._form);
-      view.getLayout().setColumnFlex(0, 0);
-      view.getLayout().setColumnMaxWidth(0, this.getLabelColumnWidth());
-      view.getLayout().setColumnFlex(1, 1);
-      view.setAllowGrowX(true);
-      this._formContainer.add(view);
-      this._form.getValidationManager().validate();
+
+      // render the form or delegate to custom form renderer 
+      var setupFormRenderer = this.getSetupFormRendererFunction();
+      if (! setupFormRenderer) {
+        var view = new dialog.FormRenderer(this._form);
+        view.getLayout().setColumnFlex(0, 0);
+        view.getLayout().setColumnMaxWidth(0, this.getLabelColumnWidth());
+        view.getLayout().setColumnFlex(1, 1);
+        view.setAllowGrowX(true);
+        this._formContainer.add(view);
+      } else {
+        this._formContainer.add( setupFormRenderer.bind(this)(this._form) );
+      }
+      
+    },
+
+    /**
+     * Constructs the form on-the-fly
+     * @param formData {Map} The form data map
+     * @param old {Map|null} The old value
+     */
+    _applyLabelColumnWidth : function(width, old)
+    {
+      var view;
+
+      // If the form renderer is the default one and has already been applied...
+      if (! this.getSetupFormRendererFunction() &&
+          this._formContainer &&
+          this._formContainer.getChildren().length > 0)
+      {
+        view = this._formContainer.getChildren()[0];
+        view.getLayout().setColumnWidth(0, width);
+        view.getLayout().setColumnMaxWidth(0, width);
+      }
     },
 
     /**
      * Create OK Button
      * unlike our superclass, we do not add an appear listener to focus OK
-     * cherry-picked from from https://github.com/derrell/qx-contrib-Dialog/commit/c656f1cb98cbd1e61456566b63b5a4926dfe9cef
      * @override
      * @return {qx.ui.form.Button}
      */
@@ -481,6 +707,11 @@ qx.Class.define("dialog.Form", {
      * @override
      */
     _handleOk: function () {
+      // only proceed if the form validates
+      if ( ! this._form.getValidationManager().validate() ) {
+        // this will display the warnings for required fields and invalid content
+        return; 
+      }
       this.hide();
       if (this.getCallback()) {
         this.getCallback().call(

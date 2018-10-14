@@ -44,7 +44,7 @@ qx.Class.define("dialog.Dialog", {
     useBlocker: function(value) {
       dialog.Dialog.__useBlocker = value;
     },
-
+    
     /**
      * Returns a dialog instance by type
      * @param type {String} The dialog type to get
@@ -57,6 +57,7 @@ qx.Class.define("dialog.Dialog", {
         this.error(type + " is not a valid dialog type");
       }
     },
+    
     /**
      * Shortcut for alert dialog
      * @param message {String} The message to display
@@ -262,7 +263,11 @@ qx.Class.define("dialog.Dialog", {
       },
       this
     );
-    this._createWidgetContent();
+    // create the actual widget
+    // you can pass non-widget properties in the constructor param to this function, 
+    // but you need to make sure those get deleted from the map there, otherwise 
+    // you'll get an error in the next step
+    this._createWidgetContent(properties || {});
     // set properties from constructor param
     if (typeof properties == "object") {
       this.set(properties);
@@ -330,6 +335,13 @@ qx.Class.define("dialog.Dialog", {
       check: "Boolean",
       init: true
     },
+    
+    // overridden
+    focusable :
+    {
+      refine : true,
+      init : true
+    },    
 
     /**
      * Whether the dialog is shown. If true, call the show() method. If false,
@@ -390,10 +402,14 @@ qx.Class.define("dialog.Dialog", {
     _cancelButton: null,
 
     /**
-     * Create the content of the dialog.
-     * Extending classes must implement this method.
+     * Create the visible content of the dialog.
+     * @param properties {Map} 
+     *    The properties map passed to the constructor. You can pass
+     *    additional, non-widget-properties in this map to be used in this method,
+     *    but the need to be deleted from the map before returning. 
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
+      // Extending classes must implement this method.
       this.error("_createWidgetContent not implemented!");
     },
 

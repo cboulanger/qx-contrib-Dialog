@@ -120,9 +120,9 @@ qx.Class.define("dialog.Login", {
     },
 
     /**
-     * Create the main content of the widget
+     * @inheritdoc
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
       // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
       var formTag = new dialog.FormTag();
       var container = new qx.ui.container.Composite();

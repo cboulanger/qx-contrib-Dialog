@@ -64,9 +64,9 @@ qx.Class.define("dialog.Prompt", {
     _textField: null,
 
     /**
-     * Create the main content of the widget
+     * @inheritdoc
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
