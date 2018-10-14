@@ -403,6 +403,6 @@ qx.Class.define("dialog.Dialog", {
       }
       this.setVisibility("hidden");
       return this;
-    },
+    }
   }
 });
