@@ -450,6 +450,7 @@ qx.Class.define("dialog.demo.Application",
     {
       if (!this.__embeddedFormCreated){
         var embeddedForm = new dialog.EmbeddedForm({
+          message: "This is an embedded form",
           formData: this.getFormData()
         });
         this.getRoot().add(embeddedForm,{ left: 350, top: 300} );

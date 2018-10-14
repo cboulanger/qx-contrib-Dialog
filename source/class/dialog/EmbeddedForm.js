@@ -24,6 +24,16 @@ qx.Class.define("dialog.EmbeddedForm", {
 
   properties:
   {
+
+    /**
+     * The message that is displayed
+     */
+    message: {
+      check: "String",
+      nullable: true,
+      apply: "_applyMessage"
+    },    
+
     /**
      * Callback function that will be called when the user
      * has interacted with the widget. See sample callback
@@ -73,6 +83,16 @@ qx.Class.define("dialog.EmbeddedForm", {
     getDialogContainer: function() {
       return this.__container;
     },
+   
+    /**
+     * Called when the 'message' property is set
+     * @param value {String} The current value
+     * @param old {String|null} old The previous value
+     * @return {void}
+     */
+    _applyMessage: function(value, old) {
+      this._message.setValue(value);
+    },    
 
     /**
      * Embedded form has no OK button
