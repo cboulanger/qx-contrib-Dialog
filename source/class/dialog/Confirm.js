@@ -87,12 +87,11 @@ qx.Class.define("dialog.Confirm", {
      * @inheritdoc
      */
     _createWidgetContent: function(properties) {
-      var groupboxContainer = new qx.ui.container.Composite();
-      groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
-      this.add(groupboxContainer);
+      var container = new qx.ui.container.Composite();
+      container.setLayout(new qx.ui.layout.VBox(10));
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
-      groupboxContainer.add(hbox);
+      container.add(hbox);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       hbox.add(this._image);
@@ -135,7 +134,8 @@ qx.Class.define("dialog.Confirm", {
       buttonPane.add(yesButton);
       buttonPane.add(noButton);
       buttonPane.add(cancelButton);
-      groupboxContainer.add(buttonPane);
+      container.add(buttonPane);
+      return container;
     },
 
     /**

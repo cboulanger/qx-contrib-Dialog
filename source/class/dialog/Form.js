@@ -165,7 +165,6 @@ qx.Class.define("dialog.Form", {
       }    	
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -211,7 +210,8 @@ qx.Class.define("dialog.Form", {
       if (typeof properties.afterButtonsFunction == "function") {
         f = properties.afterButtonsFunction.bind(properties.context);
         f(buttonPane, this);
-      }      
+      }
+      return container; 
     },
 
     /**
@@ -636,6 +636,7 @@ qx.Class.define("dialog.Form", {
         // Putting it all together
         var label = fieldData.label;
         this._form.add(formElement, label, validator);
+        this._formElements[key] = formElement;
       }
 
       // render the form or delegate to custom form renderer 

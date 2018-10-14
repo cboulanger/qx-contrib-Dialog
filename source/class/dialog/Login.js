@@ -130,7 +130,6 @@ qx.Class.define("dialog.Login", {
       var layout = new qx.ui.layout.VBox(10);
       layout.setAlignX("center");
       container.setLayout(layout);
-      this.add(formTag);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       container.add(this._image);
@@ -230,6 +229,7 @@ qx.Class.define("dialog.Login", {
         row: 3,
         column: 1
       });
+      return formTag;
     },
 
     /**

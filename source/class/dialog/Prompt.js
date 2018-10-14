@@ -69,7 +69,6 @@ qx.Class.define("dialog.Prompt", {
     _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -126,6 +125,7 @@ qx.Class.define("dialog.Prompt", {
       buttonPane.add(this._createOkButton());
       buttonPane.add(this._createCancelButton());
       container.add(buttonPane);
+      return container;
     },
 
     /**

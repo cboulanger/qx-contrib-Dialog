@@ -38,7 +38,6 @@ qx.Class.define("dialog.Select", {
     _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -69,6 +68,7 @@ qx.Class.define("dialog.Select", {
         buttonPane.add(cancelButton);
       }, this);
       container.add(buttonPane);
+      return container;
     },
 
     /**

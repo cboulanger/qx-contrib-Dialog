@@ -83,7 +83,6 @@ qx.Class.define("dialog.Wizard", {
       var container = new qx.ui.container.Composite();
       container.setPadding(0);
       container.setLayout(new qx.ui.layout.VBox(0));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -130,6 +129,7 @@ qx.Class.define("dialog.Wizard", {
       this._finishButton.addListener("execute", this.finish, this);
       this._finishButton.setEnabled(false);
       buttonPane.add(this._finishButton);
+      return container;
     },
 
     /**

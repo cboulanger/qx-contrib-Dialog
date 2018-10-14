@@ -163,7 +163,6 @@ qx.Class.define("dialog.Progress", {
     _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite().set({ width: 300 });
       container.setLayout(new qx.ui.layout.VBox(5));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.set({
         layout: new qx.ui.layout.HBox(10),
@@ -228,6 +227,7 @@ qx.Class.define("dialog.Progress", {
         this
       );
       container.add(this._okButton, {});
+      return container;
     },
 
     /**
