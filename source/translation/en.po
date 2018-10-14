@@ -2,42 +2,47 @@
 msgid ""
 msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2011-07-21 20:11+0100\nPO-Revision-Date: 2011-07-21 20:11+0100\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\n"
 
-#: dialog.Confirm:117 dialog/Confirm.js:117
+#: dialog.Confirm:117 dialog/Confirm.js:117 dialog/Confirm.js:116
 msgid "yes"
 msgstr ""
 
-#: dialog.Confirm:129 dialog/Confirm.js:129
+#: dialog.Confirm:129 dialog/Confirm.js:129 dialog/Confirm.js:128
 msgid "no"
 msgstr ""
 
 #: dialog.Form:436 dialog/Dialog.js:417 dialog/Dialog.js:425
-#: dialog/Dialog.js:433 dialog/Form.js:457 dialog/Form.js:566
-#: dialog/Form.js:681 dialog/Form.js:685 dialog/Form.js:683
+#: dialog/Dialog.js:433 dialog/Dialog.js:436 dialog/Form.js:457
+#: dialog/Form.js:566 dialog/Form.js:681 dialog/Form.js:685 dialog/Form.js:683
+#: dialog/Form.js:684 dialog/Form.js:46 dialog/Form.js:43
+#: dialog/MDialog.js:138 dialog/MDialog.js:137 dialog/MDialog.js:110
+#: dialog/MForm.js:684 dialog/MForm.js:677 dialog/MForm.js:670
+#: dialog/MForm.js:672
 msgid "OK"
 msgstr ""
 
 #: dialog.Dialog:443 dialog/Dialog.js:443 dialog/Dialog.js:451
-#: dialog/Dialog.js:459
+#: dialog/Dialog.js:459 dialog/Dialog.js:462 dialog/MDialog.js:160
+#: dialog/MDialog.js:159 dialog/MDialog.js:132
 msgid "Cancel"
 msgstr ""
 
-#: dialog.Login:150 dialog/Login.js:153
+#: dialog.Login:150 dialog/Login.js:153 dialog/Login.js:152
 msgid "Name"
 msgstr ""
 
-#: dialog.Login:150 dialog/Login.js:153
+#: dialog.Login:150 dialog/Login.js:153 dialog/Login.js:152
 msgid "Password"
 msgstr ""
 
-#: dialog.Login:200 dialog/Login.js:204
+#: dialog.Login:200 dialog/Login.js:204 dialog/Login.js:203
 msgid "Login"
 msgstr ""
 
-#: dialog.Wizard:118 dialog/Wizard.js:118
+#: dialog.Wizard:118 dialog/Wizard.js:118 dialog/Wizard.js:117
 msgid "Back"
 msgstr ""
 
-#: dialog.Wizard:123 dialog/Wizard.js:123
+#: dialog.Wizard:123 dialog/Wizard.js:123 dialog/Wizard.js:122
 msgid "Next"
 msgstr ""
 
@@ -77,11 +82,33 @@ msgstr ""
 msgid "%1 does not fit %2."
 msgstr ""
 
-#: dialog.Login:206 dialog/Login.js:210
+#: dialog.Login:206 dialog/Login.js:210 dialog/Login.js:209
 msgid "Forgot Password?"
 msgstr ""
 
 #: dialog/Form.js:396 dialog/Form.js:505 dialog/Form.js:579 dialog/Form.js:580
-#: dialog/Form.js:584 dialog/Form.js:582
+#: dialog/Form.js:584 dialog/Form.js:582 dialog/MForm.js:582
+#: dialog/MForm.js:575 dialog/MForm.js:568 dialog/MForm.js:570
+#: dialog/MForm.js:569 dialog/MForm.js:572
 msgid "Value is invalid"
+msgstr ""
+
+#: qx/ui/form/validation/Manager.js:37
+msgid "This field is required"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:258
+msgid "Last year"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:270
+msgid "Last month"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:282
+msgid "Next month"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:294
+msgid "Next year"
 msgstr ""
