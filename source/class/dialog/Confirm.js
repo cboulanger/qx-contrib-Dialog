@@ -87,10 +87,10 @@ qx.Class.define("dialog.Confirm", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      var groupboxContainer = new qx.ui.container.Composite();
+      let groupboxContainer = new qx.ui.container.Composite();
       groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
       this.add(groupboxContainer);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       groupboxContainer.add(hbox);
       this._image = new qx.ui.basic.Image();
@@ -104,7 +104,7 @@ qx.Class.define("dialog.Confirm", {
         flex: 1
       });
       // yes button
-      var yesButton = (this._yesButton = new qx.ui.form.Button());
+      let yesButton = (this._yesButton = new qx.ui.form.Button());
       yesButton.setAllowStretchX(true);
       yesButton.addListener("execute", this._handleYes, this);
       this.bind("yesButtonLabel", yesButton, "label");
@@ -116,7 +116,7 @@ qx.Class.define("dialog.Confirm", {
       });
       yesButton.setLabel(this.tr("yes"));
       // no button
-      var noButton = (this._noButton = new qx.ui.form.Button());
+      let noButton = (this._noButton = new qx.ui.form.Button());
       noButton.setAllowStretchX(true);
       noButton.addListener("execute", this._handleNo, this);
       this.bind("noButtonLabel", noButton, "label");
@@ -127,9 +127,9 @@ qx.Class.define("dialog.Confirm", {
         scale: true
       });
       noButton.setLabel(this.tr("no"));
-      var cancelButton = this._createCancelButton();
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
+      let cancelButton = this._createCancelButton();
+      let buttonPane = new qx.ui.container.Composite();
+      let bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
       buttonPane.add(yesButton);

@@ -12,7 +12,7 @@
       }
     ],
     "version": "1.4.0",
-    "qooxdoo-range": "^6.0.0-alpha"
+    "qooxdoo-range": "^6.0.0-alpha-20181204-f98112fe"
   },
   "provides": {
     "namespace": "dialog",

@@ -25,10 +25,10 @@ qx.Class.define("dialog.Alert", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      var container = new qx.ui.container.Composite();
+      let container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._image = new qx.ui.basic.Image(
@@ -46,9 +46,9 @@ qx.Class.define("dialog.Alert", {
       hbox.add(this._message, {
         flex: 1
       });
-      var okButton = this._createOkButton();
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox();
+      let okButton = this._createOkButton();
+      let buttonPane = new qx.ui.container.Composite();
+      let bpLayout = new qx.ui.layout.HBox();
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
       buttonPane.add(okButton);

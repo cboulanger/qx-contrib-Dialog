@@ -4,8 +4,8 @@
   "description": "see http://cboulanger.github.io/qx-contrib-Dialog/",
   "main": "index.js",
   "dependencies": {
-    "qooxdoo-sdk": "^6.0.0-alpha-20180529",
-    "qxcompiler": "^0.2.13",
+    "qooxdoo-sdk": "^6.0.0-alpha-20181205-59f9ec49",
+    "qxcompiler": "^0.2.18",
     "testcafe": "^0.20.5"
   },
   "devDependencies": {},

@@ -80,11 +80,11 @@ qx.Class.define("dialog.Wizard", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      var container = new qx.ui.container.Composite();
+      let container = new qx.ui.container.Composite();
       container.setPadding(0);
       container.setLayout(new qx.ui.layout.VBox(0));
       this.add(container);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
@@ -94,11 +94,11 @@ qx.Class.define("dialog.Wizard", {
       hbox.add(this._message, {
         flex: 1
       });
-      var line = new qx.ui.core.Widget();
+      let line = new qx.ui.core.Widget();
       line.setHeight(2);
       line.setBackgroundColor("gray");
       container.add(line);
-      var formContainer = (this._formContainer = new qx.ui.container
+      let formContainer = (this._formContainer = new qx.ui.container
         .Composite());
       formContainer.setPadding(16);
       formContainer.setLayout(new qx.ui.layout.Grow());
@@ -110,8 +110,8 @@ qx.Class.define("dialog.Wizard", {
       line.setMarginBottom(5);
       line.setBackgroundColor("gray");
       container.add(line);
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
+      let buttonPane = new qx.ui.container.Composite();
+      let bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("right");
       buttonPane.setLayout(bpLayout);
       container.add(buttonPane);
@@ -124,7 +124,7 @@ qx.Class.define("dialog.Wizard", {
       this._nextButton.addListener("execute", this.goForward, this);
       this._nextButton.setEnabled(false);
       buttonPane.add(this._nextButton);
-      var cancelButton = this._createCancelButton();
+      let cancelButton = this._createCancelButton();
       buttonPane.add(cancelButton);
       this._finishButton = new qx.ui.form.Button(this.tr("Finish"));
       this._finishButton.addListener("execute", this.finish, this);
@@ -138,7 +138,7 @@ qx.Class.define("dialog.Wizard", {
      * @param form {qx.ui.form.Form} The form to bind
      */
     _onFormReady: function(form) {
-      var _this = this;
+      let _this = this;
       form.getValidationManager().bind("valid", this._nextButton, "enabled", {
         converter: function(value) {
           return value && _this.getAllowNext() ? true : false;
@@ -162,14 +162,14 @@ qx.Class.define("dialog.Wizard", {
       this._nextButton.setEnabled(false);
       this._finishButton.setEnabled(false);
       if (pageData) {
-        var modelData = {};
+        let modelData = {};
         pageData.forEach(function(pData) {
-          var formData = pData.formData;
-          for (var key in formData) {
+          let formData = pData.formData;
+          for (let key in formData) {
             modelData[key] = formData[key].value || null;
           }
         });
-        var model = qx.data.marshal.Json.createModel(modelData);
+        let model = qx.data.marshal.Json.createModel(modelData);
         this.setModel(model);
       } else {
         this.setFormData(null);
@@ -184,11 +184,11 @@ qx.Class.define("dialog.Wizard", {
      * @param old {Integer} The old page
      */
     _applyPage: function(page, old) {
-      var pageData = this.getPageData()[page];
+      let pageData = this.getPageData()[page];
       this.setFormData(null);
       delete pageData.pageData;
       delete pageData.page;
-      var length = this.getPageData().length;
+      let length = this.getPageData().length;
       this.setAllowNext(page < length - 1);
       this.setAllowBack(page > 0);
       if (!this.getAllowFinish()) {
@@ -209,7 +209,7 @@ qx.Class.define("dialog.Wizard", {
      * Goes to the previous wizard button
      */
     goBack: function() {
-      var page = this.getPage();
+      let page = this.getPage();
       if (page === 0) {
         this.error("Cannot go back!");
       }
@@ -220,7 +220,7 @@ qx.Class.define("dialog.Wizard", {
      * Goes to the next wizard page
      */
     goForward: function() {
-      var page = this.getPage();
+      let page = this.getPage();
       if (page > this.getPageData().length - 2) {
         this.error("Cannot go forward!");
       }

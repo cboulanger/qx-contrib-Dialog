@@ -1,35 +1,14 @@
-import { Selector, ClientFunction } from 'testcafe';
+import {IdSelector, QxSelector} from "./adapters/TestCafe";
 
 fixture `Testing dialog widgets`
-  .page `http://127.0.0.1:8080/index.html`;
-
-//const getPageHTML = ClientFunction(() => document.documentElement.outerHTML);
-const IdSelector = Selector(id => document.getElementById(id));
-const QxSelector = (selector) => {
-  // browser-side methods
-  selector = selector.addCustomMethods({
-    getQxProperty: function(domNode, key){
-      return qx.ui.core.Widget.getWidgetByElement(domNode).get(key);
-    }
-  });
-  // NodeJS-side methods
-  Object.assign(selector,{
-    findButtonLabelWithText: function(text){
-      return this
-        .find("div[qxclass='qx.ui.form.Button']")
-        .find("div[qxclass='qx.ui.basic.Label']")
-        .withText(text);
-    }
-  });
-  return selector;
-}
+  .page `http://127.0.0.1:8080/build/dialog.demo/index.html`;
 
 const simpleDialogs = ['alert','warning','error'];
 test('Simple dialogs: ' + simpleDialogs.join(', '), async t => {
   //console.log(await getPageHTML());
   for( let type of simpleDialogs){   
-    let launchButton = IdSelector('app:button:' + type);
-    let popupWindow  = IdSelector('app:window:' + type);
+    let launchButton = IdSelector(`buttons/${type}`);
+    let popupWindow  = IdSelector(`buttons/${type}/dialog`);
     let okLabel     = QxSelector(popupWindow).findButtonLabelWithText('OK');
     // click on button to see popup window
     await t
@@ -44,8 +23,8 @@ test('Simple dialogs: ' + simpleDialogs.join(', '), async t => {
 
 for( let buttonText of ['yes','no']){
   test(`Confirm dialog's '${buttonText}' button`, async t => {
-    const launchButton = IdSelector('app:button:confirm');
-    const popupWindow  = QxSelector(IdSelector('app:window:confirm'));   
+    const launchButton = IdSelector('buttons/confirm');
+    const popupWindow  = QxSelector(IdSelector('buttons/confirm/dialog1'));
     let label = QxSelector(popupWindow).findButtonLabelWithText(buttonText);
     await t
       .click(launchButton)
@@ -56,10 +35,10 @@ for( let buttonText of ['yes','no']){
 }
 
 test(`Prompt`, async t => {
-  const launchButton = IdSelector('app:button:prompt');
-  const popupWindow1  = QxSelector(IdSelector('app:window:prompt'));
+  const launchButton = IdSelector('buttons/prompt');
+  const popupWindow1  = QxSelector(IdSelector('buttons/prompt/dialog1'));
   const okLabel1 = QxSelector(popupWindow1).findButtonLabelWithText('OK');
-  const popupWindow2 = QxSelector(IdSelector('app:window:prompt2'));
+  const popupWindow2 = QxSelector(IdSelector('buttons/prompt/dialog2'));
   const okLabel2 = QxSelector(popupWindow2).findButtonLabelWithText('OK');
   const text = "abc01234567890" ;
   const displayedText = QxSelector(popupWindow2).findButtonLabelWithText(text);
@@ -77,11 +56,11 @@ test(`Prompt`, async t => {
 });
 
 test(`Login`, async t => {
-  const launchButton = IdSelector('app:button:login');
-  const loginWindow  = QxSelector(IdSelector('app:window:login'));
+  const launchButton = IdSelector('buttons/login');
+  const loginWindow  = QxSelector(IdSelector('buttons/login/window'));
   const loginButtonLabel = QxSelector(loginWindow).findButtonLabelWithText('Login');
-  const errorPopup = QxSelector(IdSelector('app:window:loginError'));
-  const successPopup = QxSelector(IdSelector('app:window:loginSuccess'));
+  const errorPopup = QxSelector(IdSelector('buttons/login/window/error'));
+  const successPopup = QxSelector(IdSelector('buttons/login/window/success'));
   
   await t
     .click(launchButton)

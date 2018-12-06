@@ -112,10 +112,10 @@ qx.Class.define("dialog.Form", {
      * Create the main content of the widget
      */
     _createWidgetContent: function () {
-      var container = new qx.ui.container.Composite();
+      let container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
@@ -126,19 +126,19 @@ qx.Class.define("dialog.Form", {
         flex: 1
       });
       // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
-      var formTag = new dialog.FormTag();
+      let formTag = new dialog.FormTag();
       this._formContainer = new qx.ui.container.Composite();
       this._formContainer.setLayout(new qx.ui.layout.Grow());
       formTag.add( this._formContainer, {flex: 1} );
       container.add(formTag, { flex: 1 });
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
+      let buttonPane = new qx.ui.container.Composite();
+      let bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
       container.add(buttonPane);
-      var okButton = this._createOkButton();
+      let okButton = this._createOkButton();
       buttonPane.add(okButton);
-      var cancelButton = this._createCancelButton();
+      let cancelButton = this._createCancelButton();
       buttonPane.add(cancelButton);
     },
 
@@ -171,20 +171,20 @@ qx.Class.define("dialog.Form", {
         this.getModel().removeAllBindings();
         this.getModel().dispose();
       }
-      var modelData = {};
-      for (var key in formData) {
+      let modelData = {};
+      for (let key in formData) {
         modelData[key] = formData[key].value !== undefined
         ? formData[key].value
         : null;
       }
-      var model = qx.data.marshal.Json.createModel(modelData);
+      let model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);
       this._form = new qx.ui.form.Form();
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
-      for (var key in formData) {
-        var fieldData = formData[key];
-        var formElement = null;
+      for (let key in formData) {
+        let fieldData = formData[key];
+        let formElement = null;
         switch (fieldData.type.toLowerCase()) {
           case "groupheader":
             this._form.addGroupHeader(fieldData.value);
@@ -215,7 +215,7 @@ qx.Class.define("dialog.Form", {
           case "combobox":
             formElement = new qx.ui.form.ComboBox();
             fieldData.options.forEach(function (item) {
-              var listItem = new qx.ui.form.ListItem(item.label, item.icon);
+              let listItem = new qx.ui.form.ListItem(item.label, item.icon);
               formElement.add(listItem);
             });
             break;
@@ -230,7 +230,7 @@ qx.Class.define("dialog.Form", {
               formElement.setUserData("orientation", fieldData.orientation);
             }
             fieldData.options.forEach(function (item) {
-              var radioButton = new qx.ui.form.RadioButton(item.label);
+              let radioButton = new qx.ui.form.RadioButton(item.label);
               radioButton.setUserData(
               "value",
               item.value !== undefined ? item.value : item.label
@@ -257,8 +257,8 @@ qx.Class.define("dialog.Form", {
               formElement.setSingleStep(fieldData.step);
             }
             if(fieldData.fractionsDigits) {
-              var fd = fieldData.fractionsDigits;
-              var nf = new qx.util.format.NumberFormat();
+              let fd = fieldData.fractionsDigits;
+              let nf = new qx.util.format.NumberFormat();
               if(fd.min) {
                 nf.setMinimumFractionDigits(fd.min);
               }
@@ -272,7 +272,7 @@ qx.Class.define("dialog.Form", {
             this.error("Invalid form field type:" + fieldData.type);
         }
         formElement.setUserData("key", key);
-        var _this = this;
+        let _this = this;
         if (typeof fieldData.type == "string") {
           switch (fieldData.type.toLowerCase()) {
             case "textarea":
@@ -294,8 +294,8 @@ qx.Class.define("dialog.Form", {
             case "selectbox":
               this._formController.addTarget(formElement, "selection", key, true, {
                 converter: qx.lang.Function.bind(function (value) {
-                  var selected = null;
-                  var selectables = this.getSelectables();
+                  let selected = null;
+                  let selectables = this.getSelectables();
                   selectables.forEach(function (selectable) {
                     if (selectable.getModel().getValue() === value) {
                       selected = selectable;
@@ -308,7 +308,7 @@ qx.Class.define("dialog.Form", {
                 }, formElement)
               }, {
                 converter: qx.lang.Function.bind(function (selection) {
-                  var value = selection[0].getModel().getValue();
+                  let value = selection[0].getModel().getValue();
                   return value;
                 }, formElement)
               });
@@ -316,11 +316,11 @@ qx.Class.define("dialog.Form", {
             case "radiogroup":
               this._formController.addTarget(formElement, "selection", key, true, {
                 converter: qx.lang.Function.bind(function (value) {
-                  var selectables = this.getSelectables();
-                  var selection = [];
+                  let selectables = this.getSelectables();
+                  let selection = [];
                   if (value) {
                     selectables.forEach(function (selectable) {
-                      var sValue = selectable.getUserData("value");
+                      let sValue = selectable.getUserData("value");
                       if (sValue === value) {
                         selection = [selectable];
                       }
@@ -330,7 +330,7 @@ qx.Class.define("dialog.Form", {
                 }, formElement)
               }, {
                 converter: function (selection) {
-                  var value = selection[0].getUserData("value");
+                  let value = selection[0].getUserData("value");
                   return value;
                 }
               });
@@ -340,7 +340,7 @@ qx.Class.define("dialog.Form", {
         /**
          * Validation
          */
-        var validator = null;
+        let validator = null;
         if (formElement && fieldData.validation) {
           // required field
           if (fieldData.validation.required) {
@@ -379,17 +379,17 @@ qx.Class.define("dialog.Form", {
              * changed by the client.
              */
             // clean
-            var proxy = fieldData.validation.proxy.replace(/;\n/g, "");
+            let proxy = fieldData.validation.proxy.replace(/;\n/g, "");
             try {
               eval('proxy = ' + proxy + ';');
             } catch (e) {
               this.warn("Invalid proxy name");
             }
             if (typeof proxy == "function") {
-              var method = fieldData.validation.method;
-              var message = fieldData.validation.invalidMessage;
-              var _this = this;
-              var validationFunc = function (validatorObj, value) {
+              let method = fieldData.validation.method;
+              let message = fieldData.validation.invalidMessage;
+              let _this = this;
+              let validationFunc = function (validatorObj, value) {
                 if (!validatorObj.__asyncInProgress) {
                   validatorObj.__asyncInProgress = true;
                   proxy(method, [value], function (valid) {
@@ -420,9 +420,9 @@ qx.Class.define("dialog.Form", {
          * Events
          */
         if (qx.lang.Type.isObject(fieldData.events)) {
-          for (var type in fieldData.events) {
+          for (let type in fieldData.events) {
             try {
-              var func = eval("(" + fieldData.events[type] + ")"); // eval is evil, I know.
+              let func = eval("(" + fieldData.events[type] + ")"); // eval is evil, I know.
               if (!qx.lang.Type.isFunction(func)) {
                 throw new Error();
               }
@@ -434,10 +434,10 @@ qx.Class.define("dialog.Form", {
         }
 
         // Putting it all together
-        var label = fieldData.label;
+        let label = fieldData.label;
         this._form.add(formElement, label, validator);
       }
-      var view = new dialog.FormRenderer(this._form);
+      let view = new dialog.FormRenderer(this._form);
       view.getLayout().setColumnFlex(0, 0);
       view.getLayout().setColumnMaxWidth(0, this.getLabelColumnWidth());
       view.getLayout().setColumnFlex(1, 1);
@@ -454,7 +454,7 @@ qx.Class.define("dialog.Form", {
      * @return {qx.ui.form.Button}
      */
     _createOkButton: function () {
-      var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
+      let okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
       okButton.setIcon("dialog.icon.ok");
       okButton.setAllowStretchX(false);
       okButton.addListener("execute", this._handleOk, this);

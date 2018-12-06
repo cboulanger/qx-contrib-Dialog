@@ -137,7 +137,7 @@ qx.Class.define("dialog.Progress", {
      */
     _applyNewLogText: function(value, old) {
       if (value) {
-        var content = this.getLogContent();
+        let content = this.getLogContent();
         this.setLogContent(content ? content + "\n" + value : value);
       }
     },
@@ -162,10 +162,10 @@ qx.Class.define("dialog.Progress", {
      * Extending classes must implement this method.
      */
     _createWidgetContent: function() {
-      var container = new qx.ui.container.Composite().set({ width: 300 });
+      let container = new qx.ui.container.Composite().set({ width: 300 });
       container.setLayout(new qx.ui.layout.VBox(5));
       this.add(container);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.set({
         layout: new qx.ui.layout.HBox(10),
         height: 30

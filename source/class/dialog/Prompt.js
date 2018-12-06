@@ -67,10 +67,10 @@ qx.Class.define("dialog.Prompt", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      var container = new qx.ui.container.Composite();
+      let container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
@@ -119,8 +119,8 @@ qx.Class.define("dialog.Prompt", {
         },
         this
       );
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
+      let buttonPane = new qx.ui.container.Composite();
+      let bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
       buttonPane.add(this._createOkButton());

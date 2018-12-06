@@ -36,10 +36,10 @@ qx.Class.define("dialog.Select", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      var container = new qx.ui.container.Composite();
+      let container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
       this.add(container);
-      var hbox = new qx.ui.container.Composite();
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
@@ -49,23 +49,23 @@ qx.Class.define("dialog.Select", {
       hbox.add(this._message, {
         flex: 1
       });
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
+      let buttonPane = new qx.ui.container.Composite();
+      let bpLayout = new qx.ui.layout.HBox(5);
       bpLayout.setAlignX("center");
       buttonPane.setLayout(bpLayout);
       this.addListener("changeOptions", function(event) {
         buttonPane.removeAll();
-        var options = event.getData();
+        let options = event.getData();
         options.forEach(function(option) {
-          var button = new qx.ui.form.Button(option.label, option.icon);
+          let button = new qx.ui.form.Button(option.label, option.icon);
           button.setAllowStretchX(true);
-          var value = "" + option.value;
+          let value = "" + option.value;
           button.addListener("execute", function() {
             this._handleSelection(value);
           }, this);
           buttonPane.add(button);
         }, this);
-        var cancelButton = this._createCancelButton();
+        let cancelButton = this._createCancelButton();
         buttonPane.add(cancelButton);
       }, this);
       container.add(buttonPane);

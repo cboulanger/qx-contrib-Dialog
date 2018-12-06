@@ -124,10 +124,10 @@ qx.Class.define("dialog.Login", {
      */
     _createWidgetContent: function() {
       // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
-      var formTag = new dialog.FormTag();
-      var container = new qx.ui.container.Composite();
+      let formTag = new dialog.FormTag();
+      let container = new qx.ui.container.Composite();
       formTag.add(container, {flex:1});
-      var layout = new qx.ui.layout.VBox(10);
+      let layout = new qx.ui.layout.VBox(10);
       layout.setAlignX("center");
       container.setLayout(layout);
       this.add(formTag);
@@ -139,8 +139,8 @@ qx.Class.define("dialog.Login", {
       this._text.setVisibility("excluded");
       this.setTextFont("bold");
       container.add(this._text);
-      var gridContainer = new qx.ui.container.Composite();
-      var gridLayout = new qx.ui.layout.Grid(9, 5);
+      let gridContainer = new qx.ui.container.Composite();
+      let gridLayout = new qx.ui.layout.Grid(9, 5);
       gridLayout.setColumnAlign(0, "right", "top");
       gridLayout.setColumnAlign(2, "right", "top");
       gridLayout.setColumnMinWidth(0, 50);
@@ -150,8 +150,8 @@ qx.Class.define("dialog.Login", {
       gridContainer.setMinWidth(200);
       gridContainer.setMaxWidth(400);
       container.add(gridContainer);
-      var labels = [this.tr("Name"), this.tr("Password")];
-      for (var i = 0; i < labels.length; i++) {
+      let labels = [this.tr("Name"), this.tr("Password")];
+      for (let i = 0; i < labels.length; i++) {
         gridContainer.add(
           new qx.ui.basic.Label(labels[i]).set({
             allowShrinkX: false,
@@ -200,13 +200,13 @@ qx.Class.define("dialog.Login", {
       this._message.setAllowStretchX(true);
       this._message.setVisibility("excluded");
       container.add(this._message);
-      var loginButton = (this._loginButton = new qx.ui.form.Button(
+      let loginButton = (this._loginButton = new qx.ui.form.Button(
         this.tr("Login")
       ));
       loginButton.setAllowStretchX(false);
       loginButton.addListener("execute", this._callCheckCredentials, this);
-      var cancelButton = this._createCancelButton();
-      var forgotPasswordButton = new qx.ui.form.Button(
+      let cancelButton = this._createCancelButton();
+      let forgotPasswordButton = new qx.ui.form.Button(
         this.tr("Forgot Password?")
       );
       forgotPasswordButton.addListener(
@@ -221,7 +221,7 @@ qx.Class.define("dialog.Login", {
           return v ? "visible" : "excluded";
         }
       });
-      var buttonPane = new qx.ui.container.Composite();
+      let buttonPane = new qx.ui.container.Composite();
       buttonPane.setLayout(new qx.ui.layout.HBox(5));
       buttonPane.add(loginButton);
       buttonPane.add(cancelButton);

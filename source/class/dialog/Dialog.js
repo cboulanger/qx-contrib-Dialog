@@ -154,10 +154,10 @@ qx.Class.define("dialog.Dialog", {
     /**
      * Shortcut for select dialog
      * @param message {String} The message to display
-     * @param options {Array} Options to select from
+     * @param options {Array} Options to select from. If omitted, "Yes" (true) or "No" (false) will be used.
      * @param callback {Function} The callback function
      * @param context {Object} The context to use with the callback function
-     * @param allowCancel {Boolean} Default: true
+     * @param allowCancel {Boolean} Default: true. If the cancel button is pressed, the result value will be undefined.
      * @param caption {String} The caption of the dialog window
      * @return {dialog.Alert} The widget instance
      */
@@ -169,10 +169,14 @@ qx.Class.define("dialog.Dialog", {
       allowCancel,
       caption
     ) {
+      let defaultOptions = [
+        {label: qx.core.Init.getApplication().tr("Yes"), value: true},
+        {label: qx.core.Init.getApplication().tr("No"), value: false}
+        ];
       return new dialog.Select({
         message: message,
         allowCancel: typeof allowCancel == "boolean" ? allowCancel : true,
-        options: options,
+        options: options || defaultOptions,
         callback: callback || null,
         context: context || null,
         caption: caption || ""
@@ -223,7 +227,7 @@ qx.Class.define("dialog.Dialog", {
       showStatusbar: false
     });
     this.setLayout(new qx.ui.layout.Grow());
-    var root = qx.core.Init.getApplication().getRoot();
+    let root = qx.core.Init.getApplication().getRoot();
     root.add(this);
     // use blocker (for backwards-compability)
     this.__blocker = new qx.ui.core.Blocker(root);
@@ -235,7 +239,7 @@ qx.Class.define("dialog.Dialog", {
     root.addListener(
       "resize",
       function(e) {
-        var bounds = this.getBounds();
+        let bounds = this.getBounds();
         this.set({
           marginTop: Math.round(
             (qx.bom.Document.getHeight() - bounds.height) / 2
@@ -250,7 +254,7 @@ qx.Class.define("dialog.Dialog", {
     this.addListener(
       "appear",
       function(e) {
-        var bounds = this.getBounds();
+        let bounds = this.getBounds();
         this.set({
           marginTop: Math.round(
             (qx.bom.Document.getHeight() - bounds.height) / 2
@@ -414,7 +418,7 @@ qx.Class.define("dialog.Dialog", {
      * @return {qx.ui.form.Button}
      */
     _createOkButton: function() {
-      var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
+      let okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
       okButton.setIcon("dialog.icon.ok");
       okButton.getChildControl("icon").set({
         width: 16,
@@ -439,7 +443,7 @@ qx.Class.define("dialog.Dialog", {
      * @return {qx.ui.form.Button}
      */
     _createCancelButton: function() {
-      var cancelButton = (this._cancelButton = new qx.ui.form.Button(
+      let cancelButton = (this._cancelButton = new qx.ui.form.Button(
         this.tr("Cancel")
       ));
       cancelButton.setAllowStretchX(false);
@@ -499,11 +503,11 @@ qx.Class.define("dialog.Dialog", {
     show: function() {
       if (this.isUseBlocker() || dialog.Dialog.__useBlocker) {
         // make sure the dialog is above any opened window
-        var root = qx.core.Init.getApplication().getRoot();
-        var maxWindowZIndex = root.getZIndex();
-        var windows = root.getWindows();
-        for (var i = 0; i < windows.length; i++) {
-          var zIndex = windows[i].getZIndex();
+        let root = qx.core.Init.getApplication().getRoot();
+        let maxWindowZIndex = root.getZIndex();
+        let windows = root.getWindows();
+        for (let i = 0; i < windows.length; i++) {
+          let zIndex = windows[i].getZIndex();
           maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
         }
         this.setZIndex(maxWindowZIndex + 1);

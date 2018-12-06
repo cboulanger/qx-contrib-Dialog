@@ -10,11 +10,13 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: dialog.Form:436 dialog/Dialog.js:417 dialog/Form.js:457
+#: dialog.Form:436 dialog/Dialog.js:417 dialog/Dialog.js:421
+#: dialog/Dialog.js:422 dialog/Form.js:457 qx/ui/control/ColorPopup.js:180
 msgid "OK"
 msgstr ""
 
-#: dialog.Dialog:443 dialog/Dialog.js:443
+#: dialog.Dialog:443 dialog/Dialog.js:443 dialog/Dialog.js:447
+#: dialog/Dialog.js:448 qx/ui/control/ColorPopup.js:185
 msgid "Cancel"
 msgstr ""
 
@@ -80,4 +82,180 @@ msgstr ""
 
 #: dialog/Form.js:396
 msgid "Value is invalid"
+msgstr ""
+
+#: qx/ui/control/ColorPopup.js:147
+msgid "Automatic"
+msgstr ""
+
+#: qx/ui/control/ColorPopup.js:155
+msgid "Open ColorSelector"
+msgstr ""
+
+#: qx/ui/control/ColorPopup.js:162 qx/ui/control/ColorSelector.js:357
+msgid "Preview (Old/New)"
+msgstr ""
+
+#: qx/ui/control/ColorPopup.js:242
+msgid "Color Selector"
+msgstr ""
+
+#: qx/ui/control/ColorPopup.js:481
+msgid "Basic Colors"
+msgstr ""
+
+#: qx/ui/control/ColorPopup.js:487
+msgid "Recent Colors"
+msgstr ""
+
+#: qx/ui/control/ColorSelector.js:255
+msgid "Visual"
+msgstr ""
+
+#: qx/ui/control/ColorSelector.js:315
+msgid "Presets"
+msgstr ""
+
+#: qx/ui/control/ColorSelector.js:346
+msgid "Details"
+msgstr ""
+
+#: qx/ui/control/ColorSelector.js:375
+msgid "Hex"
+msgstr ""
+
+#: qx/ui/control/ColorSelector.js:398
+msgid "RGB"
+msgstr ""
+
+#: qx/ui/control/ColorSelector.js:430
+msgid "HSB"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:258
+msgid "Last year"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:270
+msgid "Last month"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:282
+msgid "Next month"
+msgstr ""
+
+#: qx/ui/control/DateChooser.js:294
+msgid "Next year"
+msgstr ""
+
+#: qx/ui/form/validation/Manager.js:37
+msgid "This field is required"
+msgstr ""
+
+#: qx/ui/table/Table.js:1974 qx/ui/table/Table.js:1987
+msgid "one row"
+msgid_plural "%1 rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: qx/ui/table/Table.js:1976 qx/ui/table/Table.js:1989
+msgid "one of one row"
+msgid_plural "%1 of %2 rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: qx/ui/table/columnmodel/Resize.js:197
+msgid "Reset column widths"
+msgstr ""
+
+#: apiviewer/Viewer.js:166
+msgid "Content"
+msgstr ""
+
+#: apiviewer/Viewer.js:169
+msgid "Show/hide the packages."
+msgstr ""
+
+#: apiviewer/Viewer.js:172
+msgid "Search"
+msgstr ""
+
+#: apiviewer/Viewer.js:174
+msgid "Search for packages, classes and members."
+msgstr ""
+
+#: apiviewer/Viewer.js:177
+msgid "Legend"
+msgstr ""
+
+#: apiviewer/Viewer.js:179
+msgid "Show/hide the legend."
+msgstr ""
+
+#: apiviewer/Viewer.js:191
+msgid "Properties"
+msgstr ""
+
+#: apiviewer/Viewer.js:194
+msgid "Show/hide all generated property methods."
+msgstr ""
+
+#: apiviewer/Viewer.js:197
+msgid "Includes"
+msgstr ""
+
+#: apiviewer/Viewer.js:199
+msgid "Show/hide members of other classes/mixins inherited/included in the current class"
+msgstr ""
+
+#: apiviewer/Viewer.js:204
+msgid "Inherited"
+msgstr ""
+
+#: apiviewer/Viewer.js:206
+msgid "Show/hide inherited members of the current class."
+msgstr ""
+
+#: apiviewer/Viewer.js:209
+msgid "Mixin Included"
+msgstr ""
+
+#: apiviewer/Viewer.js:211
+msgid "Show/hide included members of the current class."
+msgstr ""
+
+#: apiviewer/Viewer.js:217
+msgid "Protected"
+msgstr ""
+
+#: apiviewer/Viewer.js:219
+msgid "Show/hide protected members of the current class."
+msgstr ""
+
+#: apiviewer/Viewer.js:222
+msgid "Private"
+msgstr ""
+
+#: apiviewer/Viewer.js:224
+msgid "Show/hide private members of the current class."
+msgstr ""
+
+#: apiviewer/Viewer.js:227
+msgid "Internal"
+msgstr ""
+
+#: apiviewer/Viewer.js:229
+msgid "Show/hide internal members of the current class."
+msgstr ""
+
+#: apiviewer/ui/SearchView.js:667
+msgid "Hint: You can use regular expressions in the search field."
+msgstr ""
+
+#: dialog/Dialog.js:173 dialog/Dialog.js:174
+msgid "Yes"
+msgstr ""
+
+#: dialog/Dialog.js:174 dialog/Dialog.js:175
+msgid "No"
 msgstr ""
