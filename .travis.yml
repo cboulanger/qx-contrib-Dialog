@@ -24,12 +24,6 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3
   - fluxbox >/dev/null 2>&1 &
-  - npm install
-  - pushd node_modules/qxcompiler 
-  - npm link
-  - popd
-  - qx compile --target=build
-  - ls -al build-output/dialog.demo
   - qx serve --target=build &
 
 deploy:
