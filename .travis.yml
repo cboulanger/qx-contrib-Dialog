@@ -25,9 +25,8 @@ before_script:
   - sleep 3
   - fluxbox >/dev/null 2>&1 &
   - qx contrib update && qx contrib list --quiet && qx contrib install
-  - qx compile --target=build --feedback=0 --verbose
-  - ls -al build-output/dialog.demo
   - qx serve --target=build &
+  - sleep 30
 
 deploy:
   provider: pages
