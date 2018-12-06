@@ -41,6 +41,7 @@ See, for example, [this theme class](source/class/dialog/theme/icon/IcoMoonFree.
 
 ## Testing
 ```bash
+npm install -g qxcompiler # must be version >=  v0.2.19
 npm install
 qx serve --target=build
 ```

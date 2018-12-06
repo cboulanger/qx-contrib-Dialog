@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "qooxdoo-sdk": "^6.0.0-alpha-20181205-59f9ec49",
-    "qxcompiler": "^0.2.18",
+    "qxcompiler": "^0.2.19",
     "testcafe": "^0.20.5"
   },
   "devDependencies": {},
