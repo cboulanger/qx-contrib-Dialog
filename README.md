@@ -1,5 +1,7 @@
 # Qooxdoo Dialog Widgets
 
+Build Status: Master branch [![Master](https://travis-ci.org/cboulanger/qx-contrib-Dialog.svg?branch=master)](https://travis-ci.org/cboulanger/qx-contrib-Dialog) | Development branch [![Develop](https://travis-ci.org/cboulanger/qx-contrib-Dialog.svg?branch=develop)](https://travis-ci.org/cboulanger/qx-contrib-Dialog)
+
 >Note: This is version 2 which only works with the new JavaScript compiler and qooxdoo v6. qooxdoo v5 and the 
 python toolchain are no longer supported.
 
