@@ -174,6 +174,12 @@ qx.Class.define("dialog.demo.Application",
 
         },
 
+        _logEvent : function(target,event){
+          if (event.getType() === "pointerup"){
+            console.log(target.getAttribute("data-qx-object-id"));
+          }
+        },
+
         _replaceOwnedObject: function(owner, obj, id){
           try {
             owner.removeOwnedObject(id);

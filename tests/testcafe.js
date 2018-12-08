@@ -1,4 +1,4 @@
-import {IdSelector, QxSelector, getPageHTML} from "./adapters/TestCafe";
+import {IdSelector, QxSelector} from "./adapters/TestCafe";
 import process from 'process';
 
 fixture `Testing dialog widgets`
@@ -6,23 +6,18 @@ fixture `Testing dialog widgets`
 
 const simpleDialogs = ['alert','warning','error'];
 test('Simple dialogs: ' + simpleDialogs.join(', '), async t => {
-  console.log(await getPageHTML());
   for( let type of simpleDialogs){   
     let launchButton = IdSelector(`buttons/${type}`);
     let popupWindow  = IdSelector(`buttons/${type}/dialog`);
     let okButton     = IdSelector(`buttons/${type}/dialog/ok-button`);
     // click on button to see popup window
-    try{
-      await t
+    await t
       // click on button to see popup window
-        .click(launchButton)
-        .expect(popupWindow.visible).ok()
-        // click on the popup windows "OK" button to close it
-        .click(okButton)
-        .expect(popupWindow.visible).notOk();
-    } catch (e) {
-      console.log(e.stack);
-    }
+      .click(launchButton)
+      .expect(popupWindow.visible).ok()
+      // click on the popup windows "OK" button to close it
+      .click(okButton)
+      .expect(popupWindow.visible).notOk();
   }
 });
 
