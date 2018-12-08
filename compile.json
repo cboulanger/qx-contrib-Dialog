@@ -24,7 +24,8 @@
   ],
   "environment": {
     "qx.debug": true,
-    "module.objectid" : true
+    "module.objectid" : true,
+    "module.objectid.monitorevents" : true
   },
   "targets": [
     {

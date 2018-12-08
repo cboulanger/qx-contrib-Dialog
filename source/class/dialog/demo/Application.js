@@ -172,13 +172,25 @@ qx.Class.define("dialog.demo.Application",
           }, this);
           this.getRoot().add(button_panel, {left: 100, top: 100});
 
+          // monitor events
+          qx.core.Id.getInstance().addListener("domevent", e => {
+            let [id, event,target] = e.getData();
+            switch(event.getType()){
+              case "pointerup":
+                console.log(`.click(IdSelector("${id}"))`);
+                break;
+              case "appear":
+                console.log(`.expect(IdSelector("${id}").visible).ok()`);
+                break;
+              case "disappear":
+                console.log(`.expect(IdSelector("${id}").visible).notOk()`);
+                break;
+              default:
+                //console.log(`//${id}: ${event.getType()}`);
+            }
+          });
         },
 
-        _logEvent : function(target,event){
-          if (event.getType() === "pointerup"){
-            console.log(target.getAttribute("data-qx-object-id"));
-          }
-        },
 
         _replaceOwnedObject: function(owner, obj, id){
           try {
