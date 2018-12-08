@@ -5,6 +5,20 @@ export const IdSelector = Selector(id => document.querySelector(`[data-qx-object
 export const QxSelector = (selector) => {
   // browser-side methods
   selector = selector.addCustomMethods({
+
+    /**
+     * Returns the absolute id of the owned object with that id
+     * @param id
+     * @returns {String}
+     */
+    absoluteIdOf : function(domNode, id){
+      return qx.core.Id.getAbsoluteIdOf(qx.ui.core.Widget.getWidgetByElement(domNode).getObject(id));
+    },
+    /**
+     * Returns the value of the property of the widget that is connected with the DOM node
+     * @param key
+     * @returns {*|var}
+     */
     getQxProperty: function(domNode, key){
       return qx.ui.core.Widget.getWidgetByElement(domNode).get(key);
     }

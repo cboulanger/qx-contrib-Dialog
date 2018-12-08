@@ -172,7 +172,7 @@ qx.Class.define("dialog.Form", {
         this.getModel().dispose();
       }
       let modelData = {};
-      for (let key in formData) {
+      for (let key of Object.getOwnPropertyNames(formData)) {
         modelData[key] = formData[key].value !== undefined
         ? formData[key].value
         : null;
@@ -182,7 +182,8 @@ qx.Class.define("dialog.Form", {
       this._form = new qx.ui.form.Form();
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
-      for (let key in formData) {
+      let ownedObjects = {};
+      for (let key of Object.getOwnPropertyNames(formData)) {
         let fieldData = formData[key];
         let formElement = null;
         switch (fieldData.type.toLowerCase()) {
@@ -352,7 +353,7 @@ qx.Class.define("dialog.Form", {
             if (typeof validator == "string") {
               if (qx.util.Validate[validator]) {
                 validator = qx.util.Validate[validator]();
-              } else if (validator.charAt(0) == "/") {
+              } else if (validator.charAt(0) === "/") {
                 validator = qx.util.Validate.regExp(
                 new RegExp(validator.substr(1, validator.length - 2)),
                 fieldData.validation.errorMessage
@@ -436,7 +437,17 @@ qx.Class.define("dialog.Form", {
         // Putting it all together
         let label = fieldData.label;
         this._form.add(formElement, label, validator);
+        ownedObjects[key] = formElement;
       }
+      // Add the form elements as objects owned by the form widget
+      this.addListenerOnce("appear", () => {
+        if (this.getOwner()){
+          for (let id of Object.getOwnPropertyNames(ownedObjects)){
+            this.addOwnedObject(ownedObjects[id],id);
+          }
+        }
+      });
+
       let view = new dialog.FormRenderer(this._form);
       view.getLayout().setColumnFlex(0, 0);
       view.getLayout().setColumnMaxWidth(0, this.getLabelColumnWidth());

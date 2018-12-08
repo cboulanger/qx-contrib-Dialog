@@ -330,7 +330,7 @@ qx.Class.define("dialog.demo.Application",
 
         },
 
-        createForm: function (caption) {
+        createForm: function (caption, button) {
           let formData =
             {
               'username':
@@ -391,16 +391,17 @@ qx.Class.define("dialog.demo.Application",
               }
             };
 
-          dialog.Dialog.form("Please fill in the form", formData)
-            .set({caption})
-            .promise()
-            .then(result => {
-              this.debug(qx.util.Serializer.toJson(result));
-              return dialog.Dialog
-                .alert("Thank you for your input. See log for result.")
-                .set({caption: caption + " 2"})
-                .promise();
-            });
+          let form = dialog.Dialog.form("Please fill in the form", formData)
+            .set({caption});
+          button.addOwnedObject(form,"dialog");
+          form.promise()
+          .then(result => {
+            this.debug(qx.util.Serializer.toJson(result));
+            return dialog.Dialog
+              .alert("Thank you for your input. See log for result.")
+              .set({caption: caption + " 2"})
+              .promise();
+          });
 
 //    same as:
 //    (new dialog.Form({

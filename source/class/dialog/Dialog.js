@@ -434,6 +434,7 @@ qx.Class.define("dialog.Dialog", {
         },
         this
       );
+      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(okButton,"ok-button"));
       return okButton;
     },
 
@@ -459,6 +460,7 @@ qx.Class.define("dialog.Dialog", {
           return value ? "visible" : "excluded";
         }
       });
+      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(cancelButton,"cancel-button"));
       return cancelButton;
     },
 

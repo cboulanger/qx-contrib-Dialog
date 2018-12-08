@@ -24,6 +24,7 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3
   - fluxbox >/dev/null 2>&1 &
+  - npm install -g qxcompiler
   - qx contrib update && qx contrib list --quiet && qx contrib install
   - qx serve --target=build &
   - sleep 180 # Wait for compilation to finish

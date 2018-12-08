@@ -105,6 +105,7 @@ qx.Class.define("dialog.Confirm", {
       });
       // yes button
       let yesButton = (this._yesButton = new qx.ui.form.Button());
+      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(yesButton,"yes-button"));
       yesButton.setAllowStretchX(true);
       yesButton.addListener("execute", this._handleYes, this);
       this.bind("yesButtonLabel", yesButton, "label");
@@ -117,6 +118,7 @@ qx.Class.define("dialog.Confirm", {
       yesButton.setLabel(this.tr("yes"));
       // no button
       let noButton = (this._noButton = new qx.ui.form.Button());
+      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(noButton,"no-button"));
       noButton.setAllowStretchX(true);
       noButton.addListener("execute", this._handleNo, this);
       this.bind("noButtonLabel", noButton, "label");

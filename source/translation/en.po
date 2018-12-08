@@ -2,16 +2,17 @@
 msgid ""
 msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2011-07-21 20:11+0100\nPO-Revision-Date: 2011-07-21 20:11+0100\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\n"
 
-#: dialog.Confirm:117 dialog/Confirm.js:117
+#: dialog.Confirm:117 dialog/Confirm.js:117 dialog/Confirm.js:118
 msgid "yes"
 msgstr ""
 
-#: dialog.Confirm:129 dialog/Confirm.js:129
+#: dialog.Confirm:129 dialog/Confirm.js:129 dialog/Confirm.js:131
 msgid "no"
 msgstr ""
 
 #: dialog.Form:436 dialog/Dialog.js:417 dialog/Dialog.js:421
-#: dialog/Dialog.js:422 dialog/Form.js:457 qx/ui/control/ColorPopup.js:180
+#: dialog/Dialog.js:422 dialog/Form.js:457 dialog/Form.js:459
+#: dialog/Form.js:468 qx/ui/control/ColorPopup.js:180
 msgid "OK"
 msgstr ""
 
@@ -28,7 +29,8 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: dialog.Login:200 dialog/Login.js:204
+#: dialog.Login:200 dialog/Login.js:204 dialog/Login.js:206
+#: dialog/Login.js:210
 msgid "Login"
 msgstr ""
 
@@ -76,11 +78,12 @@ msgstr ""
 msgid "%1 does not fit %2."
 msgstr ""
 
-#: dialog.Login:206 dialog/Login.js:210
+#: dialog.Login:206 dialog/Login.js:210 dialog/Login.js:212
+#: dialog/Login.js:216 dialog/Login.js:217
 msgid "Forgot Password?"
 msgstr ""
 
-#: dialog/Form.js:396
+#: dialog/Form.js:396 dialog/Form.js:397
 msgid "Value is invalid"
 msgstr ""
 

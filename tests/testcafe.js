@@ -1,4 +1,5 @@
 import {IdSelector, QxSelector} from "./adapters/TestCafe";
+import process from 'process';
 
 fixture `Testing dialog widgets`
   .page `http://127.0.0.1:8080/build/dialog.demo/index.html`;
@@ -9,14 +10,14 @@ test('Simple dialogs: ' + simpleDialogs.join(', '), async t => {
   for( let type of simpleDialogs){   
     let launchButton = IdSelector(`buttons/${type}`);
     let popupWindow  = IdSelector(`buttons/${type}/dialog`);
-    let okLabel     = QxSelector(popupWindow).findButtonLabelWithText('OK');
+    let okButton     = IdSelector(`buttons/${type}/dialog/ok-button`);
     // click on button to see popup window
     await t
       // click on button to see popup window
       .click(launchButton)
       .expect(popupWindow.visible).ok()
       // click on the popup windows "OK" button to close it
-      .click(okLabel)
+      .click(okButton)
       .expect(popupWindow.visible).notOk();
   }
 });
@@ -56,27 +57,40 @@ test(`Prompt`, async t => {
 });
 
 test(`Login`, async t => {
-  const launchButton = IdSelector('buttons/login');
-  const loginWindow  = QxSelector(IdSelector('buttons/login/window'));
-  const loginButtonLabel = QxSelector(loginWindow).findButtonLabelWithText('Login');
-  const errorPopup = QxSelector(IdSelector('buttons/login/window/error'));
-  const successPopup = QxSelector(IdSelector('buttons/login/window/success'));
+  const launchButton  = IdSelector('buttons/login');
+  const loginWindow   = IdSelector('buttons/login/window');
+  const loginButton   = IdSelector('buttons/login/window/login-button');
+  const usernameField = IdSelector('buttons/login/window/username');
+  const passwordField = IdSelector('buttons/login/window/password');
+  const errorPopup    = QxSelector(IdSelector('buttons/login/window/error'));
+  const successPopup  = QxSelector(IdSelector('buttons/login/window/success'));
   
   await t
     .click(launchButton)
     .expect(loginWindow.visible).ok()
-    .typeText(loginWindow.find("input[qxclass='qx.ui.form.TextField']"), "wrong user")
-    .typeText(loginWindow.find("input[qxclass='qx.ui.form.PasswordField']"), "wrong password")
-    .click(loginButtonLabel)
+    .typeText(usernameField, "wrong user")
+    .typeText(passwordField, "wrong password")
+    .click(loginButton)
     .expect(errorPopup.visible).ok()
     .click(errorPopup.findButtonLabelWithText('OK'))
     .expect(errorPopup.visible).notOk()
-    .typeText(loginWindow.find("input[qxclass='qx.ui.form.TextField']"), " ")
-    .typeText(loginWindow.find("input[qxclass='qx.ui.form.TextField']"), "demo")
-    .typeText(loginWindow.find("input[qxclass='qx.ui.form.PasswordField']"), " ")
-    .typeText(loginWindow.find("input[qxclass='qx.ui.form.PasswordField']"), "demo")
-    .click(loginButtonLabel)
+    .typeText(usernameField, " ")
+    .typeText(usernameField, "demo")
+    .typeText(passwordField, " ")
+    .typeText(passwordField, "demo")
+    .click(loginButton)
     .expect(successPopup.visible).ok()
     .click(successPopup.findButtonLabelWithText('OK'))
     .expect(loginWindow.visible).notOk()
 });
+
+test('Fill out form', async t => {
+  let buttonId = 'buttons/form';
+  let formId = buttonId + "/dialog";
+  await t
+    .click(IdSelector(buttonId))
+    .expect(IdSelector(formId).visible).ok()
+    .typeText(IdSelector(formId + '/username'), 'John Doe')
+    .typeText(IdSelector(formId + '/address'), '1 Infinite Loop');
+});
+

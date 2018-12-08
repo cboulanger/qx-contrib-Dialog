@@ -2,13 +2,9 @@
   "name": "qx-contrib-dialog",
   "version": "1.4.0",
   "description": "see http://cboulanger.github.io/qx-contrib-Dialog/",
-  "main": "index.js",
-  "dependencies": {
-    "qooxdoo-sdk": "^6.0.0-alpha-20181205-59f9ec49",
-    "qxcompiler": "^0.2.19",
+  "devDependencies": {
     "testcafe": "^0.20.5"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "npx testcafe chrome,firefox tests/testcafe.js  --app-init-delay 10000"
   },

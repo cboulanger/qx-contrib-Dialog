@@ -23,6 +23,19 @@
 qx.Class.define("dialog.FormRenderer", {
   extend: qx.ui.form.renderer.Single,
   implement: qx.ui.form.renderer.IFormRenderer,
+
+  // can be enabled once https://github.com/qooxdoo/qooxdoo/pull/9604 is merged
+  // properties: {
+  //   labelSuffix: {
+  //     refine: true,
+  //     init: ":"
+  //   },
+  //   requiredSuffix :{
+  //     refine : true,
+  //     init : "<span style='color:#e5004b'>*</span>"
+  //   }
+  // },
+
   members: {
     _row: 0,
     _buttonRow: null,

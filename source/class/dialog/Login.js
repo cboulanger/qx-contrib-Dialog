@@ -165,11 +165,17 @@ qx.Class.define("dialog.Login", {
       }
       this._username = new qx.ui.form.TextField();
       this._password = new qx.ui.form.PasswordField();
+      this.addListenerOnce("appear", () => {
+        if (this.getOwner()){
+          this.addOwnedObject(this._username,"username");
+          this.addOwnedObject(this._password,"password");
+        }
+      });
       this._password .getContentElement().setAttribute("autocomplete", "password");
       this._password.addListener(
         "keypress",
         function(e) {
-          if (e.getKeyIdentifier() == "Enter") {
+          if (e.getKeyIdentifier() === "Enter") {
             this._callCheckCredentials();
           }
         },
@@ -203,6 +209,7 @@ qx.Class.define("dialog.Login", {
       let loginButton = (this._loginButton = new qx.ui.form.Button(
         this.tr("Login")
       ));
+      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(loginButton,"login-button"));
       loginButton.setAllowStretchX(false);
       loginButton.addListener("execute", this._callCheckCredentials, this);
       let cancelButton = this._createCancelButton();
