@@ -6,7 +6,7 @@ fixture `Testing dialog widgets`
 
 const simpleDialogs = ['alert','warning','error'];
 test('Simple dialogs: ' + simpleDialogs.join(', '), async t => {
-  //console.log(await getPageHTML());
+  console.log(await getPageHTML());
   for( let type of simpleDialogs){   
     let launchButton = IdSelector(`buttons/${type}`);
     let popupWindow  = IdSelector(`buttons/${type}/dialog`);
