@@ -23,14 +23,17 @@
     }
   ],
   "environment": {
-    "qx.debug": true,
     "module.objectid" : true,
-    "module.objectid.monitorevents" : true
+    "recorder.enabled" : false
   },
   "targets": [
     {
       "type": "source",
-      "outputPath": "source-output"
+      "outputPath": "source-output",
+      "environment": {
+        "qx.debug": true,
+        "recorder.enabled" : true
+      }
     },
     {
       "type": "hybrid",

@@ -36,78 +36,75 @@ qx.Class.define("dialog.demo.Application",
          * during startup of the application
          */
         main: function () {
-          // Call super class
-          this.base(arguments);
 
-          // support native logging capabilities, e.g. Firebug for Firefox
+          this.base(arguments);
           qx.log.appender.Native;
 
           /*
            * button data
            */
-          let buttons =
-            [
-              {
-                label: "Alert",
-                id: "alert",
-                method: "createAlert"
-              },
-              {
-                label: "Warning",
-                id: "warning",
-                method: "createWarning"
-              },
-              {
-                label: "Error",
-                id: "error",
-                method: "createError"
-              },
-              {
-                label: "Confirm",
-                id: "confirm",
-                method: "createConfirm"
-              },
-              {
-                label: "Prompt",
-                id: "prompt",
-                method: "createPrompt"
-              },
-              {
-                label: "Dialog Chain",
-                id: "dialog",
-                method: "createDialogChain"
-              },
-              {
-                label: "Select among choices",
-                id: "select",
-                method: "createSelect"
-              },
-              {
-                label: "Form",
-                id: "form",
-                method: "createForm"
-              },
-              {
-                label: "Wizard",
-                id: "wizard",
-                method: "createWizard"
-              },
-              {
-                label: "Login",
-                id: "login",
-                method: "createLogin"
-              },
-              {
-                label: "Progress",
-                id: "progress",
-                method: "createProgress"
-              },
-              {
-                label: "Progress with Log",
-                id: "progress_with_log",
-                method: "createProgressWithLog"
-              }
-            ];
+          let buttons = [
+            {
+              label: "Alert",
+              id: "alert",
+              method: "createAlert"
+            },
+            {
+              label: "Warning",
+              id: "warning",
+              method: "createWarning"
+            },
+            {
+              label: "Error",
+              id: "error",
+              method: "createError"
+            },
+            {
+              label: "Confirm",
+              id: "confirm",
+              method: "createConfirm"
+            },
+            {
+              label: "Prompt",
+              id: "prompt",
+              method: "createPrompt"
+            },
+            {
+              label: "Dialog Chain",
+              id: "dialog",
+              method: "createDialogChain"
+            },
+            {
+              label: "Select among choices",
+              id: "select",
+              method: "createSelect"
+            },
+            {
+              label: "Form",
+              id: "form",
+              method: "createForm"
+            },
+            {
+              label: "Wizard",
+              id: "wizard",
+              method: "createWizard"
+            },
+            {
+              label: "Login",
+              id: "login",
+              method: "createLogin"
+            },
+            {
+              label: "Progress",
+              id: "progress",
+              method: "createProgress"
+            },
+            {
+              label: "Progress with Log",
+              id: "progress_with_log",
+              method: "createProgressWithLog"
+            }
+          ];
 
           /*
            * dialog button panel
@@ -172,23 +169,12 @@ qx.Class.define("dialog.demo.Application",
           }, this);
           this.getRoot().add(button_panel, {left: 100, top: 100});
 
-          // monitor events
-          qx.core.Id.getInstance().addListener("domevent", e => {
-            let [id, event,target] = e.getData();
-            switch(event.getType()){
-              case "pointerup":
-                console.log(`.click(IdSelector("${id}"))`);
-                break;
-              case "appear":
-                console.log(`.expect(IdSelector("${id}").visible).ok()`);
-                break;
-              case "disappear":
-                console.log(`.expect(IdSelector("${id}").visible).notOk()`);
-                break;
-              default:
-                //console.log(`//${id}: ${event.getType()}`);
-            }
-          });
+          // recorder
+          if (qx.core.Environment.get("recorder.enabled")){
+            let controller = new recorder.UiController(new recorder.type.TestCafe());
+            this.getRoot().add(controller, {top:0, right:0});
+            controller.show();
+          }
         },
 
 

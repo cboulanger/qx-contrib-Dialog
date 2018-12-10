@@ -6,6 +6,13 @@
       "repo_name": "qooxdoo/qooxdoo-api-viewer",
       "repo_tag": "v0.1.7",
       "path": "contrib/qooxdoo_qooxdoo-api-viewer_v0.1.7"
+    },
+    {
+      "library_name": "UI Event Recorder",
+      "library_version": "0.1.1",
+      "repo_name": "cboulanger/qx-contrib-recorder",
+      "repo_tag": "v0.1.1",
+      "path": "contrib/cboulanger_qx-contrib-recorder_v0.1.1"
     }
   ]
 }
