@@ -22,7 +22,6 @@
     "type": "contribution"
   },
   "requires": {
-    "qooxdoo/qxl.apiviewer": "^0.1.12",
     "qooxdoo-sdk": "^6.0.0-alpha-20181204-f98112fe || 6.0.0-alpha"
   }
 }

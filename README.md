@@ -5,8 +5,6 @@ Build Status: Master branch [![Master](https://travis-ci.org/cboulanger/qx-contr
 >Note: This is version 2 which only works with the new JavaScript compiler and qooxdoo v6. qooxdoo v5 and the 
 python toolchain are no longer supported.
 
-see http://cboulanger.github.io/qx-contrib-Dialog/
-
 A set of often used dialog widgets for the qooxdoo framework.
 
 - Alert
@@ -18,11 +16,11 @@ A set of often used dialog widgets for the qooxdoo framework.
 - Wizard
 - Progress
 
-Demo: http://cboulanger.github.io/qx-contrib-Dialog
+Demo: http://cboulanger.github.io/qx-contrib-Dialog/dialog.demo/index.html
 
-API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/api/index.html#dialog
+API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/apiviewer/index.html#dialog
 
-See [Demo app](demo/default/source/class/dialog/demo/Application.js) for
+See [Demo app](source/class/dialog/demo/Application.js) for
 examples how to use the widgets.
 
 ## Installation:
