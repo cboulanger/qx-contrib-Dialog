@@ -16,19 +16,18 @@
 
 /**
  * A dialog that alerts the user to something.
- * 
+ *
  */
 qx.Class.define("dialog.Alert", {
   extend: dialog.Dialog,
   members: {
     /**
-     * @inheritdoc
+     * Create the main content of the widget
      */
-    _createWidgetContent: function(properties) {
-      var container = new qx.ui.container.Composite();
-      container.setLayout(new qx.ui.layout.VBox(10));
-      var hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
+    _createWidgetContent: function() {
+      let container = this._createDialogContainer();
+      this.add(container);
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._image = new qx.ui.basic.Image(
         this.getImage() || "dialog.icon.info"
@@ -45,21 +44,17 @@ qx.Class.define("dialog.Alert", {
       hbox.add(this._message, {
         flex: 1
       });
-      var okButton = this._createOkButton();
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox();
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      let buttonPane = this._createButtonPane();
+      let okButton = this._createOkButton();
       buttonPane.add(okButton);
       container.add(buttonPane);
-      return container;
     },
 
     /**
      * @override
      */
      _handleEscape: function(e) {
-       if (e.getKeyCode() == 27) {
+       if (e.getKeyCode() === 27) {
          this._handleOk();
        }
      }

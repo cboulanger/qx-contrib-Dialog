@@ -33,13 +33,12 @@ qx.Class.define("dialog.Select", {
 
   members: {
     /**
-     * @inheritdoc
+     * Create the main content of the widget
      */
-    _createWidgetContent: function(properties) {
-      var container = new qx.ui.container.Composite();
-      container.setLayout(new qx.ui.layout.VBox(10));
-      var hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
+    _createWidgetContent: function() {
+      let container = this._createDialogContainer();
+      this.add(container);
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
@@ -48,27 +47,30 @@ qx.Class.define("dialog.Select", {
       hbox.add(this._message, {
         flex: 1
       });
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      let buttonPane = this._createButtonPane();
       this.addListener("changeOptions", function(event) {
         buttonPane.removeAll();
-        var options = event.getData();
+        let options = event.getData();
         options.forEach(function(option) {
-          var button = new qx.ui.form.Button(option.label, option.icon);
+          let button = new qx.ui.form.Button(option.label, option.icon);
           button.setAllowStretchX(true);
-          var value = "" + option.value;
+          let value = String(option.value);
           button.addListener("execute", function() {
             this._handleSelection(value);
           }, this);
           buttonPane.add(button);
+          if (qx.core.Environment.get("module.objectid") === true) {
+            try {
+              buttonPane.removeOwnedQxObject(value);
+            } catch (e) {}
+            button.setQxObjectId(value);
+            buttonPane.addOwnedQxObject(button);
+          }
         }, this);
-        var cancelButton = this._createCancelButton();
+        let cancelButton = this._createCancelButton();
         buttonPane.add(cancelButton);
       }, this);
       container.add(buttonPane);
-      return container;
     },
 
     /**

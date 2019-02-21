@@ -120,16 +120,15 @@ qx.Class.define("dialog.Login", {
     },
 
     /**
-     * @inheritdoc
+     * Create the main content of the widget
      */
-    _createWidgetContent: function(properties) {
+    _createWidgetContent: function() {
       // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
-      var formTag = new dialog.FormTag();
-      var container = new qx.ui.container.Composite();
+      let formTag = new dialog.FormTag();
+      let container = this._createDialogContainer();
+      container.getLayout().setAlignX("center");
       formTag.add(container, {flex:1});
-      var layout = new qx.ui.layout.VBox(10);
-      layout.setAlignX("center");
-      container.setLayout(layout);
+      this.add(formTag);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       container.add(this._image);
@@ -138,20 +137,20 @@ qx.Class.define("dialog.Login", {
       this._text.setVisibility("excluded");
       this.setTextFont("bold");
       container.add(this._text);
-      var gridContainer = new qx.ui.container.Composite();
-      var gridLayout = new qx.ui.layout.Grid(9, 5);
+      let form = new qx.ui.container.Composite();
+      let gridLayout = new qx.ui.layout.Grid(9, 5);
       gridLayout.setColumnAlign(0, "right", "top");
       gridLayout.setColumnAlign(2, "right", "top");
       gridLayout.setColumnMinWidth(0, 50);
       gridLayout.setColumnFlex(1, 2);
-      gridContainer.setLayout(gridLayout);
-      gridContainer.setAlignX("center");
-      gridContainer.setMinWidth(200);
-      gridContainer.setMaxWidth(400);
-      container.add(gridContainer);
-      var labels = [this.tr("Name"), this.tr("Password")];
-      for (var i = 0; i < labels.length; i++) {
-        gridContainer.add(
+      form.setLayout(gridLayout);
+      form.setAlignX("center");
+      form.setMinWidth(200);
+      form.setMaxWidth(400);
+      container.add(form);
+      let labels = [this.tr("Name"), this.tr("Password")];
+      for (let i = 0; i < labels.length; i++) {
+        form.add(
           new qx.ui.basic.Label(labels[i]).set({
             allowShrinkX: false,
             paddingTop: 3
@@ -168,13 +167,13 @@ qx.Class.define("dialog.Login", {
       this._password.addListener(
         "keypress",
         function(e) {
-          if (e.getKeyIdentifier() == "Enter") {
+          if (e.getKeyIdentifier() === "Enter") {
             this._callCheckCredentials();
           }
         },
         this
       );
-      gridContainer.add(
+      form.add(
         this._username.set({
           allowShrinkX: false,
           paddingTop: 3
@@ -184,7 +183,7 @@ qx.Class.define("dialog.Login", {
           column: 1
         }
       );
-      gridContainer.add(
+      form.add(
         this._password.set({
           allowShrinkX: false,
           paddingTop: 3
@@ -199,13 +198,22 @@ qx.Class.define("dialog.Login", {
       this._message.setAllowStretchX(true);
       this._message.setVisibility("excluded");
       container.add(this._message);
-      var loginButton = (this._loginButton = new qx.ui.form.Button(
+
+      // buttons
+      let buttonPane = this._createButtonPane();
+
+      // login
+      let loginButton = (this._loginButton = new qx.ui.form.Button(
         this.tr("Login")
       ));
       loginButton.setAllowStretchX(false);
       loginButton.addListener("execute", this._callCheckCredentials, this);
-      var cancelButton = this._createCancelButton();
-      var forgotPasswordButton = new qx.ui.form.Button(
+
+      // cancel
+      let cancelButton = this._createCancelButton();
+
+      // forgot password
+      let forgotPasswordButton = new qx.ui.form.Button(
         this.tr("Forgot Password?")
       );
       forgotPasswordButton.addListener(
@@ -220,16 +228,28 @@ qx.Class.define("dialog.Login", {
           return v ? "visible" : "excluded";
         }
       });
-      var buttonPane = new qx.ui.container.Composite();
-      buttonPane.setLayout(new qx.ui.layout.HBox(5));
+
       buttonPane.add(loginButton);
       buttonPane.add(cancelButton);
       buttonPane.add(forgotPasswordButton);
-      gridContainer.add(buttonPane, {
+      form.add(buttonPane, {
         row: 3,
         column: 1
       });
-      return formTag;
+      // object ids
+      if (qx.core.Environment.get("module.objectid") === true) {
+        form.setQxObjectId("form");
+        this.addOwnedQxObject(form);
+        this._username.setQxObjectId("username");
+        form.addOwnedQxObject(this._username);
+        this._password.setQxObjectId("password");
+        form.addOwnedQxObject(this._password);
+        loginButton.setQxObjectId("login");
+        buttonPane.addOwnedQxObject(loginButton);
+        forgotPasswordButton.setQxObjectId("forgot-password");
+        buttonPane.addOwnedQxObject(forgotPasswordButton);
+        this.addOwnedQxObject(forgotPasswordButton);
+      }
     },
 
     /**

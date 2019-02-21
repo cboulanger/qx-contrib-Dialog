@@ -137,7 +137,7 @@ qx.Class.define("dialog.Progress", {
      */
     _applyNewLogText: function(value, old) {
       if (value) {
-        var content = this.getLogContent();
+        let content = this.getLogContent();
         this.setLogContent(content ? content + "\n" + value : value);
       }
     },
@@ -158,16 +158,14 @@ qx.Class.define("dialog.Progress", {
     _logView: null,
 
     /**
-     * @inheritdoc
+     * Create the content of the dialog.
+     * Extending classes must implement this method.
      */
-    _createWidgetContent: function(properties) {
-      var container = new qx.ui.container.Composite().set({ width: 300 });
-      container.setLayout(new qx.ui.layout.VBox(5));
-      var hbox = new qx.ui.container.Composite();
-      hbox.set({
-        layout: new qx.ui.layout.HBox(10),
-        height: 30
-      });
+    _createWidgetContent: function() {
+      let container = this._createDialogContainer();
+      container.set({ width: 300 });
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
+      hbox.set({ height: 30 });
       container.add(hbox);
       this._progressBar = new qx.ui.indicator.ProgressBar();
       this._progressBar.set({
@@ -178,6 +176,7 @@ qx.Class.define("dialog.Progress", {
       hbox.add(this._progressBar, {
         flex: 1
       });
+      this._createButtonPane(); // only for object ids, not used in layout
       this._cancelButton = this._createCancelButton();
       this._cancelButton.set({
         icon: null,
@@ -227,7 +226,7 @@ qx.Class.define("dialog.Progress", {
         this
       );
       container.add(this._okButton, {});
-      return container;
+      this.add(container);
     },
 
     /**

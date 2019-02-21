@@ -23,6 +23,19 @@
 qx.Class.define("dialog.FormRenderer", {
   extend: qx.ui.form.renderer.Single,
   implement: qx.ui.form.renderer.IFormRenderer,
+
+  // can be enabled once https://github.com/qooxdoo/qooxdoo/pull/9604 is merged
+  // properties: {
+  //   labelSuffix: {
+  //     refine: true,
+  //     init: ":"
+  //   },
+  //   requiredSuffix :{
+  //     refine : true,
+  //     init : "<span style='color:#e5004b'>*</span>"
+  //   }
+  // },
+
   members: {
     _row: 0,
     _buttonRow: null,
@@ -47,10 +60,10 @@ qx.Class.define("dialog.FormRenderer", {
         );
         this._row++;
       }
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i],widget,label;
+      for (let i = 0; i < items.length; i++) {
+        let item = items[i],widget,label;
         if (item instanceof qx.ui.form.RadioGroup) {
-          if (item.getUserData("orientation") == "horizontal") {
+          if (item.getUserData("orientation") === "horizontal") {
             widget = this._createHBoxForRadioGroup(item);
           } else {
             widget = this._createWidgetForRadioGroup(item);
@@ -103,9 +116,9 @@ qx.Class.define("dialog.FormRenderer", {
      *   the RadioGroup.
      */
     _createWidgetForRadioGroup: function(group) {
-      var widget = new qx.ui.container.Composite(new qx.ui.layout.VBox(5));
-      var items = group.getItems();
-      for (var i = 0; i < items.length; i++) {
+      let widget = new qx.ui.container.Composite(new qx.ui.layout.VBox(5));
+      let items = group.getItems();
+      for (let i = 0; i < items.length; i++) {
         widget.add(items[i]);
       }
       return widget;
@@ -122,9 +135,9 @@ qx.Class.define("dialog.FormRenderer", {
      *   the RadioGroup.
      */
     _createHBoxForRadioGroup: function(group) {
-      var widget = new qx.ui.container.Composite(new qx.ui.layout.HBox(5));
-      var items = group.getItems();
-      for (var i = 0; i < items.length; i++) {
+      let widget = new qx.ui.container.Composite(new qx.ui.layout.HBox(5));
+      let items = group.getItems();
+      for (let i = 0; i < items.length; i++) {
         widget.add(items[i]);
       }
       return widget;

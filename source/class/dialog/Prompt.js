@@ -64,12 +64,13 @@ qx.Class.define("dialog.Prompt", {
     _textField: null,
 
     /**
-     * @inheritdoc
+     * Create the main content of the widget
      */
-    _createWidgetContent: function(properties) {
-      var container = new qx.ui.container.Composite();
+    _createWidgetContent: function() {
+      let container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
-      var hbox = new qx.ui.container.Composite();
+      this.add(container);
+      let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
@@ -92,10 +93,10 @@ qx.Class.define("dialog.Prompt", {
       this._textField.addListener(
         "keyup",
         function(e) {
-          if (e.getKeyCode() == 13) {
+          if (e.getKeyCode() === 13) {
             return this._handleOk();
           }
-          if (e.getKeyCode() == 27) {
+          if (e.getKeyCode() === 27) {
             return this._handleCancel();
           }
         },
@@ -105,7 +106,7 @@ qx.Class.define("dialog.Prompt", {
       this._textField.addListener(
         "keypress",
         function(e) {
-          if (e.getKeyIdentifier().toLowerCase() == "enter") {
+          if (e.getKeyIdentifier().toLowerCase() === "enter") {
             this.hide();
             this.fireEvent("ok");
             if (this.getCallback()) {
@@ -118,14 +119,15 @@ qx.Class.define("dialog.Prompt", {
         },
         this
       );
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      let buttonPane = this._createButtonPane()
       buttonPane.add(this._createOkButton());
       buttonPane.add(this._createCancelButton());
       container.add(buttonPane);
-      return container;
+      // object id
+      if (qx.core.Environment.get("module.objectid") === true) {
+        this._textField.setQxObjectId("text");
+        this.addOwnedQxObject(this._textField);
+      }
     },
 
     /**

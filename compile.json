@@ -1,30 +1,58 @@
 {
   "applications": [
     {
-      "title" : "Dialog Contrib Demo",
+      "title": "Dialog Contrib Demo",
       "class": "dialog.demo.Application",
       "theme": "dialog.theme.Theme",
       "name": "dialog.demo"
+    },
+    {
+      "class": "qxl.apiviewer.Application",
+      "theme": "qxl.apiviewer.Theme",
+      "name": "apiviewer",
+      "title": "Qooxdoo API Viewer",
+      "outputPath": "apiviewer",
+      "include": [
+        "qx.*"
+      ],
+      "exclude": [
+        "qx.test.*",
+        "qx.module.Blocker",
+        "qx.module.Placement"
+      ],
+      "environment": {
+        "excludeFromAPIViewer": [
+          "qxl.apiviewer.*"
+        ]
+      }
     }
   ],
-  "libraries": [
-    "node_modules/qooxdoo-sdk/framework",
-    "."
-  ],
+  "environment": {
+    "module.objectid": true
+  },
   "targets": [
     {
       "type": "source",
-      "outputPath": "source-output"
-    },
-    {
-      "type": "hybrid",
-      "outputPath": "hybrid-output"
+      "outputPath": "compiled/source",
+      "environment": {
+        "qx.debug": true
+      },
+      "bundle": {
+        "include": [
+          "qx.*"
+        ],
+        "exclude": [
+          "qx.util.*"
+        ]
+      }
     },
     {
       "type": "build",
-      "outputPath": "build-output"
+      "outputPath": "compiled/build"
     }
   ],
   "defaultTarget": "source",
-  "locales": ["en"]
+  "locales": [
+    "en"
+  ]
 }

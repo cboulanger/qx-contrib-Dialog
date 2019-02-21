@@ -1,11 +1,6 @@
-# generator
-test/
-api/
-build/
-source/script
-
 # compiler
-*output
+compiled/
+contrib/
 
 # other stuff
 qooxdoo/

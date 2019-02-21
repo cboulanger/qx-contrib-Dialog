@@ -84,13 +84,11 @@ qx.Class.define("dialog.Confirm", {
     _noButton: null,
 
     /**
-     * @inheritdoc
+     * Create the main content of the widget
      */
-    _createWidgetContent: function(properties) {
-      var container = new qx.ui.container.Composite();
-      container.setLayout(new qx.ui.layout.VBox(10));
-      var hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
+    _createWidgetContent: function() {
+      let container = this._createDialogContainer();
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
@@ -99,11 +97,13 @@ qx.Class.define("dialog.Confirm", {
       this._message.setRich(true);
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.add(this._message, {
-        flex: 1
-      });
+      hbox.add(this._message, { flex: 1 });
+
+      // buttons
+      let buttonPane = this._createButtonPane();
+
       // yes button
-      var yesButton = (this._yesButton = new qx.ui.form.Button());
+      let yesButton = (this._yesButton = new qx.ui.form.Button());
       yesButton.setAllowStretchX(true);
       yesButton.addListener("execute", this._handleYes, this);
       this.bind("yesButtonLabel", yesButton, "label");
@@ -115,7 +115,8 @@ qx.Class.define("dialog.Confirm", {
       });
       yesButton.setLabel(this.tr("yes"));
       // no button
-      var noButton = (this._noButton = new qx.ui.form.Button());
+      let noButton = (this._noButton = new qx.ui.form.Button());
+
       noButton.setAllowStretchX(true);
       noButton.addListener("execute", this._handleNo, this);
       this.bind("noButtonLabel", noButton, "label");
@@ -126,16 +127,21 @@ qx.Class.define("dialog.Confirm", {
         scale: true
       });
       noButton.setLabel(this.tr("no"));
-      var cancelButton = this._createCancelButton();
-      var buttonPane = new qx.ui.container.Composite();
-      var bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      let cancelButton = this._createCancelButton();
       buttonPane.add(yesButton);
       buttonPane.add(noButton);
       buttonPane.add(cancelButton);
+
       container.add(buttonPane);
-      return container;
+      this.add(container);
+
+      // object id
+      if (qx.core.Environment.get("module.objectid") === true) {
+        yesButton.setQxObjectId("yes");
+        this.getQxObject("buttons").addOwnedQxObject(yesButton);
+        noButton.setQxObjectId("no");
+        this.getQxObject("buttons").addOwnedQxObject(noButton);
+      }
     },
 
     /**
