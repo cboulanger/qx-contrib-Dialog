@@ -11,8 +11,7 @@
         "email": "info@bibliograph.org"
       }
     ],
-    "version": "1.4.0",
-    "qooxdoo-range": "^6.0.0-alpha-20181204-f98112fe"
+    "version": "2.0.0"
   },
   "provides": {
     "namespace": "dialog",
@@ -23,6 +22,7 @@
     "type": "contribution"
   },
   "requires": {
-    "qooxdoo/qxl.apiviewer": "^0.1.12"
+    "qooxdoo/qxl.apiviewer": "^0.1.12",
+    "qooxdoo-sdk": "^6.0.0-alpha-20181204-f98112fe || 6.0.0-alpha"
   }
 }
