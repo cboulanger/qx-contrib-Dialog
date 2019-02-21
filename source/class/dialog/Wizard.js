@@ -22,7 +22,7 @@ qx.Class.define("dialog.Wizard", {
   extend: dialog.Form,
   properties: {
     /**
-     * An array of maps that sets the properties of this widget
+     * An array of maps that sets the formData of this widget
      */
     pageData: {
       check: "Array",
@@ -77,13 +77,12 @@ qx.Class.define("dialog.Wizard", {
     _finishButton: null,
 
     /**
-     * Create the main content of the widget
+     * @inheritdoc
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite();
       container.setPadding(0);
       container.setLayout(new qx.ui.layout.VBox(0));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -130,6 +129,7 @@ qx.Class.define("dialog.Wizard", {
       this._finishButton.addListener("execute", this.finish, this);
       this._finishButton.setEnabled(false);
       buttonPane.add(this._finishButton);
+      return container;
     },
 
     /**
@@ -141,12 +141,12 @@ qx.Class.define("dialog.Wizard", {
       var _this = this;
       form.getValidationManager().bind("valid", this._nextButton, "enabled", {
         converter: function(value) {
-          return value && _this.getAllowNext() ? true : false;
+          return value !== false && _this.getAllowNext() ? true : false;
         }
       });
       form.getValidationManager().bind("valid", this._finishButton, "enabled", {
         converter: function(value) {
-          return value && _this.getAllowFinish() ? true : false;
+          return value !== false && _this.getAllowFinish() ? true : false;
         }
       });
     },

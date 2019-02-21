@@ -13,7 +13,7 @@ A set of often used dialog widgets for the qooxdoo framework.
 - Wizard
 - Progress
 
-Demo: http://cboulanger.github.io/qx-contrib-Dialog/build/index.html
+Demo: http://cboulanger.github.io/qx-contrib-Dialog
 
 API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/api/index.html#dialog
 

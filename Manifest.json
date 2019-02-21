@@ -9,10 +9,14 @@
       {
         "name": "Christian Boulanger (cboulanger)",
         "email": "info@bibliograph.org"
+      },
+      {
+        "name" : "Derrell Lipman (derrell)",
+        "email" : "derrell.lipman@unwireduniverse.com"
       }
     ],
     "version": "1.4.0",
-    "qooxdoo-range": "^6.0.0-alpha"
+    "qooxdoo-range": "^6.0.0-*"
   },
   "provides": {
     "namespace": "dialog",

@@ -28,6 +28,7 @@
  */
 qx.Class.define("dialog.Dialog", {
   extend: qx.ui.window.Window,
+  include: dialog.MDialog,
   statics: {
     /**
      * for backwards-compability
@@ -44,7 +45,7 @@ qx.Class.define("dialog.Dialog", {
     useBlocker: function(value) {
       dialog.Dialog.__useBlocker = value;
     },
-
+    
     /**
      * Returns a dialog instance by type
      * @param type {String} The dialog type to get
@@ -57,6 +58,7 @@ qx.Class.define("dialog.Dialog", {
         this.error(type + " is not a valid dialog type");
       }
     },
+    
     /**
      * Shortcut for alert dialog
      * @param message {String} The message to display
@@ -200,7 +202,62 @@ qx.Class.define("dialog.Dialog", {
     }
   },
 
-  /**
+  properties: 
+  {  
+
+    // overridden
+    focusable :
+    {
+      refine : true,
+      init : true
+    },    
+    
+    /**
+     * Whether the dialog is shown. If true, call the show() method. If false,
+     * call the hide() method.
+     */
+    show: {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShow",
+      apply: "_applyShow"
+    },    
+
+    /**
+     * Whether to triger the cancel button on pressing the "escape" key
+     * (default: true). Depends on the 'allowCancel' property.
+     */
+    cancelOnEscape: {
+      check: "Boolean",
+      init: true
+    },    
+
+    /**
+    * Whether to block the ui while the widget is displayed
+    */
+    useBlocker: {
+      check: "Boolean",
+      init: false
+    },
+
+    /**
+    * The blocker's color
+    */
+    blockerColor: {
+      check: "String",
+      init: "black"
+    },
+
+    /**
+    * The blocker's opacity
+    */
+    blockerOpacity: {
+      check: "Number",
+      init: 0.5
+    }
+  },
+
+/**
    * Constructor
    * @param properties {Map|String|undefined} If you supply a map, all the
    * corresponding properties will be set. If a string is given, use it
@@ -262,222 +319,32 @@ qx.Class.define("dialog.Dialog", {
       },
       this
     );
-    this._createWidgetContent();
+    // create the actual widget
+    this.__container = this._createWidgetContent(properties || {});
     // set properties from constructor param
     if (typeof properties == "object") {
       this.set(properties);
     } else if (typeof properties == "string") {
       this.setMessage(properties);
     }
-
-    // escape key
+    // add widget content to window
+    this.add(this.__container);
+    // configure escape key
     qx.core.Init.getApplication().getRoot().addListener("keyup",this._handleEscape,this);
-  },
-
-  properties: {
-    /**
-     * Callback function that will be called when the user
-     * has interacted with the widget. See sample callback
-     * method supplied in the source code of each dialog
-     * widget.
-     */
-    callback: {
-      check: "Function",
-      nullable: true
-    },
-
-    /**
-     * The context for the callback function
-     */
-    context: {
-      check: "Object",
-      nullable: true
-    },
-
-    /**
-     * A banner image/logo that is displayed on the widget,
-     * if applicable
-     */
-    image: {
-      check: "String",
-      nullable: true,
-      apply: "_applyImage"
-    },
-
-    /**
-     * The message that is displayed
-     */
-    message: {
-      check: "String",
-      nullable: true,
-      apply: "_applyMessage"
-    },
-
-    /**
-     * Whether to allow cancelling the dialog
-     */
-    allowCancel: {
-      check: "Boolean",
-      init: true,
-      event: "changeAllowCancel"
-    },
-
-    /**
-     * Whether to triger the cancel button on pressing the "escape" key
-     * (default: true). Depends on the 'allowCancel' property.
-     */
-    cancelOnEscape: {
-      check: "Boolean",
-      init: true
-    },
-
-    /**
-     * Whether the dialog is shown. If true, call the show() method. If false,
-     * call the hide() method.
-     */
-    show: {
-      check: "Boolean",
-      nullable: true,
-      event: "changeShow",
-      apply: "_applyShow"
-    },
-
-    /**
-    * Whether to block the ui while the widget is displayed
-    */
-    useBlocker: {
-      check: "Boolean",
-      init: false
-    },
-
-    /**
-    * The blocker's color
-    */
-    blockerColor: {
-      check: "String",
-      init: "black"
-    },
-
-    /**
-    * The blocker's opacity
-    */
-    blockerOpacity: {
-      check: "Number",
-      init: 0.5
-    }
-  },
-
-  events: {
-    /**
-     * Dispatched when user clicks on the "OK" Button
-     * @type {String}
-     */
-    ok: "qx.event.type.Event",
-
-    /**
-     * Dispatched when user clicks on the "Cancel" Button
-     * @type {String}
-     */
-    cancel: "qx.event.type.Event"
-  },
+  },  
 
   members: {
     __container: null,
     __previousFocus: null,
-    _image: null,
-    _message: null,
-    _okButton: null,
-    _cancelButton: null,
 
     /**
-     * Create the content of the dialog.
-     * Extending classes must implement this method.
+     * Handles the press on the 'Escape' key
+     * @param  e {qx.event.type.KeyInput}
      */
-    _createWidgetContent: function() {
-      this.error("_createWidgetContent not implemented!");
-    },
-
-    /**
-     * Creates the default container (groupbox)
-     * @return {qx.ui.container.Composite}
-     */
-    _createDialogContainer: function() {
-      this.__container = new qx.ui.container.Composite().set({
-        layout: new qx.ui.layout.VBox(10)
-      });
-      this.add(this.__container);
-      return this.__container;
-    },
-
-    /**
-     * Create an OK button
-     * @return {qx.ui.form.Button}
-     */
-    _createOkButton: function() {
-      var okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
-      okButton.setIcon("dialog.icon.ok");
-      okButton.getChildControl("icon").set({
-        width: 16,
-        height: 16,
-        scale: true
-      });
-      okButton.setAllowStretchX(false);
-      okButton.addListener("execute", this._handleOk, this);
-      this.addListener(
-        "appear",
-        function() {
-          okButton.focus();
-        },
-        this
-      );
-      return okButton;
-    },
-
-    /**
-     * Create a cancel button, which is hidden by default and will be shown
-     * if allowCancel property is set to true.
-     * @return {qx.ui.form.Button}
-     */
-    _createCancelButton: function() {
-      var cancelButton = (this._cancelButton = new qx.ui.form.Button(
-        this.tr("Cancel")
-      ));
-      cancelButton.setAllowStretchX(false);
-      cancelButton.setIcon("dialog.icon.cancel");
-      cancelButton.getChildControl("icon").set({
-        width: 16,
-        height: 16,
-        scale: true
-      });
-      cancelButton.addListener("execute", this._handleCancel, this);
-      this.bind("allowCancel", cancelButton, "visibility", {
-        converter: function(value) {
-          return value ? "visible" : "excluded";
-        }
-      });
-      return cancelButton;
-    },
-
-    /**
-     * Called when the 'image' property is set
-     * @param value {String} The current value
-     * @param old {String|null} old The previous value
-     * @return {void}
-     */
-    _applyImage: function(value, old) {
-      this._image.setSource(value);
-      this._image.setVisibility(value ? "visible" : "excluded");
-    },
-
-    /**
-     * Called when the 'message' property is set
-     * @param value {String} The current value
-     * @param old {String|null} old The previous value
-     * @return {void}
-     */
-    _applyMessage: function(value, old) {
-      this._message.setValue(value);
-      this._message.setVisibility(value ? "visible" : "excluded");
+    _handleEscape: function(e) {
+      if (this.isSeeable() && this.isCancelOnEscape() && e.getKeyCode() == 27) {
+        this._handleCancel();
+      }
     },
 
     /**
@@ -485,11 +352,8 @@ qx.Class.define("dialog.Dialog", {
      * @return {qx.ui.core.LayoutItem}
      */
     getDialogContainer: function() {
-      if (!this.__container) {
-        return this._createDialogContainer();
-      }
       return this.__container;
-    },
+    },    
 
     /**
      * Show the widget. Overriding methods must call this parent method.
@@ -539,55 +403,6 @@ qx.Class.define("dialog.Dialog", {
       }
       this.setVisibility("hidden");
       return this;
-    },
-
-    /**
-     * Promise interface method, avoids callbacks
-     * @return {Promise} A promise that resolves with the result of the dialog
-     * action
-     */
-    promise: function(){
-      return new Promise(function(resolve, reject) {
-        this.setCallback(function(value){
-          this.resetCallback();
-          resolve(value);
-        }.bind(this));
-      }.bind(this));
-    },
-
-    /**
-     * Handle click on ok button. Calls callback with a "true" argument
-     */
-    _handleOk: function() {
-      this.hide();
-      this.fireEvent("ok");
-      if (this.getCallback()) {
-        this.getCallback().call(this.getContext(), true);
-      }
-      this.resetCallback();
-    },
-
-    /**
-     * Handle click on cancel button. Calls callback with
-     * an "undefined" argument
-     */
-    _handleCancel: function() {
-      this.hide();
-      this.fireEvent("cancel");
-      if (this.isAllowCancel() && this.getCallback()) {
-        this.getCallback().call(this.getContext());
-      }
-      this.resetCallback();
-    },
-
-    /**
-     * Handles the press on the 'Escape' key
-     * @param  e {qx.event.type.KeyInput}
-     */
-    _handleEscape: function(e) {
-      if (this.isSeeable() && this.isCancelOnEscape() && e.getKeyCode() == 27) {
-        this._handleCancel();
-      }
     }
   }
 });

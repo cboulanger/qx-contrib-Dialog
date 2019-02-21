@@ -103,6 +103,11 @@ qx.Class.define("dialog.demo.Application",
            method: "createForm"
          },
          {
+          label: "Embedded Form",
+          id: "form",
+          method: "createEmbeddedForm"
+         },         
+         {
            label: "Wizard",
            id: "wizard",
            method: "createWizard"
@@ -346,10 +351,9 @@ qx.Class.define("dialog.demo.Application",
 //      })).show();
     },
 
-    createForm: function(caption)
+    getFormData: function()
     {
-      var formData =
-      {
+      return {
         'username':
         {
           'type': "TextField",
@@ -407,7 +411,11 @@ qx.Class.define("dialog.demo.Application",
           "fractionsDigits": {min: 1, max: 7}
         }
       };
+    },
 
+    createForm: function(caption)
+    {
+      var formData = this.getFormData();
       dialog.Dialog.form("Please fill in the form", formData )
       .set({
         caption: caption,
@@ -436,6 +444,18 @@ qx.Class.define("dialog.demo.Application",
 //        dialog.alert("Thank you for your input:" + qx.util.Json.stringify(result).replace(/\\/g,"") );
 //      }
 //    })).show();
+    },
+
+    createEmbeddedForm: function(caption)
+    {
+      if (!this.__embeddedFormCreated){
+        var embeddedForm = new dialog.EmbeddedForm({
+          message: "This is an embedded form",
+          formData: this.getFormData()
+        });
+        this.getRoot().add(embeddedForm,{ left: 350, top: 300} );
+        this.__embeddedFormCreated = true;
+      }
     },
 
     createWizard: function(caption)

@@ -22,12 +22,11 @@ qx.Class.define("dialog.Alert", {
   extend: dialog.Dialog,
   members: {
     /**
-     * Create the main content of the widget
+     * @inheritdoc
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
       var container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
-      this.add(container);
       var hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -53,6 +52,7 @@ qx.Class.define("dialog.Alert", {
       buttonPane.setLayout(bpLayout);
       buttonPane.add(okButton);
       container.add(buttonPane);
+      return container;
     },
 
     /**

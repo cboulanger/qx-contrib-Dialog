@@ -120,9 +120,9 @@ qx.Class.define("dialog.Login", {
     },
 
     /**
-     * Create the main content of the widget
+     * @inheritdoc
      */
-    _createWidgetContent: function() {
+    _createWidgetContent: function(properties) {
       // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
       var formTag = new dialog.FormTag();
       var container = new qx.ui.container.Composite();
@@ -130,7 +130,6 @@ qx.Class.define("dialog.Login", {
       var layout = new qx.ui.layout.VBox(10);
       layout.setAlignX("center");
       container.setLayout(layout);
-      this.add(formTag);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       container.add(this._image);
@@ -230,6 +229,7 @@ qx.Class.define("dialog.Login", {
         row: 3,
         column: 1
       });
+      return formTag;
     },
 
     /**
