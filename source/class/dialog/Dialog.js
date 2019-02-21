@@ -24,7 +24,7 @@
  * @ignore(dialog.form)
  * @ignore(dialog.select)
  * @ignore(Promise)
- * 
+ *
  */
 qx.Class.define("dialog.Dialog", {
   extend: qx.ui.window.Window,
@@ -386,11 +386,46 @@ qx.Class.define("dialog.Dialog", {
   },
 
   members: {
-    __container: null,
+
+    /**
+     * A reference to the widget that previously had the focus
+     */
     __previousFocus: null,
+
+    /**
+     * The container widget
+     * @var {qx.ui.container.Composite}
+     */
+    _container: null,
+
+    /**
+     * The button pane
+     * @var {qx.ui.basic.Label}
+     */
+    _buttons: null,
+
+    /**
+     * The dialog image
+     * @var {qx.ui.basic.Image}
+     */
     _image: null,
+
+    /**
+     * The dialog message
+     * @var {qx.ui.basic.Label}
+     */
     _message: null,
+
+    /**
+     * The OK Button
+     * @var {qx.ui.form.Button}
+     */
     _okButton: null,
+
+    /**
+     * The cancel button
+     * @var {qx.ui.form.Button}
+     */
     _cancelButton: null,
 
     /**
@@ -402,15 +437,26 @@ qx.Class.define("dialog.Dialog", {
     },
 
     /**
-     * Creates the default container (groupbox)
+     * Creates the default container (VBox)
      * @return {qx.ui.container.Composite}
      */
     _createDialogContainer: function() {
-      this.__container = new qx.ui.container.Composite().set({
-        layout: new qx.ui.layout.VBox(10)
-      });
-      this.add(this.__container);
-      return this.__container;
+      this._container = new qx.ui.container.Composite(new qx.ui.layout.VBox(10));
+      return this._container;
+    },
+
+    /**
+     * Creates the button pane (HBox)
+     * @return {qx.ui.container.Composite}
+     */
+    _createButtonPane: function() {
+      let buttons = new qx.ui.container.Composite(new qx.ui.layout.HBox(5));
+      buttons.getLayout().setAlignX("center");
+      if (qx.core.Environment.get("module.objectid") === true) {
+        buttons.setQxObjectId("buttons");
+        this.addOwnedQxObject(buttons);
+      }
+      return buttons;
     },
 
     /**
@@ -434,7 +480,10 @@ qx.Class.define("dialog.Dialog", {
         },
         this
       );
-      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(okButton,"ok-button"));
+      if (qx.core.Environment.get("module.objectid") === true) {
+        okButton.setQxObjectId("ok");
+        this.getQxObject("buttons").addOwnedQxObject(okButton);
+      }
       return okButton;
     },
 
@@ -460,7 +509,10 @@ qx.Class.define("dialog.Dialog", {
           return value ? "visible" : "excluded";
         }
       });
-      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(cancelButton,"cancel-button"));
+      if (qx.core.Environment.get("module.objectid") === true) {
+        cancelButton.setQxObjectId("cancel");
+        this.getQxObject("buttons").addOwnedQxObject(cancelButton);
+      }
       return cancelButton;
     },
 
@@ -491,10 +543,10 @@ qx.Class.define("dialog.Dialog", {
      * @return {qx.ui.core.LayoutItem}
      */
     getDialogContainer: function() {
-      if (!this.__container) {
+      if (!this._container) {
         return this._createDialogContainer();
       }
-      return this.__container;
+      return this._container;
     },
 
     /**

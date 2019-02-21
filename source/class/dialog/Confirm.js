@@ -87,12 +87,9 @@ qx.Class.define("dialog.Confirm", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      let groupboxContainer = new qx.ui.container.Composite();
-      groupboxContainer.setLayout(new qx.ui.layout.VBox(10));
-      this.add(groupboxContainer);
-      let hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
-      groupboxContainer.add(hbox);
+      let container = this._createDialogContainer();
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
+      container.add(hbox);
       this._image = new qx.ui.basic.Image();
       this._image.setVisibility("excluded");
       hbox.add(this._image);
@@ -100,12 +97,13 @@ qx.Class.define("dialog.Confirm", {
       this._message.setRich(true);
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.add(this._message, {
-        flex: 1
-      });
+      hbox.add(this._message, { flex: 1 });
+
+      // buttons
+      let buttonPane = this._createButtonPane();
+
       // yes button
       let yesButton = (this._yesButton = new qx.ui.form.Button());
-      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(yesButton,"yes-button"));
       yesButton.setAllowStretchX(true);
       yesButton.addListener("execute", this._handleYes, this);
       this.bind("yesButtonLabel", yesButton, "label");
@@ -118,7 +116,7 @@ qx.Class.define("dialog.Confirm", {
       yesButton.setLabel(this.tr("yes"));
       // no button
       let noButton = (this._noButton = new qx.ui.form.Button());
-      this.addListenerOnce("appear", () => this.getOwner() && this.addOwnedObject(noButton,"no-button"));
+
       noButton.setAllowStretchX(true);
       noButton.addListener("execute", this._handleNo, this);
       this.bind("noButtonLabel", noButton, "label");
@@ -130,14 +128,11 @@ qx.Class.define("dialog.Confirm", {
       });
       noButton.setLabel(this.tr("no"));
       let cancelButton = this._createCancelButton();
-      let buttonPane = new qx.ui.container.Composite();
-      let bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
       buttonPane.add(yesButton);
       buttonPane.add(noButton);
       buttonPane.add(cancelButton);
-      groupboxContainer.add(buttonPane);
+      container.add(buttonPane);
+      this.add(container);
     },
 
     /**

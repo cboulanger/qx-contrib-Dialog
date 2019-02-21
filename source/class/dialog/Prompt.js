@@ -93,10 +93,10 @@ qx.Class.define("dialog.Prompt", {
       this._textField.addListener(
         "keyup",
         function(e) {
-          if (e.getKeyCode() == 13) {
+          if (e.getKeyCode() === 13) {
             return this._handleOk();
           }
-          if (e.getKeyCode() == 27) {
+          if (e.getKeyCode() === 27) {
             return this._handleCancel();
           }
         },
@@ -106,7 +106,7 @@ qx.Class.define("dialog.Prompt", {
       this._textField.addListener(
         "keypress",
         function(e) {
-          if (e.getKeyIdentifier().toLowerCase() == "enter") {
+          if (e.getKeyIdentifier().toLowerCase() === "enter") {
             this.hide();
             this.fireEvent("ok");
             if (this.getCallback()) {
@@ -119,13 +119,15 @@ qx.Class.define("dialog.Prompt", {
         },
         this
       );
-      let buttonPane = new qx.ui.container.Composite();
-      let bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      let buttonPane = this._createButtonPane()
       buttonPane.add(this._createOkButton());
       buttonPane.add(this._createCancelButton());
       container.add(buttonPane);
+      // object id
+      if (qx.core.Environment.get("module.objectid") === true) {
+        this._textField.setQxObjectId("text");
+        this.addOwnedQxObject(this._textField);
+      }
     },
 
     /**

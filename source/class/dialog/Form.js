@@ -114,7 +114,7 @@ qx.Class.define("dialog.Form", {
     _createWidgetContent: function () {
       let container = new qx.ui.container.Composite();
       container.setLayout(new qx.ui.layout.VBox(10));
-      this.add(container);
+
       let hbox = new qx.ui.container.Composite();
       hbox.setLayout(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -131,15 +131,14 @@ qx.Class.define("dialog.Form", {
       this._formContainer.setLayout(new qx.ui.layout.Grow());
       formTag.add( this._formContainer, {flex: 1} );
       container.add(formTag, { flex: 1 });
-      let buttonPane = new qx.ui.container.Composite();
-      let bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      // buttons
+      let buttonPane = this._createButtonPane();
       container.add(buttonPane);
       let okButton = this._createOkButton();
       buttonPane.add(okButton);
       let cancelButton = this._createCancelButton();
       buttonPane.add(cancelButton);
+      this.add(container);
     },
 
     /**
@@ -179,10 +178,13 @@ qx.Class.define("dialog.Form", {
       }
       let model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);
+      // form
       this._form = new qx.ui.form.Form();
+      if (qx.core.Environment.get("module.objectid") === true) {
+        this._form.setQxObjectId("form");
+      }
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
-      let ownedObjects = {};
       for (let key of Object.getOwnPropertyNames(formData)) {
         let fieldData = formData[key];
         let formElement = null;
@@ -211,7 +213,7 @@ qx.Class.define("dialog.Form", {
           case "passwordfield":
           case "password":
             formElement = new qx.ui.form.PasswordField();
-            formElement.getContentElement().setAttribute("autocomplete", "password");            
+            formElement.getContentElement().setAttribute("autocomplete", "password");
             break;
           case "combobox":
             formElement = new qx.ui.form.ComboBox();
@@ -437,16 +439,13 @@ qx.Class.define("dialog.Form", {
         // Putting it all together
         let label = fieldData.label;
         this._form.add(formElement, label, validator);
-        ownedObjects[key] = formElement;
-      }
-      // Add the form elements as objects owned by the form widget
-      this.addListenerOnce("appear", () => {
-        if (this.getOwner()){
-          for (let id of Object.getOwnPropertyNames(ownedObjects)){
-            this.addOwnedObject(ownedObjects[id],id);
-          }
+        // Add the form elements as objects owned by the form widget
+        if (qx.core.Environment.get("module.objectid") === true) {
+          formElement.setQxObjectId(key);
+          this._form.addOwnedQxObject(formElement);
         }
-      });
+      }
+
 
       let view = new dialog.FormRenderer(this._form);
       view.getLayout().setColumnFlex(0, 0);

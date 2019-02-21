@@ -21,5 +21,8 @@
     "resource": "source/resource",
     "translation": "source/translation",
     "type": "contribution"
+  },
+  "requires": {
+    "qooxdoo/qxl.apiviewer": "^0.1.12"
   }
 }

@@ -2,12 +2,15 @@
   "name": "qx-contrib-dialog",
   "version": "1.4.0",
   "description": "see http://cboulanger.github.io/qx-contrib-Dialog/",
+  "dependencies": {
+    "qxcompiler": "^0.2.73"
+  },
   "devDependencies": {
     "testcafe": "^0.20.5"
   },
   "scripts": {
     "test": "npx testcafe chrome,firefox tests/testcafe.js  --app-init-delay 10000",
-    "test-macos" : "npx testcafe safari,chrome:headless,firefox:headless tests/testcafe.js  --app-init-delay 10000"
+    "test-macos": "npx testcafe safari,chrome:headless,firefox:headless tests/testcafe.js  --app-init-delay 10000"
   },
   "repository": {
     "type": "git",

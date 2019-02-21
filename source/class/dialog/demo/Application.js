@@ -111,9 +111,8 @@ qx.Class.define("dialog.demo.Application",
            */
           let button_panel = new qx.ui.container.Composite();
           button_panel.setLayout(new qx.ui.layout.VBox(5));
-
-          qx.core.Id.getInstance().register(button_panel,"buttons");
-          button_panel.setObjectId("buttons");
+          button_panel.setQxObjectId("buttons");
+          qx.core.Id.getInstance().register(button_panel);
 
           let title = new qx.ui.basic.Label("<h2>Dialog Demo</h2>");
           title.setRich(true);
@@ -158,7 +157,8 @@ qx.Class.define("dialog.demo.Application",
           button_panel.add(new qx.ui.basic.Label("Try out the following dialog widgets:"));
           buttons.forEach(function (button_data) {
             let button = new qx.ui.form.Button(button_data.label);
-            button_panel.addOwnedObject(button, button_data.id);
+            button.setQxObjectId(button_data.id);
+            button_panel.addOwnedQxObject(button);
             button.addListener("execute", function () {
               this[button_data.method](button_data.label, button);
             }, this);
@@ -168,21 +168,15 @@ qx.Class.define("dialog.demo.Application",
             button_panel.add(button);
           }, this);
           this.getRoot().add(button_panel, {left: 100, top: 100});
-
-          // recorder
-          if (qx.core.Environment.get("recorder.enabled")){
-            let controller = new recorder.UiController(new recorder.type.TestCafe());
-            this.getRoot().add(controller, {top:0, right:0});
-            controller.show();
-          }
         },
 
 
-        _replaceOwnedObject: function(owner, obj, id){
+        _replaceOwnedObject: function(owner, obj, id='dialog'){
           try {
-            owner.removeOwnedObject(id);
+            owner.removeOwnedQxObject(id);
           } catch (e) {} // ignore error
-          owner.addOwnedObject(obj, id);
+          obj.setQxObjectId(id);
+          owner.addOwnedQxObject(obj);
         },
 
         createAlert: function (caption, button) {
@@ -395,9 +389,9 @@ qx.Class.define("dialog.demo.Application",
               }
             };
 
-          let form = dialog.Dialog.form("Please fill in the form", formData)
-            .set({caption});
-          button.addOwnedObject(form,"dialog");
+          let form = dialog.Dialog.form("Please fill in the form", formData).set({caption});
+          form.setQxObjectId("dialog");
+          button.addOwnedQxObject(form);
           form.promise()
           .then(result => {
             this.debug(qx.util.Serializer.toJson(result));

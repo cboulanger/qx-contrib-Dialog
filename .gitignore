@@ -1,9 +1,9 @@
 # compiler
-*output
+compiled/
+contrib/
 
 # other stuff
 qooxdoo/
-contrib/
 node_modules/
 npm-debug.log
 .DS_Store

@@ -36,11 +36,9 @@ qx.Class.define("dialog.Select", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      let container = new qx.ui.container.Composite();
-      container.setLayout(new qx.ui.layout.VBox(10));
+      let container = this._createDialogContainer()
       this.add(container);
-      let hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
@@ -49,10 +47,7 @@ qx.Class.define("dialog.Select", {
       hbox.add(this._message, {
         flex: 1
       });
-      let buttonPane = new qx.ui.container.Composite();
-      let bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("center");
-      buttonPane.setLayout(bpLayout);
+      let buttonPane = this._createButtonPane();
       this.addListener("changeOptions", function(event) {
         buttonPane.removeAll();
         let options = event.getData();

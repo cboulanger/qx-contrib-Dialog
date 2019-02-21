@@ -3,46 +3,49 @@ msgid ""
 msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2011-07-21 20:11+0100\nPO-Revision-Date: 2011-07-21 20:11+0100\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\n"
 
 #: dialog.Confirm:117 dialog/Confirm.js:117 dialog/Confirm.js:118
+#: dialog/Confirm.js:114 dialog/Confirm.js:116
 msgid "yes"
 msgstr ""
 
 #: dialog.Confirm:129 dialog/Confirm.js:129 dialog/Confirm.js:131
+#: dialog/Confirm.js:127
 msgid "no"
 msgstr ""
 
 #: dialog.Form:436 dialog/Dialog.js:417 dialog/Dialog.js:421
-#: dialog/Dialog.js:422 dialog/Form.js:457 dialog/Form.js:459
-#: dialog/Form.js:468 qx/ui/control/ColorPopup.js:180
+#: dialog/Dialog.js:422 dialog/Dialog.js:467 dialog/Form.js:457
+#: dialog/Form.js:459 dialog/Form.js:468 dialog/Form.js:467 dialog/Form.js:466
+#: qx/ui/control/ColorPopup.js:180
 msgid "OK"
 msgstr ""
 
 #: dialog.Dialog:443 dialog/Dialog.js:443 dialog/Dialog.js:447
-#: dialog/Dialog.js:448 qx/ui/control/ColorPopup.js:185
+#: dialog/Dialog.js:448 dialog/Dialog.js:497 qx/ui/control/ColorPopup.js:185
 msgid "Cancel"
 msgstr ""
 
-#: dialog.Login:150 dialog/Login.js:153
+#: dialog.Login:150 dialog/Login.js:153 dialog/Login.js:151
 msgid "Name"
 msgstr ""
 
-#: dialog.Login:150 dialog/Login.js:153
+#: dialog.Login:150 dialog/Login.js:153 dialog/Login.js:151
 msgid "Password"
 msgstr ""
 
 #: dialog.Login:200 dialog/Login.js:204 dialog/Login.js:206
-#: dialog/Login.js:210
+#: dialog/Login.js:210 dialog/Login.js:207
 msgid "Login"
 msgstr ""
 
-#: dialog.Wizard:118 dialog/Wizard.js:118
+#: dialog.Wizard:118 dialog/Wizard.js:118 dialog/Wizard.js:114
 msgid "Back"
 msgstr ""
 
-#: dialog.Wizard:123 dialog/Wizard.js:123
+#: dialog.Wizard:123 dialog/Wizard.js:123 dialog/Wizard.js:119
 msgid "Next"
 msgstr ""
 
-#: dialog.Wizard:129 dialog/Wizard.js:129
+#: dialog.Wizard:129 dialog/Wizard.js:129 dialog/Wizard.js:125
 msgid "Finish"
 msgstr ""
 
@@ -83,7 +86,7 @@ msgstr ""
 msgid "Forgot Password?"
 msgstr ""
 
-#: dialog/Form.js:396 dialog/Form.js:397
+#: dialog/Form.js:396 dialog/Form.js:397 dialog/Form.js:400 dialog/Form.js:399
 msgid "Value is invalid"
 msgstr ""
 

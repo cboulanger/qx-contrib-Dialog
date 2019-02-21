@@ -80,12 +80,11 @@ qx.Class.define("dialog.Wizard", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      let container = new qx.ui.container.Composite();
+      let container = this._createDialogContainer();
       container.setPadding(0);
       container.setLayout(new qx.ui.layout.VBox(0));
       this.add(container);
-      let hbox = new qx.ui.container.Composite();
-      hbox.setLayout(new qx.ui.layout.HBox(10));
+      let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       container.add(hbox);
       this._message = new qx.ui.basic.Label();
       this._message.setRich(true);
@@ -98,8 +97,7 @@ qx.Class.define("dialog.Wizard", {
       line.setHeight(2);
       line.setBackgroundColor("gray");
       container.add(line);
-      let formContainer = (this._formContainer = new qx.ui.container
-        .Composite());
+      let formContainer = (this._formContainer = new qx.ui.container.Composite());
       formContainer.setPadding(16);
       formContainer.setLayout(new qx.ui.layout.Grow());
       formContainer.setMinWidth(300);
@@ -110,10 +108,8 @@ qx.Class.define("dialog.Wizard", {
       line.setMarginBottom(5);
       line.setBackgroundColor("gray");
       container.add(line);
-      let buttonPane = new qx.ui.container.Composite();
-      let bpLayout = new qx.ui.layout.HBox(5);
-      bpLayout.setAlignX("right");
-      buttonPane.setLayout(bpLayout);
+      let buttonPane = this._createButtonPane();
+      buttonPane.getLayout().setAlignX("right");
       container.add(buttonPane);
       this._backButton = new qx.ui.form.Button("< " + this.tr("Back"));
       this._backButton.addListener("execute", this.goBack, this);
@@ -130,6 +126,14 @@ qx.Class.define("dialog.Wizard", {
       this._finishButton.addListener("execute", this.finish, this);
       this._finishButton.setEnabled(false);
       buttonPane.add(this._finishButton);
+      if (qx.core.Environment.get("module.objectid") === true) {
+        this._backButton.setQxObjectId("back");
+        this.addOwnedQxObject(this._backButton);
+        this._nextButton.setQxObjectId("next");
+        this.addOwnedQxObject(this._nextButton);
+        this._finishButton.setQxObjectId("finish");
+        this.addOwnedQxObject(this._finishButton);
+      }
     },
 
     /**
@@ -141,12 +145,12 @@ qx.Class.define("dialog.Wizard", {
       let _this = this;
       form.getValidationManager().bind("valid", this._nextButton, "enabled", {
         converter: function(value) {
-          return value && _this.getAllowNext() ? true : false;
+          return !!(value && _this.getAllowNext());
         }
       });
       form.getValidationManager().bind("valid", this._finishButton, "enabled", {
         converter: function(value) {
-          return value && _this.getAllowFinish() ? true : false;
+          return !!(value && _this.getAllowFinish());
         }
       });
     },
@@ -165,7 +169,7 @@ qx.Class.define("dialog.Wizard", {
         let modelData = {};
         pageData.forEach(function(pData) {
           let formData = pData.formData;
-          for (let key in formData) {
+          for (let key of Object.getOwnPropertyNames(formData)) {
             modelData[key] = formData[key].value || null;
           }
         });
@@ -192,7 +196,7 @@ qx.Class.define("dialog.Wizard", {
       this.setAllowNext(page < length - 1);
       this.setAllowBack(page > 0);
       if (!this.getAllowFinish()) {
-        this.setAllowFinish(page == length - 1);
+        this.setAllowFinish(page === length - 1);
       }
       this.set(pageData);
     },

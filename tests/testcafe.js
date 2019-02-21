@@ -1,5 +1,4 @@
 import {IdSelector, QxSelector} from "./adapters/TestCafe";
-import process from 'process';
 
 fixture `Testing dialog widgets`
   .page `http://127.0.0.1:8080/build/dialog.demo/index.html`;

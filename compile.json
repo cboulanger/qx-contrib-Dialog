@@ -7,8 +7,8 @@
       "name": "dialog.demo"
     },
     {
-      "class": "apiviewer.Application",
-      "theme": "apiviewer.Theme",
+      "class": "qxl.apiviewer.Application",
+      "theme": "qxl.apiviewer.Theme",
       "name": "apiviewer",
       "title": "Qooxdoo API Viewer",
       "outputPath": "apiviewer",
@@ -19,29 +19,36 @@
         "qx.test.*",
         "qx.module.Blocker",
         "qx.module.Placement"
-      ]
+      ],
+      "environment": {
+        "excludeFromAPIViewer": [
+          "qxl.apiviewer.*"
+        ]
+      }
     }
   ],
   "environment": {
-    "module.objectid" : true,
-    "recorder.enabled" : false
+    "module.objectid": true
   },
   "targets": [
     {
       "type": "source",
-      "outputPath": "source-output",
+      "outputPath": "compiled/source",
       "environment": {
-        "qx.debug": true,
-        "recorder.enabled" : true
+        "qx.debug": true
+      },
+      "bundle": {
+        "include": [
+          "qx.*"
+        ],
+        "exclude": [
+          "qx.util.*"
+        ]
       }
     },
     {
-      "type": "hybrid",
-      "outputPath": "hybrid-output"
-    },
-    {
       "type": "build",
-      "outputPath": "build-output"
+      "outputPath": "compiled/build"
     }
   ],
   "defaultTarget": "source",
