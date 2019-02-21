@@ -125,12 +125,14 @@ qx.Class.define("dialog.Form", {
       hbox.add(this._message, {
         flex: 1
       });
+
       // wrap fields in form tag to avoid Chrome warnings, see https://github.com/cboulanger/qx-contrib-Dialog/issues/19
       let formTag = new dialog.FormTag();
       this._formContainer = new qx.ui.container.Composite();
       this._formContainer.setLayout(new qx.ui.layout.Grow());
       formTag.add( this._formContainer, {flex: 1} );
       container.add(formTag, { flex: 1 });
+
       // buttons
       let buttonPane = this._createButtonPane();
       container.add(buttonPane);
@@ -138,6 +140,7 @@ qx.Class.define("dialog.Form", {
       buttonPane.add(okButton);
       let cancelButton = this._createCancelButton();
       buttonPane.add(cancelButton);
+
       this.add(container);
     },
 
@@ -182,6 +185,7 @@ qx.Class.define("dialog.Form", {
       this._form = new qx.ui.form.Form();
       if (qx.core.Environment.get("module.objectid") === true) {
         this._form.setQxObjectId("form");
+        this.addOwnedQxObject(this._form);
       }
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
@@ -459,16 +463,11 @@ qx.Class.define("dialog.Form", {
     /**
      * Create OK Button
      * unlike our superclass, we do not add an appear listener to focus OK
-     * cherry-picked from from https://github.com/derrell/qx-contrib-Dialog/commit/c656f1cb98cbd1e61456566b63b5a4926dfe9cef
      * @override
      * @return {qx.ui.form.Button}
      */
     _createOkButton: function () {
-      let okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
-      okButton.setIcon("dialog.icon.ok");
-      okButton.setAllowStretchX(false);
-      okButton.addListener("execute", this._handleOk, this);
-      return okButton;
+      return this.base(arguments,true);
     },
 
     /**

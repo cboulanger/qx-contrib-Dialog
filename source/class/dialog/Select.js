@@ -36,7 +36,7 @@ qx.Class.define("dialog.Select", {
      * Create the main content of the widget
      */
     _createWidgetContent: function() {
-      let container = this._createDialogContainer()
+      let container = this._createDialogContainer();
       this.add(container);
       let hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       container.add(hbox);
@@ -54,11 +54,18 @@ qx.Class.define("dialog.Select", {
         options.forEach(function(option) {
           let button = new qx.ui.form.Button(option.label, option.icon);
           button.setAllowStretchX(true);
-          let value = "" + option.value;
+          let value = String(option.value);
           button.addListener("execute", function() {
             this._handleSelection(value);
           }, this);
           buttonPane.add(button);
+          if (qx.core.Environment.get("module.objectid") === true) {
+            try {
+              buttonPane.removeOwnedQxObject(value);
+            } catch (e) {}
+            button.setQxObjectId(value);
+            buttonPane.addOwnedQxObject(button);
+          }
         }, this);
         let cancelButton = this._createCancelButton();
         buttonPane.add(cancelButton);

@@ -131,8 +131,17 @@ qx.Class.define("dialog.Confirm", {
       buttonPane.add(yesButton);
       buttonPane.add(noButton);
       buttonPane.add(cancelButton);
+
       container.add(buttonPane);
       this.add(container);
+
+      // object id
+      if (qx.core.Environment.get("module.objectid") === true) {
+        yesButton.setQxObjectId("yes");
+        this.getQxObject("buttons").addOwnedQxObject(yesButton);
+        noButton.setQxObjectId("no");
+        this.getQxObject("buttons").addOwnedQxObject(noButton);
+      }
     },
 
     /**

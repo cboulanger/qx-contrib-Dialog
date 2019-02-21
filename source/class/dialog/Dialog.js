@@ -463,7 +463,7 @@ qx.Class.define("dialog.Dialog", {
      * Create an OK button
      * @return {qx.ui.form.Button}
      */
-    _createOkButton: function() {
+    _createOkButton: function(noFocus=false) {
       let okButton = (this._okButton = new qx.ui.form.Button(this.tr("OK")));
       okButton.setIcon("dialog.icon.ok");
       okButton.getChildControl("icon").set({
@@ -473,13 +473,9 @@ qx.Class.define("dialog.Dialog", {
       });
       okButton.setAllowStretchX(false);
       okButton.addListener("execute", this._handleOk, this);
-      this.addListener(
-        "appear",
-        function() {
-          okButton.focus();
-        },
-        this
-      );
+      if (!noFocus) {
+        this.addListener("appear", () => okButton.focus());
+      }
       if (qx.core.Environment.get("module.objectid") === true) {
         okButton.setQxObjectId("ok");
         this.getQxObject("buttons").addOwnedQxObject(okButton);

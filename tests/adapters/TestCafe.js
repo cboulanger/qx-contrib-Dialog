@@ -8,6 +8,7 @@ export const QxSelector = (selector) => {
 
     /**
      * Returns the absolute id of the owned object with that id
+     * @param domNode
      * @param id
      * @returns {String}
      */
@@ -16,6 +17,7 @@ export const QxSelector = (selector) => {
     },
     /**
      * Returns the value of the property of the widget that is connected with the DOM node
+     * @param domNode
      * @param key
      * @returns {*|var}
      */

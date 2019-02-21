@@ -20,7 +20,8 @@ msgid "OK"
 msgstr ""
 
 #: dialog.Dialog:443 dialog/Dialog.js:443 dialog/Dialog.js:447
-#: dialog/Dialog.js:448 dialog/Dialog.js:497 qx/ui/control/ColorPopup.js:185
+#: dialog/Dialog.js:448 dialog/Dialog.js:497 dialog/Dialog.js:493
+#: qx/ui/control/ColorPopup.js:185
 msgid "Cancel"
 msgstr ""
 
@@ -87,6 +88,7 @@ msgid "Forgot Password?"
 msgstr ""
 
 #: dialog/Form.js:396 dialog/Form.js:397 dialog/Form.js:400 dialog/Form.js:399
+#: dialog/Form.js:403
 msgid "Value is invalid"
 msgstr ""
 
