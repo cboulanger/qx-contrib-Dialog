@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/util/PropertyUtil.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "getProperties",
+    "clazz",
+    "$$properties",
+    "getAllProperties",
+    "properties",
+    "superclass",
+    "core",
+    "Object",
+    "currentProperties",
+    "property",
+    "getUserValue",
+    "object",
+    "propertyName",
+    "setUserValue",
+    "value",
+    "deleteUserValue",
+    "getInitValue",
+    "setInitValue",
+    "deleteInitValue",
+    "getThemeValue",
+    "setThemeValue",
+    "deleteThemeValue",
+    "setThemed",
+    "styler",
+    "Property",
+    "$$method",
+    "resetThemed",
+    "unstyler",
+    "util",
+    "PropertyUtil"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAwBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,aACA;AACE;;;;;;;;AAQAC,qBAAgB,uBAASC,KAAT,EAAgB;AAC9B,eAAOA,MAAMC,YAAb;AACD,OAXH;;AAcE;;;;;;;;;AASAC,wBAAmB,0BAASF,KAAT,EACnB;;AAEE,YAAIG,aAAa,EAAjB;AACA,YAAIC,aAAaJ,KAAjB;AACA;AACA,eAAOI,cAAcZ,GAAGa,IAAH,CAAQC,MAA7B,EAAqC;AACnC,cAAIC,oBAAoB,KAAKR,aAAL,CAAmBK,UAAnB,CAAxB;AACA,eAAK,IAAII,QAAT,IAAqBD,iBAArB,EAAwC;AACtCJ,uBAAWK,QAAX,IAAuBD,kBAAkBC,QAAlB,CAAvB;AACD;AACDJ,uBAAaA,WAAWA,UAAxB;AACD;AACD,eAAOD,UAAP;AACD,OArCH;;AAyCE;;;;;;AAMA;;;;;;;AAOAM,oBAAe,sBAASC,MAAT,EAAiBC,YAAjB,EAA+B;AAC5C,eAAOD,OAAO,YAAYC,YAAnB,CAAP;AACD,OAxDH;;AA0DE;;;;;;;AAOAC,oBAAe,sBAASF,MAAT,EAAiBC,YAAjB,EAA+BE,KAA/B,EAAsC;AACnDH,eAAO,YAAYC,YAAnB,IAAmCE,KAAnC;AACD,OAnEH;;AAqEE;;;;;;AAMAC,uBAAkB,yBAASJ,MAAT,EAAiBC,YAAjB,EAA+B;AAC/C,eAAOD,OAAO,YAAYC,YAAnB,CAAP;AACD,OA7EH;;AAgFE;;;;;;AAMA;;;;;;;AAOAI,oBAAe,sBAASL,MAAT,EAAiBC,YAAjB,EAA+B;AAC5C,eAAOD,OAAO,YAAYC,YAAnB,CAAP;AACD,OA/FH;;AAiGE;;;;;;;AAOAK,oBAAe,sBAASN,MAAT,EAAiBC,YAAjB,EAA+BE,KAA/B,EAAsC;AACnDH,eAAO,YAAYC,YAAnB,IAAmCE,KAAnC;AACD,OA1GH;;AA4GE;;;;;;AAMAI,uBAAkB,yBAASP,MAAT,EAAiBC,YAAjB,EAA+B;AAC/C,eAAOD,OAAO,YAAYC,YAAnB,CAAP;AACD,OApHH;;AAuHE;;;;;;AAMA;;;;;;;AAOAO,qBAAgB,uBAASR,MAAT,EAAiBC,YAAjB,EAA+B;AAC7C,eAAOD,OAAO,aAAaC,YAApB,CAAP;AACD,OAtIH;;AAwIE;;;;;;;AAOAQ,qBAAgB,uBAAST,MAAT,EAAiBC,YAAjB,EAA+BE,KAA/B,EAAsC;AACpDH,eAAO,aAAaC,YAApB,IAAoCE,KAApC;AACD,OAjJH;;AAmJE;;;;;;AAMAO,wBAAmB,0BAASV,MAAT,EAAiBC,YAAjB,EAA+B;AAChD,eAAOD,OAAO,aAAaC,YAApB,CAAP;AACD,OA3JH;;AA8JE;;;;;;AAMA;;;;;;;AAOAU,iBAAY,mBAASX,MAAT,EAAiBC,YAAjB,EAA+BE,KAA/B,EACZ;AACE,YAAIS,SAAS9B,GAAGa,IAAH,CAAQkB,QAAR,CAAiBC,QAAjB,CAA0BH,SAAvC;AACAX,eAAOY,OAAOX,YAAP,CAAP,EAA6BE,KAA7B;AACD,OA/KH;;AAiLE;;;;;;AAMAY,mBAAc,qBAASf,MAAT,EAAiBC,YAAjB,EACd;AACE,YAAIe,WAAWlC,GAAGa,IAAH,CAAQkB,QAAR,CAAiBC,QAAjB,CAA0BC,WAAzC;AACAf,eAAOgB,SAASf,YAAT,CAAP;AACD;AA3LH;AAFF,GADA,C;AAxBAnB,KAAGmC,IAAH,CAAQC,YAAR,CAAqBjC,aAArB,GAAqCA,aAArC",
+  "file": "PropertyUtil.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * A helper class for accessing the property system directly.\n *\n * This class is rather to be used internally. For all regular usage of the\n * property system the default API should be sufficient.\n */\nqx.Class.define(\"qx.util.PropertyUtil\",\n{\n  statics :\n  {\n    /**\n     * Get the property map of the given class\n     *\n     * @param clazz {Class} a qooxdoo class\n     * @return {Map} A properties map as defined in {@link qx.Class#define}\n     *   including the properties of included mixins and not including refined\n     *   properties.\n     */\n    getProperties : function(clazz) {\n      return clazz.$$properties;\n    },\n\n\n    /**\n     * Get the property map of the given class including the properties of all\n     * superclasses!\n     *\n     * @param clazz {Class} a qooxdoo class\n     * @return {Map} The properties map as defined in {@link qx.Class#define}\n     *   including the properties of included mixins of the current class and\n     *   all superclasses.\n     */\n    getAllProperties : function(clazz)\n    {\n\n      var properties = {};\n      var superclass = clazz;\n      // go threw the class hierarchy\n      while (superclass != qx.core.Object) {\n        var currentProperties = this.getProperties(superclass);\n        for (var property in currentProperties) {\n          properties[property] = currentProperties[property];\n        }\n        superclass = superclass.superclass;\n      }\n      return properties;\n    },\n\n\n\n    /*\n    -------------------------------------------------------------------------\n      USER VALUES\n    -------------------------------------------------------------------------\n    */\n\n    /**\n     * Returns the user value of the given property\n     *\n     * @param object {Object} The object to access\n     * @param propertyName {String} The name of the property\n     * @return {var} The user value\n     */\n    getUserValue : function(object, propertyName) {\n      return object[\"$$user_\" + propertyName];\n    },\n\n    /**\n    * Sets the user value of the given property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    * @param value {var} The value to set\n    */\n    setUserValue : function(object, propertyName, value) {\n      object[\"$$user_\" + propertyName] = value;\n    },\n\n    /**\n    * Deletes the user value of the given property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    */\n    deleteUserValue : function(object, propertyName) {\n      delete(object[\"$$user_\" + propertyName]);\n    },\n\n\n    /*\n    -------------------------------------------------------------------------\n      INIT VALUES\n    -------------------------------------------------------------------------\n    */\n\n    /**\n     * Returns the init value of the given property\n     *\n     * @param object {Object} The object to access\n     * @param propertyName {String} The name of the property\n     * @return {var} The init value\n     */\n    getInitValue : function(object, propertyName) {\n      return object[\"$$init_\" + propertyName];\n    },\n\n    /**\n    * Sets the init value of the given property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    * @param value {var} The value to set\n    */\n    setInitValue : function(object, propertyName, value) {\n      object[\"$$init_\" + propertyName] = value;\n    },\n\n    /**\n    * Deletes the init value of the given property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    */\n    deleteInitValue : function(object, propertyName) {\n      delete(object[\"$$init_\" + propertyName]);\n    },\n\n\n    /*\n    -------------------------------------------------------------------------\n      THEME VALUES\n    -------------------------------------------------------------------------\n    */\n\n    /**\n     * Returns the theme value of the given property\n     *\n     * @param object {Object} The object to access\n     * @param propertyName {String} The name of the property\n     * @return {var} The theme value\n     */\n    getThemeValue : function(object, propertyName) {\n      return object[\"$$theme_\" + propertyName];\n    },\n\n    /**\n    * Sets the theme value of the given property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    * @param value {var} The value to set\n    */\n    setThemeValue : function(object, propertyName, value) {\n      object[\"$$theme_\" + propertyName] = value;\n    },\n\n    /**\n    * Deletes the theme value of the given property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    */\n    deleteThemeValue : function(object, propertyName) {\n      delete(object[\"$$theme_\" + propertyName]);\n    },\n\n\n    /*\n    -------------------------------------------------------------------------\n      THEMED PROPERTY\n    -------------------------------------------------------------------------\n    */\n\n    /**\n     * Sets a themed property\n     *\n     * @param object {Object} The object to access\n     * @param propertyName {String} The name of the property\n    * @param value {var} The value to set\n     */\n    setThemed : function(object, propertyName, value)\n    {\n      var styler = qx.core.Property.$$method.setThemed;\n      object[styler[propertyName]](value);\n    },\n\n    /**\n    * Resets a themed property\n    *\n    * @param object {Object} The object to access\n    * @param propertyName {String} The name of the property\n    */\n    resetThemed : function(object, propertyName)\n    {\n      var unstyler = qx.core.Property.$$method.resetThemed;\n      object[unstyler[propertyName]]();\n    }\n  }\n});"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/bom/client/Device.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "__ids",
+    "getName",
+    "str",
+    "key",
+    "bom",
+    "client",
+    "Device",
+    "push",
+    "reg",
+    "RegExp",
+    "join",
+    "replace",
+    "match",
+    "exec",
+    "navigator",
+    "userAgent",
+    "getType",
+    "detectDeviceType",
+    "userAgentString",
+    "detectTabletDevice",
+    "detectMobileDevice",
+    "test",
+    "isIE10Tablet",
+    "isCommonTablet",
+    "getDevicePixelRatio",
+    "window",
+    "devicePixelRatio",
+    "getTouch",
+    "maxTouchPoints",
+    "msMaxTouchPoints",
+    "defer",
+    "core",
+    "Environment",
+    "add"
+  ],
+  "mappings": "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",
+  "file": "Device.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * The class is responsible for device detection. This is specially useful\n * if you are on a mobile device.\n *\n * This class is used by {@link qx.core.Environment} and should not be used\n * directly. Please check its class comment for details how to use it.\n *\n * @internal\n */\nqx.Bootstrap.define(\"qx.bom.client.Device\",\n{\n  statics :\n  {\n    /** Maps user agent names to device IDs */\n    __ids : {\n      \"Windows Phone\": \"iemobile\",\n      \"iPod\" : \"ipod\",\n      \"iPad\" : \"ipad\",\n      \"iPhone\" : \"iphone\",\n      \"PSP\" : \"psp\",\n      \"PLAYSTATION 3\" : \"ps3\",\n      \"Nintendo Wii\" : \"wii\",\n      \"Nintendo DS\" : \"ds\",\n      \"XBOX\" : \"xbox\",\n      \"Xbox\" : \"xbox\"\n    },\n\n\n    /**\n     * Returns the name of the current device if detectable. It falls back to\n     * <code>pc</code> if the detection for other devices fails.\n     *\n     * @internal\n     * @return {String} The string of the device found.\n     */\n    getName : function() {\n      var str = [];\n      for (var key in qx.bom.client.Device.__ids) {\n        str.push(key);\n      }\n      var reg = new RegExp(\"(\" + str.join(\"|\").replace(/\\./g, \"\\.\") + \")\", \"g\");\n      var match = reg.exec(navigator.userAgent);\n\n      if (match && match[1]) {\n        return qx.bom.client.Device.__ids[match[1]];\n      }\n\n      return \"pc\";\n    },\n\n\n    /**\n     * Determines on what type of device the application is running.\n     * Valid values are: \"mobile\", \"tablet\" or \"desktop\".\n     * @return {String} The device type name of determined device.\n     */\n    getType : function() {\n      return qx.bom.client.Device.detectDeviceType(navigator.userAgent);\n    },\n\n\n    /**\n     * Detects the device type, based on given userAgentString.\n     *\n     * @param userAgentString {String} userAgent parameter, needed for decision.\n     * @return {String} The device type name of determined device: \"mobile\",\"desktop\",\"tablet\"\n     */\n    detectDeviceType : function(userAgentString) {\n      if(qx.bom.client.Device.detectTabletDevice(userAgentString)){\n        return \"tablet\";\n      } else if (qx.bom.client.Device.detectMobileDevice(userAgentString)){\n        return \"mobile\";\n      }\n\n      return \"desktop\";\n    },\n\n\n    /**\n     * Detects if a device is a mobile phone. (Tablets excluded.)\n     * @param userAgentString {String} userAgent parameter, needed for decision.\n     * @return {Boolean} Flag which indicates whether it is a mobile device.\n     */\n    detectMobileDevice : function(userAgentString){\n      return /android.+mobile|ip(hone|od)|bada\\/|blackberry|BB10|maemo|opera m(ob|in)i|fennec|NetFront|phone|psp|symbian|IEMobile|windows (ce|phone)|xda/i.test(userAgentString);\n    },\n\n\n    /**\n     * Detects if a device is a tablet device.\n     * @param userAgentString {String} userAgent parameter, needed for decision.\n     * @return {Boolean} Flag which indicates whether it is a tablet device.\n     */\n    detectTabletDevice : function(userAgentString){\n      var isIE10Tablet = (/MSIE 10/i.test(userAgentString)) && (/ARM/i.test(userAgentString)) && !(/windows phone/i.test(userAgentString));\n      var isCommonTablet = (!(/android.+mobile|Tablet PC/i.test(userAgentString)) && (/Android|ipad|tablet|playbook|silk|kindle|psp/i.test(userAgentString)));\n\n      return  isIE10Tablet || isCommonTablet;\n    },\n\n\n    /**\n     * Detects the device's pixel ratio. Returns 1 if detection is not possible.\n     *\n     * @return {Number} The device's pixel ratio\n     */\n    getDevicePixelRatio : function() {\n      if (typeof window.devicePixelRatio !== \"undefined\") {\n        return window.devicePixelRatio;\n      }\n\n      return 1;\n    },\n\n\n    /**\n     * Detects if either touch events or pointer events are supported.\n     * Additionally it checks if touch is enabled for pointer events.\n     *\n     * @return {Boolean} <code>true</code>, if the device supports touch\n     */\n    getTouch : function() {\n      return ((\"ontouchstart\" in window) ||\n        window.navigator.maxTouchPoints > 0 ||\n        window.navigator.msMaxTouchPoints > 0);\n    }\n  },\n\n\n  defer : function(statics) {\n      qx.core.Environment.add(\"device.name\", statics.getName);\n      qx.core.Environment.add(\"device.touch\", statics.getTouch);\n      qx.core.Environment.add(\"device.type\", statics.getType);\n      qx.core.Environment.add(\"device.pixelRatio\", statics.getDevicePixelRatio);\n  }\n});\n"
+  ]
+}

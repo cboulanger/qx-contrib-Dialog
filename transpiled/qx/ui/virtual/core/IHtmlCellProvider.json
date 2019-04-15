@@ -1,0 +1,83 @@
+{
+  "className": "qx.ui.virtual.core.IHtmlCellProvider",
+  "packageName": "qx.ui.virtual.core",
+  "name": "IHtmlCellProvider",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 47,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nFabian Jakobs (fjakobs)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "EXPERIMENTAL!\n\nA HTML cell provider provides the {@link qx.ui.virtual.layer.HtmlCell}\nwith HTML fragments to render the cells."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "getCellProperties": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns all relevant properties of the cell:\n<ul>\n<li>classes (String): Space separated class names</li>\n<li>style (String): CSS styles</li>\n<li>attributes (String): Space separated attributes</li>\n<li>content (String): HTML fragment of the innerHTML of the cell</li>\n<li>insets (Array): insets (padding + border) of the cell as\ntwo-dimensional array.</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {Integer} The cell's row index.",
+            "paramName": "row",
+            "description": " The cell's row index.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "column {Integer} The cell's column index.",
+            "paramName": "column",
+            "description": " The cell's column index.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Cell properties (see above.)",
+            "type": "Map",
+            "description": " Cell properties (see above.)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

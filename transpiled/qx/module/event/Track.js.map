@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/module/event/Track.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "TYPES",
+    "BIND_METHODS",
+    "getDelta",
+    "_original",
+    "delta",
+    "normalize",
+    "event",
+    "element",
+    "bindMethods",
+    "module",
+    "Track",
+    "i",
+    "l",
+    "length",
+    "bind",
+    "defer",
+    "qxWeb",
+    "$registerEventNormalization"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA2BAH,GAAGC,SAAH,CAAaG,MAAb,CAAoB,uBAApB,EAA6C;AAC3CC,aACA;AACE;;;AAGAC,aAAQ,CAAC,OAAD,CAJV;;AAOEC,oBAAe,CAAE,UAAF,CAPjB;;AAUE;;;;;;;AAOAC,gBAAW,oBAAW;AACpB,eAAO,KAAKC,SAAL,CAAeC,KAAtB;AACD,OAnBH;;AAsBE;;;;;;;;;AASAC,iBAAY,mBAASC,KAAT,EAAgBC,OAAhB,EACZ;AACE,YAAI,CAACD,KAAL,EAAY;AACV,iBAAOA,KAAP;AACD;AACD;AACA,YAAIE,cAAcd,GAAGe,MAAH,CAAUH,KAAV,CAAgBI,KAAhB,CAAsBT,YAAxC;AACA,aAAK,IAAIU,IAAE,CAAN,EAASC,IAAEJ,YAAYK,MAA5B,EAAoCF,IAAEC,CAAtC,EAAyCD,GAAzC,EAA8C;AAC5C,cAAI,OAAOL,MAAME,YAAYG,CAAZ,CAAN,CAAP,IAAgC,UAApC,EAAgD;AAC9CL,kBAAME,YAAYG,CAAZ,CAAN,IAAwBjB,GAAGe,MAAH,CAAUH,KAAV,CAAgBI,KAAhB,CAAsBF,YAAYG,CAAZ,CAAtB,EAAsCG,IAAtC,CAA2CR,KAA3C,CAAxB;AACD;AACF;;AAED,eAAOA,KAAP;AACD;AA7CH,KAF2C;;AAkD3CS,WAAQ,eAAShB,OAAT,EAAkB;AACxBiB,YAAMC,2BAAN,CAAkCvB,GAAGe,MAAH,CAAUH,KAAV,CAAgBI,KAAhB,CAAsBV,KAAxD,EAA+DD,QAAQM,SAAvE;AACD;AApD0C,GAA7C,C;AA3BAX,KAAGe,MAAH,CAAUH,KAAV,CAAgBI,KAAhB,CAAsBb,aAAtB,GAAsCA,aAAtC",
+  "file": "Track.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Normalization for the track gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>,\n * meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n * touchscreen).\n *\n * @require(qx.module.Event)\n *\n * @group (Event_Normalization)\n */\nqx.Bootstrap.define(\"qx.module.event.Track\", {\n  statics :\n  {\n    /**\n     * List of event types to be normalized\n     */\n    TYPES : [\"track\"],\n\n\n    BIND_METHODS : [ \"getDelta\" ],\n\n\n    /**\n     * Returns a map with the calculated delta coordinates and axis,\n     * relative to the position on <code>trackstart</code> event.\n     *\n     * @return {Map} a map with contains the delta as <code>x</code> and\n     * <code>y</code> and the movement axis as <code>axis</code>.\n     */\n    getDelta : function() {\n      return this._original.delta;\n    },\n\n\n    /**\n     * Manipulates the native event object, adding methods if they're not\n     * already present\n     *\n     * @param event {Event} Native event object\n     * @param element {Element} DOM element the listener was attached to\n     * @return {Event} Normalized event object\n     * @internal\n     */\n    normalize : function(event, element)\n    {\n      if (!event) {\n        return event;\n      }\n      // apply mouse event normalizations\n      var bindMethods = qx.module.event.Track.BIND_METHODS;\n      for (var i=0, l=bindMethods.length; i<l; i++) {\n        if (typeof event[bindMethods[i]] != \"function\") {\n          event[bindMethods[i]] = qx.module.event.Track[bindMethods[i]].bind(event);\n        }\n      }\n\n      return event;\n    }\n  },\n\n  defer : function(statics) {\n    qxWeb.$registerEventNormalization(qx.module.event.Track.TYPES, statics.normalize);\n  }\n});\n"
+  ]
+}

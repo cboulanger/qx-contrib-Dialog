@@ -1,0 +1,214 @@
+{
+  "className": "qx.module.MatchMedia",
+  "packageName": "qx.module",
+  "name": "MatchMedia",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 114,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2013-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nRomeo Kenfack Tsakem (rkenfack)\nTobias Oberrauch (toberrauch)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Module for mediaqueries evaluation. The module is a wrapper for media.match.js,\nthat implements a polyfill for window.matchMedia when it's not supported natively."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "matchMedia": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 36,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Evaluates the specified mediaquery list"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "query {String} the media query to evaluate",
+            "paramName": "query",
+            "description": " the media query to evaluate",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.MediaQuery}  The media query",
+            "type": "qx.bom.MediaQuery",
+            "description": "  The media query"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, matchMedia}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addSizeClasses": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds screen size classes (e.g. small-only or medium-up) by pre-defined media queries using em.\nThe range goes from small to medium, large and xlarge up to xxlarge:\n\nsmall: 0em - 40em\nmedium: 40.063em - 64em\nlarge: 64.063em - 90em\nxlarge: 90.063em - 120em\nxxlarge: > 120.063em\n\nThe suffix of the class name indicates either that the current screen\nis larger than this size (*-up) or in that range (*-only)."
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__applyClass": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds or removes a class depending on matching a given media query"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "query {String} the media query to evaluate",
+            "paramName": "query",
+            "description": " the media query to evaluate",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "className {String} css class name that gets bind to an element",
+            "paramName": "className",
+            "description": " css class name that gets bind to an element",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "members": {
+    "mediaQueryToClass": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Listens for media query updates and applies/removes the css class."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "queryString {String} the media query to evaluate",
+            "paramName": "queryString",
+            "description": " the media query to evaluate",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "className {String} css class name that gets bind to an element",
+            "paramName": "className",
+            "description": " css class name that gets bind to an element",
+            "type": "String"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Self instance for chaining",
+            "type": "qxWeb",
+            "description": " Self instance for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 111,
+        "column": 2
+      },
+      "end": {
+        "line": 113,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

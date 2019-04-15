@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/treevirtual/SimpleTreeDataRowRenderer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "table",
+    "rowrenderer",
+    "Default",
+    "construct",
+    "members",
+    "updateDataRowElement",
+    "rowInfo",
+    "rowElem",
+    "tree",
+    "rowData",
+    "tableModel",
+    "getTableModel",
+    "treeCol",
+    "getTreeColumn",
+    "node",
+    "selected",
+    "bSelected",
+    "row",
+    "getSelectionModel",
+    "_addSelectionInterval",
+    "treevirtual",
+    "SimpleTreeDataRowRenderer"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,6CAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,KAAN,CAAYC,WAAZ,CAAwBC,OADnC;;AAME;;;;;;AAMAC,eAAY,qBAAW;AACrB;AACD,KAdH;;AAmBE;;;;;;AAMAC,aACA;AACE;AACAC,4BAAuB,8BAASC,OAAT,EAAkBC,OAAlB,EACvB;AACE;AACA,YAAIC,OAAOF,QAAQN,KAAnB;AACA,YAAIS,UAAUH,QAAQG,OAAtB;AACA,YAAIC,aAAaF,KAAKG,aAAL,EAAjB;AACA,YAAIC,UAAUF,WAAWG,aAAX,EAAd;AACA,YAAIC,OAAOL,QAAQG,OAAR,CAAX;;AAEA;AACAN,gBAAQS,QAAR,GAAmBD,KAAKE,SAAxB;;AAEA,YAAIF,KAAKE,SAAT,EACA;AACE;AACA,cAAIC,MAAMX,QAAQW,GAAlB;AACAT,eAAKU,iBAAL,GAAyBC,qBAAzB,CAA+CF,GAA/C,EAAoDA,GAApD;AACD;;AAED;AACA,mGAAqBX,OAArB,EAA8BC,OAA9B;AACD;AAvBH;AA1BF,GADA,C;AArBAf,KAAGO,EAAH,CAAMqB,WAAN,CAAkBC,yBAAlB,CAA4C1B,aAA5C,GAA4DA,aAA5D",
+  "file": "SimpleTreeDataRowRenderer.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A data row renderer for a simple tree row\n */\nqx.Class.define(\"qx.ui.treevirtual.SimpleTreeDataRowRenderer\",\n{\n  extend : qx.ui.table.rowrenderer.Default,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function() {\n    this.base(arguments);\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    updateDataRowElement : function(rowInfo, rowElem)\n    {\n      // If the node is selected, select the row\n      var tree = rowInfo.table;\n      var rowData = rowInfo.rowData;\n      var tableModel = tree.getTableModel();\n      var treeCol = tableModel.getTreeColumn();\n      var node = rowData[treeCol];\n\n      // Set the row's selected state based on the data model\n      rowInfo.selected = node.bSelected;\n\n      if (node.bSelected)\n      {\n        // Ensure that the selection model knows it's selected\n        var row = rowInfo.row;\n        tree.getSelectionModel()._addSelectionInterval(row, row);\n      }\n\n      // Now call our superclass\n      this.base(arguments, rowInfo, rowElem);\n    }\n  }\n});\n"
+  ]
+}

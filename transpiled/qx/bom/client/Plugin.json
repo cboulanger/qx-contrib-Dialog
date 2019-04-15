@@ -1,0 +1,655 @@
+{
+  "className": "qx.bom.client.Plugin",
+  "packageName": "qx.bom.client",
+  "name": "Plugin",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 441,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Contains detection for QuickTime, Windows Media, DivX, Silverlight and gears.\nIf no version could be detected the version is set to an empty string as\ndefault.\n\nThis class is used by {@link qx.core.Environment} and should not be used\ndirectly. Please check its class comment for details how to use it."
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getGears": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks for the availability of google gears plugin."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if gears is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if gears is available"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getActiveX": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks for ActiveX availability."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if ActiveX is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if ActiveX is available"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSkype": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks for Skypes 'Click to call' availability."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the plugin is available.",
+            "type": "Boolean",
+            "description": " <code>true</code> if the plugin is available."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__db": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Database of supported features.\nFilled with additional data at initialization"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getQuicktimeVersion": {
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fetches the version of the quicktime plugin."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version of the plugin, if available,\nan empty string otherwise",
+            "type": "String",
+            "description": " The version of the plugin, if available,\nan empty string otherwise"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWindowsMediaVersion": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fetches the version of the windows media plugin."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version of the plugin, if available,\nan empty string otherwise",
+            "type": "String",
+            "description": " The version of the plugin, if available,\nan empty string otherwise"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDivXVersion": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fetches the version of the divx plugin."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version of the plugin, if available,\nan empty string otherwise",
+            "type": "String",
+            "description": " The version of the plugin, if available,\nan empty string otherwise"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSilverlightVersion": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fetches the version of the silverlight plugin."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version of the plugin, if available,\nan empty string otherwise",
+            "type": "String",
+            "description": " The version of the plugin, if available,\nan empty string otherwise"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPdfVersion": {
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fetches the version of the pdf plugin.\n\nThere are two built-in PDF viewer shipped with browsers:\n\n<ul>\n<li>Chrome PDF Viewer</li>\n<li>PDF.js (Firefox)</li>\n</ul>\n\nWhile the Chrome PDF Viewer is implemented as plugin and therefore\ndetected by this method PDF.js is <strong>not</strong>.\n\nSee the dedicated environment key (<em>plugin.pdfjs</em>) instead,\nwhich you might check additionally."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version of the plugin, if available,\nan empty string otherwise",
+            "type": "String",
+            "description": " The version of the plugin, if available,\nan empty string otherwise"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQuicktime": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4
+        },
+        "end": {
+          "line": 227,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the quicktime plugin is available."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the plugin is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if the plugin is available"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWindowsMedia": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the windows media plugin is available."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the plugin is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if the plugin is available"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDivX": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 249,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the divx plugin is available."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the plugin is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if the plugin is available"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSilverlight": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4
+        },
+        "end": {
+          "line": 260,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the silverlight plugin is available."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the plugin is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if the plugin is available"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPdf": {
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4
+        },
+        "end": {
+          "line": 285,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the pdf plugin is available.\n\nThere are two built-in PDF viewer shipped with browsers:\n\n<ul>\n<li>Chrome PDF Viewer</li>\n<li>PDF.js (Firefox)</li>\n</ul>\n\nWhile the Chrome PDF Viewer is implemented as plugin and therefore\ndetected by this method PDF.js is <strong>not</strong>.\n\nSee the dedicated environment key (<em>plugin.pdfjs</em>) instead,\nwhich you might check additionally."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the plugin is available",
+            "type": "Boolean",
+            "description": " <code>true</code> if the plugin is available"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getVersion": {
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4
+        },
+        "end": {
+          "line": 369,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper for getting the version of a given plugin."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "activeXName {String} The name which should be used to generate\nthe test ActiveX Object.",
+            "paramName": "activeXName",
+            "description": " The name which should be used to generate\nthe test ActiveX Object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pluginNames {Array} The names with which the plugins are listed in\nthe navigator.plugins list.",
+            "paramName": "pluginNames",
+            "description": " The names with which the plugins are listed in\nthe navigator.plugins list.",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "forceActiveX {Boolean?false} Force detection using ActiveX\nfor IE11 plugins that aren't listed in navigator.plugins",
+            "paramName": "forceActiveX",
+            "description": " Force detection using ActiveX\nfor IE11 plugins that aren't listed in navigator.plugins",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version of the plugin as string.",
+            "type": "String",
+            "description": " The version of the plugin as string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isAvailable": {
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4
+        },
+        "end": {
+          "line": 423,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper for getting the availability of a given plugin."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "activeXName {String} The name which should be used to generate\nthe test ActiveX Object.",
+            "paramName": "activeXName",
+            "description": " The name which should be used to generate\nthe test ActiveX Object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pluginNames {Array} The names with which the plugins are listed in\nthe navigator.plugins list.",
+            "paramName": "pluginNames",
+            "description": " The names with which the plugins are listed in\nthe navigator.plugins list.",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "forceActiveX {Boolean?false} Force detection using ActiveX\nfor IE11 plugins that aren't listed in navigator.plugins",
+            "paramName": "forceActiveX",
+            "description": " Force detection using ActiveX\nfor IE11 plugins that aren't listed in navigator.plugins",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the plugin available",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the plugin available"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 426,
+        "column": 2
+      },
+      "end": {
+        "line": 440,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

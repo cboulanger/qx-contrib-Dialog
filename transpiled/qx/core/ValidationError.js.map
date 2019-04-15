@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/core/ValidationError.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "type",
+    "BaseError",
+    "core",
+    "ValidationError"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACIC,YAASN,GAAGO,IAAH,CAAQC;AADrB,GADA,C;AArBAR,KAAGS,IAAH,CAAQC,eAAR,CAAwBP,aAAxB,GAAwCA,aAAxC",
+  "file": "ValidationError.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * A validation Error which should be thrown if a validation fails.\n */\nqx.Class.define(\"qx.core.ValidationError\",\n{\n    extend : qx.type.BaseError\n});"
+  ]
+}

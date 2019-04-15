@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/progressive/headfoot/Null.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "progressive",
+    "headfoot",
+    "Abstract",
+    "construct",
+    "exclude",
+    "Null"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,YAAaN,GAAGO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,QAD1C;;AAIEC,eAAY,qBACZ;AACE;;AAEA;AACA,WAAKC,OAAL;AACD;AAVH,GADA,C;AArBAZ,KAAGO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BI,IAA3B,CAAgCV,aAAhC,GAAgDA,aAAhD",
+  "file": "Null.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A null header/footer.  This is not displayed.\n */\nqx.Class.define(\"qx.ui.progressive.headfoot.Null\",\n{\n  extend     : qx.ui.progressive.headfoot.Abstract,\n\n\n  construct : function()\n  {\n    this.base(arguments);\n\n    // We're null, so don't display.\n    this.exclude();\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "className": "qx.module.event.Touch",
+  "packageName": "qx.module.event",
+  "name": "Touch",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 59,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDaniel Wagner (danielwagner)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Normalization for touch events. For cross-device applications that\nsupport both mouse and touchscreen interaction, consider using\n<a href=\"#Pointer\">Pointer</a> and/or Gesture events (e.g. <a href=\"Tap\"></a>)."
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Event_Normalization"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 49
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "List of event types to be normalized"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "normalize": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Manipulates the native event object, adding methods if they're not\nalready present"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type",
+            "paramName": "type",
+            "description": " Event type",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": " Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 56,
+        "column": 2
+      },
+      "end": {
+        "line": 58,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/locale/String.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "getQuotationStart",
+    "locale",
+    "Manager",
+    "getInstance",
+    "localize",
+    "getQuotationEnd",
+    "getAlternateQuotationStart",
+    "getAlternateQuotationEnd",
+    "String"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA2BAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,kBAAhB,EACA;AACEC,aACA;AACE;;;;;;AAMAC,yBAAoB,2BAASC,MAAT,EAAiB;AACnC,eAAOR,GAAGQ,MAAH,CAAUC,OAAV,CAAkBC,WAAlB,GAAgCC,QAAhC,CAAyC,qBAAzC,EAAgE,EAAhE,EAAoEH,MAApE,CAAP;AACD,OATH;;AAYE;;;;;;AAMAI,uBAAkB,yBAASJ,MAAT,EAAiB;AACjC,eAAOR,GAAGQ,MAAH,CAAUC,OAAV,CAAkBC,WAAlB,GAAgCC,QAAhC,CAAyC,mBAAzC,EAA8D,EAA9D,EAAkEH,MAAlE,CAAP;AACD,OApBH;;AAuBE;;;;;;AAMAK,kCAA6B,oCAASL,MAAT,EAAiB;AAC5C,eAAOR,GAAGQ,MAAH,CAAUC,OAAV,CAAkBC,WAAlB,GAAgCC,QAAhC,CAAyC,8BAAzC,EAAyE,EAAzE,EAA6EH,MAA7E,CAAP;AACD,OA/BH;;AAkCE;;;;;;AAMAM,gCAA2B,kCAASN,MAAT,EAAiB;AAC1C,eAAOR,GAAGQ,MAAH,CAAUC,OAAV,CAAkBC,WAAlB,GAAgCC,QAAhC,CAAyC,4BAAzC,EAAuE,EAAvE,EAA2EH,MAA3E,CAAP;AACD;AA1CH;AAFF,GADA,C;AA3BAR,KAAGQ,MAAH,CAAUO,MAAV,CAAiBZ,aAAjB,GAAiCA,aAAjC",
+  "file": "String.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Provides information about locale-dependent string formatting (like quotation\n * signs).\n *\n * @cldr()\n */\n\nqx.Class.define(\"qx.locale.String\",\n{\n  statics :\n  {\n    /**\n     * Get quotation start sign\n     *\n     * @param locale {String} optional locale to be used\n     * @return {String} quotation start sign\n     */\n    getQuotationStart : function(locale) {\n      return qx.locale.Manager.getInstance().localize(\"cldr_quotationStart\", [], locale);\n    },\n\n\n    /**\n     * Get quotation end sign\n     *\n     * @param locale {String} optional locale to be used\n     * @return {String} quotation end sign\n     */\n    getQuotationEnd : function(locale) {\n      return qx.locale.Manager.getInstance().localize(\"cldr_quotationEnd\", [], locale);\n    },\n\n\n    /**\n     * Get quotation alternative start sign\n     *\n     * @param locale {String} optional locale to be used\n     * @return {String} alternative quotation start sign\n     */\n    getAlternateQuotationStart : function(locale) {\n      return qx.locale.Manager.getInstance().localize(\"cldr_alternateQuotationStart\", [], locale);\n    },\n\n\n    /**\n     * Get quotation alternative end sign\n     *\n     * @param locale {String} optional locale to be used\n     * @return {String} alternative quotation end sign\n     */\n    getAlternateQuotationEnd : function(locale) {\n      return qx.locale.Manager.getInstance().localize(\"cldr_alternateQuotationEnd\", [], locale);\n    }\n  }\n});\n"
+  ]
+}

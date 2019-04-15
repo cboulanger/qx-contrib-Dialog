@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/theme/classic/Font.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "fonts",
+    "size",
+    "lineHeight",
+    "family",
+    "bold",
+    "theme",
+    "classic",
+    "Font"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,WACA;AACE,iBACA;AACEC,cAAO,EADT;AAEEC,oBAAa,GAFf;AAGEC,gBAAS,CAAE,eAAF,EAAmB,QAAnB,EAA6B,SAA7B,EAAwC,qBAAxC,EAA+D,iBAA/D;AAHX,OAFF;;AAQE,cACA;AACEF,cAAO,EADT;AAEEC,oBAAa,GAFf;AAGEC,gBAAS,CAAE,eAAF,EAAmB,QAAnB,EAA6B,SAA7B,EAAwC,qBAAxC,EAA+D,iBAA/D,CAHX;AAIEC,cAAO;AAJT,OATF;;AAgBE,eACA;AACEH,cAAO,EADT;AAEEC,oBAAa,GAFf;AAGEC,gBAAS,CAAE,eAAF,EAAmB,QAAnB,EAA6B,SAA7B,EAAwC,qBAAxC,EAA+D,iBAA/D;AAHX,OAjBF;;AAuBE,mBACA;AACEF,cAAO,EADT;AAEEC,oBAAa,GAFf;AAGEC,gBAAS,CAAE,kBAAF,EAAsB,aAAtB,EAAqC,WAArC;AAHX;AAxBF;AAFF,GADA,C;AAtBAT,KAAGW,KAAH,CAASC,OAAT,CAAiBC,IAAjB,CAAsBV,aAAtB,GAAsCA,aAAtC",
+  "file": "Font.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Sebastian Werner (wpbasti)\n   * Andreas Ecker (ecker)\n\n************************************************************************* */\n\n/**\n * The classic qooxdoo font theme.\n */\nqx.Theme.define(\"qx.theme.classic.Font\",\n{\n  fonts :\n  {\n    \"default\" :\n    {\n      size : 11,\n      lineHeight : 1.4,\n      family : [ \"Lucida Grande\", \"Tahoma\", \"Verdana\", \"Bitstream Vera Sans\", \"Liberation Sans\" ]\n    },\n\n    \"bold\" :\n    {\n      size : 11,\n      lineHeight : 1.4,\n      family : [ \"Lucida Grande\", \"Tahoma\", \"Verdana\", \"Bitstream Vera Sans\", \"Liberation Sans\" ],\n      bold : true\n    },\n\n    \"small\" :\n    {\n      size : 10,\n      lineHeight : 1.4,\n      family : [ \"Lucida Grande\", \"Tahoma\", \"Verdana\", \"Bitstream Vera Sans\", \"Liberation Sans\" ]\n    },\n\n    \"monospace\" :\n    {\n      size : 11,\n      lineHeight : 1.4,\n      family : [ \"DejaVu Sans Mono\", \"Courier New\", \"monospace\" ]\n    }\n  }\n});\n"
+  ]
+}

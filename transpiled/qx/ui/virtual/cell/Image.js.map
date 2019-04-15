@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/virtual/cell/Image.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "cell",
+    "AbstractImage",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "members",
+    "_identifyImage",
+    "value",
+    "Image"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAwBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,aAD9B;;AAGE;;;;;;AAMAC,gBACA;AACEC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT;AAFF,KAVF;;AAoBE;;;;;;AAMAC,aACA;AACE;AACAC,sBAAiB,wBAASC,KAAT,EAAgB;AAC/B,eAAOA,KAAP;AACD;AAJH;AA3BF,GADA,C;AAxBAjB,KAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBS,KAAnB,CAAyBf,aAAzB,GAAyCA,aAAzC",
+  "file": "Image.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Carsten Lergenmueller (carstenl)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * EXPERIMENTAL!\n */\n\nqx.Class.define(\"qx.ui.virtual.cell.Image\",\n{\n  extend : qx.ui.virtual.cell.AbstractImage,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance:\n    {\n      refine : true,\n      init : \"cell-image\"\n    }\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    _identifyImage : function(value) {\n      return value;\n    }\n  }\n});\n"
+  ]
+}

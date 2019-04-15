@@ -1,0 +1,460 @@
+{
+  "className": "qx.log.appender.Console",
+  "packageName": "qx.log.appender",
+  "name": "Console",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 0
+      },
+      "end": {
+        "line": 372,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Feature-rich console appender for the qooxdoo logging system.\n\nCreates a small inline element which is placed in the top-right corner\nof the window. Prints all messages with a nice color highlighting.\n\n* Allows user command inputs.\n* Command history enabled by default (Keyboard up/down arrows).\n* Lazy creation on first open.\n* Clearing the console using a button.\n* Display of offset (time after loading) of each message\n* Supports keyboard shortcuts F7 or Ctrl+D to toggle the visibility\n\nNote this class must be disposed of after use"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.event.handler.Window"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.handler.Keyboard"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.handler.Gesture"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__main": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 3
+        },
+        "end": {
+          "line": 48,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nINITIALIZATION AND SHUTDOWN\n---------------------------------------------------------------------------"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__log": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 3
+        },
+        "end": {
+          "line": 50,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__cmd": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 3
+        },
+        "end": {
+          "line": 52,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__lastCommand": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 3
+        },
+        "end": {
+          "line": 54,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initializes the console, building HTML and pushing last\nlog messages to the output window."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 143,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Used by the object registry to dispose this instance e.g. remove listeners etc."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clear": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4
+        },
+        "end": {
+          "line": 163,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nINSERT & CLEAR\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Clears the current console output."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "process": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 179,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Processes a single log entry"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(entry)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__scrollDown": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Automatically scroll down to the last line"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__visible": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nVISIBILITY TOGGLING\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Flag to store last visibility status"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "toggle": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4
+        },
+        "end": {
+          "line": 221,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Toggles the visibility of the console between visible and hidden."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 236,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Shows the console."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__history": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nCOMMAND LINE SUPPORT\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} List of all previous commands."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "execute": {
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4
+        },
+        "end": {
+          "line": 284,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes the currently given command"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__onResize": {
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4
+        },
+        "end": {
+          "line": 302,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nEVENT LISTENERS\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Event handler for resize listener"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Event object",
+            "paramName": "e",
+            "description": " Event object",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onKeyPress": {
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4
+        },
+        "end": {
+          "line": 356,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for keydown listener"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Event object",
+            "paramName": "e",
+            "description": " Event object",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 368,
+        "column": 2
+      },
+      "end": {
+        "line": 371,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDEFER\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

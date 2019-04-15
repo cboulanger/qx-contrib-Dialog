@@ -1,0 +1,65 @@
+{
+  "className": "qx.module.Core",
+  "packageName": "qx.module",
+  "name": "Core",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 0
+      },
+      "end": {
+        "line": 39,
+        "column": 42
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Placeholder class which simply defines and includes the core of qxWeb.\nThe core modules are:\n\n* {@link qx.module.Attribute}\n* {@link qx.module.Css}\n* {@link qx.module.Environment}\n* {@link qx.module.Event}\n* {@link qx.module.Manipulating}\n* {@link qx.module.Polyfill}\n* {@link qx.module.Traversing}"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Attribute"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Css"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Environment"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Manipulating"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Polyfill"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Traversing"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

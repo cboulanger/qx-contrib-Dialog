@@ -1,0 +1,133 @@
+{
+  "className": "qx.application.IApplication",
+  "packageName": "qx.application",
+  "name": "IApplication",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 57,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This interface defines what an application class has to implement."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "main": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Called when the application relevant classes are loaded and ready."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "finalize": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Called when the application's main method was executed to handle\n\"final\" tasks like rendering or retrieving data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "close": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Called in the document.beforeunload event of the browser. If the method\nreturns a string value, the user will be asked by the browser, whether\nhe really wants to leave the page. The return string will be displayed in\nthe message box."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String?null} message text on unloading the page",
+            "type": "String?null",
+            "description": " message text on unloading the page"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "terminate": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This method contains the last code which is run inside the page and may contain cleanup code."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

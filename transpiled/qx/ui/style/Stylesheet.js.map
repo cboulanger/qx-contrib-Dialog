@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/style/Stylesheet.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "__sheet",
+    "bom",
+    "Stylesheet",
+    "createElement",
+    "__rules",
+    "members",
+    "addRule",
+    "selector",
+    "css",
+    "hasRule",
+    "push",
+    "indexOf",
+    "removeRule",
+    "ui",
+    "style"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,UAAO,WADT;AAEEC,YAASP,GAAGQ,IAAH,CAAQC,MAFnB;;AAKEC,eAAY,qBAAW;AACrB;AACA,WAAKC,OAAL,GAAeX,GAAGY,GAAH,CAAOC,UAAP,CAAkBC,aAAlB,EAAf;AACA,WAAKC,OAAL,GAAe,EAAf;AACD,KATH;;AAYEC,aACA;AACED,eAAU,IADZ;AAEEJ,eAAU,IAFZ;;AAKE;;;;;AAKAM,eAAU,iBAASC,QAAT,EAAmBC,GAAnB,EAAwB;AAChC,YAAI,KAAKC,OAAL,CAAaF,QAAb,CAAJ,EAA4B;AAC1B;AACD;AACDlB,WAAGY,GAAH,CAAOC,UAAP,CAAkBI,OAAlB,CAA0B,KAAKN,OAA/B,EAAwCO,QAAxC,EAAkDC,GAAlD;AACA,aAAKJ,OAAL,CAAaM,IAAb,CAAkBH,QAAlB;AACD,OAhBH;;AAmBE;;;;;AAKAE,eAAU,iBAASF,QAAT,EAAmB;AAC3B,eAAO,KAAKH,OAAL,CAAaO,OAAb,CAAqBJ,QAArB,KAAkC,CAAC,CAA1C;AACD,OA1BH;;AA6BE;;;;AAIAK,kBAAa,oBAASL,QAAT,EAAmB;AAC9B,eAAO,KAAKH,OAAL,CAAa,KAAKA,OAAL,CAAaO,OAAb,CAAqBJ,QAArB,CAAb,CAAP;AACAlB,WAAGY,GAAH,CAAOC,UAAP,CAAkBU,UAAlB,CAA6B,KAAKZ,OAAlC,EAA2CO,QAA3C;AACD;AApCH;AAbF,GADA,C;AArBAlB,KAAGwB,EAAH,CAAMC,KAAN,CAAYZ,UAAZ,CAAuBV,aAAvB,GAAuCA,aAAvC",
+  "file": "Stylesheet.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n/**\n * Global class which handles the single stylesheet used for qx.desktop.\n */\nqx.Class.define(\"qx.ui.style.Stylesheet\",\n{\n  type : \"singleton\",\n  extend : qx.core.Object,\n\n\n  construct : function() {\n    this.base(arguments);\n    this.__sheet = qx.bom.Stylesheet.createElement();\n    this.__rules = [];\n  },\n\n\n  members :\n  {\n    __rules : null,\n    __sheet : null,\n\n\n    /**\n     * Adds a rule to the global stylesheet.\n     * @param selector {String} The CSS selector to add the rule for.\n     * @param css {String} The rule's content.\n     */\n    addRule : function(selector, css) {\n      if (this.hasRule(selector)) {\n        return;\n      }\n      qx.bom.Stylesheet.addRule(this.__sheet, selector, css);\n      this.__rules.push(selector);\n    },\n\n\n    /**\n     * Check if a rule exists.\n     * @param selector {String} The selector to check.\n     * @return {Boolean} <code>true</code> if the rule exists\n     */\n    hasRule : function(selector) {\n      return this.__rules.indexOf(selector) != -1;\n    },\n\n\n    /**\n     * Remove the rule for the given selector.\n     * @param selector {String} The selector to identify the rule.\n     */\n    removeRule : function(selector) {\n      delete this.__rules[this.__rules.indexOf(selector)];\n      qx.bom.Stylesheet.removeRule(this.__sheet, selector);\n    }\n  }\n});"
+  ]
+}

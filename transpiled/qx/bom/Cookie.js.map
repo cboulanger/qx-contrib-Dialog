@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/bom/Cookie.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "get",
+    "key",
+    "start",
+    "document",
+    "cookie",
+    "indexOf",
+    "len",
+    "length",
+    "substring",
+    "end",
+    "decodeURIComponent",
+    "URIError",
+    "log",
+    "Logger",
+    "error",
+    "message",
+    "set",
+    "value",
+    "expires",
+    "path",
+    "domain",
+    "secure",
+    "encodeURIComponent",
+    "today",
+    "Date",
+    "setTime",
+    "getTime",
+    "push",
+    "toGMTString",
+    "join",
+    "del",
+    "bom",
+    "Cookie"
+  ],
+  "mappings": "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",
+  "file": "Cookie.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A wrapper for Cookie handling.\n *\n * Previous versions of qooxoo use `escape()` and `unescape()` functions. Since those functions\n * are deprecated, then now qooxdoo use `encodeURIComponent()` and `decodeURIComponent()` functions.\n * This may break some cookies.\n * There are no issues with special characters like `~!@#$%^&*(){}[]=:/,;?+\\'\"\\\\` but some unicode\n * characters like `äëíöü` (etc) are encoded different by `escape()` and `encodeURIComponent()`,\n * so you must take care of this change if you use unicode characters.\n */\nqx.Bootstrap.define(\"qx.bom.Cookie\",\n{\n  /*\n  *****************************************************************************\n     STATICS\n  *****************************************************************************\n  */\n\n  statics :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      USER APPLICATION METHODS\n    ---------------------------------------------------------------------------\n    */\n\n    /**\n     * Returns the string value of a cookie.\n     *\n     * @param key {String} The key for the saved string value.\n     * @return {null | String} Returns the saved string value, if the cookie\n     *    contains a value for the key, <code>null</code> otherwise.\n     */\n    get : function(key)\n    {\n      var start = document.cookie.indexOf(key + \"=\");\n      var len = start + key.length + 1;\n\n      if ((!start) && (key != document.cookie.substring(0, key.length))) {\n        return null;\n      }\n\n      if (start == -1) {\n        return null;\n      }\n\n      var end = document.cookie.indexOf(\";\", len);\n\n      if (end == -1) {\n        end = document.cookie.length;\n      }\n\n      try {\n        return decodeURIComponent(document.cookie.substring(len, end));\n      }\n      catch (URIError) {\n        qx.log.Logger.error(\"Error decoding URI components\", URIError.message);\n        return null;\n      }\n    },\n\n\n    /**\n     * Sets the string value of a cookie.\n     *\n     * @param key {String} The key for the string value.\n     * @param value {String} The string value.\n     * @param expires {Number?null} The expires in days starting from now,\n     *    or <code>null</code> if the cookie should deleted after browser close.\n     * @param path {String?null} Path value.\n     * @param domain {String?null} Domain value.\n     * @param secure {Boolean?null} Secure flag.\n     */\n    set : function(key, value, expires, path, domain, secure)\n    {\n      // Generate cookie\n      var cookie = [ key, \"=\", encodeURIComponent(value) ];\n\n      if (expires)\n      {\n        var today = new Date();\n        today.setTime(today.getTime());\n\n        cookie.push(\";expires=\", new Date(today.getTime() + (expires * 1000 * 60 * 60 * 24)).toGMTString());\n      }\n\n      if (path) {\n        cookie.push(\";path=\", path);\n      }\n\n      if (domain) {\n        cookie.push(\";domain=\", domain);\n      }\n\n      if (secure) {\n        cookie.push(\";secure\");\n      }\n\n      // Store cookie\n      document.cookie = cookie.join(\"\");\n    },\n\n\n    /**\n     * Deletes the string value of a cookie.\n     *\n     * @param key {String} The key for the string value.\n     * @param path {String?null} Path value.\n     * @param domain {String?null} Domain value.\n     */\n    del : function(key, path, domain)\n    {\n      if (!qx.bom.Cookie.get(key)) {\n        return;\n      }\n\n      // Generate cookie\n      var cookie = [ key, \"=\" ];\n\n      if (path) {\n        cookie.push(\";path=\", path);\n      }\n\n      if (domain) {\n        cookie.push(\";domain=\", domain);\n      }\n\n      cookie.push(\";expires=Thu, 01-Jan-1970 00:00:01 GMT\");\n\n      // Store cookie\n      document.cookie = cookie.join(\"\");\n    }\n  }\n});\n"
+  ]
+}

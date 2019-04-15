@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/core/Aspect.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "__registry",
+    "wrap",
+    "fullName",
+    "fcn",
+    "type",
+    "before",
+    "after",
+    "reg",
+    "entry",
+    "i",
+    "length",
+    "name",
+    "match",
+    "pos",
+    "push",
+    "wrapper",
+    "call",
+    "arguments",
+    "ret",
+    "apply",
+    "self",
+    "base",
+    "original",
+    "addAdvice",
+    "position",
+    "core",
+    "Aspect"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAmCAH,GAAGC,SAAH,CAAaG,MAAb,CAAoB,gBAApB,EACA;AACEC,aACA;AACE;AACAC,kBAAa,EAFf;;AAKE;;;;;;;;;;;AAWAC,YAAO,cAASC,QAAT,EAAmBC,GAAnB,EAAwBC,IAAxB,EACP;AACE,YAAIC,SAAS,EAAb;AACA,YAAIC,QAAQ,EAAZ;AACA,YAAIC,MAAM,KAAKP,UAAf;AACA,YAAIQ,KAAJ;;AAEA,aAAK,IAAIC,IAAE,CAAX,EAAcA,IAAEF,IAAIG,MAApB,EAA4BD,GAA5B,EACA;AACED,kBAAQD,IAAIE,CAAJ,CAAR;;AAEA,cAAI,CAACD,MAAMJ,IAAN,IAAc,IAAd,IAAsBA,QAAQI,MAAMJ,IAApC,IAA4CI,MAAMJ,IAAN,IAAc,GAA3D,MAAoEI,MAAMG,IAAN,IAAc,IAAd,IAAsBT,SAASU,KAAT,CAAeJ,MAAMG,IAArB,CAA1F,CAAJ,EAA2H;AACzHH,kBAAMK,GAAN,IAAa,CAAC,CAAd,GAAkBR,OAAOS,IAAP,CAAYN,MAAML,GAAlB,CAAlB,GAA2CG,MAAMQ,IAAN,CAAWN,MAAML,GAAjB,CAA3C;AACD;AACF;;AAED,YAAIE,OAAOK,MAAP,KAAkB,CAAlB,IAAuBJ,MAAMI,MAAN,KAAiB,CAA5C,EAA+C;AAC7C,iBAAOP,GAAP;AACD;;AAED,YAAIY,UAAU,SAAVA,OAAU,GACd;AACE,eAAK,IAAIN,IAAE,CAAX,EAAcA,IAAEJ,OAAOK,MAAvB,EAA+BD,GAA/B,EAAoC;AAClCJ,mBAAOI,CAAP,EAAUO,IAAV,CAAe,IAAf,EAAqBd,QAArB,EAA+BC,GAA/B,EAAoCC,IAApC,EAA0Ca,SAA1C;AACD;;AAED,cAAIC,MAAMf,IAAIgB,KAAJ,CAAU,IAAV,EAAgBF,SAAhB,CAAV;;AAEA,eAAK,IAAIR,IAAE,CAAX,EAAcA,IAAEH,MAAMI,MAAtB,EAA8BD,GAA9B,EAAmC;AACjCH,kBAAMG,CAAN,EAASO,IAAT,CAAc,IAAd,EAAoBd,QAApB,EAA8BC,GAA9B,EAAmCC,IAAnC,EAAyCa,SAAzC,EAAoDC,GAApD;AACD;;AAED,iBAAOA,GAAP;AACD,SAbD;;AAeA,YAAId,SAAS,QAAb,EACA;AACEW,kBAAQK,IAAR,GAAejB,IAAIiB,IAAnB;AACAL,kBAAQM,IAAR,GAAelB,IAAIkB,IAAnB;AACD;;AAEDlB,YAAIY,OAAJ,GAAcA,OAAd;AACAA,gBAAQO,QAAR,GAAmBnB,GAAnB;;AAEA,eAAOY,OAAP;AACD,OA7DH;;AAgEE;;;;;;;;;;;;;;;;;;AAkBAQ,iBAAY,mBAASpB,GAAT,EAAcqB,QAAd,EAAwBpB,IAAxB,EAA8BO,IAA9B,EACZ;AACE,aAAKX,UAAL,CAAgBc,IAAhB,CACA;AACEX,eAAKA,GADP;AAEEU,eAAKW,aAAa,QAAb,GAAwB,CAAC,CAAzB,GAA6B,CAFpC;AAGEpB,gBAAMA,IAHR;AAIEO,gBAAMA;AAJR,SADA;AAOD;AA3FH;AAFF,GADA,C;AAnCAjB,KAAG+B,IAAH,CAAQC,MAAR,CAAe7B,aAAf,GAA+BA,aAA/B",
+  "file": "Aspect.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * Basis for Aspect Oriented features in qooxdoo.\n *\n * This class makes it possible to attach functions (aspects) before or\n * after each function call of any function defined in {@link qx.Class#define}.\n *\n * Classes, which define own aspects must add an explicit require to this class\n * in the header comment using the following code:\n *\n * <pre>\n * &#35;require(qx.core.Aspect)\n * &#35;ignore(auto-require)\n * </pre>\n *\n * One example for a qooxdoo aspect is profiling ({@link qx.dev.Profile}).\n */\nqx.Bootstrap.define(\"qx.core.Aspect\",\n{\n  statics :\n  {\n    /** @type {Array} Registry for all known aspect wishes */\n    __registry : [],\n\n\n    /**\n     * This function is used by {@link qx.Class#define} to wrap all statics, members and\n     * constructors.\n     *\n     * @param fullName {String} Full name of the function including the class name.\n     * @param fcn {Function} function to wrap.\n     * @param type {String} Type of the wrapped function. One of \"member\", \"static\",\n     *          \"constructor\", \"destructor\" or \"property\".\n     *\n     * @return {Function} wrapped function\n     */\n    wrap : function(fullName, fcn, type)\n    {\n      var before = [];\n      var after = [];\n      var reg = this.__registry;\n      var entry;\n\n      for (var i=0; i<reg.length; i++)\n      {\n        entry = reg[i];\n\n        if ((entry.type == null || type == entry.type || entry.type == \"*\") && (entry.name == null || fullName.match(entry.name))) {\n          entry.pos == -1 ? before.push(entry.fcn) : after.push(entry.fcn);\n        }\n      }\n\n      if (before.length === 0 && after.length === 0) {\n        return fcn;\n      }\n\n      var wrapper = function()\n      {\n        for (var i=0; i<before.length; i++) {\n          before[i].call(this, fullName, fcn, type, arguments);\n        }\n\n        var ret = fcn.apply(this, arguments);\n\n        for (var i=0; i<after.length; i++) {\n          after[i].call(this, fullName, fcn, type, arguments, ret);\n        }\n\n        return ret;\n      };\n\n      if (type !== \"static\")\n      {\n        wrapper.self = fcn.self;\n        wrapper.base = fcn.base;\n      }\n\n      fcn.wrapper = wrapper;\n      wrapper.original = fcn;\n\n      return wrapper;\n    },\n\n\n    /**\n     * Register a function to be called just before or after each time\n     * one of the selected functions is called.\n     *\n     * @param fcn {Function} Function to be called just before or after any of the\n     *     selected functions is called. If position is \"before\" the functions\n     *     supports the same signature as {@link qx.dev.Profile#profileBefore}. If\n     *     position is \"after\" it supports the same signature as\n     *     {@link qx.dev.Profile#profileAfter}.\n     * @param position {String?\"after\"} One of \"before\" or \"after\". Whether the function\n     *     should be called before or after the wrapped function.\n     * @param type {String?null} Type of the wrapped function. One of \"member\",\n     *     \"static\", \"constructor\", \"destructor\", \"property\" or \"*\". <code>null</code>\n     *     is handled identical to \"*\".\n     * @param name {String|RegExp?null} Each function, with a full name matching\n     *     this pattern (using <code>fullName.match(name)</code>) will be\n     *     wrapped.\n     */\n    addAdvice : function(fcn, position, type, name)\n    {\n      this.__registry.push(\n      {\n        fcn: fcn,\n        pos: position === \"before\" ? -1 : 1,\n        type: type,\n        name: name\n      });\n    }\n  }\n});\n"
+  ]
+}

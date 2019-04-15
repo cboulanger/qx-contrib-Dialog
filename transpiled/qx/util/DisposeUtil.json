@@ -1,0 +1,353 @@
+{
+  "className": "qx.util.DisposeUtil",
+  "packageName": "qx.util",
+  "name": "DisposeUtil",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 0
+      },
+      "end": {
+        "line": 258,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Methods to cleanup fields from maps/objects."
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.log.Logger"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.log"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.container.Composite"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.container.Scroll"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.container.SlideBar"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.container.Stack"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.mobile"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.mobile.container.Composite"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.ui.mobile.core.Widget"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "disposeObjects": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Disconnects and disposes given objects from instance.\nOnly works with qx.core.Object based objects e.g. Widgets."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} Object which contains the fields",
+            "paramName": "obj",
+            "description": " Object which contains the fields",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "arr {Array} List of fields (which store objects) to dispose",
+            "paramName": "arr",
+            "description": " List of fields (which store objects) to dispose",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "disposeSingletons {Boolean?} true, if singletons should be disposed",
+            "paramName": "disposeSingletons",
+            "description": " true, if singletons should be disposed",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "disposeArray": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Disposes all members of the given array and deletes\nthe field which refers to the array afterwards."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} Object which contains the field",
+            "paramName": "obj",
+            "description": " Object which contains the field",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "field {String} Name of the field which refers to the array",
+            "paramName": "field",
+            "description": " Name of the field which refers to the array",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "disposeMap": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Disposes all members of the given map and deletes\nthe field which refers to the map afterwards."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} Object which contains the field",
+            "paramName": "obj",
+            "description": " Object which contains the field",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "field {String} Name of the field which refers to the array",
+            "paramName": "field",
+            "description": " Name of the field which refers to the array",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "disposeTriggeredBy": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Disposes a given object when another object is disposed"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "disposeMe {Object} Object to dispose when other object is disposed",
+            "paramName": "disposeMe",
+            "description": " Object to dispose when other object is disposed",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "trigger {Object} Other object",
+            "paramName": "trigger",
+            "description": " Other object",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "destroyContainer": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 206,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Destroys a container and all of its children recursively."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "container {qx.ui.container.Composite | qx.ui.container.Scroll |\nqx.ui.container.SlideBar | qx.ui.container.Stack} Container to be destroyed",
+            "paramName": "container",
+            "description": " Container to be destroyed",
+            "type": [
+              "qx.ui.container.Composite",
+              "qx.ui.container.Scroll",
+              "qx.ui.container.SlideBar",
+              "qx.ui.container.Stack"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_collectContainerChildren": {
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4
+        },
+        "end": {
+          "line": 227,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Helper function to collect all children widgets of an container recursively."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "container {qx.ui.container.Composite | qx.ui.container.Scroll | qx.ui.container.SlideBar | qx.ui.container.Stack} Container to be destroyed",
+            "paramName": "container",
+            "description": " Container to be destroyed",
+            "type": [
+              "qx.ui.container.Composite",
+              "qx.ui.container.Scroll",
+              "qx.ui.container.SlideBar",
+              "qx.ui.container.Stack"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "arr {Array} Array which holds all children widgets",
+            "paramName": "arr",
+            "description": " Array which holds all children widgets",
+            "type": "Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__isChildrenContainer": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 256,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the given object is a qx container widget"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} The object to check",
+            "paramName": "obj",
+            "description": " The object to check",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a container for\nchild widgets",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a container for\nchild widgets"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

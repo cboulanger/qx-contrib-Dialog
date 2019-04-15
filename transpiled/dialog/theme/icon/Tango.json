@@ -1,0 +1,81 @@
+{
+  "className": "dialog.theme.icon.Tango",
+  "packageName": "dialog.theme.icon",
+  "name": "Tango",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 0
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nAndreas Ecker (ecker)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Tango icons"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/22/actions/dialog-cancel.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/22/actions/dialog-ok.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/48/status/dialog-information.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/48/status/dialog-error.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/48/status/dialog-warning.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/apps/office-calendar.png"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "aliases": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2
+      },
+      "end": {
+        "line": 39,
+        "column": 3
+      }
+    },
+    "aliasMap": {
+      "icon": "qx/icon/Tango",
+      "dialog.icon.cancel": "qx/icon/Tango/22/actions/dialog-cancel.png",
+      "dialog.icon.ok": "qx/icon/Tango/22/actions/dialog-ok.png",
+      "dialog.icon.info": "qx/icon/Tango/48/status/dialog-information.png",
+      "dialog.icon.error": "qx/icon/Tango/48/status/dialog-error.png",
+      "dialog.icon.warning": "qx/icon/Tango/48/status/dialog-warning.png"
+    }
+  },
+  "descendants": []
+}

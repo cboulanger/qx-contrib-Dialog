@@ -1,0 +1,1468 @@
+{
+  "className": "qx.util.fsm.State",
+  "packageName": "qx.util.fsm",
+  "name": "State",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 926,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2006, 2007, 2011 Derrell Lipman\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDerrell Lipman (derrell)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Create a new state which may be added to a finite state machine."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 146,
+        "column": 2
+      },
+      "end": {
+        "line": 226,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "stateName {String}\nThe name of this state.  This is the name which may be referenced in\nobjects of class qx.util.fsm.Transition, when passing of\nthe transition's predicate means transition to this state.",
+          "paramName": "stateName",
+          "description": "\nThe name of this state.  This is the name which may be referenced in\nobjects of class qx.util.fsm.Transition, when passing of\nthe transition's predicate means transition to this state.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "stateInfo {Map}\n<pre>\nAn object containing any of the following properties:\n\ncontext -\nA context in which all of the following functions should be run.\n\nonentry -\nA function which is called upon entry to the state.  Its signature\nis function(fsm, event) and it is saved in the onentry property of\nthe state object.  (This function is called after the Transition's\naction function and after the previous state's onexit function.)\n\nIn the onentry function:\n\nfsm -\nThe finite state machine object to which this state is attached.\n\nevent -\nThe event that caused the finite state machine to run\n\nonexit -\nA function which is called upon exit from the state.  Its signature\nis function(fsm, event) and it is saved in the onexit property of\nthe state object.  (This function is called after the Transition's\naction function and before the next state's onentry function.)\n\nIn the onexit function:\n\nfsm -\nThe finite state machine object to which this state is attached.\n\nevent -\nThe event that caused the finite state machine to run\n\nautoActionsBeforeOnentry -\nautoActionsAfterOnentry -\nautoActionsBeforeOnexit -\nautoActionsAfterOnexit -\nAutomatic actions which take place at the time specified by the\nproperty name.  In all cases, the action takes place immediately\nbefore or after the specified function.\n\nThe property value for each of these properties is an object which\ndescribes some number of functions to invoke on a set of specified\nobjects (typically widgets).\n\nAn example, using autoActionsBeforeOnentry, might look like this:\n\n\"autoActionsBeforeOnentry\" :\n{\n// The name of a function.\n\"setEnabled\" :\n[\n{\n// The parameter value, thus \"setEnabled(true);\"\n\"parameters\" : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ],\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ]\n}\n],\n\n// The name of another function.\n\"setVisible\" :\n[\n{\n// The parameter value, thus \"setVisible(false);\"\n\"parameters\" : [ false ],\n\n// The function would be called on each object and group, as\n// described above.\n\"objects\" : [ \"obj3\", \"obj4\" ],\n\"groups\"  : [ \"group3\", \"group4\" ]\n}\n]\n};\n\nevents (required) -\nA description to the finite state machine of how to handle a\nparticular event, optionally associated with a specific target\nobject on which the event was dispatched.  This should be an object\ncontaining one property for each event which is either handled or\nblocked.  The property name should be the event name.  The property\nvalue should be one of:\n\n(a) qx.util.fsm.FiniteStateMachine.EventHandling.PREDICATE\n\n(b) qx.util.fsm.FiniteStateMachine.EventHandling.BLOCKED\n\n(c) a string containing the name of an explicit Transition to use\n\n(d) an object where each property name is the Friendly Name of an\nobject (meaning that this rule applies if both the event and\nthe event's target object's Friendly Name match), and its\nproperty value is one of (a), (b) or (c), above.\n\nThis object is saved in the events property of the state object.\n\nAdditional properties may be provided in stateInfo.  They will not be\nused by the finite state machine, but will be available via\nthis.getUserData(\"<propertyName>\") during the state's onentry and\nonexit functions.\n</pre>",
+          "paramName": "stateInfo",
+          "description": "\n<pre>\nAn object containing any of the following properties:\n\ncontext -\nA context in which all of the following functions should be run.\n\nonentry -\nA function which is called upon entry to the state.  Its signature\nis function(fsm, event) and it is saved in the onentry property of\nthe state object.  (This function is called after the Transition's\naction function and after the previous state's onexit function.)\n\nIn the onentry function:\n\nfsm -\nThe finite state machine object to which this state is attached.\n\nevent -\nThe event that caused the finite state machine to run\n\nonexit -\nA function which is called upon exit from the state.  Its signature\nis function(fsm, event) and it is saved in the onexit property of\nthe state object.  (This function is called after the Transition's\naction function and before the next state's onentry function.)\n\nIn the onexit function:\n\nfsm -\nThe finite state machine object to which this state is attached.\n\nevent -\nThe event that caused the finite state machine to run\n\nautoActionsBeforeOnentry -\nautoActionsAfterOnentry -\nautoActionsBeforeOnexit -\nautoActionsAfterOnexit -\nAutomatic actions which take place at the time specified by the\nproperty name.  In all cases, the action takes place immediately\nbefore or after the specified function.\n\nThe property value for each of these properties is an object which\ndescribes some number of functions to invoke on a set of specified\nobjects (typically widgets).\n\nAn example, using autoActionsBeforeOnentry, might look like this:\n\n\"autoActionsBeforeOnentry\" :\n{\n// The name of a function.\n\"setEnabled\" :\n[\n{\n// The parameter value, thus \"setEnabled(true);\"\n\"parameters\" : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ],\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ]\n}\n],\n\n// The name of another function.\n\"setVisible\" :\n[\n{\n// The parameter value, thus \"setVisible(false);\"\n\"parameters\" : [ false ],\n\n// The function would be called on each object and group, as\n// described above.\n\"objects\" : [ \"obj3\", \"obj4\" ],\n\"groups\"  : [ \"group3\", \"group4\" ]\n}\n]\n};\n\nevents (required) -\nA description to the finite state machine of how to handle a\nparticular event, optionally associated with a specific target\nobject on which the event was dispatched.  This should be an object\ncontaining one property for each event which is either handled or\nblocked.  The property name should be the event name.  The property\nvalue should be one of:\n\n(a) qx.util.fsm.FiniteStateMachine.EventHandling.PREDICATE\n\n(b) qx.util.fsm.FiniteStateMachine.EventHandling.BLOCKED\n\n(c) a string containing the name of an explicit Transition to use\n\n(d) an object where each property name is the Friendly Name of an\nobject (meaning that this rule applies if both the event and\nthe event's target object's Friendly Name match), and its\nproperty value is one of (a), (b) or (c), above.\n\nThis object is saved in the events property of the state object.\n\nAdditional properties may be provided in stateInfo.  They will not be\nused by the finite state machine, but will be available via\nthis.getUserData(\"<propertyName>\") during the state's onentry and\nonexit functions.\n</pre>",
+          "type": "Map"
+        }
+      ],
+      "@throws": [
+        {
+          "name": "@throws",
+          "body": "{Error} If the state info is not a valid object.",
+          "type": "Error",
+          "description": " If the state info is not a valid object."
+        },
+        {
+          "name": "@throws",
+          "body": "{Error} If the events object is not provided in new state info.",
+          "type": "Error",
+          "description": " If the events object is not provided in new state info."
+        }
+      ]
+    }
+  },
+  "statics": {
+    "_commonTransformAutoActions": {
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4
+        },
+        "end": {
+          "line": 464,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Common function for checking the value provided for\nauto actions.\n\nAuto-action property values passed to us look akin to:\n\n<pre class='javascript'>\n{\n// The name of a function.\n\"setEnabled\" :\n[\n{\n// The parameter value(s), thus \"setEnabled(true);\"\n\"parameters\"   : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ]\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ],\n}\n];\n\n\"setTextColor\" :\n[\n{\n\"parameters\" : [ \"blue\" ]\n\"groups\"     : [ \"group3\", \"group4\" ],\n\"objects\"    : [ \"obj3\", \"obj4\" ]\n}\n];\n};\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "actionType {String}\nThe name of the action being validated (for debug messages)",
+            "paramName": "actionType",
+            "description": "\nThe name of the action being validated (for debug messages)",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {Object}\nThe property value which is being validated",
+            "paramName": "value",
+            "description": "\nThe property value which is being validated",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object}\nThe object to which the created function should be bound.",
+            "paramName": "context",
+            "description": "\nThe object to which the created function should be bound.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}\nFunction that implements calls to each of the requested automatic\nactions",
+            "type": "Function",
+            "description": "\nFunction that implements calls to each of the requested automatic\nactions"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the value has an invalid type.",
+            "type": "Error",
+            "description": " If the value has an invalid type."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If the function type is not an array.",
+            "type": "Error",
+            "description": " If the function type is not an array."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If the function request parameter type is not valid.",
+            "type": "Error",
+            "description": " If the function request parameter type is not valid."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If the function parameters are not valid.",
+            "type": "Error",
+            "description": " If the function parameters are not valid."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If 'objects' list is invalid.",
+            "type": "Error",
+            "description": " If 'objects' list is invalid."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If a name in the 'objects' list is not valid.",
+            "type": "Error",
+            "description": " If a name in the 'objects' list is not valid."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If the 'groups' list is not valid.",
+            "type": "Error",
+            "description": " If the 'groups' list is not valid."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "properties": {
+    "name": {
+      "location": {
+        "start": {
+          "line": 476,
+          "column": 4
+        },
+        "end": {
+          "line": 480,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The name of this state.  This name may be used as a Transition's\nnextState value, or an explicit next state in the 'events' handling\nlist in a State."
+          }
+        ]
+      },
+      "name": "name",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "onentry": {
+      "location": {
+        "start": {
+          "line": 489,
+          "column": 4
+        },
+        "end": {
+          "line": 494,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The onentry function for this state.  This is documented in the\nconstructor, and is typically provided through the constructor's\nstateInfo object, but it is also possible (but highly NOT recommended)\nto change this dynamically."
+          }
+        ]
+      },
+      "name": "onentry",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "onexit": {
+      "location": {
+        "start": {
+          "line": 503,
+          "column": 4
+        },
+        "end": {
+          "line": 508,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The onexit function for this state.  This is documented in the\nconstructor, and is typically provided through the constructor's\nstateInfo object, but it is also possible (but highly NOT recommended)\nto change this dynamically."
+          }
+        ]
+      },
+      "name": "onexit",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "autoActionsBeforeOnentry": {
+      "location": {
+        "start": {
+          "line": 539,
+          "column": 4
+        },
+        "end": {
+          "line": 544,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Automatic actions to take prior to calling the state's onentry function.\n\nThe value passed to setAutoActionsBeforeOnentry() should like something\nakin to:\n\n<pre class='javascript'>\n\"autoActionsBeforeOnentry\" :\n{\n// The name of a function.  This would become \"setEnabled(\"\n\"enabled\" :\n[\n{\n// The parameter value, thus \"setEnabled(true);\"\n\"parameters\" : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ]\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ],\n}\n];\n};\n</pre>"
+          }
+        ]
+      },
+      "name": "autoActionsBeforeOnentry",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "autoActionsAfterOnentry": {
+      "location": {
+        "start": {
+          "line": 576,
+          "column": 4
+        },
+        "end": {
+          "line": 581,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Automatic actions to take after return from the state's onentry\nfunction.\n\nThe value passed to setAutoActionsAfterOnentry() should like something\nakin to:\n\n<pre class='javascript'>\n\"autoActionsAfterOnentry\" :\n{\n// The name of a function.  This would become \"setEnabled(\"\n\"enabled\" :\n[\n{\n// The parameter value, thus \"setEnabled(true);\"\n\"parameters\" : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ]\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ],\n}\n];\n};\n</pre>"
+          }
+        ]
+      },
+      "name": "autoActionsAfterOnentry",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "autoActionsBeforeOnexit": {
+      "location": {
+        "start": {
+          "line": 612,
+          "column": 4
+        },
+        "end": {
+          "line": 617,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Automatic actions to take prior to calling the state's onexit function.\n\nThe value passed to setAutoActionsBeforeOnexit() should like something\nakin to:\n\n<pre class='javascript'>\n\"autoActionsBeforeOnexit\" :\n{\n// The name of a function.  This would become \"setEnabled(\"\n\"enabled\" :\n[\n{\n// The parameter value, thus \"setEnabled(true);\"\n\"parameters\" : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ]\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ],\n}\n];\n};\n</pre>"
+          }
+        ]
+      },
+      "name": "autoActionsBeforeOnexit",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "autoActionsAfterOnexit": {
+      "location": {
+        "start": {
+          "line": 649,
+          "column": 4
+        },
+        "end": {
+          "line": 654,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Automatic actions to take after returning from the state's onexit\nfunction.\n\nThe value passed to setAutoActionsAfterOnexit() should like something\nakin to:\n\n<pre class='javascript'>\n\"autoActionsBeforeOnexit\" :\n{\n// The name of a function.  This would become \"setEnabled(\"\n\"enabled\" :\n[\n{\n// The parameter value, thus \"setEnabled(true);\"\n\"parameters\" : [ true ],\n\n// The function would be called on each object:\n//  this.getObject(\"obj1\").setEnabled(true);\n//  this.getObject(\"obj2\").setEnabled(true);\n\"objects\" : [ \"obj1\", \"obj2\" ]\n\n// And similarly for each object in each specified group.\n\"groups\"  : [ \"group1\", \"group2\" ],\n}\n];\n};\n</pre>"
+          }
+        ]
+      },
+      "name": "autoActionsAfterOnexit",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "events": {
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 4
+        },
+        "end": {
+          "line": 667,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The object representing handled and blocked events for this state.\nThis is documented in the constructor, and is typically provided\nthrough the constructor's stateInfo object, but it is also possible\n(but highly NOT recommended) to change this dynamically."
+          }
+        ]
+      },
+      "name": "events",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "members": {
+    "__transformName": {
+      "location": {
+        "start": {
+          "line": 680,
+          "column": 4
+        },
+        "end": {
+          "line": 689,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value passed to setter",
+            "paramName": "value",
+            "description": " Value passed to setter",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} when an invalid value is detected",
+            "type": "Error",
+            "description": " when an invalid value is detected"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformOnentry": {
+      "location": {
+        "start": {
+          "line": 699,
+          "column": 4
+        },
+        "end": {
+          "line": 715,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} when an invalid value is detected",
+            "type": "Error",
+            "description": " when an invalid value is detected"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformOnexit": {
+      "location": {
+        "start": {
+          "line": 725,
+          "column": 4
+        },
+        "end": {
+          "line": 741,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} when an invalid value is detected",
+            "type": "Error",
+            "description": " when an invalid value is detected"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformEvents": {
+      "location": {
+        "start": {
+          "line": 751,
+          "column": 4
+        },
+        "end": {
+          "line": 815,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} when an invalid value is detected",
+            "type": "Error",
+            "description": " when an invalid value is detected"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformAutoActionsBeforeOnentry": {
+      "location": {
+        "start": {
+          "line": 824,
+          "column": 4
+        },
+        "end": {
+          "line": 830,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformAutoActionsAfterOnentry": {
+      "location": {
+        "start": {
+          "line": 839,
+          "column": 4
+        },
+        "end": {
+          "line": 845,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformAutoActionsBeforeOnexit": {
+      "location": {
+        "start": {
+          "line": 854,
+          "column": 4
+        },
+        "end": {
+          "line": 860,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__transformAutoActionsAfterOnexit": {
+      "location": {
+        "start": {
+          "line": 869,
+          "column": 4
+        },
+        "end": {
+          "line": 875,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal transform method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the final value",
+            "type": "var",
+            "description": " the final value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__bindIfFunction": {
+      "location": {
+        "start": {
+          "line": 892,
+          "column": 4
+        },
+        "end": {
+          "line": 902,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "If given a function, bind it to a specified context."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "f {Function|var}\nThe (possibly) function to be bound to the specified context.",
+            "paramName": "f",
+            "description": "\nThe (possibly) function to be bound to the specified context.",
+            "type": [
+              "Function",
+              "var"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "context {Object}\nThe context to bind the function to.",
+            "paramName": "context",
+            "description": "\nThe context to bind the function to.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}\nIf f was a function, the return value is f wrapped such that it will\nbe called in the specified context. Otherwise, f is returned\nunaltered.",
+            "type": "Function",
+            "description": "\nIf f was a function, the return value is f wrapped such that it will\nbe called in the specified context. Otherwise, f is returned\nunaltered."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "addTransition": {
+      "location": {
+        "start": {
+          "line": 914,
+          "column": 4
+        },
+        "end": {
+          "line": 924,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a transition to a state"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "trans {qx.util.fsm.Transition}\nAn object of class qx.util.fsm.Transition representing a transition\nwhich is to be a part of this state.",
+            "paramName": "trans",
+            "description": "\nAn object of class qx.util.fsm.Transition representing a transition\nwhich is to be a part of this state.",
+            "type": "qx.util.fsm.Transition"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getName": {
+      "type": "function",
+      "name": "getName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for name"
+          }
+        ]
+      }
+    },
+    "setName": {
+      "type": "function",
+      "name": "setName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for name"
+          }
+        ]
+      }
+    },
+    "resetName": {
+      "type": "function",
+      "name": "resetName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ]
+      }
+    },
+    "getOnentry": {
+      "type": "function",
+      "name": "getOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>onentry</code>.\n\nFor further details take a look at the property definition: {@link #onentry}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for onentry"
+          }
+        ]
+      }
+    },
+    "setOnentry": {
+      "type": "function",
+      "name": "setOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>onentry</code>.\n\nFor further details take a look at the property definition: {@link #onentry}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for onentry"
+          }
+        ]
+      }
+    },
+    "resetOnentry": {
+      "type": "function",
+      "name": "resetOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>onentry</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #onentry}."
+          }
+        ]
+      }
+    },
+    "getOnexit": {
+      "type": "function",
+      "name": "getOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>onexit</code>.\n\nFor further details take a look at the property definition: {@link #onexit}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for onexit"
+          }
+        ]
+      }
+    },
+    "setOnexit": {
+      "type": "function",
+      "name": "setOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>onexit</code>.\n\nFor further details take a look at the property definition: {@link #onexit}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for onexit"
+          }
+        ]
+      }
+    },
+    "resetOnexit": {
+      "type": "function",
+      "name": "resetOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>onexit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #onexit}."
+          }
+        ]
+      }
+    },
+    "getAutoActionsBeforeOnentry": {
+      "type": "function",
+      "name": "getAutoActionsBeforeOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>autoActionsBeforeOnentry</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsBeforeOnentry}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for autoActionsBeforeOnentry"
+          }
+        ]
+      }
+    },
+    "setAutoActionsBeforeOnentry": {
+      "type": "function",
+      "name": "setAutoActionsBeforeOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>autoActionsBeforeOnentry</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsBeforeOnentry}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for autoActionsBeforeOnentry"
+          }
+        ]
+      }
+    },
+    "resetAutoActionsBeforeOnentry": {
+      "type": "function",
+      "name": "resetAutoActionsBeforeOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>autoActionsBeforeOnentry</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #autoActionsBeforeOnentry}."
+          }
+        ]
+      }
+    },
+    "getAutoActionsAfterOnentry": {
+      "type": "function",
+      "name": "getAutoActionsAfterOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>autoActionsAfterOnentry</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsAfterOnentry}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for autoActionsAfterOnentry"
+          }
+        ]
+      }
+    },
+    "setAutoActionsAfterOnentry": {
+      "type": "function",
+      "name": "setAutoActionsAfterOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>autoActionsAfterOnentry</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsAfterOnentry}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for autoActionsAfterOnentry"
+          }
+        ]
+      }
+    },
+    "resetAutoActionsAfterOnentry": {
+      "type": "function",
+      "name": "resetAutoActionsAfterOnentry",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>autoActionsAfterOnentry</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #autoActionsAfterOnentry}."
+          }
+        ]
+      }
+    },
+    "getAutoActionsBeforeOnexit": {
+      "type": "function",
+      "name": "getAutoActionsBeforeOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>autoActionsBeforeOnexit</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsBeforeOnexit}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for autoActionsBeforeOnexit"
+          }
+        ]
+      }
+    },
+    "setAutoActionsBeforeOnexit": {
+      "type": "function",
+      "name": "setAutoActionsBeforeOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>autoActionsBeforeOnexit</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsBeforeOnexit}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for autoActionsBeforeOnexit"
+          }
+        ]
+      }
+    },
+    "resetAutoActionsBeforeOnexit": {
+      "type": "function",
+      "name": "resetAutoActionsBeforeOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>autoActionsBeforeOnexit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #autoActionsBeforeOnexit}."
+          }
+        ]
+      }
+    },
+    "getAutoActionsAfterOnexit": {
+      "type": "function",
+      "name": "getAutoActionsAfterOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>autoActionsAfterOnexit</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsAfterOnexit}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for autoActionsAfterOnexit"
+          }
+        ]
+      }
+    },
+    "setAutoActionsAfterOnexit": {
+      "type": "function",
+      "name": "setAutoActionsAfterOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>autoActionsAfterOnexit</code>.\n\nFor further details take a look at the property definition: {@link #autoActionsAfterOnexit}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for autoActionsAfterOnexit"
+          }
+        ]
+      }
+    },
+    "resetAutoActionsAfterOnexit": {
+      "type": "function",
+      "name": "resetAutoActionsAfterOnexit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>autoActionsAfterOnexit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #autoActionsAfterOnexit}."
+          }
+        ]
+      }
+    },
+    "getEvents": {
+      "type": "function",
+      "name": "getEvents",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>events</code>.\n\nFor further details take a look at the property definition: {@link #events}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for events"
+          }
+        ]
+      }
+    },
+    "setEvents": {
+      "type": "function",
+      "name": "setEvents",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>events</code>.\n\nFor further details take a look at the property definition: {@link #events}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for events"
+          }
+        ]
+      }
+    },
+    "resetEvents": {
+      "type": "function",
+      "name": "resetEvents",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>events</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #events}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

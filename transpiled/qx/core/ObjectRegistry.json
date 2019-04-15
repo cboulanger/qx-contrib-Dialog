@@ -1,0 +1,613 @@
+{
+  "className": "qx.core.ObjectRegistry",
+  "packageName": "qx.core",
+  "name": "ObjectRegistry",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 362,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Registration for all instances of qooxdoo classes. Mainly\nused to manage them for the final shutdown sequence and to\nuse weak references when connecting widgets to DOM nodes etc."
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.dev, qx.dev.Debug.*"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "inShutDown": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the application is in the shutdown phase"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0} shutdown is not a valid mechanism to terminate apps"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__registry": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Internal data structure to store objects"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__nextHash": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Next new hash code."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__freeHashes": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} List of all free hash codes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__postId": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} Post id for hash code creation."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__stackTraces": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Object hashes to stack traces (for dispose profiling only)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "register": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Registers an object into the database. This adds a hashcode\nto the object (if not already done before) and stores it under\nthis hashcode. You can access this object later using the hashcode\nby calling {@link #fromHashCode}.\n\nAll registered objects are automatically disposed on application\nshutdown. Each registered object must at least have a method\ncalled <code>dispose</code>."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} Any object with a dispose() method",
+            "paramName": "obj",
+            "description": " Any object with a dispose() method",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregister": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes the given object from the database."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} Any previously registered object",
+            "paramName": "obj",
+            "description": " Any previously registered object",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toHashCode": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns an unique identifier for the given object. If such an identifier\ndoes not yet exist, create it."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} the object to get the hashcode for",
+            "paramName": "obj",
+            "description": " the object to get the hashcode for",
+            "type": "qx.core.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} unique identifier for the given object",
+            "type": "String",
+            "description": " unique identifier for the given object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearHashCode": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4
+        },
+        "end": {
+          "line": 210,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Clears the unique identifier on the given object."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} the object to clear the hashcode for",
+            "paramName": "obj",
+            "description": " the object to clear the hashcode for",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fromHashCode": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get an object instance by its hash code as returned by {@link #toHashCode}.\nIf the object is already disposed or the hashCode is invalid,\n<code>null</code> is returned."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hash {String} The object's hash code.",
+            "paramName": "hash",
+            "description": " The object's hash code.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "suppressWarnings {Boolean?} if true warnings are suppressed; default is false",
+            "paramName": "suppressWarnings",
+            "description": " if true warnings are suppressed; default is false",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object} The corresponding object or <code>null</code>.",
+            "type": "qx.core.Object",
+            "description": " The corresponding object or <code>null</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasHashCode": {
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4
+        },
+        "end": {
+          "line": 240,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Detects whether an object instance is indexed by its hash code as returned by {@link #toHashCode}.\nUnlike {@link #fromHashCode} this does not output warnings if the object does not exist"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hash {String} The object's hash code.",
+            "paramName": "hash",
+            "description": " The object's hash code.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object} The corresponding object or <code>null</code>.",
+            "type": "qx.core.Object",
+            "description": " The corresponding object or <code>null</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "shutdown": {
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4
+        },
+        "end": {
+          "line": 300,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Disposing all registered object and cleaning up registry. This is\nautomatically executed at application shutdown."
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0} shutdown is not a valid means to clean up because destruction order\nis not defined and dispose()/destructors are deprecated in favour of automatic\ngarbage collection"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRegistry": {
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4
+        },
+        "end": {
+          "line": 310,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the object registry."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The registry",
+            "type": "qx.core.Object",
+            "description": " The registry"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNextHash": {
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4
+        },
+        "end": {
+          "line": 321,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the next hash code that will be used"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The next hash code",
+            "type": "Integer",
+            "description": " The next hash code"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPostId": {
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4
+        },
+        "end": {
+          "line": 332,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the postfix that identifies the current iframe"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The next hash code",
+            "type": "Integer",
+            "description": " The next hash code"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getStackTraces": {
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4
+        },
+        "end": {
+          "line": 343,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the map of stack traces recorded when objects are registered\n(for dispose profiling)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map: object hash codes to stack traces",
+            "type": "Map",
+            "description": " Map: object hash codes to stack traces"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 346,
+        "column": 2
+      },
+      "end": {
+        "line": 361,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,50 @@
+{
+  "className": "qx.theme.indigo.Decoration",
+  "packageName": "qx.theme.indigo",
+  "name": "Decoration",
+  "superClass": "qx.theme.simple.Decoration",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 102,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n************************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The indigo qooxdoo decoration theme."
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "aliases": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2
+      },
+      "end": {
+        "line": 28,
+        "column": 3
+      }
+    },
+    "aliasMap": {
+      "decoration": "qx/decoration/Simple"
+    }
+  },
+  "descendants": []
+}

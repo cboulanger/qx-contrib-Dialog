@@ -1,0 +1,379 @@
+{
+  "className": "qx.module.event.Pointer",
+  "packageName": "qx.module.event",
+  "name": "Pointer",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 0
+      },
+      "end": {
+        "line": 160,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2014 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDaniel Wagner (danielwagner)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Normalization for pointer events. Pointer events are hardware-agnostic and\nwill be fired regardless of which input type of input device is used (e.g. mouse or touchscreen)."
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getPointerType) // static code analysis - this method has to referenced"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getViewportLeft) // static code analysis - this method has to referenced"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getViewportTop) // static code analysis - this method has to referenced"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getDocumentLeft) // static code analysis - this method has to referenced"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getDocumentTop) // static code analysis - this method has to referenced"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getScreenLeft) // static code analysis - this method has to referenced"
+        },
+        {
+          "name": "@require",
+          "body": "(qx.module.event.Pointer#getScreenTop) // static code analysis - this method has to referenced"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Event_Normalization"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 101
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "List of event types to be normalized"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getPointerType": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the device type which the event triggered. This can be one\nof the following strings: <code>mouse</code>, <code>pen</code>\nor <code>touch</code>."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The type of the pointer.",
+            "type": "String",
+            "description": " The type of the pointer."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getViewportLeft": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the horizontal coordinate at which the event occurred relative\nto the viewport."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The horizontal mouse position",
+            "type": "Number",
+            "description": " The horizontal mouse position"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getViewportTop": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 78,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the vertical coordinate at which the event occurred relative\nto the viewport."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The vertical mouse position",
+            "type": "Number",
+            "description": " The vertical mouse position"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDocumentLeft": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the horizontal position at which the event occurred relative to the\nleft of the document. This property takes into account any scrolling of\nthe page."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The horizontal mouse position in the document.",
+            "type": "Number",
+            "description": " The horizontal mouse position in the document."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDocumentTop": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the vertical position at which the event occurred relative to the\ntop of the document. This property takes into account any scrolling of\nthe page."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The vertical mouse position in the document.",
+            "type": "Number",
+            "description": " The vertical mouse position in the document."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getScreenLeft": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the horizontal coordinate at which the event occurred relative to\nthe origin of the screen coordinate system.\n\nNote: This value is usually not very useful unless you want to\nposition a native popup window at this coordinate."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The horizontal mouse position on the screen.",
+            "type": "Number",
+            "description": " The horizontal mouse position on the screen."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getScreenTop": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the vertical coordinate at which the event occurred relative to\nthe origin of the screen coordinate system.\n\nNote: This value is usually not very useful unless you want to\nposition a native popup window at this coordinate."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The vertical mouse position on the screen.",
+            "type": "Number",
+            "description": " The vertical mouse position on the screen."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "normalize": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Manipulates the native event object, adding methods if they're not\nalready present"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": " Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 157,
+        "column": 2
+      },
+      "end": {
+        "line": 159,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

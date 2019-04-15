@@ -1,0 +1,760 @@
+{
+  "className": "qx.Annotation",
+  "packageName": "qx",
+  "name": "Annotation",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 81,
+        "column": 0
+      },
+      "end": {
+        "line": 277,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2016 Zenesis Limited (http://www.zenesis.com)\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nJohn Spackman (john.spackman@zenesis.com)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This class provides static API methods that allow the annotations of a class\nto be inspected at runtime.\n\nAnnotations are added to a class when the class is defined and is an array of\nzero or more objects; annotations are always seen to be an array, but the contents\nof that array is not type checked and is never changed (you should not change\nthe array at runtime).\n\nAnnotations in the class definition are easily recognisable by the \"@\" symbol,\neither as a prefix to a special keyword such as \"construct\", or as the prefix\nto the name of the member which is being annotated.  The only exception to this\nis that classes and properties don't need to be named, they just need a \"@\"\nproperty.\n\nFor example:\n\n<pre class='javascript'>\nqx.Class.define(\"foo.MyClass\", {\n\"@\": [ \"my-class-annotation\" ], // Class annotations,\n\"@construct\": [ \"my-constructor-annotation\" ], // Constructor annotations,\n\"@destruct\": [ \"my-destructor-annotation\" ], // Destructor annotations,\n\nproperties: {\nmyProperty: {\n\"@\": [ \"some-property-anno\" ],\ninit: null,\nnullable: true\n}\n},\n\nmembers: {\n\"@myMethod\": [ new foo.annotations.MyAnnotation(1, \"test\") ],\nmyMethod: function() {\n// ... snip ...\n}\n},\n\nstatics: {\n\"@myStatic\": [ \"a static anno\" ],\nmyStatic: function() {\n// ... snip ...\n}\n}\n});\n</pre>\n\nNote that the annotation can be anything - a string can be easy and quick, but an\ninstance of a class may be appropriate for sophisticated needs (see the myMethod\nexample above).\n\nThe static methods in this class allow you to programmatically get the annotations\nthat were defined; getClass() returns the class annotations, getMethod returns the\nannotions for the named method, etc.\n\nWhen classes derive from each other, the default methods get the annotations for\nthe class and for the super classes as well; the array will be populated so that\nthe class's annotations are at the start, followed by it's super class, and so\non.  If you only want the annotations of the class and not those from the superclass,\nuse one of the getOwnXxxx methods instead."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__getOwnAnnos": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a list of annotations, exclusively from this class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} the name (eg method name) to look for",
+            "paramName": "name",
+            "description": " the name (eg method name) to look for",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "group {String} the group to look in if applicable (eg \"methods\")",
+            "paramName": "group",
+            "description": " the group to look in if applicable (eg \"methods\")",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getAnnos": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a list of annotations, from this class and superclasses"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the starting class to inspect",
+            "paramName": "clazz",
+            "description": " the starting class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} the name (eg method name) to look for",
+            "paramName": "name",
+            "description": " the name (eg method name) to look for",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "group {String} the group to look in if applicable (eg \"methods\")",
+            "paramName": "group",
+            "description": " the group to look in if applicable (eg \"methods\")",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getOwnClass": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class annotations, exclusively from the class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getClass": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class annotations, from this class and superclasses"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOwnConstructor": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class constructor's annotations, exclusively from the class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getConstructor": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class constructor's annotations, from the class and superclasses"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOwnDestructor": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 189,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class destructor's annotations, exclusively from the class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDestructor": {
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class destructor's annotations, from the class and superclasses"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOwnMember": {
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4
+        },
+        "end": {
+          "line": 212,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class member's annotations, exclusively from the class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} member name",
+            "paramName": "name",
+            "description": " member name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMember": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class member's annotations, from the class and superclass"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} member name",
+            "paramName": "name",
+            "description": " member name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOwnProperty": {
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4
+        },
+        "end": {
+          "line": 235,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class property's annotations, exclusively from the class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} property name",
+            "paramName": "name",
+            "description": " property name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getProperty": {
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class property's annotations, from the class and superclasses"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} property name",
+            "paramName": "name",
+            "description": " property name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPropertiesByAnnotation": {
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4
+        },
+        "end": {
+          "line": 264,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a list of property names that implement a given annotation."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "annotation {String|Object} annotation to look for",
+            "paramName": "annotation",
+            "description": " annotation to look for",
+            "type": [
+              "String",
+              "Object"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} the property names, never null",
+            "type": "String[]",
+            "description": " the property names, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getStatic": {
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4
+        },
+        "end": {
+          "line": 275,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the class static's annotations, exclusively from the class"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class to inspect",
+            "paramName": "clazz",
+            "description": " the class to inspect",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} static name",
+            "paramName": "name",
+            "description": " static name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "annoClass {Class?} optional class which the annotations being returned must implement",
+            "paramName": "annoClass",
+            "description": " optional class which the annotations being returned must implement",
+            "optional": true,
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} the annotations, never null",
+            "type": "Object[]",
+            "description": " the annotations, never null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

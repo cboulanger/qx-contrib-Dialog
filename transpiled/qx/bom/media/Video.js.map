@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/bom/media/Video.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "bom",
+    "media",
+    "Abstract",
+    "construct",
+    "source",
+    "_video",
+    "document",
+    "createElement",
+    "src",
+    "members",
+    "getWidth",
+    "width",
+    "setWidth",
+    "value",
+    "getHeight",
+    "height",
+    "setHeight",
+    "getVideoWidth",
+    "videoWidth",
+    "getVideoHeight",
+    "videoHeight",
+    "getPoster",
+    "poster",
+    "setPoster",
+    "Video"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA0BAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EACA;AACEC,YAASN,GAAGO,GAAH,CAAOC,KAAP,CAAaC,QADxB;;AAGE;;;AAGAC,eAAY,mBAASC,MAAT,EACZ;AACE,WAAKC,MAAL,GAAcC,SAASC,aAAT,CAAuB,OAAvB,CAAd;AACA,UAAIH,MAAJ,EAAY;AACV,aAAKC,MAAL,CAAYG,GAAZ,GAAkBJ,MAAlB;AACD;AACD,mDAAqB,KAAKC,MAA1B;AACD,KAbH;;AAgBEI,aACA;AACEJ,cAAS,IADX;;AAIE;;;;;AAKAK,gBAAU,oBAAW;AACnB,eAAO,KAAKL,MAAL,CAAYM,KAAnB;AACD,OAXH;;AAaE;;;;;AAKAC,gBAAU,kBAASC,KAAT,EAAgB;AACxB,aAAKR,MAAL,CAAYM,KAAZ,GAAoBE,KAApB;AACD,OApBH;;AAuBE;;;;;AAKAC,iBAAW,qBAAW;AACpB,eAAO,KAAKT,MAAL,CAAYU,MAAnB;AACD,OA9BH;;AAiCE;;;;;AAKAC,iBAAW,mBAASH,KAAT,EAAgB;AACzB,aAAKR,MAAL,CAAYU,MAAZ,GAAqBF,KAArB;AACD,OAxCH;;AA2CE;;;;;AAKAI,qBAAe,yBAAW;AACxB,eAAO,KAAKZ,MAAL,CAAYa,UAAnB;AACD,OAlDH;;AAqDE;;;;;AAKAC,sBAAgB,0BAAW;AACzB,eAAO,KAAKd,MAAL,CAAYe,WAAnB;AACD,OA5DH;;AA+DE;;;;;AAKAC,iBAAW,qBAAW;AACpB,eAAO,KAAKhB,MAAL,CAAYiB,MAAnB;AACD,OAtEH;;AAyEE;;;;;AAKAC,iBAAW,mBAASV,KAAT,EAAgB;AACzB,aAAKR,MAAL,CAAYiB,MAAZ,GAAqBT,KAArB;AACD;AAhFH;AAjBF,GADA,C;AA1BApB,KAAGO,GAAH,CAAOC,KAAP,CAAauB,KAAb,CAAmB5B,aAAnB,GAAmCA,aAAnC",
+  "file": "Video.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Adrian Olaru (adrianolaru)\n\n************************************************************************ */\n\n\n/**\n * EXPERIMENTAL - NOT READY FOR PRODUCTION\n *\n * Media object for playing videos.\n * \n * NOTE: Instances of this class must be disposed of to free resources\n */\nqx.Class.define(\"qx.bom.media.Video\",\n{\n  extend : qx.bom.media.Abstract,\n\n  /**\n   * @param source {String} the source url to the sound file.\n   */\n  construct : function(source)\n  {\n    this._video = document.createElement(\"video\");\n    if (source) {\n      this._video.src = source;\n    }\n    this.base(arguments, this._video);\n  },\n\n\n  members :\n  {\n    _video : null,\n\n\n    /**\n     * Gets the width of the video element.\n     *\n     * @return {Number} the width of the video element\n     */\n    getWidth: function() {\n      return this._video.width;\n    },\n\n    /**\n     * Sets the width of the video element.\n     *\n     * @param value {Number} The new value of width.\n     */\n    setWidth: function(value) {\n      this._video.width = value;\n    },\n\n\n    /**\n     * Gets the height of the video element.\n     *\n     * @return {Number} the height of the video element\n     */\n    getHeight: function() {\n      return this._video.height;\n    },\n\n\n    /**\n     * Sets the height of the video element.\n     *\n     * @param value {Number} The new value of height.\n     */\n    setHeight: function(value) {\n      this._video.height = value;\n    },\n\n\n    /**\n     * Gets the width of the video.\n     *\n     * @return {Number} the width of the video\n     */\n    getVideoWidth: function() {\n      return this._video.videoWidth;\n    },\n\n\n    /**\n     * Gets the height of the video.\n     *\n     * @return {Number} the height of the video\n     */\n    getVideoHeight: function() {\n      return this._video.videoHeight;\n    },\n\n\n    /**\n     * Gets the poster of the video.\n     *\n     * @return {String} the URL of an image to act as the video poster\n     */\n    getPoster: function() {\n      return this._video.poster;\n    },\n\n\n    /**\n     * Sets the poster of the video.\n     *\n     * @param value {String} The new value of poster.\n     */\n    setPoster: function(value) {\n      this._video.poster = value;\n    }\n  }\n});\n"
+  ]
+}

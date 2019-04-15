@@ -1,0 +1,244 @@
+{
+  "className": "qx.util.StringBuilder",
+  "packageName": "qx.util",
+  "name": "StringBuilder",
+  "superClass": "qx.type.BaseArray",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 0
+      },
+      "end": {
+        "line": 136,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "A string builder class\n\n+= operator is faster in Firefox and Opera.\nArray push/join is faster in Internet Explorer\n\nEven with this wrapper, which costs some time, this is\nfaster in Firefox than the alternative Array concat in\nall browsers (which is in relation to IE's performance issues\nonly marginal). The IE performance loss caused by this\nwrapper is not relevant.\n\nSo this class seems to be the best compromise to handle\nstring concatenation."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 61,
+        "column": 2
+      },
+      "end": {
+        "line": 63,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nCONSTRUCTOR\n****************************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Creates a new StringBuilder with the given length or as a concatenation of the given arguments substrings.\n\n<pre class=\"javascript\">\nvar sb1 = new qx.util.StringBuilder(length);\nvar sb2 = new qx.util.StringBuilder(item0, item1, ..., itemN);\n</pre>\n\n\n* <code>length</code>: The initial length of the StringBuilder.\n* <code>itemN</code>:  A substring that will make up the newly created StringBuilder.\nThe StringBuilder's length property is set to the number of arguments."
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "length_or_items {Integer|var?null} The initial length of the StringBuilder\nOR an argument list of values.",
+          "paramName": "length_or_items",
+          "description": " The initial length of the StringBuilder\nOR an argument list of values.",
+          "optional": true,
+          "defaultValue": "null",
+          "type": [
+            "Integer",
+            "var"
+          ]
+        }
+      ]
+    }
+  },
+  "members": {
+    "clear": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes all content"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the concatted strings."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Concatted strings",
+            "type": "String",
+            "description": " Concatted strings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 14
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds new strings. Supports multiple arguments."
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(varargs)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {String} The separate strings to add",
+            "paramName": "varargs",
+            "description": " The separate strings to add",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "isEmpty": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the string builder is empty"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the builder is empty",
+            "type": "Boolean",
+            "description": " <code>true</code> when the builder is empty"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "size": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the size of the strings"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The string length",
+            "type": "Integer",
+            "description": " The string length"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 130,
+        "column": 2
+      },
+      "end": {
+        "line": 135,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDEFER\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

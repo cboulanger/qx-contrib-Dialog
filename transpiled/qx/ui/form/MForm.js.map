@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/form/MForm.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "construct",
+    "locale",
+    "Manager",
+    "getInstance",
+    "addListener",
+    "__onChangeLocale",
+    "properties",
+    "valid",
+    "check",
+    "init",
+    "apply",
+    "event",
+    "required",
+    "invalidMessage",
+    "requiredInvalidMessage",
+    "nullable",
+    "members",
+    "_applyValid",
+    "value",
+    "old",
+    "removeState",
+    "addState",
+    "e",
+    "getInvalidMessage",
+    "translate",
+    "setInvalidMessage",
+    "getRequiredInvalidMessage",
+    "setRequiredInvalidMessage",
+    "destruct",
+    "removeListener",
+    "ui",
+    "form",
+    "MForm"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,kBAAhB,EACA;;AAEEC,eAAY,qBACZ;AAC+C;AAC3CN,WAAGO,MAAH,CAAUC,OAAV,CAAkBC,WAAlB,GAAgCC,WAAhC,CAA4C,cAA5C,EAA4D,KAAKC,gBAAjE,EAAmF,IAAnF;AACD;AACF,KAPH;;AAUEC,gBAAa;;AAEX;;;;AAIAC,aAAQ;AACNC,eAAQ,SADF;AAENC,cAAO,IAFD;AAGNC,eAAQ,aAHF;AAINC,eAAQ;AAJF,OANG;;AAcX;;;AAGAC,gBAAW;AACTJ,eAAQ,SADC;AAETC,cAAO,KAFE;AAGTE,eAAQ;AAHC,OAjBA;;AAwBX;;;AAGAE,sBAAiB;AACfL,eAAQ,QADO;AAEfC,cAAM,EAFS;AAGfE,eAAQ;AAHO,OA3BN;;AAkCX;;;;AAIAG,8BAAyB;AACvBN,eAAQ,QADe;AAEvBO,kBAAW,IAFY;AAGvBJ,eAAQ;AAHe;AAtCd,KAVf;;AAwDEK,aAAU;AACR;AACAC,mBAAa,qBAASC,KAAT,EAAgBC,GAAhB,EAAqB;AAChCD,gBAAQ,KAAKE,WAAL,CAAiB,SAAjB,CAAR,GAAsC,KAAKC,QAAL,CAAc,SAAd,CAAtC;AACD,OAJO;;AAOR;;;;;;AAMAhB,wBAEW,0BAASiB,CAAT,EACT;AACE;AACA,YAAIT,iBAAiB,KAAKU,iBAAL,EAArB;AACA,YAAIV,kBAAkBA,eAAeW,SAArC,EAAgD;AAC9C,eAAKC,iBAAL,CAAuBZ,eAAeW,SAAf,EAAvB;AACD;AACD;AACA,YAAIV,yBAAyB,KAAKY,yBAAL,EAA7B;AACA,YAAIZ,0BAA0BA,uBAAuBU,SAArD,EAAgE;AAC9D,eAAKG,yBAAL,CAA+Bb,uBAAuBU,SAAvB,EAA/B;AACD;AACF;AA3BK,KAxDZ;;AA0FEI,cAAW,oBACX;AAC+C;AAC3ClC,WAAGO,MAAH,CAAUC,OAAV,CAAkBC,WAAlB,GAAgC0B,cAAhC,CAA+C,cAA/C,EAA+D,KAAKxB,gBAApE,EAAsF,IAAtF;AACD;AACF;AA/FH,GADA,C;AArBAX,KAAGoC,EAAH,CAAMC,IAAN,CAAWC,KAAX,CAAiBnC,aAAjB,GAAiCA,aAAjC",
+  "file": "MForm.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Mixin handling the valid and required properties for the form widgets.\n */\nqx.Mixin.define(\"qx.ui.form.MForm\",\n{\n\n  construct : function()\n  {\n    if (qx.core.Environment.get(\"qx.dynlocale\")) {\n      qx.locale.Manager.getInstance().addListener(\"changeLocale\", this.__onChangeLocale, this);\n    }\n  },\n\n\n  properties : {\n\n    /**\n     * Flag signaling if a widget is valid. If a widget is invalid, an invalid\n     * state will be set.\n     */\n    valid : {\n      check : \"Boolean\",\n      init : true,\n      apply : \"_applyValid\",\n      event : \"changeValid\"\n    },\n\n\n    /**\n     * Flag signaling if a widget is required.\n     */\n    required : {\n      check : \"Boolean\",\n      init : false,\n      event : \"changeRequired\"\n    },\n\n\n    /**\n     * Message which is shown in an invalid tooltip.\n     */\n    invalidMessage : {\n      check : \"String\",\n      init: \"\",\n      event : \"changeInvalidMessage\"\n    },\n\n\n    /**\n     * Message which is shown in an invalid tooltip if the {@link #required} is\n     * set to true.\n     */\n    requiredInvalidMessage : {\n      check : \"String\",\n      nullable : true,\n      event : \"changeInvalidMessage\"\n    }\n  },\n\n\n  members : {\n    // apply method\n    _applyValid: function(value, old) {\n      value ? this.removeState(\"invalid\") : this.addState(\"invalid\");\n    },\n\n\n    /**\n     * Locale change event handler\n     *\n     * @signature function(e)\n     * @param e {Event} the change event\n     */\n    __onChangeLocale : qx.core.Environment.select(\"qx.dynlocale\",\n    {\n      \"true\" : function(e)\n      {\n        // invalid message\n        var invalidMessage = this.getInvalidMessage();\n        if (invalidMessage && invalidMessage.translate) {\n          this.setInvalidMessage(invalidMessage.translate());\n        }\n        // required invalid message\n        var requiredInvalidMessage = this.getRequiredInvalidMessage();\n        if (requiredInvalidMessage && requiredInvalidMessage.translate) {\n          this.setRequiredInvalidMessage(requiredInvalidMessage.translate());\n        }\n      },\n\n      \"false\" : null\n    })\n  },\n\n\n  destruct : function()\n  {\n    if (qx.core.Environment.get(\"qx.dynlocale\")) {\n      qx.locale.Manager.getInstance().removeListener(\"changeLocale\", this.__onChangeLocale, this);\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "className": "qx.log.appender.Util",
+  "packageName": "qx.log.appender",
+  "name": "Util",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 232,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Contains some common methods available to all log appenders."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "toHtml": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Converts a single log entry to HTML"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(entry)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "formatOffset": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Formats a numeric time offset to 6 characters."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Integer} Current offset value",
+            "paramName": "offset",
+            "description": " Current offset value",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "length {Integer?6} Refine the length",
+            "paramName": "length",
+            "description": " Refine the length",
+            "optional": true,
+            "defaultValue": "6",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Padded string",
+            "type": "String",
+            "description": " Padded string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "escapeHTML": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Escapes the HTML in the given value"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} value to escape",
+            "paramName": "value",
+            "description": " value to escape",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} escaped value",
+            "type": "String",
+            "description": " escaped value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__escapeHTMLReplace": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal replacement helper for HTML escape."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ch {String} Single item to replace.",
+            "paramName": "ch",
+            "description": " Single item to replace.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Replaced item",
+            "type": "String",
+            "description": " Replaced item"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "toText": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Converts a single log entry to plain text"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the formatted log entry",
+            "type": "String",
+            "description": " the formatted log entry"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toTextArray": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4
+        },
+        "end": {
+          "line": 230,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Converts a single log entry to an array of plain text"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Argument list ready message array.",
+            "type": "Array",
+            "description": " Argument list ready message array."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

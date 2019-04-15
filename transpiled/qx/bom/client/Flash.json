@@ -1,0 +1,279 @@
+{
+  "className": "qx.bom.client.Flash",
+  "packageName": "qx.bom.client",
+  "name": "Flash",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 48,
+        "column": 0
+      },
+      "end": {
+        "line": 222,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nMartin Wittemann (martinwittemann)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nSWFFix\nhttp://www.swffix.org\nVersion 0.3 (r17)\n\nCopyright:\n(c) 2007 SWFFix developers\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\nAuthors:\nGeoff Stearns\nMichael Williams\nBobby van der Sluis\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This class contains all Flash detection.\n\nIt is used by {@link qx.core.Environment} and should not be used\ndirectly. Please check its class comment for details how to use it."
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.client.OperatingSystem"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "isAvailable": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the flash plugin is available."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if flash is available.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if flash is available."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getVersion": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 139,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks for the version of flash and returns it as a string. If the\nversion could not be detected, an empty string will be returned."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version number as string.",
+            "type": "String",
+            "description": " The version number as string."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getExpressInstall": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the flash installation is an express installation."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if its an express installation.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if its an express installation."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getStrictSecurityModel": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if a strict security model is available."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if its available.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if its available."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_cachedSupportsVersion": {
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4
+        },
+        "end": {
+          "line": 186,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Storage for supported Flash versions."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__supportsVersion": {
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4
+        },
+        "end": {
+          "line": 213,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Check if the first given version is supported by either the current\nversion available on the system or the optional given second parameter."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "input {String} The version to check.",
+            "paramName": "input",
+            "description": " The version to check.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "availableVersion {String} The version available on the current\nsystem.",
+            "paramName": "availableVersion",
+            "description": " The version available on the current\nsystem.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the version is supported.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the version is supported."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 216,
+        "column": 2
+      },
+      "end": {
+        "line": 221,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

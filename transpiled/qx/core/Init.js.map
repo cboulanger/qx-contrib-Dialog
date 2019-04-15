@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/core/Init.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "getApplication",
+    "core",
+    "BaseInit",
+    "ready",
+    "__close",
+    "e",
+    "app",
+    "setReturnValue",
+    "close",
+    "__shutdown",
+    "terminate",
+    "defer",
+    "event",
+    "Registration",
+    "addListener",
+    "window",
+    "Init"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAyBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,cAAhB,EACA;AACE;;;;;;AAMAC,aACA;AACE;;;;;AAKAC,sBAAiBP,GAAGQ,IAAH,CAAQC,QAAR,CAAiBF,cANpC;;AASE;;;;;AAKAG,aAAQV,GAAGQ,IAAH,CAAQC,QAAR,CAAiBC,KAd3B;;AAiBE;;;;;;AAMAC,eAAU,iBAASC,CAAT,EACV;AACE,YAAIC,MAAM,KAAKN,cAAL,EAAV;AACA,YAAIM,GAAJ,EAAS;AACPD,YAAEE,cAAF,CAAiBD,IAAIE,KAAJ,EAAjB;AACD;AACF,OA7BH;;AAgCE;;;;;AAKAC,kBAAa,sBACb;AACE,YAAIH,MAAM,KAAKN,cAAL,EAAV;;AAEA,YAAIM,GAAJ,EAAS;AACPA,cAAII,SAAJ;AACD;AACF;AA5CH,KARF;;AA0DE;;;;;;AAMAC,WAAQ,eAASZ,OAAT,EACR;AACEN,SAAGmB,KAAH,CAASC,YAAT,CAAsBC,WAAtB,CAAkCC,MAAlC,EAA0C,OAA1C,EAAmDhB,QAAQI,KAA3D,EAAkEJ,OAAlE;AACAN,SAAGmB,KAAH,CAASC,YAAT,CAAsBC,WAAtB,CAAkCC,MAAlC,EAA0C,UAA1C,EAAsDhB,QAAQU,UAA9D,EAA0EV,OAA1E;AACAN,SAAGmB,KAAH,CAASC,YAAT,CAAsBC,WAAtB,CAAkCC,MAAlC,EAA0C,cAA1C,EAA0DhB,QAAQK,OAAlE,EAA2EL,OAA3E;AACD;AArEH,GADA,C;AAzBAN,KAAGQ,IAAH,CAAQe,IAAR,CAAapB,aAAb,GAA6BA,aAA7B",
+  "file": "Init.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * This is the base class for all qooxdoo applications.\n *\n * @require(qx.event.handler.Application)\n * @require(qx.event.handler.Window)\n * @require(qx.event.dispatch.Direct)\n */\nqx.Class.define(\"qx.core.Init\",\n{\n  /*\n  *****************************************************************************\n     STATICS\n  *****************************************************************************\n  */\n\n  statics :\n  {\n    /**\n     * Returns the instantiated qooxdoo application.\n     *\n     * @return {qx.core.Object} The application instance.\n     */\n    getApplication : qx.core.BaseInit.getApplication,\n\n\n    /**\n     * Runs when the application is loaded. Automatically creates an instance\n     * of the class defined by the setting <code>qx.application</code>.\n     *\n     */\n    ready : qx.core.BaseInit.ready,\n\n\n    /**\n     * Runs before the document is unloaded. Calls the application's close\n     * method to check if the unload process should be stopped.\n     *\n     * @param e {qx.event.type.Native} Incoming beforeunload event.\n     */\n    __close : function(e)\n    {\n      var app = this.getApplication();\n      if (app) {\n        e.setReturnValue(app.close());\n      }\n    },\n\n\n    /**\n     * Runs when the document is unloaded. Automatically terminates a previously\n     * created application instance.\n     *\n     */\n    __shutdown : function()\n    {\n      var app = this.getApplication();\n\n      if (app) {\n        app.terminate();\n      }\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     DEFER\n  *****************************************************************************\n  */\n\n  defer : function(statics)\n  {\n    qx.event.Registration.addListener(window, \"ready\", statics.ready, statics);\n    qx.event.Registration.addListener(window, \"shutdown\", statics.__shutdown, statics);\n    qx.event.Registration.addListener(window, \"beforeunload\", statics.__close, statics);\n  }\n});\n"
+  ]
+}

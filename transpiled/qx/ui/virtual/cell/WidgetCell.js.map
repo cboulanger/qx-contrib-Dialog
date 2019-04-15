@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/virtual/cell/WidgetCell.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "cell",
+    "AbstractWidget",
+    "properties",
+    "delegate",
+    "apply",
+    "init",
+    "nullable",
+    "members",
+    "_applyDelegate",
+    "value",
+    "old",
+    "_cleanupPool",
+    "_createWidget",
+    "getDelegate",
+    "createWidget",
+    "core",
+    "Widget",
+    "updateData",
+    "widget",
+    "data",
+    "key",
+    "hasProperty",
+    "constructor",
+    "util",
+    "PropertyUtil",
+    "setUserValue",
+    "Error",
+    "WidgetCell"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAgDAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,cAD9B;;AAGEC,gBACA;AACE;;;;AAIAC,gBACA;AACEC,eAAO,gBADT;AAEEC,cAAM,IAFR;AAGEC,kBAAU;AAHZ;AANF,KAJF;;AAiBEC,aACA;AACE;AACAC,sBAAiB,wBAASC,KAAT,EAAgBC,GAAhB,EAAqB;AACpC,aAAKC,YAAL;AACD,OAJH;;AAME;AACAC,qBAAgB,yBAAW;AACzB,YAAIT,WAAW,KAAKU,WAAL,EAAf;;AAEA,YAAIV,YAAY,IAAZ,IAAoBA,SAASW,YAAT,IAAyB,IAAjD,EAAuD;AACrD,iBAAOX,SAASW,YAAT,EAAP;AACD,SAFD,MAEO;AACL,iBAAO,IAAIvB,GAAGO,EAAH,CAAMiB,IAAN,CAAWC,MAAf,EAAP;AACD;AACF,OAfH;;AAiBE;AACAC,kBAAa,oBAASC,MAAT,EAAiBC,IAAjB,EAAuB;AAClC,aAAK,IAAIC,GAAT,IAAgBD,IAAhB,EACA;AACE,cAAI5B,GAAGI,KAAH,CAAS0B,WAAT,CAAqBH,OAAOI,WAA5B,EAAyCF,GAAzC,CAAJ,EAAmD;AACjD7B,eAAGgC,IAAH,CAAQC,YAAR,CAAqBC,YAArB,CAAkCP,MAAlC,EAA0CE,GAA1C,EAA+CD,KAAKC,GAAL,CAA/C;AACD,WAFD,MAEO;AACL,kBAAM,IAAIM,KAAJ,CAAU,iCAAiCN,GAAjC,GAAuC,sBAAjD,CAAN;AACD;AACF;AACF;AA3BH;AAlBF,GADA,C;AAhDA7B,KAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmB2B,UAAnB,CAA8BjC,aAA9B,GAA8CA,aAA9C",
+  "file": "WidgetCell.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * EXPERIMENTAL!\n *\n * Cell renderer can be used for Widget rendering. The Widget creation can be configured with the\n * {@link #delegate} property:\n *\n * <pre class=\"javascript\">\n * widgetCell.setDelegate(\n * {\n *   createWidget : function() {\n *     return new qx.ui.form.ListItem();\n *   }\n * });\n * </pre>\n *\n * When the {@link #delegate} property is not used {@link qx.ui.core.Widget} instances are created as\n * fallback.\n *\n * The {@link #updateData} method can be used to update any Widget property. Just use a <code>Map</code>\n * with property name as key:\n *\n * <pre class=\"javascript\">\n * // widget is a qx.ui.form.ListItem instance\n * widgetCell.updateData(widget,\n * {\n *   label: \"my label value\",\n *   icon: \"qx/icon/22/emotes/face-angel.png\"\n * });\n * </pre>\n */\nqx.Class.define(\"qx.ui.virtual.cell.WidgetCell\",\n{\n  extend : qx.ui.virtual.cell.AbstractWidget,\n\n  properties :\n  {\n    /**\n     * Delegation object, which can have one or more functions defined by the\n     * {@link qx.ui.virtual.cell.IWidgetCellDelegate} interface.\n     */\n    delegate :\n    {\n      apply: \"_applyDelegate\",\n      init: null,\n      nullable: true\n    }\n  },\n\n  members :\n  {\n    // apply method\n    _applyDelegate : function(value, old) {\n      this._cleanupPool();\n    },\n\n    // overridden\n    _createWidget : function() {\n      var delegate = this.getDelegate();\n\n      if (delegate != null && delegate.createWidget != null) {\n        return delegate.createWidget();\n      } else {\n        return new qx.ui.core.Widget();\n      }\n    },\n\n    // overridden\n    updateData : function(widget, data) {\n      for (var key in data)\n      {\n        if (qx.Class.hasProperty(widget.constructor, key)) {\n          qx.util.PropertyUtil.setUserValue(widget, key, data[key]);\n        } else {\n          throw new Error(\"Can't update data! The key '\" + key + \"' is not a Property!\");\n        }\n      }\n    }\n  }\n});"
+  ]
+}

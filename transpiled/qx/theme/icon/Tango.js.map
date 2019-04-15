@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/theme/icon/Tango.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "title",
+    "aliases",
+    "theme",
+    "icon",
+    "Tango"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,WAAQ,OADV;AAEEC,aAAU;AACR,cAAS;AADD;AAFZ,GADA,C;AArBAP,KAAGQ,KAAH,CAASC,IAAT,CAAcC,KAAd,CAAoBP,aAApB,GAAoCA,aAApC",
+  "file": "Tango.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n/**\n * Tango icons\n */\nqx.Theme.define(\"qx.theme.icon.Tango\",\n{\n  title : \"Tango\",\n  aliases : {\n    \"icon\" : \"qx/icon/Tango\"\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,3304 @@
+{
+  "className": "qx.ui.website.Table",
+  "packageName": "qx.ui.website",
+  "name": "Table",
+  "superClass": "qx.ui.website.Widget",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 87,
+        "column": 0
+      },
+      "end": {
+        "line": 1500,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2013 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nRomeo Kenfack Tsakem (rkenfack)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This is a widget that enhances an HTML table with some basic features like\nSorting and Filtering.\n\nEXPERIMENTAL - NOT READY FOR PRODUCTION\n\n<h2>CSS Classes</h2>\n<table>\n<thead>\n<tr>\n<td>Class Name</td>\n<td>Applied to</td>\n<td>Description</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>qx-table</code></td>\n<td>Table element</td>\n<td>Identifies the Table widget</td>\n</tr>\n<tr>\n<td><code>qx-table-cell</code></td>\n<td>Table cell (<code>td</code>)</td>\n<td>Identifies and styles a cell of the widget</td>\n</tr>\n<tr>\n<td><code>qx-table-header</code></td>\n<td>Table header (<code>th</code>)</td>\n<td>Identifies and styles a header of the table widget</td>\n</tr>\n<tr>\n<td><code>qx-table-row-selection</code></td>\n<td>Table cell (<code>td</code>)</td>\n<td>Identifies and styles the cells containing the inputs for the row selection</td>\n</tr>\n<tr>\n<td><code>qx-table-selection-input</code></td>\n<td><code>input</code></td>\n<td>Identifies and styles input element to select a table row</td>\n</tr>\n<tr>\n<td><code>qx-table-input-label</code></td>\n<td>Label element (<code>label</code>)</td>\n<td>Identifies and styles label contained in the selection cell. This label can be used to create custom inputs</td>\n</tr>\n<tr>\n<td><code>qx-table-row-selected</code></td>\n<td>Selected row (<code>tr</code>)</td>\n<td>Identifies and styles the selected table rows</td>\n</tr>\n<tr>\n<td><code>qx-table-sort-asc</code></td>\n<td>Table header (<code>th</code>)</td>\n<td>Identifies and styles the header of the current ascendant sorted column</td>\n</tr>\n<tr>\n<td><code>qx-table-sort-desc</code></td>\n<td>Table header (<code>th</code>)</td>\n<td>Identifies and styles the header of the current descendant sorted column</td>\n</tr>\n</tbody>\n</table>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Widget"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 91,
+        "column": 2
+      },
+      "end": {
+        "line": 93,
+        "column": 3
+      }
+    }
+  },
+  "events": {
+    "modelChange": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires at each model change"
+          }
+        ]
+      },
+      "name": "modelChange",
+      "type": "Array"
+    },
+    "selectionChange": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires at each selection change"
+          }
+        ]
+      },
+      "name": "selectionChange",
+      "type": "qxWeb"
+    },
+    "cellClick": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires each time a cell of the widget is clicked"
+          }
+        ]
+      },
+      "name": "cellClick",
+      "type": "Object"
+    },
+    "cellHover": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires each time a cell of the widget is hovered"
+          }
+        ]
+      },
+      "name": "cellHover",
+      "type": "Object"
+    },
+    "cellOut": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires each time the mouse leave a cell of the table widget"
+          }
+        ]
+      },
+      "name": "cellOut",
+      "type": "Object"
+    },
+    "modelApplied": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires after the model has been applied to the widget"
+          }
+        ]
+      },
+      "name": "modelApplied",
+      "type": "Array"
+    },
+    "cellRender": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires each time the value of a cell is rendered into the cell"
+          }
+        ]
+      },
+      "name": "cellRender",
+      "type": "Object"
+    },
+    "sort": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires after the table rows have been sorted"
+          }
+        ]
+      },
+      "name": "sort",
+      "type": "Object"
+    },
+    "filter": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires after the table rows have been filtered"
+          }
+        ]
+      },
+      "name": "filter",
+      "type": "Object"
+    }
+  },
+  "statics": {
+    "_config": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "*caseSensitive*\nDetermines if the string sorting/filtering should be case sensitive or not. Default value : <code>false</code>.\n\n*rowSelection*\nDefines the row selection type. Possible values are : 'none', 'single', 'multiple'. Default value : <code>none</code>."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_templates": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "*columnDefault*\nThe Default cell template for all the table columns. Default value :\n\n<pre>\n<td class='qx-table-cell' data-qx-table-cell-key='{{ cellKey }}'>\n<div class='qx-table-cell-wrapper'>\n<label>{{& value }}</label>\n</div>\n<td>\"\n</pre>\n\nTo define a custom template for a specific name use <code>setTemplate('colname', template)</code> or use <br>\n<code>setTemplate('columnDefault', template)</code> to set one template for all your table columns."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "table": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Factory method which converts the current collection into a collection of\ntable widgets."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "model {Array} The model of the widgets in the collection",
+            "paramName": "model",
+            "description": " The model of the widgets in the collection",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} A new table collection.",
+            "type": "qx.ui.website.Table",
+            "description": " A new table collection."
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__isNumber": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4
+        },
+        "end": {
+          "line": 181,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if a given string is a number"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "n {String} The String to check the type for",
+            "paramName": "n",
+            "description": " The String to check the type for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} The result of the check",
+            "type": "Boolean",
+            "description": " The result of the check"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isDate": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if a given string is a Date"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "val {String} The String to check the type for",
+            "paramName": "val",
+            "description": " The String to check the type for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} The result of the check",
+            "type": "Boolean",
+            "description": " The result of the check"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getIndex": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4
+        },
+        "end": {
+          "line": 208,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the index of an HTMLElement inside of an HTMLCollection"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "htmlCollection {HTMLCollection} The HTMLCollection",
+            "paramName": "htmlCollection",
+            "description": " The HTMLCollection",
+            "type": "HTMLCollection"
+          },
+          {
+            "name": "@param",
+            "body": "htmlElement {HTMLElement} The HTMLElement",
+            "paramName": "htmlElement",
+            "description": " The HTMLElement",
+            "type": "HTMLElement"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The position of the htmlElement or -1",
+            "type": "Integer",
+            "description": " The position of the htmlElement or -1"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getUID": {
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Generates an unique id"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The generated id",
+            "type": "String",
+            "description": " The generated id"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__selectionTypes": {
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4
+        },
+        "end": {
+          "line": 220,
+          "column": 53
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__internalCellClass": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 222,
+          "column": 41
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__internalHeaderClass": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 45
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__internalSelectionClass": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4
+        },
+        "end": {
+          "line": 226,
+          "column": 55
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__internalInputClass": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
+          "column": 53
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__allColumnSelector": {
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4
+        },
+        "end": {
+          "line": 230,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dataColName": {
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4
+        },
+        "end": {
+          "line": 232,
+          "column": 44
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dataColType": {
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4
+        },
+        "end": {
+          "line": 234,
+          "column": 44
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dataSortingKey": {
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4
+        },
+        "end": {
+          "line": 236,
+          "column": 47
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__modelSortingKey": {
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__inputLabelClass": {
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4
+        },
+        "end": {
+          "line": 240,
+          "column": 46
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__selectedRowClass": {
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__ascSortingClass": {
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 4
+        },
+        "end": {
+          "line": 244,
+          "column": 43
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__descSortingClass": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 47
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    }
+  },
+  "members": {
+    "__model": {
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4
+        },
+        "end": {
+          "line": 254,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__columnMeta": {
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4
+        },
+        "end": {
+          "line": 255,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sortingFunction": {
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4
+        },
+        "end": {
+          "line": 256,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__filterFunction": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4
+        },
+        "end": {
+          "line": 257,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__filterFunc": {
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4
+        },
+        "end": {
+          "line": 258,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__filters": {
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4
+        },
+        "end": {
+          "line": 259,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__inputName": {
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4
+        },
+        "end": {
+          "line": 260,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__hovered": {
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4
+        },
+        "end": {
+          "line": 261,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sortingData": {
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4
+        },
+        "end": {
+          "line": 262,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 4
+        },
+        "end": {
+          "line": 293,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the widget has been initialized",
+            "type": "Boolean",
+            "description": " <code>true</code> if the widget has been initialized"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "setModel": {
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4
+        },
+        "end": {
+          "line": 313,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the given model to the widgets in the collection"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "model {Array} The model to be set",
+            "paramName": "model",
+            "description": " The model to be set",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setColumnType": {
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the column types for the table widgets in the collection"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The column name",
+            "paramName": "columnName",
+            "description": " The column name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The type of the column",
+            "paramName": "type",
+            "description": " The type of the column",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getColumnType": {
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4
+        },
+        "end": {
+          "line": 340,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the type of the specified column"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The column name",
+            "paramName": "columnName",
+            "description": " The column name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The type of the specified column",
+            "type": "String",
+            "description": " The type of the specified column"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCell": {
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4
+        },
+        "end": {
+          "line": 351,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the cell at the given position for the first widget in the collection"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {Integer} The row number",
+            "paramName": "row",
+            "description": " The row number",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "col {Integer} The column number",
+            "paramName": "col",
+            "description": " The column number",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The cell found at the given position",
+            "type": "qxWeb",
+            "description": " The cell found at the given position"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRows": {
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4
+        },
+        "end": {
+          "line": 360,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a collection containing the rows of the first table in the collection."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection containing the table rows",
+            "type": "qxWeb",
+            "description": " The collection containing the table rows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setCompareFunction": {
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 4
+        },
+        "end": {
+          "line": 373,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Defines the comparison function to use to sort columns of the given type"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The type to define the function for",
+            "paramName": "type",
+            "description": " The type to define the function for",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "compareFunc {Function} The comparison function",
+            "paramName": "compareFunc",
+            "description": " The comparison function",
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unsetCompareFunction": {
+      "location": {
+        "start": {
+          "line": 382,
+          "column": 4
+        },
+        "end": {
+          "line": 387,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Unset the compare function for the given type"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The type to unset the function for",
+            "paramName": "type",
+            "description": " The type to unset the function for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCompareFunction": {
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4
+        },
+        "end": {
+          "line": 398,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the comparison function for the given type"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The type to get the comparison function for",
+            "paramName": "type",
+            "description": " The type to get the comparison function for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The comparison function",
+            "type": "Function",
+            "description": " The comparison function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setSortingFunction": {
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 4
+        },
+        "end": {
+          "line": 411,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the function that control the sorting process"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} The sorting function",
+            "paramName": "func",
+            "description": " The sorting function",
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unsetSortingFunction": {
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4
+        },
+        "end": {
+          "line": 422,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Unset the function that control the sorting process"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setFilterFunction": {
+      "location": {
+        "start": {
+          "line": 429,
+          "column": 4
+        },
+        "end": {
+          "line": 433,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the function that will be used to process the column filtering"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} The filter function",
+            "paramName": "func",
+            "description": " The filter function",
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unsetFilterFunction": {
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4
+        },
+        "end": {
+          "line": 444,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Unset the filter function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setColumnFilter": {
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 4
+        },
+        "end": {
+          "line": 462,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the filter function to use to filter a specific column"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the column",
+            "paramName": "columnName",
+            "description": " The name of the column",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "func {Function} The filter",
+            "paramName": "func",
+            "description": " The filter",
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getColumnFilter": {
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 4
+        },
+        "end": {
+          "line": 477,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the filter function set on a specific column"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the column",
+            "paramName": "columnName",
+            "description": " The name of the column",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The filter function",
+            "type": "Function",
+            "description": " The filter function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setRowFilter": {
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4
+        },
+        "end": {
+          "line": 492,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the filter function to use to filter the table rows"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} The filter",
+            "paramName": "func",
+            "description": " The filter",
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRowFilter": {
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4
+        },
+        "end": {
+          "line": 505,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the filter function set on a specific column"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The filter function",
+            "type": "Function",
+            "description": " The filter function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "sort": {
+      "location": {
+        "start": {
+          "line": 514,
+          "column": 4
+        },
+        "end": {
+          "line": 523,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sort the column with the given name according to the specified direction"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the column to sort",
+            "paramName": "columnName",
+            "description": " The name of the column to sort",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "dir {String} The sorting direction (asc or desc)",
+            "paramName": "dir",
+            "description": " The sorting direction (asc or desc)",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "filter": {
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 4
+        },
+        "end": {
+          "line": 558,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Filters rows or columns according to the given parameters"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "keyword {String} The keyword to use to filter",
+            "paramName": "keyword",
+            "description": " The keyword to use to filter",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "columnName {String ?} The column name",
+            "paramName": "columnName",
+            "description": " The column name",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qxWeb",
+      "appearsIn": [
+        "qxWeb"
+      ]
+    },
+    "resetFilter": {
+      "location": {
+        "start": {
+          "line": 566,
+          "column": 4
+        },
+        "end": {
+          "line": 581,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the filter applied on a specific column"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String ?} The column name",
+            "paramName": "columnName",
+            "description": " The column name",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setContent": {
+      "location": {
+        "start": {
+          "line": 589,
+          "column": 4
+        },
+        "end": {
+          "line": 596,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes the rows of in the table body"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tableData {String|qxWeb} Html string or collection containing the rows to be added",
+            "paramName": "tableData",
+            "description": " Html string or collection containing the rows to be added",
+            "type": [
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "appendContent": {
+      "location": {
+        "start": {
+          "line": 604,
+          "column": 4
+        },
+        "end": {
+          "line": 610,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Appends new rows to the table"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tableData {String|qxWeb} Html string or collection containing the rows to be appended",
+            "paramName": "tableData",
+            "description": " Html string or collection containing the rows to be appended",
+            "type": [
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__extractTableRows": {
+      "location": {
+        "start": {
+          "line": 618,
+          "column": 4
+        },
+        "end": {
+          "line": 643,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Extracts table rows from a given HTML String or qxWeb collection"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {qxWeb|String} Data containing the rows to be extracted",
+            "paramName": "data",
+            "description": " Data containing the rows to be extracted",
+            "type": [
+              "qxWeb",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing extracted rows",
+            "type": "qxWeb",
+            "description": " Collection containing extracted rows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__filterDom": {
+      "location": {
+        "start": {
+          "line": 652,
+          "column": 4
+        },
+        "end": {
+          "line": 677,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Filters the rendered table cells"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "keyword {String} The keyword to use to filter",
+            "paramName": "keyword",
+            "description": " The keyword to use to filter",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "columnName {String ?} The column name",
+            "paramName": "columnName",
+            "description": " The column name",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getSortingData": {
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 4
+        },
+        "end": {
+          "line": 686,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the current column sorting information for the first widget in the collection"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The map containing the current sorting information",
+            "type": "Map",
+            "description": " The map containing the current sorting information"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 690,
+          "column": 4
+        },
+        "end": {
+          "line": 707,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
+            "type": "qx.ui.website.Widget",
+            "description": " The widget collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "__processSelectionInputs": {
+      "location": {
+        "start": {
+          "line": 717,
+          "column": 4
+        },
+        "end": {
+          "line": 733,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Private API"
+          },
+          {
+            "name": "@description",
+            "body": "Renders or removes the selection inputs according to the specified widget selection mode"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowSelection {String} The selection mode",
+            "paramName": "rowSelection",
+            "description": " The selection mode",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__createInputs": {
+      "location": {
+        "start": {
+          "line": 741,
+          "column": 4
+        },
+        "end": {
+          "line": 748,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates input nodes for the row selection"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The type of the inputs to creates",
+            "paramName": "type",
+            "description": " The type of the inputs to creates",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__createInput": {
+      "location": {
+        "start": {
+          "line": 757,
+          "column": 4
+        },
+        "end": {
+          "line": 794,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates an input an input node for a specific row"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {HTMLTableRowElement} The row to create the input for",
+            "paramName": "row",
+            "description": " The row to create the input for",
+            "type": "HTMLTableRowElement"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The type of the input tom create (radio or checkbox)",
+            "paramName": "type",
+            "description": " The type of the input tom create (radio or checkbox)",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "nodeName {String} The nodename of the table cell that will contain the input",
+            "paramName": "nodeName",
+            "description": " The nodename of the table cell that will contain the input",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__checkColumnExistance": {
+      "location": {
+        "start": {
+          "line": 801,
+          "column": 4
+        },
+        "end": {
+          "line": 806,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if a column with the specified name exists"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the column to check",
+            "paramName": "columnName",
+            "description": " The name of the column to check",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getHeaderRow": {
+      "location": {
+        "start": {
+          "line": 813,
+          "column": 4
+        },
+        "end": {
+          "line": 829,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the row containing the cells with the column names"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{HTMLTableRowElement} The row with meta information",
+            "type": "HTMLTableRowElement",
+            "description": " The row with meta information"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getColumnMetaData": {
+      "location": {
+        "start": {
+          "line": 837,
+          "column": 4
+        },
+        "end": {
+          "line": 865,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initializes columns metadata"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "model {Array} The widget's model",
+            "paramName": "model",
+            "description": " The widget's model",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__addClassToHeaderAndFooter": {
+      "location": {
+        "start": {
+          "line": 873,
+          "column": 4
+        },
+        "end": {
+          "line": 883,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds the internal css class to the header and footer cells"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "footOrHead {HTMLElement} Html element representing the header or footer of the table",
+            "paramName": "footOrHead",
+            "description": " Html element representing the header or footer of the table",
+            "type": "HTMLElement"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__sortDOM": {
+      "location": {
+        "start": {
+          "line": 891,
+          "column": 4
+        },
+        "end": {
+          "line": 901,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sorts the rows of the table widget"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dataRows {Array} Array containing the sorted rows",
+            "paramName": "dataRows",
+            "description": " Array containing the sorted rows",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__registerEvents": {
+      "location": {
+        "start": {
+          "line": 908,
+          "column": 4
+        },
+        "end": {
+          "line": 922,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "registers global events"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__selectionRendered": {
+      "location": {
+        "start": {
+          "line": 929,
+          "column": 4
+        },
+        "end": {
+          "line": 931,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the selection inputs are already rendered"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True if the inputs are rendered and false otherwise",
+            "type": "Boolean",
+            "description": " True if the inputs are rendered and false otherwise"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__processSelection": {
+      "location": {
+        "start": {
+          "line": 939,
+          "column": 4
+        },
+        "end": {
+          "line": 990,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Handles clicks that happen on the selection inputs"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cell {qxWeb} The table cell containing the clicked input",
+            "paramName": "cell",
+            "description": " The table cell containing the clicked input",
+            "type": "qxWeb"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__fireEvent": {
+      "location": {
+        "start": {
+          "line": 1000,
+          "column": 4
+        },
+        "end": {
+          "line": 1020,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires a custom table events"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "eventType {String} The event type",
+            "paramName": "eventType",
+            "description": " The event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "cell {HTMLTableCellElement} The event target",
+            "paramName": "cell",
+            "description": " The event target",
+            "type": "HTMLTableCellElement"
+          },
+          {
+            "name": "@param",
+            "body": "target {HTMLElement} The native event target",
+            "paramName": "target",
+            "description": " The native event target",
+            "type": "HTMLElement"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing the event data",
+            "type": "Map",
+            "description": " Map containing the event data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__detectClickedCell": {
+      "location": {
+        "start": {
+          "line": 1029,
+          "column": 4
+        },
+        "end": {
+          "line": 1058,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Click callback"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native click event.",
+            "paramName": "e",
+            "description": " The native click event.",
+            "type": "Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__cellHover": {
+      "location": {
+        "start": {
+          "line": 1066,
+          "column": 4
+        },
+        "end": {
+          "line": 1085,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Pointerover callback"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native over event.",
+            "paramName": "e",
+            "description": " The native over event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__cellOut": {
+      "location": {
+        "start": {
+          "line": 1093,
+          "column": 4
+        },
+        "end": {
+          "line": 1118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "pointerout callback"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native over event.",
+            "paramName": "e",
+            "description": " The native over event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__applyTemplate": {
+      "location": {
+        "start": {
+          "line": 1127,
+          "column": 4
+        },
+        "end": {
+          "line": 1189,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Applies the given model to the table cells depending on\nthe mustache template specified before"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "model {Array} The model to apply",
+            "paramName": "model",
+            "description": " The model to apply",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__deleteRows": {
+      "location": {
+        "start": {
+          "line": 1197,
+          "column": 4
+        },
+        "end": {
+          "line": 1203,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes row from the DOM starting from the specified index"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowCount {Integer} The number of rows the kept",
+            "paramName": "rowCount",
+            "description": " The number of rows the kept",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Table} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Table",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getDataForColumn": {
+      "location": {
+        "start": {
+          "line": 1211,
+          "column": 4
+        },
+        "end": {
+          "line": 1213,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the metadata of the column width the specified name"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columName {String} The name of the column to get the metadata for",
+            "paramName": "columName",
+            "description": " The name of the column to get the metadata for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing the metadata",
+            "type": "Map",
+            "description": " Map containing the metadata"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getRoot": {
+      "location": {
+        "start": {
+          "line": 1220,
+          "column": 4
+        },
+        "end": {
+          "line": 1222,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the Root element containing the data rows"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{HTMLElement} The element containing the data rows",
+            "type": "HTMLElement",
+            "description": " The element containing the data rows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isRowRendered": {
+      "location": {
+        "start": {
+          "line": 1230,
+          "column": 4
+        },
+        "end": {
+          "line": 1235,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the row with the given index is rendered"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the row to check",
+            "paramName": "index",
+            "description": " The index of the row to check",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} The result of the check",
+            "type": "Boolean",
+            "description": " The result of the check"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isCellRendered": {
+      "location": {
+        "start": {
+          "line": 1244,
+          "column": 4
+        },
+        "end": {
+          "line": 1252,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the cell with the given row and column indexes is rendered"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer} The index of the row to check",
+            "paramName": "rowIndex",
+            "description": " The index of the row to check",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "colIndex {Integer} The index of the column",
+            "paramName": "colIndex",
+            "description": " The index of the column",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} The result of the check",
+            "type": "Boolean",
+            "description": " The result of the check"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "setSortingClass": {
+      "location": {
+        "start": {
+          "line": 1260,
+          "column": 4
+        },
+        "end": {
+          "line": 1269,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a class to the head and footer of the current sorted column"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the sorted column",
+            "paramName": "columnName",
+            "description": " The name of the sorted column",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "dir {String} The sorting direction",
+            "paramName": "dir",
+            "description": " The sorting direction",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__addSortingClassToCol": {
+      "location": {
+        "start": {
+          "line": 1278,
+          "column": 4
+        },
+        "end": {
+          "line": 1285,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a class to the head or footer of the current sorted column"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "HeaderOrFooter {Node} The n",
+            "paramName": "HeaderOrFooter",
+            "description": " The n",
+            "type": "Node"
+          },
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the sorted column",
+            "paramName": "columnName",
+            "description": " The name of the sorted column",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "dir {String} The sorting direction",
+            "paramName": "dir",
+            "description": " The sorting direction",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__sort": {
+      "location": {
+        "start": {
+          "line": 1294,
+          "column": 4
+        },
+        "end": {
+          "line": 1313,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sorts the table rows for the given row and direction"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The name of the column to be sorted",
+            "paramName": "columnName",
+            "description": " The name of the column to be sorted",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "direction {String} The sorting direction",
+            "paramName": "direction",
+            "description": " The sorting direction",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array containing the sorted rows",
+            "type": "Array",
+            "description": " Array containing the sorted rows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_compareNumber": {
+      "location": {
+        "start": {
+          "line": 1323,
+          "column": 4
+        },
+        "end": {
+          "line": 1332,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Compares two number"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "x {String} The String value of the first number to compare",
+            "paramName": "x",
+            "description": " The String value of the first number to compare",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "y {String} The String value of the second number to compare",
+            "paramName": "y",
+            "description": " The String value of the second number to compare",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "direction {String} The sorting direction",
+            "paramName": "direction",
+            "description": " The sorting direction",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The result of the comparison",
+            "type": "Integer",
+            "description": " The result of the comparison"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__getColumName": {
+      "location": {
+        "start": {
+          "line": 1340,
+          "column": 4
+        },
+        "end": {
+          "line": 1342,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the name of the column containing the given cell"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "headerCell {HTMLTableCellElement} The cell to get the column name for",
+            "paramName": "headerCell",
+            "description": " The cell to get the column name for",
+            "type": "HTMLTableCellElement"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The column name",
+            "type": "String",
+            "description": " The column name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_compareDate": {
+      "location": {
+        "start": {
+          "line": 1352,
+          "column": 4
+        },
+        "end": {
+          "line": 1363,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Compares two Dates"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "x {String} The String value of the first date to compare",
+            "paramName": "x",
+            "description": " The String value of the first date to compare",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "y {String} The String value of the second date to compare",
+            "paramName": "y",
+            "description": " The String value of the second date to compare",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "direction {String} The sorting direction",
+            "paramName": "direction",
+            "description": " The sorting direction",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The result of the comparison",
+            "type": "Integer",
+            "description": " The result of the comparison"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_compareString": {
+      "location": {
+        "start": {
+          "line": 1373,
+          "column": 4
+        },
+        "end": {
+          "line": 1384,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Compares two Strings"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "x {String} The first string to compare",
+            "paramName": "x",
+            "description": " The first string to compare",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "y {String} The second string to compare",
+            "paramName": "y",
+            "description": " The second string to compare",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "direction {String} The sorting direction",
+            "paramName": "direction",
+            "description": " The sorting direction",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The result of the comparison",
+            "type": "Integer",
+            "description": " The result of the comparison"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__getSortingKey": {
+      "location": {
+        "start": {
+          "line": 1392,
+          "column": 4
+        },
+        "end": {
+          "line": 1394,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the value of the cell to use for sorting"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cell {qxWeb} The cell to get the value of.",
+            "paramName": "cell",
+            "description": " The cell to get the value of.",
+            "type": "qxWeb"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The sorting key",
+            "type": "String",
+            "description": " The sorting key"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getCellValue": {
+      "location": {
+        "start": {
+          "line": 1402,
+          "column": 4
+        },
+        "end": {
+          "line": 1404,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the value of the cell that will be used for sorting"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cell {qxWeb} The cell to get the value of",
+            "paramName": "cell",
+            "description": " The cell to get the value of",
+            "type": "qxWeb"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The text content of the cell",
+            "type": "String",
+            "description": " The text content of the cell"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getDataRows": {
+      "location": {
+        "start": {
+          "line": 1411,
+          "column": 4
+        },
+        "end": {
+          "line": 1431,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the table's data rows from the DOM"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array containing the rows of the table",
+            "type": "Array",
+            "description": " Array containing the rows of the table"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__defaultColumnSort": {
+      "location": {
+        "start": {
+          "line": 1438,
+          "column": 4
+        },
+        "end": {
+          "line": 1452,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Default sorting processing"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Map} Sorting data",
+            "paramName": "data",
+            "description": " Sorting data",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__defaultColumnFilter": {
+      "location": {
+        "start": {
+          "line": 1460,
+          "column": 4
+        },
+        "end": {
+          "line": 1472,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Default column filter function"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Map} Map containing the filter data",
+            "paramName": "data",
+            "description": " Map containing the filter data",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True wenn the row containing the current cell should be kept",
+            "type": "Boolean",
+            "description": " True wenn the row containing the current cell should be kept"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getColumnIndex": {
+      "location": {
+        "start": {
+          "line": 1480,
+          "column": 4
+        },
+        "end": {
+          "line": 1489,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the index of the column with the specified name"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnName {String} The colukn name",
+            "paramName": "columnName",
+            "description": " The colukn name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index of the column or -1 if the column doesn't exists",
+            "type": "Integer",
+            "description": " The index of the column or -1 if the column doesn't exists"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 1494,
+        "column": 2
+      },
+      "end": {
+        "line": 1498,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

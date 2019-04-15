@@ -1,0 +1,202 @@
+{
+  "className": "qx.ui.treevirtual.MTreePrimitive",
+  "packageName": "qx.ui.treevirtual",
+  "name": "MTreePrimitive",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 200,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2010 Derrell Lipman\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDerrell Lipman (derrell)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Primitives for building trees and tree nodes.\n\nThe methods in this mixin are included directly in the SimpleTreeDataModel\nbut are also useful for other types of trees (not TreeVirtual) that need\nsimilar tree and node creation."
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "statics": {
+    "Type": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Primitive types of tree nodes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "_addNode": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a node to the tree.\n\nNOTE: This method is for <b>internal use</b> and should not be called by\nusers of this class. There is no guarantee that the interface to this\nmethod will remain unchanged over time."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeArr {Array|Map}\nThe array to which new nodes are to be added. See, however, the\nnodeId parameter. If nodeId values will be provided, then nodeArr can\nbe a map. The traditional TreeVirtual does not provide node ids, and\npasses an array for this parameter.",
+            "paramName": "nodeArr",
+            "description": "\nThe array to which new nodes are to be added. See, however, the\nnodeId parameter. If nodeId values will be provided, then nodeArr can\nbe a map. The traditional TreeVirtual does not provide node ids, and\npasses an array for this parameter.",
+            "type": [
+              "Array",
+              "Map"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "parentNodeId {Integer}\nThe node id of the parent of the node being added",
+            "paramName": "parentNodeId",
+            "description": "\nThe node id of the parent of the node being added",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "label {String}\nThe string to display as the label for this node",
+            "paramName": "label",
+            "description": "\nThe string to display as the label for this node",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "bOpened {Boolean}\n<i>true</i> if the tree should be rendered in its opened state;\n<i>false</i> otherwise.",
+            "paramName": "bOpened",
+            "description": "\n<i>true</i> if the tree should be rendered in its opened state;\n<i>false</i> otherwise.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "bHideOpenCloseButton {Boolean}\n<i>true</i> if the open/close button should be hidden (not displayed);\n</i>false</i> to display the open/close button for this node.",
+            "paramName": "bHideOpenCloseButton",
+            "description": "\n<i>true</i> if the open/close button should be hidden (not displayed);\n</i>false</i> to display the open/close button for this node.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "type {Integer}\nThe type of node being added.  The type determines whether children\nmay be added, and determines the default icons to use.  This\nparameter must be one of the following values:\n<dl>\n<dt>qx.ui.treevirtual.MTreePrimitive.Type.BRANCH</dt>\n<dd>\nThis node is a branch.  A branch node may have children.\n</dd>\n<dt>qx.ui.treevirtual.MTreePrimitive.Type.LEAF</dt>\n<dd>\nThis node is a leaf, and may not have children\n</dd>\n</dl>",
+            "paramName": "type",
+            "description": "\nThe type of node being added.  The type determines whether children\nmay be added, and determines the default icons to use.  This\nparameter must be one of the following values:\n<dl>\n<dt>qx.ui.treevirtual.MTreePrimitive.Type.BRANCH</dt>\n<dd>\nThis node is a branch.  A branch node may have children.\n</dd>\n<dt>qx.ui.treevirtual.MTreePrimitive.Type.LEAF</dt>\n<dd>\nThis node is a leaf, and may not have children\n</dd>\n</dl>",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "icon {String}\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is not a selected node.",
+            "paramName": "icon",
+            "description": "\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is not a selected node.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "iconSelected {String}\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is a selected node.\n<p>\nNOTE: As of 13 Mar 2009, this feature is disabled by default, by\nvirtue of the fact that the tree's \"alwaysUpdateCells\" property\nhas a setting of 'false' now instead of 'true'. Setting this\nproperty to true allows the icon to change upon selection, but\ncauses problems such as single clicks not always selecting a\nrow, and, in IE, double click operations failing\ncompletely. (For more information, see bugs 605 and 2021.) To\nre-enable the option to have an unique icon that is displayed\nwhen the node is selected, issue\n<code>tree.setAlwaysUpdateCells(true);</code>",
+            "paramName": "iconSelected",
+            "description": "\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is a selected node.\n<p>\nNOTE: As of 13 Mar 2009, this feature is disabled by default, by\nvirtue of the fact that the tree's \"alwaysUpdateCells\" property\nhas a setting of 'false' now instead of 'true'. Setting this\nproperty to true allows the icon to change upon selection, but\ncauses problems such as single clicks not always selecting a\nrow, and, in IE, double click operations failing\ncompletely. (For more information, see bugs 605 and 2021.) To\nre-enable the option to have an unique icon that is displayed\nwhen the node is selected, issue\n<code>tree.setAlwaysUpdateCells(true);</code>",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "nodeId {Integer?}\nThe requested node id for this new node. If not provided, nodeArr\nwill be assumed to be an array, not a map, and the next available\nindex of the array will be used. If it is provided, then nodeArr may\nbe either an array or a map.",
+            "paramName": "nodeId",
+            "description": "\nThe requested node id for this new node. If not provided, nodeArr\nwill be assumed to be an array, not a map, and the next available\nindex of the array will be used. If it is provided, then nodeArr may\nbe either an array or a map.",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The node id of the newly-added node.",
+            "type": "Integer",
+            "description": " The node id of the newly-added node."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If one tries to add a child to a non-existent parent.",
+            "type": "Error",
+            "description": " If one tries to add a child to a non-existent parent."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one tries to add a node to a leaf.",
+            "type": "Error",
+            "description": " If one tries to add a node to a leaf."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getEmptyTree": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4
+        },
+        "end": {
+          "line": 198,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "An empty tree contains only this one node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}\nReturns a root node with all relevant fields filled.",
+            "type": "Map",
+            "description": "\nReturns a root node with all relevant fields filled."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

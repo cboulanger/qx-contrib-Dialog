@@ -1,0 +1,98 @@
+{
+  "className": "qx.log.appender.Native",
+  "packageName": "qx.log.appender",
+  "name": "Native",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 0
+      },
+      "end": {
+        "line": 76,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Processes the incoming log entry and displays it by means of the native\nlogging capabilities of the client.\n\nSupported browsers:\n* Firefox <4 using FireBug (if available).\n* Firefox >=4 using the Web Console.\n* WebKit browsers using the Web Inspector/Developer Tools.\n* Internet Explorer 8+ using the F12 Developer Tools.\n* Opera >=10.60 using either the Error Console or Dragonfly\n\nCurrently unsupported browsers:\n* Opera <10.60"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.log.appender.Util"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.client.Html"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "process": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Processes a single log entry"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 73,
+        "column": 2
+      },
+      "end": {
+        "line": 75,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDEFER\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

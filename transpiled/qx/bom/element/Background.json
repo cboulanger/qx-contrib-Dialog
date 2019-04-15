@@ -1,0 +1,397 @@
+{
+  "className": "qx.bom.element.Background",
+  "packageName": "qx.bom.element",
+  "name": "Background",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 202,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nFabian Jakobs (fjakobs)\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The background class contains methods to compute and set the background image\nof a DOM element.\n\nIt fixes a background position issue in Firefox 2."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__tmpl": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 36,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} Internal helper to improve compile performance"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__emptyStyles": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Empty styles when no image is given"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__computePosition": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Computes the background position CSS value"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "left {Integer|String} either an integer pixel value or a CSS\nstring value",
+            "paramName": "left",
+            "description": " either an integer pixel value or a CSS\nstring value",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer|String} either an integer pixel value or a CSS\nstring value",
+            "paramName": "top",
+            "description": " either an integer pixel value or a CSS\nstring value",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The background position CSS value",
+            "type": "String",
+            "description": " The background position CSS value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isBase64EncodedImage": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 96,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the given image URL is a base64-encoded one."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} image url to check for",
+            "paramName": "url",
+            "description": " image url to check for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether it is a base64-encoded image url",
+            "type": "Boolean",
+            "description": " whether it is a base64-encoded image url"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "compile": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 133,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Compiles the background into a CSS compatible string."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String?null} The URL of the background image",
+            "paramName": "source",
+            "description": " The URL of the background image",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String?null} The background repeat property. valid values\nare <code>repeat</code>, <code>repeat-x</code>,\n<code>repeat-y</code>, <code>no-repeat</code>",
+            "paramName": "repeat",
+            "description": " The background repeat property. valid values\nare <code>repeat</code>, <code>repeat-x</code>,\n<code>repeat-y</code>, <code>no-repeat</code>",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer|String?null} The horizontal offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"center\", \"left\" and \"right\"",
+            "paramName": "left",
+            "description": " The horizontal offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"center\", \"left\" and \"right\"",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer|String?null} The vertical offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"top\", \"bottom\" and \"center\"",
+            "paramName": "top",
+            "description": " The vertical offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"top\", \"bottom\" and \"center\"",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS string",
+            "type": "String",
+            "description": " CSS string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getStyles": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get standard css background styles"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} The URL of the background image",
+            "paramName": "source",
+            "description": " The URL of the background image",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String?null} The background repeat property. valid values\nare <code>repeat</code>, <code>repeat-x</code>,\n<code>repeat-y</code>, <code>no-repeat</code>",
+            "paramName": "repeat",
+            "description": " The background repeat property. valid values\nare <code>repeat</code>, <code>repeat-x</code>,\n<code>repeat-y</code>, <code>no-repeat</code>",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer|String?null} The horizontal offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"center\", \"left\" and \"right\"",
+            "paramName": "left",
+            "description": " The horizontal offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"center\", \"left\" and \"right\"",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer|String?null} The vertical offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"top\", \"bottom\" and \"center\"",
+            "paramName": "top",
+            "description": " The vertical offset of the image\ninside of the image element. If the value is an integer it is\ninterpreted as pixel value otherwise the value is taken as CSS value.\nCSS the values are \"top\", \"bottom\" and \"center\"",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map of CSS styles",
+            "type": "Map",
+            "description": " A map of CSS styles"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the background on the given DOM element"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element to modify",
+            "paramName": "element",
+            "description": " The element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "source {String?null} The URL of the background image",
+            "paramName": "source",
+            "description": " The URL of the background image",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String?null} The background repeat property. valid values\nare <code>repeat</code>, <code>repeat-x</code>,\n<code>repeat-y</code>, <code>no-repeat</code>",
+            "paramName": "repeat",
+            "description": " The background repeat property. valid values\nare <code>repeat</code>, <code>repeat-x</code>,\n<code>repeat-y</code>, <code>no-repeat</code>",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer?null} The horizontal offset of the image inside of\nthe image element.",
+            "paramName": "left",
+            "description": " The horizontal offset of the image inside of\nthe image element.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer?null} The vertical offset of the image inside of\nthe image element.",
+            "paramName": "top",
+            "description": " The vertical offset of the image inside of\nthe image element.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

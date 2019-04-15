@@ -1,0 +1,156 @@
+{
+  "className": "qx.core.BaseInit",
+  "packageName": "qx.core",
+  "name": "BaseInit",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 121,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nDaniel Wagner (d_wagner)\nJohn Spackman\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This is the base class for non-browser qooxdoo applications."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__application": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getApplication": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the instantiated qooxdoo application."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object} The application instance.",
+            "type": "qx.core.Object",
+            "description": " The application instance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Runs when the application is loaded. Automatically creates an instance\nof the class defined by the setting <code>qx.application</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__close": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Runs before the document is unloaded. Calls the application's close\nmethod to check if the unload process should be stopped."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Native} Incoming beforeunload event.",
+            "paramName": "e",
+            "description": " Incoming beforeunload event.",
+            "type": "qx.event.type.Native"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__shutdown": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Runs when the document is unloaded. Automatically terminates a previously\ncreated application instance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

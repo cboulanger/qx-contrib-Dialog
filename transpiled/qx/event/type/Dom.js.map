@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/event/type/Dom.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "type",
+    "Native",
+    "statics",
+    "SHIFT_MASK",
+    "CTRL_MASK",
+    "ALT_MASK",
+    "META_MASK",
+    "members",
+    "_cloneNativeEvent",
+    "nativeEvent",
+    "clone",
+    "shiftKey",
+    "ctrlKey",
+    "altKey",
+    "metaKey",
+    "getModifiers",
+    "mask",
+    "evt",
+    "_native",
+    "Dom",
+    "isCtrlPressed",
+    "isShiftPressed",
+    "isAltPressed",
+    "isMetaPressed",
+    "isCtrlOrCommandPressed",
+    "core",
+    "Environment",
+    "get"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,mBAAhB,EACA;AACEC,YAASN,GAAGO,KAAH,CAASC,IAAT,CAAcC,MADzB;;AAKEC,aACA;AACE;AACAC,kBAAa,CAFf;;AAIE;AACAC,iBAAa,CALf;;AAOE;AACAC,gBAAa,CARf;;AAUE;AACAC,iBAAa;AAXf,KANF;;AAqBEC,aACA;AACE;AACAC,yBAAoB,2BAASC,WAAT,EAAsBC,KAAtB,EACpB;AACE,YAAIA,sEAA6BD,WAA7B,EAA0CC,KAA1C,CAAJ;;AAEAA,cAAMC,QAAN,GAAiBF,YAAYE,QAA7B;AACAD,cAAME,OAAN,GAAgBH,YAAYG,OAA5B;AACAF,cAAMG,MAAN,GAAeJ,YAAYI,MAA3B;AACAH,cAAMI,OAAN,GAAgBL,YAAYK,OAA5B;;AAEA,eAAOJ,KAAP;AACD,OAZH;;AAeE;;;;;;;AAOAK,oBAAe,wBACf;AACE,YAAIC,OAAO,CAAX;AACA,YAAIC,MAAM,KAAKC,OAAf;AACA,YAAID,IAAIN,QAAR,EAAkB;AAChBK,kBAAQxB,GAAGO,KAAH,CAASC,IAAT,CAAcmB,GAAd,CAAkBhB,UAA1B;AACD;AACD,YAAIc,IAAIL,OAAR,EAAiB;AACfI,kBAAQxB,GAAGO,KAAH,CAASC,IAAT,CAAcmB,GAAd,CAAkBf,SAA1B;AACD;AACD,YAAIa,IAAIJ,MAAR,EAAgB;AACdG,kBAAQxB,GAAGO,KAAH,CAASC,IAAT,CAAcmB,GAAd,CAAkBd,QAA1B;AACD;AACD,YAAIY,IAAIH,OAAR,EAAiB;AACfE,kBAAQxB,GAAGO,KAAH,CAASC,IAAT,CAAcmB,GAAd,CAAkBb,SAA1B;AACD;AACD,eAAOU,IAAP;AACD,OAvCH;;AA0CE;;;;;AAKAI,qBAAgB,yBAAW;AACzB,eAAO,KAAKF,OAAL,CAAaN,OAApB;AACD,OAjDH;;AAoDE;;;;;AAKAS,sBAAiB,0BAAW;AAC1B,eAAO,KAAKH,OAAL,CAAaP,QAApB;AACD,OA3DH;;AA8DE;;;;;AAKAW,oBAAe,wBAAW;AACxB,eAAO,KAAKJ,OAAL,CAAaL,MAApB;AACD,OArEH;;AAwEE;;;;;AAKAU,qBAAgB,yBAAW;AACzB,eAAO,KAAKL,OAAL,CAAaJ,OAApB;AACD,OA/EH;;AAkFE;;;;;;AAMAU,8BAAyB,kCACzB;AACE;AACA;AACA,YACEhC,GAAGiC,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,SAAxB,KAAsC,KAAtC,IACAnC,GAAGiC,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,aAAxB,KAA0C,OAF5C,EAGE;AACA,iBAAO,KAAKT,OAAL,CAAaJ,OAApB;AACD,SALD,MAKO;AACL,iBAAO,KAAKI,OAAL,CAAaN,OAApB;AACD;AACF;AApGH;AAtBF,GADA,C;AAvBApB,KAAGO,KAAH,CAASC,IAAT,CAAcmB,GAAd,CAAkBxB,aAAlB,GAAkCA,aAAlC",
+  "file": "Dom.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Common base class for all DOM events.\n */\nqx.Class.define(\"qx.event.type.Dom\",\n{\n  extend : qx.event.type.Native,\n\n\n\n  statics :\n  {\n    /** @type {Integer} The modifier mask for the shift key. */\n    SHIFT_MASK : 1,\n\n    /** @type {Integer} The modifier mask for the control key. */\n    CTRL_MASK  : 2,\n\n    /** @type {Integer} The modifier mask for the alt key. */\n    ALT_MASK   : 4,\n\n    /** @type {Integer} The modifier mask for the meta key (e.g. apple key on Macs). */\n    META_MASK  : 8\n  },\n\n\n  members :\n  {\n    // overridden\n    _cloneNativeEvent : function(nativeEvent, clone)\n    {\n      var clone = this.base(arguments, nativeEvent, clone);\n\n      clone.shiftKey = nativeEvent.shiftKey;\n      clone.ctrlKey = nativeEvent.ctrlKey;\n      clone.altKey = nativeEvent.altKey;\n      clone.metaKey = nativeEvent.metaKey;\n\n      return clone;\n    },\n\n\n    /**\n     * Return in a bit map, which modifier keys are pressed. The constants\n     * {@link #SHIFT_MASK}, {@link #CTRL_MASK}, {@link #ALT_MASK} and\n     * {@link #META_MASK} define the bit positions of the corresponding keys.\n     *\n     * @return {Integer} A bit map with the pressed modifier keys.\n     */\n    getModifiers : function()\n    {\n      var mask = 0;\n      var evt = this._native;\n      if (evt.shiftKey) {\n        mask |= qx.event.type.Dom.SHIFT_MASK;\n      }\n      if (evt.ctrlKey) {\n        mask |= qx.event.type.Dom.CTRL_MASK;\n      }\n      if (evt.altKey) {\n        mask |= qx.event.type.Dom.ALT_MASK;\n      }\n      if (evt.metaKey) {\n        mask |= qx.event.type.Dom.META_MASK;\n      }\n      return mask;\n    },\n\n\n    /**\n     * Returns whether the ctrl key is pressed.\n     *\n     * @return {Boolean} whether the ctrl key is pressed.\n     */\n    isCtrlPressed : function() {\n      return this._native.ctrlKey;\n    },\n\n\n    /**\n     * Returns whether the shift key is pressed.\n     *\n     * @return {Boolean} whether the shift key is pressed.\n     */\n    isShiftPressed : function() {\n      return this._native.shiftKey;\n    },\n\n\n    /**\n     * Returns whether the alt key is pressed.\n     *\n     * @return {Boolean} whether the alt key is pressed.\n     */\n    isAltPressed : function() {\n      return this._native.altKey;\n    },\n\n\n    /**\n     * Returns whether the meta key is pressed.\n     *\n     * @return {Boolean} whether the meta key is pressed.\n     */\n    isMetaPressed : function() {\n      return this._native.metaKey;\n    },\n\n\n    /**\n     * Returns whether the ctrl key or (on the Mac) the command key is pressed.\n     *\n     * @return {Boolean} <code>true</code> if the command key is pressed on the Mac\n     *           or the ctrl key is pressed on another system.\n     */\n    isCtrlOrCommandPressed : function()\n    {\n      // Opera seems to use ctrlKey for the cmd key so don't fix that for opera\n      // on mac [BUG #5884]\n      if (\n        qx.core.Environment.get(\"os.name\") == \"osx\" &&\n        qx.core.Environment.get(\"engine.name\") != \"opera\"\n      ) {\n        return this._native.metaKey;\n      } else {\n        return this._native.ctrlKey;\n      }\n    }\n  }\n});\n"
+  ]
+}

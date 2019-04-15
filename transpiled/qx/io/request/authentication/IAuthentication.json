@@ -1,0 +1,67 @@
+{
+  "className": "qx.io.request.authentication.IAuthentication",
+  "packageName": "qx.io.request.authentication",
+  "name": "IAuthentication",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 36,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTristan Koch (tristankoch)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Interface of an authentication delegate."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "getAuthHeaders": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Headers to include in request for authentication purposes."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of maps. Each map represent a header and\nmust have the properties <code>key</code> and <code>value</code>\nwith a value of type string.",
+            "type": "Map[]",
+            "description": " Array of maps. Each map represent a header and\nmust have the properties <code>key</code> and <code>value</code>\nwith a value of type string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

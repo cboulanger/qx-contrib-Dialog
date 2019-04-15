@@ -1,0 +1,98 @@
+{
+  "className": "qx.ui.form.IModelSelection",
+  "packageName": "qx.ui.form",
+  "name": "IModelSelection",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 51,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This interface should be used in all objects managing a set of items\nimplementing {@link qx.ui.form.IModel}."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "setModelSelection": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Tries to set the selection using the given array containing the\nrepresentative models for the selectables."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Array} An array of models.",
+            "paramName": "value",
+            "description": " An array of models.",
+            "type": "Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getModelSelection": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns an array of the selected models."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the models of the currently selected\nitems.",
+            "type": "Array",
+            "description": " An array containing the models of the currently selected\nitems."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

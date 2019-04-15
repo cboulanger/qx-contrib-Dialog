@@ -1,0 +1,385 @@
+{
+  "className": "qx.bom.Viewport",
+  "packageName": "qx.bom",
+  "name": "Viewport",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 84,
+        "column": 0
+      },
+      "end": {
+        "line": 287,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nSebastian Fastner (fastner)\nTino Butz (tbtz)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nUnify Project\n\nHomepage:\nhttp://unify-project.org\n\nCopyright:\n2009-2010 Deutsche Telekom AG, Germany, http://telekom.com\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\nYahoo! UI Library\nhttp://developer.yahoo.com/yui\nVersion 2.2.0\n\nCopyright:\n(c) 2007, Yahoo! Inc.\n\nLicense:\nBSD: http://developer.yahoo.com/yui/license.txt\n\n----------------------------------------------------------------------\n\nhttp://developer.yahoo.com/yui/license.html\n\nCopyright (c) 2009, Yahoo! Inc.\nAll rights reserved.\n\nRedistribution and use of this software in source and binary forms,\nwith or without modification, are permitted provided that the\nfollowing conditions are met:\n\nRedistributions of source code must retain the above copyright\nnotice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright\nnotice, this list of conditions and the following disclaimer in\nthe documentation and/or other materials provided with the\ndistribution.\nNeither the name of Yahoo! Inc. nor the names of its contributors\nmay be used to endorse or promote products derived from this\nsoftware without specific prior written permission of Yahoo! Inc.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\nFOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\nCOPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\nHOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,\nSTRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED\nOF THE POSSIBILITY OF SUCH DAMAGE.\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Includes library functions to work with the client's viewport (window).\nOrientation related functions are point to window.top as default."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getWidth": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the current width of the viewport (excluding the vertical scrollbar\nif present)."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The width of the viewable area of the page (excluding scrollbars).",
+            "type": "Integer",
+            "description": " The width of the viewable area of the page (excluding scrollbars)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getHeight": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the current height of the viewport (excluding the horizontal scrollbar\nif present)."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The Height of the viewable area of the page (excluding scrollbars).",
+            "type": "Integer",
+            "description": " The Height of the viewable area of the page (excluding scrollbars)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getScrollLeft": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4
+        },
+        "end": {
+          "line": 149,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the scroll position of the viewport\n\nAll clients except IE < 9 support the non-standard property <code>pageXOffset</code>.\nAs this is easier to evaluate we prefer this property over <code>scrollLeft</code>.\nSince the window could differ from the one the application is running in, we can't\nuse a one-time environment check to decide which property to use."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Scroll position in pixels from left edge, always a positive integer or zero",
+            "type": "Integer",
+            "description": " Scroll position in pixels from left edge, always a positive integer or zero"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getScrollTop": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 177,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the scroll position of the viewport\n\nAll clients except MSHTML support the non-standard property <code>pageYOffset</code>.\nAs this is easier to evaluate we prefer this property over <code>scrollTop</code>.\nSince the window could differ from the one the application is running in, we can't\nuse a one-time environment check to decide which property to use."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Scroll position in pixels from top edge, always a positive integer or zero",
+            "type": "Integer",
+            "description": " Scroll position in pixels from top edge, always a positive integer or zero"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getOrientationNormalizer": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns an orientation normalizer value that should be added to device orientation\nto normalize behaviour on different devices."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "type": "qx.bom.Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Orientation normalizing value",
+            "type": "Map",
+            "description": " Orientation normalizing value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__orientationNormalizer": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 219,
+          "column": 34
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Cache orientation normalizer map on start"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getOrientation": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 258,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the current orientation of the viewport in degree.\n\nAll possible values and their meaning:\n\n* <code>-90</code>: \"Landscape\"\n* <code>0</code>: \"Portrait\"\n* <code>90</code>: \"Landscape\"\n* <code>180</code>: \"Portrait\""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window.top} The window to query. (Default = top window)",
+            "paramName": "win",
+            "description": " The window to query. (Default = top window)",
+            "optional": true,
+            "defaultValue": "window.top",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The current orientation in degree",
+            "type": "Integer",
+            "description": " The current orientation in degree"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isLandscape": {
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4
+        },
+        "end": {
+          "line": 271,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the viewport orientation is currently in landscape mode."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the viewport orientation\nis currently in landscape mode.",
+            "type": "Boolean",
+            "description": " <code>true</code> when the viewport orientation\nis currently in landscape mode."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isPortrait": {
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4
+        },
+        "end": {
+          "line": 285,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the viewport orientation is currently in portrait mode."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the viewport orientation\nis currently in portrait mode.",
+            "type": "Boolean",
+            "description": " <code>true</code> when the viewport orientation\nis currently in portrait mode."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/core/MNativeOverflow.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "properties",
+    "overflowX",
+    "check",
+    "nullable",
+    "apply",
+    "overflowY",
+    "overflow",
+    "group",
+    "members",
+    "_applyOverflowX",
+    "value",
+    "getContentElement",
+    "setStyle",
+    "_applyOverflowY",
+    "ui",
+    "core",
+    "MNativeOverflow"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACE;;;;;;AAMAC,gBACA;AACE;;;AAGAC,iBACA;AACEC,eAAQ,CAAC,QAAD,EAAW,SAAX,EAAsB,QAAtB,EAAgC,MAAhC,CADV;AAEEC,kBAAW,IAFb;AAGEC,eAAQ;AAHV,OALF;;AAWE;;;AAGAC,iBACA;AACEH,eAAQ,CAAC,QAAD,EAAW,SAAX,EAAsB,QAAtB,EAAgC,MAAhC,CADV;AAEEC,kBAAW,IAFb;AAGEC,eAAQ;AAHV,OAfF;;AAqBE;;;AAGAE,gBAAW;AACTC,eAAQ,CAAE,WAAF,EAAe,WAAf;AADC;AAxBb,KARF;;AAyCE;;;;;;AAMAC,aACA;AACE;AACAC,uBAAkB,yBAASC,KAAT,EAAgB;AAChC,aAAKC,iBAAL,GAAyBC,QAAzB,CAAkC,WAAlC,EAA+CF,KAA/C;AACD,OAJH;;AAOE;AACAG,uBAAkB,yBAASH,KAAT,EAAgB;AAChC,aAAKC,iBAAL,GAAyBC,QAAzB,CAAkC,WAAlC,EAA+CF,KAA/C;AACD;AAVH;AAhDF,GADA,C;AAvBAhB,KAAGoB,EAAH,CAAMC,IAAN,CAAWC,eAAX,CAA2BnB,aAA3B,GAA2CA,aAA3C",
+  "file": "MNativeOverflow.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * This mixin is included by all widgets which supports native overflowing.\n */\nqx.Mixin.define(\"qx.ui.core.MNativeOverflow\",\n{\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /**\n     * Whether the widget should have horizontal scrollbars.\n     */\n    overflowX :\n    {\n      check : [\"hidden\", \"visible\", \"scroll\", \"auto\"],\n      nullable : true,\n      apply : \"_applyOverflowX\"\n    },\n\n    /**\n     * Whether the widget should have vertical scrollbars.\n     */\n    overflowY :\n    {\n      check : [\"hidden\", \"visible\", \"scroll\", \"auto\"],\n      nullable : true,\n      apply : \"_applyOverflowY\"\n    },\n\n    /**\n     * Overflow group property\n     */\n    overflow : {\n      group : [ \"overflowX\", \"overflowY\" ]\n    }\n  },\n\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // property apply\n    _applyOverflowX : function(value) {\n      this.getContentElement().setStyle(\"overflowX\", value);\n    },\n\n\n    // property apply\n    _applyOverflowY : function(value) {\n      this.getContentElement().setStyle(\"overflowY\", value);\n    }\n  }\n});"
+  ]
+}

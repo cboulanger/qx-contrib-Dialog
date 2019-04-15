@@ -1,0 +1,176 @@
+{
+  "className": "qx.core.Init",
+  "packageName": "qx.core",
+  "name": "Init",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 97,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This is the base class for all qooxdoo applications."
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.event.handler.Application"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.handler.Window"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.dispatch.Direct"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getApplication": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 52
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the instantiated qooxdoo application."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object} The application instance.",
+            "type": "qx.core.Object",
+            "description": " The application instance."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 34
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Runs when the application is loaded. Automatically creates an instance\nof the class defined by the setting <code>qx.application</code>."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__close": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Runs before the document is unloaded. Calls the application's close\nmethod to check if the unload process should be stopped."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Native} Incoming beforeunload event.",
+            "paramName": "e",
+            "description": " Incoming beforeunload event.",
+            "type": "qx.event.type.Native"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__shutdown": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Runs when the document is unloaded. Automatically terminates a previously\ncreated application instance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 91,
+        "column": 2
+      },
+      "end": {
+        "line": 96,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDEFER\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

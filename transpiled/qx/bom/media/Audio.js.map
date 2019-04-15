@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/bom/media/Audio.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "bom",
+    "media",
+    "Abstract",
+    "construct",
+    "source",
+    "_audio",
+    "window",
+    "Audio",
+    "members"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA2BAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EACA;AACEC,YAASN,GAAGO,GAAH,CAAOC,KAAP,CAAaC,QADxB;;AAGE;;;AAGAC,eAAY,mBAASC,MAAT,EACZ;AACE,WAAKC,MAAL,GAAc,IAAIC,OAAOC,KAAX,CAAiBH,SAASA,MAAT,GAAkB,EAAnC,CAAd;AACA,mDAAqB,KAAKC,MAA1B;AACD,KAVH;;AAaEG,aAAU;AACRH,cAAS;AADD;AAbZ,GADA,C;AA3BAZ,KAAGO,GAAH,CAAOC,KAAP,CAAaM,KAAb,CAAmBX,aAAnB,GAAmCA,aAAnC",
+  "file": "Audio.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n     * Adrian Olaru (adrianolaru)\n\n************************************************************************ */\n\n\n/**\n * EXPERIMENTAL - NOT READY FOR PRODUCTION\n *\n * Media object for playing sounds.\n * \n * NOTE: Instances of this class must be disposed of to free resources\n */\nqx.Class.define(\"qx.bom.media.Audio\",\n{\n  extend : qx.bom.media.Abstract,\n\n  /**\n   * @param source {String} the source url to the sound file.\n   */\n  construct : function(source)\n  {\n    this._audio = new window.Audio(source ? source : \"\");\n    this.base(arguments, this._audio);\n  },\n\n\n  members : {\n    _audio : null\n  }\n});\n\n"
+  ]
+}

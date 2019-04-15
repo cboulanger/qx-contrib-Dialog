@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "source/class/dialog/theme/Theme.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "meta",
+    "color",
+    "theme",
+    "modern",
+    "Color",
+    "decoration",
+    "Decoration",
+    "font",
+    "Font",
+    "icon",
+    "dialog",
+    "IcoMoonFree",
+    "appearance",
+    "Appearance"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EASAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EACA;AACEC,UACA;AACEC,aAAQP,GAAGQ,KAAH,CAASC,MAAT,CAAgBC,KAD1B;AAEEC,kBAAaX,GAAGQ,KAAH,CAASC,MAAT,CAAgBG,UAF/B;AAGEC,YAAOb,GAAGQ,KAAH,CAASC,MAAT,CAAgBK,IAHzB;AAIEC,YAAOC,OAAOR,KAAP,CAAaO,IAAb,CAAkBE,WAJ3B;AAKEC,kBAAalB,GAAGQ,KAAH,CAASC,MAAT,CAAgBU;AAL/B;AAFF,GADA,C;AATAH,SAAOR,KAAP,CAAaJ,KAAb,CAAmBD,aAAnB,GAAmCA,aAAnC",
+  "file": "Theme.js",
+  "sourcesContent": [
+    "/**\n * The theme(s) of the demo application\n * \n * @require(dialog.theme.icon.IcoMoonFree)\n * @require(dialog.theme.icon.Oxygen)\n * @require(dialog.theme.icon.Tango)\n * \n */\n\nqx.Theme.define(\"dialog.theme.Theme\",\n{\n  meta :\n  {\n    color : qx.theme.modern.Color,\n    decoration : qx.theme.modern.Decoration,\n    font : qx.theme.modern.Font,\n    icon : dialog.theme.icon.IcoMoonFree,\n    appearance : qx.theme.modern.Appearance\n  }\n});"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/dao/Event.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "qxl",
+    "apiviewer",
+    "dao",
+    "ClassItem",
+    "construct",
+    "meta",
+    "clazz",
+    "name",
+    "_type",
+    "type",
+    "members",
+    "getType",
+    "getClassByName",
+    "getTypes",
+    "isRequiredByInterface",
+    "iface",
+    "getEvents",
+    "some",
+    "method",
+    "getName",
+    "Event"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAoBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EAA2C;AACzCC,YAASC,IAAIC,SAAJ,CAAcC,GAAd,CAAkBC,SADc;;AAGzCC,eAAY,mBAASC,IAAT,EAAeC,KAAf,EAAsB;AAChC,yDAAqBD,IAArB,EAA2BC,KAA3B,EAAkCD,KAAKE,IAAvC;AACA,WAAKC,KAAL,GAAaH,KAAKI,IAAlB;AACD,KANwC;;AAQzCC,aAAU;;AAERC,eAAU,mBAAY;AACpB,eAAOX,IAAIC,SAAJ,CAAcC,GAAd,CAAkBL,KAAlB,CAAwBe,cAAxB,CAAuC,KAAKJ,KAA5C,CAAP;AACD,OAJO;;AAMRK,gBAAW,oBAAY;AACrB,YAAI,KAAKL,KAAT,EAAgB;AACd,iBAAO,CAAC;AACNC,kBAAM,KAAKD;AADL,WAAD,CAAP;AAGD,SAJD,MAIO;AACL,iBAAO,EAAP;AACD;AACF,OAdO;;AAgBR;;;AAGAM,6BAAwB,+BAASC,KAAT,EAAgB;AAAA;;AACtC,eAAOA,MAAMC,SAAN,GAAkBC,IAAlB,CAAuB;AAAA,iBAAUC,OAAOC,OAAP,MAAoB,MAAKA,OAAL,EAA9B;AAAA,SAAvB,CAAP;AACD;;AArBO;;AAR+B,GAA3C,C;AApBAnB,MAAIC,SAAJ,CAAcC,GAAd,CAAkBkB,KAAlB,CAAwBxB,aAAxB,GAAwCA,aAAxC",
+  "file": "Event.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.Event\", {\n  extend : qxl.apiviewer.dao.ClassItem,\n\n  construct : function(meta, clazz) {\n    this.base(arguments, meta, clazz, meta.name);\n    this._type = meta.type;\n  },\n\n  members : {\n\n    getType : function () {\n      return qxl.apiviewer.dao.Class.getClassByName(this._type);\n    },\n\n    getTypes : function () {\n      if (this._type) {\n        return [{\n          type: this._type\n        }]\n      } else {\n        return [];\n      }\n    },\n    \n    /**\n     * @Override\n     */\n    isRequiredByInterface : function(iface) {\n      return iface.getEvents().some(method => method.getName() == this.getName());\n    }\n\n  }\n\n});\n"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "className": "qx.core.MBindTo",
+  "packageName": "qx.core",
+  "name": "MBindTo",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 47,
+        "column": 0
+      },
+      "end": {
+        "line": 76,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nCopyright:\n2009-2010 Derrell Lipman\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDerrell Lipman (derrell)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Mixin to add a bindTo method to a class, making it easy to bind a function\nto an object instance for use in lieu of calls to static method\nqx.lang.Function.bind().\n\nThe easiest (but not necessarily most efficient) way to use this mixin is\nto include it in qx.core.Object by adding this line some place in the\napplication code (typically in main()):\n\n<pre>\nqx.Class.include(qx.core.Object, qx.core.MBindTo);\n</pre>\n\nIf object footprint (memory use) is of significant concern, that may be a\nbit excessive since every object which is a descendent of qx.core.Object\nwill have the methods defined in the mixin. Instead, if a certain class\nwill have many functions bound to it (of particular use for callback\nfunctions), qx.Class.include() could be used to include this mixin in that\nclass instead of in qx.core.Object.\n\nAlternatively, that class may be subclassed, and the 'include' key of the\nclass configuration could be used to always include this mixin in the\nsubclass. e.g.\n\n<pre>\nqx.Class.define(\"custom.Table\",\n{\nextend  : qx.ui.table.Table,\ninclude : [ qx.core.MBindTo ]\n});\n</pre>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "bindTo": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Bind a function to this object"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function}\nThe function to be bound",
+            "paramName": "func",
+            "description": "\nThe function to be bound",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {var?}\nOptional arguments to be passed to the function.",
+            "paramName": "varargs",
+            "description": "\nOptional arguments to be passed to the function.",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}\nA wrapped version of the function that binds 'this' to the\nuser-provided function.",
+            "type": "Function",
+            "description": "\nA wrapped version of the function that binds 'this' to the\nuser-provided function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

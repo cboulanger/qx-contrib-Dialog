@@ -1,0 +1,193 @@
+{
+  "className": "qx.util.Request",
+  "packageName": "qx.util",
+  "name": "Request",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 91,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTristan Koch (tristankoch)\nRichard Sternagel (rsternagel)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Static helpers for handling HTTP requests."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "isCrossDomain": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether URL given points to resource that is cross-domain,\ni.e. not of same origin."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} URL.",
+            "paramName": "url",
+            "description": " URL.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether URL is cross domain.",
+            "type": "Boolean",
+            "description": " Whether URL is cross domain."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isSuccessful": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Determine if given HTTP status is considered successful."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "status {Number} HTTP status.",
+            "paramName": "status",
+            "description": " HTTP status.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether status is considered successful.",
+            "type": "Boolean",
+            "description": " Whether status is considered successful."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isMethod": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Determine if given HTTP method is valid."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} HTTP method.",
+            "paramName": "method",
+            "description": " HTTP method.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether method is a valid HTTP method.",
+            "type": "Boolean",
+            "description": " Whether method is a valid HTTP method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "methodAllowsRequestBody": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Request body is ignored for HTTP method GET and HEAD.\n\nSee http://www.w3.org/TR/XMLHttpRequest2/#the-send-method."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} The HTTP method.",
+            "paramName": "method",
+            "description": " The HTTP method.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether request may contain body.",
+            "type": "Boolean",
+            "description": " Whether request may contain body."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

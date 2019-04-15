@@ -1,0 +1,277 @@
+{
+  "className": "qx.bom.client.Engine",
+  "packageName": "qx.bom.client",
+  "name": "Engine",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 0
+      },
+      "end": {
+        "line": 232,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nMartin Wittemann (martinwittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This class comes with all relevant information regarding\nthe client's engine.\n\nThis class is used by {@link qx.core.Environment} and should not be used\ndirectly. Please check its class comment for details how to use it."
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getVersion": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the version of the engine."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version number of the current engine.",
+            "type": "String",
+            "description": " The version number of the current engine."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getName": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the name of the engine."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The name of the current engine.",
+            "type": "String",
+            "description": " The name of the current engine."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__isOpera": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper for checking for opera (presto powered).\n\nNote that with opera >= 15 their engine switched to blink, so\nthings like \"window.opera\" don't work anymore or changed (e.g. user agent)."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if its opera (presto powered).",
+            "type": "Boolean",
+            "description": " true, if its opera (presto powered)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isWebkit": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper for checking for webkit."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if its webkit.",
+            "type": "Boolean",
+            "description": " true, if its webkit."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isGecko": {
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4
+        },
+        "end": {
+          "line": 198,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper for checking for gecko.\n\nNote:\n\"window.controllers\" is gone/hidden with Firefox 30+\n\"window.navigator.mozApps\" is supported since Firefox 11+ and is gone/hidden with Firefox 47 beta\n\"window.navigator.buildID\" is supported since Firefox 2+\n\"window.navigator.product\" is actually useless cause the HTML5 spec\nstates it should be the constant \"Gecko\".\n\n- https://developer.mozilla.org/en-US/docs/Web/API/Window.controllers\n- https://developer.mozilla.org/en-US/docs/Web/API/Navigator.mozApps\n- https://developer.mozilla.org/en-US/docs/Web/API/Navigator/buildID\n- http://www.w3.org/html/wg/drafts/html/master/webappapis.html#navigatorid"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if its gecko.",
+            "type": "Boolean",
+            "description": " true, if its gecko."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isMshtml": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper to check for MSHTML."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if its MSHTML.",
+            "type": "Boolean",
+            "description": " true, if its MSHTML."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isWindowsPhone": {
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4
+        },
+        "end": {
+          "line": 225,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper to check for Windows phone."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if its Windows phone.",
+            "type": "Boolean",
+            "description": " true, if its Windows phone."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 228,
+        "column": 2
+      },
+      "end": {
+        "line": 231,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

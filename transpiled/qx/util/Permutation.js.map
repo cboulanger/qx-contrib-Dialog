@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/util/Permutation.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "permute",
+    "options",
+    "callback",
+    "context",
+    "keys",
+    "Object",
+    "map",
+    "indices",
+    "i",
+    "length",
+    "key",
+    "_perm",
+    "index",
+    "ignore",
+    "values",
+    "call",
+    "window",
+    "util",
+    "Permutation"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAGAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,aACA;AACE;;;;;;;;;;;;;;;;;;;;;;;;AAwBAC,eAAU,iBAASC,OAAT,EAAkBC,QAAlB,EAA4BC,OAA5B,EACV;AACE,YAAIC,OAAOC,OAAOD,IAAP,CAAYH,OAAZ,CAAX;;AAEA;AACA,YAAIK,MAAM,EAAV;AACA,YAAIC,UAAU,EAAd;AACA,aAAK,IAAIC,IAAE,CAAX,EAAcA,IAAEJ,KAAKK,MAArB,EAA6BD,GAA7B,EACA;AACED,kBAAQC,CAAR,IAAa,CAAb;AACA,cAAIE,MAAMN,KAAKI,CAAL,CAAV;AACAF,cAAII,GAAJ,IAAWT,QAAQS,GAAR,EAAa,CAAb,CAAX;AACD;;AAED,YAAIC,QAAQ,SAARA,KAAQ,CAASC,KAAT,EAAgBC,MAAhB,EACZ;AACE,cAAID,SAASR,KAAKK,MAAlB,EAA0B;AACxB;AACD;;AAED,cAAIC,MAAMN,KAAKQ,KAAL,CAAV;AACA,cAAIE,SAASb,QAAQS,GAAR,CAAb;;AAEA,eAAK,IAAIF,IAAE,CAAX,EAAcA,IAAEM,OAAOL,MAAvB,EAA+BD,GAA/B,EACA;AACE,gBAAIK,WAAWL,CAAf,EACA;AACED,sBAAQK,KAAR,IAAiBJ,CAAjB;AACAF,kBAAII,GAAJ,IAAWI,OAAON,CAAP,CAAX;AACAN,uBAASa,IAAT,CAAcZ,WAAWa,MAAzB,EAAiCV,GAAjC;AACD;AACDK,kBAAMC,QAAM,CAAZ,EAAeL,QAAQK,QAAM,CAAd,CAAf;AACD;AACF,SAnBD;;AAqBAD,cAAM,CAAN,EAAS,CAAC,CAAV;AACD;AA7DH;AAFF,GADA,C;AAHAlB,KAAGwB,IAAH,CAAQC,WAAR,CAAoBtB,aAApB,GAAoCA,aAApC",
+  "file": "Permutation.js",
+  "sourcesContent": [
+    "/**\n * Generate permutations of a map.\n */\nqx.Class.define(\"qx.util.Permutation\",\n{\n  statics :\n  {\n    /**\n     * The first parameter is a map with array values. This function computes\n     * all combinations of the array values and call the callback for each\n     * combination.\n     *\n     * e.g. a value of\n     * <pre class=\"javascript\">\n     *   {\n     *     a: [1, 2],\n     *     b: [\"a\", \"b\"]\n     *   }\n     * </pre>\n     * would call the callback for each of these maps:\n     * <pre class=\"javascript\">\n     *  { a: 1, b: \"a\" },\n     *  { a: 1, b: \"b\" },\n     *  { a: 2, b: \"a\" },\n     *  { a: 2, b: \"b\" }\n     * </pre>\n     *\n     * @param options {Map} map with array values to generate the permutations of\n     * @param callback {Function} This callback is called for each permuted map\n     * @param context {Object} The callback's <code>this</code> context.\n     */\n    permute : function(options, callback, context)\n    {\n      var keys = Object.keys(options);\n\n      // init\n      var map = {};\n      var indices = [];\n      for (var i=0; i<keys.length; i++)\n      {\n        indices[i] = 0;\n        var key = keys[i];\n        map[key] = options[key][0];\n      }\n\n      var _perm = function(index, ignore)\n      {\n        if (index >= keys.length) {\n          return;\n        }\n\n        var key = keys[index];\n        var values = options[key];\n\n        for (var i=0; i<values.length; i++)\n        {\n          if (ignore !== i)\n          {\n            indices[index] = i;\n            map[key] = values[i];\n            callback.call(context || window, map);\n          }\n          _perm(index+1, indices[index+1]);\n        }\n      };\n\n      _perm(0, -1);\n    }\n  }\n});"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/Theme.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "title",
+    "meta",
+    "color",
+    "theme",
+    "indigo",
+    "Color",
+    "decoration",
+    "Decoration",
+    "font",
+    "Font",
+    "appearance",
+    "qxl",
+    "apiviewer",
+    "Appearance",
+    "icon",
+    "Tango"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,WAAQ,iBADV;;AAGEC,UACA;AACEC,aAAQR,GAAGS,KAAH,CAASC,MAAT,CAAgBC,KAD1B;AAEEC,kBAAaZ,GAAGS,KAAH,CAASC,MAAT,CAAgBG,UAF/B;AAGEC,YAAOd,GAAGS,KAAH,CAASC,MAAT,CAAgBK,IAHzB;AAIEC,kBAAaC,IAAIC,SAAJ,CAAcC,UAJ7B;AAKEC,YAAOpB,GAAGS,KAAH,CAASW,IAAT,CAAcC;AALvB;AAJF,GADA,C;AAtBAJ,MAAIC,SAAJ,CAAcd,KAAd,CAAoBD,aAApB,GAAoCA,aAApC",
+  "file": "Theme.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Contemporary Theme\n */\nqx.Theme.define(\"qxl.apiviewer.Theme\",\n{\n  title : \"APIViewer theme\",\n\n  meta :\n  {\n    color : qx.theme.indigo.Color,\n    decoration : qx.theme.indigo.Decoration,\n    font : qx.theme.indigo.Font,\n    appearance : qxl.apiviewer.Appearance,\n    icon : qx.theme.icon.Tango\n  }\n});\n"
+  ]
+}

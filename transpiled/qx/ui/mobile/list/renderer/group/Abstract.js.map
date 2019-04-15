@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/mobile/list/renderer/group/Abstract.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "container",
+    "Composite",
+    "type",
+    "construct",
+    "layout",
+    "initSelectable",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "selectable",
+    "check",
+    "apply",
+    "activatable",
+    "members",
+    "reset",
+    "Error",
+    "_getTagName",
+    "list",
+    "renderer",
+    "group",
+    "Abstract"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,2CAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,MAAN,CAAaC,SAAb,CAAuBC,SADlC;AAEEC,UAAO,UAFT;;AAKEC,eAAY,mBAASC,MAAT,EACZ;AACE,8DAAqBA,MAArB;AACA,WAAKC,cAAL;AACD,KATH;;AAYEC,gBACA;AACE;AACAC,uBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT,OAHF;;AAQE;;;AAGAC,kBACA;AACEC,eAAQ,SADV;AAEEF,cAAO,KAFT;AAGEG,eAAQ;AAHV,OAZF;;AAmBE;AACAC,mBACA;AACEL,gBAAQ,IADV;AAEEC,cAAO;AAFT;AArBF,KAbF;;AAyCEK,aACA;AACE;AACA;;;;;;;;AAQAC,aAAQ,iBAAW;AACwB;AACvC,gBAAM,IAAIC,KAAJ,CAAU,sBAAV,CAAN;AACD;AACF,OAdH;;AAiBE;AACAC,mBAAc,uBACd;AACE,eAAO,IAAP;AACD;AArBH;AA1CF,GADA,C;AArBA1B,KAAGO,EAAH,CAAMC,MAAN,CAAamB,IAAb,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,QAAjC,CAA0C3B,aAA1C,GAA0DA,aAA1D",
+  "file": "Abstract.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * Base class for all group item renderer.\n */\nqx.Class.define(\"qx.ui.mobile.list.renderer.group.Abstract\",\n{\n  extend : qx.ui.mobile.container.Composite,\n  type : \"abstract\",\n\n\n  construct : function(layout)\n  {\n    this.base(arguments, layout);\n    this.initSelectable();\n  },\n\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"group-item\"\n    },\n\n    /**\n     * Whether the row is selectable.\n     */\n    selectable :\n    {\n      check : \"Boolean\",\n      init : false,\n      apply : \"_applyAttribute\"\n    },\n\n\n    //overridden\n    activatable :\n    {\n      refine :true,\n      init : true\n    }\n  },\n\n\n  members :\n  {\n    // abstract method\n    /**\n     * Resets all defined child widgets. Override this method in your custom\n     * list item renderer and reset all widgets displaying data. Needed as the\n     * renderer is used for every row and otherwise data of a different row\n     * might be displayed, when not all data displaying widgets are used for the row.\n     * Gets called automatically by the {@link qx.ui.mobile.list.provider.Provider}.\n     *\n     */\n    reset : function() {\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        throw new Error(\"Abstract method call\");\n      }\n    },\n\n\n    // overridden\n    _getTagName : function()\n    {\n      return \"li\";\n    }\n  }\n});"
+  ]
+}

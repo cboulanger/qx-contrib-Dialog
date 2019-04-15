@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/toolbar/CheckBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "form",
+    "ToggleButton",
+    "construct",
+    "label",
+    "icon",
+    "removeListener",
+    "_onKeyDown",
+    "_onKeyUp",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "show",
+    "focusable",
+    "members",
+    "_applyVisibility",
+    "value",
+    "old",
+    "parent",
+    "getLayoutParent",
+    "toolbar",
+    "PartContainer",
+    "core",
+    "queue",
+    "Appearance",
+    "add",
+    "CheckBox"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,IAAN,CAAWC,YADtB;;AAME;;;;;;AAMAC,eAAY,mBAASC,KAAT,EAAgBC,IAAhB,EACZ;AACE,qDAAqBD,KAArB,EAA4BC,IAA5B;;AAEA;AACA,WAAKC,cAAL,CAAoB,SAApB,EAA+B,KAAKC,UAApC;AACA,WAAKD,cAAL,CAAoB,OAApB,EAA6B,KAAKE,QAAlC;AACD,KAnBH;;AAwBE;;;;;;AAMAC,gBACA;AACEC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT,OAFF;;AAOEC,YACA;AACEF,gBAAS,IADX;AAEEC,cAAO;AAFT,OARF;;AAaEE,iBACA;AACEH,gBAAS,IADX;AAEEC,cAAO;AAFT;AAdF,KA/BF;;AAmDEG,aAAU;AACR;AACAC,wBAAmB,0BAASC,KAAT,EAAgBC,GAAhB,EAAqB;AACtC,0EAAqBD,KAArB,EAA4BC,GAA5B;AACA;AACA,YAAIC,SAAS,KAAKC,eAAL,EAAb;AACA,YAAID,UAAUA,kBAAkB1B,GAAGO,EAAH,CAAMqB,OAAN,CAAcC,aAA9C,EAA6D;AAC3D7B,aAAGO,EAAH,CAAMuB,IAAN,CAAWC,KAAX,CAAiBC,UAAjB,CAA4BC,GAA5B,CAAgCP,MAAhC;AACD;AACF;AATO;AAnDZ,GADA,C;AAtBA1B,KAAGO,EAAH,CAAMqB,OAAN,CAAcM,QAAd,CAAuB/B,aAAvB,GAAuCA,aAAvC",
+  "file": "CheckBox.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A button which is toggle-able for toolbars.\n */\nqx.Class.define(\"qx.ui.toolbar.CheckBox\",\n{\n  extend : qx.ui.form.ToggleButton,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function(label, icon)\n  {\n    this.base(arguments, label, icon);\n\n    // Toolbar buttons should not support the keyboard events\n    this.removeListener(\"keydown\", this._onKeyDown);\n    this.removeListener(\"keyup\", this._onKeyUp);\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"toolbar-button\"\n    },\n\n    show :\n    {\n      refine : true,\n      init : \"inherit\"\n    },\n\n    focusable :\n    {\n      refine : true,\n      init : false\n    }\n  },\n\n  members : {\n    // overridden\n    _applyVisibility : function(value, old) {\n      this.base(arguments, value, old);\n      // trigger a appearance recalculation of the parent\n      var parent = this.getLayoutParent();\n      if (parent && parent instanceof qx.ui.toolbar.PartContainer) {\n        qx.ui.core.queue.Appearance.add(parent);\n      }\n    }\n  }\n});\n"
+  ]
+}

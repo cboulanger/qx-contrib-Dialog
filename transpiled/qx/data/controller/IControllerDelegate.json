@@ -1,0 +1,182 @@
+{
+  "className": "qx.data.controller.IControllerDelegate",
+  "packageName": "qx.data.controller",
+  "name": "IControllerDelegate",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 81,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\nFabian Jakobs (fjakobs)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Objects, which are used as delegates for a data binding controller may\nimplement any of the methods described in this interface. The delegate does\nnot need implement all of the methods of this interface. If a method is not\nimplemented the controller provides a default implementation.\n\nNote: This interface is meant to document the delegate but should not be\nlisted in the <code>implement</code> key of a class unless all methods are\nreally implemented."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "configureItem": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gives the user the opportunity to set individual styles and properties\non the by the controller created widgets."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {var} Item to modify.",
+            "paramName": "item",
+            "description": " Item to modify.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "filter": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Filter checks the current data and returns a boolean if the data should\nappear in the filtered data set or not.\n\nThe filter currently works only with the {@link qx.data.controller.List}\ncontroller!"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data which will be checked.",
+            "paramName": "data",
+            "description": " The data which will be checked.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True, if the data passes the filter, false otherwise.",
+            "type": "Boolean",
+            "description": " True, if the data passes the filter, false otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createItem": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates an item which will be added to the target as child. Be sure to\nimplement the {@link #bindItem} function as well to get the needed\nproperties bound."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} A new created widget.",
+            "type": "qx.ui.core.Widget",
+            "description": " A new created widget."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "bindItem": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets up the binding for the given item and index.\n\nFor every property you want to bind, use\n{@link qx.data.controller.List#bindProperty} like this:\n<code>\ncontroller.bindProperty(\"path.in.the.model\", \"label\", options, item, id);\n</code>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "controller {var} The currently used controller.",
+            "paramName": "controller",
+            "description": " The currently used controller.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} The created and used item.",
+            "paramName": "item",
+            "description": " The created and used item.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "id {var} The id for the binding.",
+            "paramName": "id",
+            "description": " The id for the binding.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/util/Wheel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "MAXSCROLL",
+    "MINSCROLL",
+    "FACTOR",
+    "IS_TOUCHPAD",
+    "getDelta",
+    "domEvent",
+    "axis",
+    "undefined",
+    "delta",
+    "wheelDelta",
+    "detail",
+    "deltaY",
+    "__normalize",
+    "x",
+    "wheelDeltaX",
+    "HORIZONTAL_AXIS",
+    "deltaX",
+    "y",
+    "wheelDeltaY",
+    "util",
+    "Wheel",
+    "absDelta",
+    "Math",
+    "abs",
+    "__recalculateMultiplicator",
+    "range",
+    "ret",
+    "log",
+    "min",
+    "max",
+    "maxRet"
+  ],
+  "mappings": "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",
+  "file": "Wheel.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n ************************************************************************ */\n\n/**\n * Util for mouse wheel normalization.\n */\nqx.Bootstrap.define(\"qx.util.Wheel\", {\n  statics: {\n    /**\n     * The maximal measured scroll wheel delta.\n     * @internal\n     */\n    MAXSCROLL: null,\n\n    /**\n     * The minimal measured scroll wheel delta.\n     * @internal\n     */\n    MINSCROLL: null,\n\n    /**\n     * The normalization factor for the speed calculation.\n     * @internal\n     */\n    FACTOR: 1,\n\n    /**\n     * Is the Wheel actually a touchpad ?\n     * @internal\n     */\n    IS_TOUCHPAD: false,\n\n    /**\n     * Get the amount the wheel has been scrolled\n     *\n     * @param domEvent {Event} The native wheel event.\n     * @param axis {String?} Optional parameter which defines the scroll axis.\n     *   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.\n     * @return {Integer} Scroll wheel movement for the given axis. If no axis\n     *   is given, the y axis is used.\n     */\n    getDelta: function (domEvent, axis) {\n      // default case\n      if (axis === undefined) {\n        // default case\n        var delta = 0;\n        if (domEvent.wheelDelta !== undefined) {\n          delta = -domEvent.wheelDelta;\n        } else if (domEvent.detail !== 0) {\n          delta = domEvent.detail;\n        } else if (domEvent.deltaY !== undefined) {\n          // use deltaY as default for firefox\n          delta = domEvent.deltaY;\n        }\n        return this.__normalize(delta);\n      }\n\n      // get the x scroll delta\n      if (axis === \"x\") {\n        var x = 0;\n        if (domEvent.wheelDelta !== undefined) {\n          if (domEvent.wheelDeltaX !== undefined) {\n            x = domEvent.wheelDeltaX ? this.__normalize(-domEvent.wheelDeltaX) : 0;\n          }\n        } else {\n          if (domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS &&\n            (domEvent.detail !== undefined) && (domEvent.detail > 0)\n          ) {\n            x = this.__normalize(domEvent.detail);\n          } else if (domEvent.deltaX !== undefined) {\n            x = this.__normalize(domEvent.deltaX);\n          }\n        }\n        return x;\n      }\n\n      // get the y scroll delta\n      if (axis === \"y\") {\n        var y = 0;\n        if (domEvent.wheelDelta !== undefined) {\n          if (domEvent.wheelDeltaY !== undefined) {\n            y = domEvent.wheelDeltaY ? this.__normalize(-domEvent.wheelDeltaY) : 0;\n          } else {\n            y = this.__normalize(-domEvent.wheelDelta);\n          }\n        } else {\n          if (!(domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS) &&\n            (domEvent.detail !== undefined) && (domEvent.detail > 0)\n          ) {\n            y = this.__normalize(domEvent.detail);\n          } else if (domEvent.deltaY !== undefined) {\n            y = this.__normalize(domEvent.deltaY);\n          }\n        }\n        return y;\n      }\n      // default case, return 0\n      return 0;\n    },\n\n\n    /**\n     * Normalizer for the mouse wheel data.\n     *\n     * @param delta {Number} The mouse delta.\n     * @return {Number} The normalized delta value\n     */\n    __normalize: function (delta) {\n      if (qx.util.Wheel.IS_TOUCHPAD) {\n        // Reset normalization values that may be re-computed once a real mouse is plugged.\n        qx.util.Wheel.MINSCROLL = null;\n        qx.util.Wheel.MAXSCROLL = null;\n        qx.util.Wheel.FACTOR = 1;\n        return delta;\n      }\n      var absDelta = Math.abs(delta);\n\n      if (absDelta === 0) {\n        return 0;\n      }\n\n      // store the min value\n      if (\n        qx.util.Wheel.MINSCROLL == null ||\n        qx.util.Wheel.MINSCROLL > absDelta\n        ) {\n        qx.util.Wheel.MINSCROLL = absDelta;\n        this.__recalculateMultiplicator();\n      }\n\n      // store the max value\n      if (\n        qx.util.Wheel.MAXSCROLL == null ||\n        qx.util.Wheel.MAXSCROLL < absDelta\n        ) {\n        qx.util.Wheel.MAXSCROLL = absDelta;\n        this.__recalculateMultiplicator();\n      }\n\n      // special case for systems not speeding up\n      if (\n        qx.util.Wheel.MAXSCROLL === absDelta &&\n        qx.util.Wheel.MINSCROLL === absDelta\n        ) {\n        return 2 * (delta / absDelta);\n      }\n\n      var range =\n        qx.util.Wheel.MAXSCROLL - qx.util.Wheel.MINSCROLL;\n      var ret = (delta / range) * Math.log(range) * qx.util.Wheel.FACTOR;\n\n      // return at least 1 or -1\n      return ret < 0 ? Math.min(ret, -1) : Math.max(ret, 1);\n    },\n\n\n    /**\n     * Recalculates the factor with which the calculated delta is normalized.\n     */\n    __recalculateMultiplicator: function () {\n      var max = qx.util.Wheel.MAXSCROLL || 0;\n      var min = qx.util.Wheel.MINSCROLL || max;\n      if (max <= min) {\n        return;\n      }\n      var range = max - min;\n      var maxRet = (max / range) * Math.log(range);\n      if (maxRet == 0) {\n        maxRet = 1;\n      }\n      qx.util.Wheel.FACTOR = 6 / maxRet;\n      if (qx.core.Environment.get(\"qx.debug.touchpad.detection\")) {\n        qx.log.Logger.debug(this, \"FACTOR : \" + qx.util.Wheel.FACTOR);\n      }\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/menu/MenuSlideBar.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "container",
+    "SlideBar",
+    "construct",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "members",
+    "_createChildControlImpl",
+    "id",
+    "hash",
+    "control",
+    "form",
+    "HoverButton",
+    "addListener",
+    "_onExecuteForward",
+    "_addAt",
+    "_onExecuteBackward",
+    "menu",
+    "MenuSlideBar"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA0BAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,SAAN,CAAgBC,QAD3B;;AAGEC,eAAY,qBACZ;AACE,sDAAqB,UAArB;AACD,KANH;;AAQEC,gBACA;AACEC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT;AAFF,KATF;;AAiBEC,aACA;AACE;AACAC,+BAA0B,iCAASC,EAAT,EAAaC,IAAb,EAC1B;AACE,YAAIC,OAAJ;;AAEA,gBAAOF,EAAP;AAEE,eAAK,gBAAL;AACEE,sBAAU,IAAInB,GAAGO,EAAH,CAAMa,IAAN,CAAWC,WAAf,EAAV;AACAF,oBAAQG,WAAR,CAAoB,SAApB,EAA+B,KAAKC,iBAApC,EAAuD,IAAvD;AACA,iBAAKC,MAAL,CAAYL,OAAZ,EAAqB,CAArB;AACA;;AAEF,eAAK,iBAAL;AACEA,sBAAU,IAAInB,GAAGO,EAAH,CAAMa,IAAN,CAAWC,WAAf,EAAV;AACAF,oBAAQG,WAAR,CAAoB,SAApB,EAA+B,KAAKG,kBAApC,EAAwD,IAAxD;AACA,iBAAKD,MAAL,CAAYL,OAAZ,EAAqB,CAArB;AACA;AAZJ;;AAeA,eAAOA,qFAAgCF,EAAhC,CAAP;AACD;AAtBH;AAlBF,GADA,C;AA1BAjB,KAAGO,EAAH,CAAMmB,IAAN,CAAWC,YAAX,CAAwBxB,aAAxB,GAAwCA,aAAxC",
+  "file": "MenuSlideBar.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The MenuSlideBar is used to scroll menus if they don't fit on the screen.\n *\n * @childControl button-forward {qx.ui.form.HoverButton} scrolls forward of hovered\n * @childControl button-backward {qx.ui.form.HoverButton} scrolls backward if hovered\n *\n * @internal\n */\nqx.Class.define(\"qx.ui.menu.MenuSlideBar\",\n{\n  extend : qx.ui.container.SlideBar,\n\n  construct : function()\n  {\n    this.base(arguments, \"vertical\");\n  },\n\n  properties :\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"menu-slidebar\"\n    }\n  },\n\n  members :\n  {\n    // overridden\n    _createChildControlImpl : function(id, hash)\n    {\n      var control;\n\n      switch(id)\n      {\n        case \"button-forward\":\n          control = new qx.ui.form.HoverButton();\n          control.addListener(\"execute\", this._onExecuteForward, this);\n          this._addAt(control, 2);\n          break;\n\n        case \"button-backward\":\n          control = new qx.ui.form.HoverButton();\n          control.addListener(\"execute\", this._onExecuteBackward, this);\n          this._addAt(control, 0);\n          break;\n      }\n\n      return control || this.base(arguments, id);\n    }\n  }\n});"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "className": "qx.theme.classic.Appearance",
+  "packageName": "qx.theme.classic",
+  "name": "Appearance",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 0
+      },
+      "end": {
+        "line": 2706,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n2006 STZ-IDA, Germany, http://www.stz-ida.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nAndreas Ecker (ecker)\nTil Schneider (til132)\nMartin Wittemann (martinwittemann)\n\n************************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\n\n************************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The classic qooxdoo appearance theme."
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/apps/office-calendar.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/places/folder-open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/places/folder.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/mimetypes/text-plain.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/actions/view-refresh.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/actions/window-close.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/actions/dialog-cancel.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/actions/dialog-ok.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Classic/*"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

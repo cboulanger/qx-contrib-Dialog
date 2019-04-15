@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/virtual/cell/Boolean.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "cell",
+    "AbstractImage",
+    "construct",
+    "__aliasManager",
+    "util",
+    "AliasManager",
+    "getInstance",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "iconTrue",
+    "check",
+    "themeable",
+    "apply",
+    "iconFalse",
+    "members",
+    "__imageTrue",
+    "__imageFalse",
+    "_applyIconTrue",
+    "value",
+    "resolve",
+    "_applyIconFalse",
+    "_identifyImage",
+    "Boolean"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,aAD9B;;AAGE;;;;;;AAMAC,eAAY,qBACZ;AACE;AACA,WAAKC,cAAL,GAAsBZ,GAAGa,IAAH,CAAQC,YAAR,CAAqBC,WAArB,EAAtB;AACD,KAbH;;AAgBE;;;;;;AAMAC,gBACA;AACEC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT,OAFF;;AAOE;;;AAGDC,gBACA;AACEC,eAAQ,QADV;AAEEC,mBAAY,IAFd;AAGEC,eAAQ;AAHV,OAXD;;AAiBC;;;AAGAC,iBACA;AACEH,eAAQ,QADV;AAEEC,mBAAY,IAFd;AAGEC,eAAQ;AAHV;AArBD,KAvBF;;AAqDE;;;;;;AAMAE,aACA;AACEC,mBAAc,IADhB;AAEEC,oBAAe,IAFjB;AAGEf,sBAAiB,IAHnB;;AAME;AACAgB,sBAAiB,wBAASC,KAAT,EAAgB;AAC/B,aAAKH,WAAL,GAAmB,KAAKd,cAAL,CAAoBkB,OAApB,CAA4BD,KAA5B,CAAnB;AACD,OATH;;AAYE;AACAE,uBAAkB,yBAASF,KAAT,EAAgB;AAChC,aAAKF,YAAL,GAAoB,KAAKf,cAAL,CAAoBkB,OAApB,CAA4BD,KAA5B,CAApB;AACD,OAfH;;AAkBE;AACAG,sBAAiB,wBAASH,KAAT,EAAgB;AAC/B,eAAOA,SAAS,IAAT,GAAgB,KAAKH,WAArB,GAAmC,KAAKC,YAA/C;AACD;AArBH;AA5DF,GADA,C;AArBA3B,KAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBwB,OAAnB,CAA2B9B,aAA3B,GAA2CA,aAA3C",
+  "file": "Boolean.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * EXPERIMENTAL!\n */\nqx.Class.define(\"qx.ui.virtual.cell.Boolean\",\n{\n  extend : qx.ui.virtual.cell.AbstractImage,\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function()\n  {\n    this.base(arguments);\n    this.__aliasManager = qx.util.AliasManager.getInstance();\n  },\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance:\n    {\n      refine : true,\n      init : \"cell-boolean\"\n    },\n\n    /**\n    * The icon used to indicate the true state\n    */\n   iconTrue :\n   {\n     check : \"String\",\n     themeable : true,\n     apply : \"_applyIconTrue\"\n   },\n\n   /**\n   * The icon used to indicate the false state\n   */\n   iconFalse :\n   {\n     check : \"String\",\n     themeable : true,\n     apply : \"_applyIconFalse\"\n   }\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    __imageTrue : null,\n    __imageFalse : null,\n    __aliasManager : null,\n\n\n    // property apply\n    _applyIconTrue : function(value) {\n      this.__imageTrue = this.__aliasManager.resolve(value);\n    },\n\n\n    // property apply\n    _applyIconFalse : function(value) {\n      this.__imageFalse = this.__aliasManager.resolve(value);\n    },\n\n\n    // overridden\n    _identifyImage : function(value) {\n      return value == true ? this.__imageTrue : this.__imageFalse;\n    }\n  }\n});\n"
+  ]
+}

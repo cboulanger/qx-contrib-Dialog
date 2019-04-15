@@ -1,0 +1,296 @@
+{
+  "className": "qx.bom.MediaQuery",
+  "packageName": "qx.bom",
+  "name": "MediaQuery",
+  "superClass": "qx.event.Emitter",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 0
+      },
+      "end": {
+        "line": 480,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2013 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nRomeo Kenfack Tsakem (rkenfack)\n\n======================================================================\n\nThis class contains code from:\n\nCopyright:\n2012 WebLinc LLC, David Knight\n\nLicense:\nBSD: https://raw.github.com/weblinc/media-match/master/LICENSE.txt\n\n----------------------------------------------------------------------\n\nCopyright (c) 2012 WebLinc LLC\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This class is to test css media queries. It implements a polyfill for\nwindow.matchMedia if not supported natively."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 62,
+        "column": 2
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "query {String} the media query to evaluate",
+          "paramName": "query",
+          "description": " the media query to evaluate",
+          "type": "qx.bom.String"
+        }
+      ]
+    }
+  },
+  "events": {
+    "change": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires each time the media query state changes. The event data is a map\nwith two keys:\n\n**query** The media query string\n\n**matches** A boolean that indicates whether the document\nmatches the query"
+          }
+        ]
+      },
+      "name": "change",
+      "type": "Map"
+    }
+  },
+  "statics": {
+    "version": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The media.match.js version"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__mql": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The mediaquery Listener"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "matches": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Indicates if the document currently matches the media query list"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "query": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The mediaquery list to be evaluated"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getQuery": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the query string used to initialize the listener."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The given query string.",
+            "type": "qx.bom.String",
+            "description": " The given query string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isMatching": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Access the matching state of the media query."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the query matches.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the query matches."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__init": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initialize the mediaquery listener"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__changed": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Callback for mediaqueries changes"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 144,
+        "column": 2
+      },
+      "end": {
+        "line": 479,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

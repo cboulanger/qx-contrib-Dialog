@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/bom/request/IRequest.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "transport",
+    "readyState",
+    "status",
+    "statusText",
+    "responseText",
+    "timeout",
+    "open",
+    "method",
+    "url",
+    "async",
+    "send",
+    "data",
+    "abort",
+    "getAllResponseHeaders",
+    "getResponseHeader",
+    "header",
+    "setRequestHeader",
+    "key",
+    "value",
+    "onreadystatechange",
+    "onload",
+    "onloadend",
+    "onerror",
+    "onabort",
+    "ontimeout",
+    "bom",
+    "request",
+    "IRequest"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA2BAH,GAAGI,SAAH,CAAaC,MAAb,CAAoB,yBAApB,EACA;;AAEEC,aACA;AACE;AACA;AACA;AACA;;AAEA;;;AAGAC,iBAAW,IATb;;AAWE;;;;;;;;;;AAUAC,kBAAY,CArBd;;AAuBE;;;AAGAC,cAAQ,CA1BV;;AA4BE;;;AAGAC,kBAAY,EA/Bd;;AAiCE;;;AAGAC,oBAAc,EApChB;;AAsCE;;;;;AAKAC,eAAS,CA3CX;;AA6CE;AACA;AACA;;AAEA;;;;;;;;;;AAUAC,YAAM,cAASC,MAAT,EAAiBC,GAAjB,EAAsBC,KAAtB,EAA6B,CAAE,CA3DvC;;AA6DE;;;;;;AAMAC,YAAM,cAASC,IAAT,EAAe,CAAE,CAnEzB;;AAqEE;;;AAGAC,aAAO,iBAAW,CAAE,CAxEtB;;AA0EE;;;;;AAKAC,6BAAuB,iCAAW,CAAE,CA/EtC;;AAiFE;;;;;;;;AAQAC,yBAAmB,2BAASC,MAAT,EAAiB,CAAE,CAzFxC;;AA2FE;;;;;;;;AAQAC,wBAAkB,0BAASC,GAAT,EAAcC,KAAd,EAAqB,CAAE,CAnG3C;;AAqGE;AACA;AACA;;AAEA;;;AAGAC,0BAAoB,8BAAW,CAAE,CA5GnC;;AA8GE;;;AAGAC,cAAQ,kBAAW,CAAE,CAjHvB;;AAmHE;;;AAGAC,iBAAW,qBAAW,CAAE,CAtH1B;;AAwHE;;;AAGAC,eAAS,mBAAW,CAAE,CA3HxB;;AA6HE;;;AAGAC,eAAS,mBAAW,CAAE,CAhIxB;;AAkIE;;;AAGAC,iBAAW,qBAAW,CAAE;AArI1B;AAHF,GADA,C;AA3BA/B,KAAGgC,GAAH,CAAOC,OAAP,CAAeC,QAAf,CAAwB/B,aAAxB,GAAwCA,aAAxC",
+  "file": "IRequest.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tristan Koch (tristankoch)\n\n************************************************************************ */\n\n/**\n * Interface of a low-level transport compatible with\n * {@link qx.io.request.AbstractRequest}.\n *\n * Based on interface specified in\n * <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>. Also\n * borrows some methods as described in\n * <a href=\"http://www.w3.org/TR/XMLHttpRequest2/\">XmlHttpRequest2</a>.\n */\nqx.Interface.define(\"qx.bom.request.IRequest\",\n{\n\n  members :\n  {\n    //\n    // Properties\n    // (Plain JavaScript)\n    //\n\n    /**\n     * @type {Object} Native transport.\n     */\n    transport: null,\n\n    /**\n     * @type {Number} Ready state.\n     *\n     * States can be:\n     * UNSENT:           0,\n     * OPENED:           1,\n     * HEADERS_RECEIVED: 2,\n     * LOADING:          3,\n     * DONE:             4\n     */\n    readyState: 0,\n\n    /**\n     * @type {Number} The status code.\n     */\n    status: 0,\n\n    /**\n     * @type {String} The status text.\n     */\n    statusText: \"\",\n\n    /**\n     * @type {String} The response of the request as text.\n     */\n    responseText: \"\",\n\n    /**\n     * @type {Number} Timeout limit in milliseconds.\n     *\n     * 0 (default) means no timeout.\n     */\n    timeout: 0,\n\n    //\n    // Methods\n    //\n\n    /**\n     * Initializes (prepares) request.\n     *\n     * @param method {String}\n     *  The method to use.\n     * @param url {String}\n     *  The URL to which to send the request.\n     * @param async {Boolean?true}\n     *  Whether or not to perform the operation asynchronously.\n     */\n    open: function(method, url, async) {},\n\n    /**\n     * Sends request.\n     *\n     * @param data {String|Document?null}\n     *  Optional data to send.\n     */\n    send: function(data) {},\n\n    /**\n     * Abort request\n     */\n    abort: function() {},\n\n    /**\n     * Get all response headers from response.\n     *\n     * @return {String} All response headers.\n     */\n    getAllResponseHeaders: function() {},\n\n    /**\n     * Get a single response header from response.\n     *\n     * @param header {String}\n     *  Key of the header to get the value from.\n     * @return {String}\n     *  Response header.\n     */\n    getResponseHeader: function(header) {},\n\n    /**\n     * Sets a request header to be used by the request.\n     *\n     * @param key {String}\n     *  The name of the header whose value is to be set.\n     * @param value {String}\n     *  The value to set as the body of the header.\n     */\n    setRequestHeader: function(key, value) {},\n\n    //\n    // Handlers\n    //\n\n    /**\n     * Event handler for event fired at every state change.\n     */\n    onreadystatechange: function() {},\n\n    /**\n     * Event handler for event fired on successful retrieval.\n     */\n    onload: function() {},\n\n    /**\n     * Event handler for event fired on retrieval.\n     */\n    onloadend: function() {},\n\n    /**\n     * Event handler for event fired on a network error.\n     */\n    onerror: function() {},\n\n    /**\n    * Event handler for event fired when request is aborted.\n    */\n    onabort: function() {},\n\n    /**\n    * Event handler for event fired when timeout interval has passed.\n    */\n    ontimeout: function() {}\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/virtual/cell/String.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "cell",
+    "Cell",
+    "construct",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "members",
+    "getContent",
+    "value",
+    "states",
+    "bom",
+    "String",
+    "escape"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,IAD9B;;AAGEC,eAAY,qBACZ;AACE;AACD,KANH;;AASE;;;;;;AAMAC,gBACA;AACEC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT;AAFF,KAhBF;;AAyBE;;;;;;AAOAC,aACA;AACE;;;;;;AAMAC,kBAAa,oBAASC,KAAT,EAAgBC,MAAhB,EAAwB;AACnC,eAAOD,QAAQlB,GAAGoB,GAAH,CAAOC,MAAP,CAAcC,MAAd,CAAqBJ,KAArB,CAAR,GAAsC,EAA7C;AACD;AATH;;AAjCF,GADA,C;AAtBAlB,KAAGO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBY,MAAnB,CAA0BlB,aAA1B,GAA0CA,aAA1C",
+  "file": "String.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * EXPERIMENTAL!\n */\nqx.Class.define(\"qx.ui.virtual.cell.String\",\n{\n  extend : qx.ui.virtual.cell.Cell,\n\n  construct : function()\n  {\n    this.base(arguments);\n  },\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance:\n    {\n      refine : true,\n      init : \"cell-string\"\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      IMPLEMENT CELL API\n    ---------------------------------------------------------------------------\n    */\n\n    getContent : function(value, states) {\n      return value ? qx.bom.String.escape(value) : \"\";\n    }\n  }\n\n});"
+  ]
+}

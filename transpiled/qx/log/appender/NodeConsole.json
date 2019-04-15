@@ -1,0 +1,306 @@
+{
+  "className": "qx.log.appender.NodeConsole",
+  "packageName": "qx.log.appender",
+  "name": "NodeConsole",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 128,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2006-2011 1&1 Internet AG, Germany, http://www.1and1.org\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDaniel Wagner (d_wagner)\nThomas Herchenroeder (thron7)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Log appender for qooxdoo applications running in Node.js. Writes log\nmessages to STDOUT/STDERR."
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "process.*"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__OUT": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "process.stdout"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__ERR": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "process.stderr"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "log": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Writes a message to the shell. Errors will be sent to STDERR, everything\nelse goes to STDOUT"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "logMessage {String} Message to be logged",
+            "paramName": "logMessage",
+            "description": " Message to be logged",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "level {String} Log level. One of \"debug\", \"info\", \"warn\", \"error\"",
+            "paramName": "level",
+            "description": " Log level. One of \"debug\", \"info\", \"warn\", \"error\"",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "debug": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Logs a debug message"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "logMessage {String} Message to be logged",
+            "paramName": "logMessage",
+            "description": " Message to be logged",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "info": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Logs an info message"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "logMessage {String} Message to be logged",
+            "paramName": "logMessage",
+            "description": " Message to be logged",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "warn": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Logs a warning message"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "logMessage {String} Message to be logged",
+            "paramName": "logMessage",
+            "description": " Message to be logged",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "error": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Logs an error message"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "logMessage {String} Message to be logged",
+            "paramName": "logMessage",
+            "description": " Message to be logged",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "process": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Process a log entry object from qooxdoo's logging system."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} Log entry object",
+            "paramName": "entry",
+            "description": " Log entry object",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 120,
+        "column": 2
+      },
+      "end": {
+        "line": 126,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "process.*"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

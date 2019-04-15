@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/ui/panels/MethodPanel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "qxl",
+    "apiviewer",
+    "ui",
+    "panels",
+    "AbstractMethodPanel",
+    "construct",
+    "members",
+    "canDisplayItem",
+    "dao",
+    "Method",
+    "isStatic",
+    "MethodPanel"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EAAuD;AACrDC,YAAQC,IAAIC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBC,mBADqB;;AAGrDC,eAAW,qBAAW;AACpB,yEAAqB,SAArB,EAAgC,yCAAhC;AACD,KALoD;;AAOrDC,aAAU;AACR;;;AAGAC,sBAAgB,wBAASC,GAAT,EAAc;AAC5B,eAAOA,eAAeR,IAAIC,SAAJ,CAAcO,GAAd,CAAkBC,MAAjC,IAA2C,CAACD,IAAIE,QAAJ,EAAnD;AACD;AANO;;AAP2C,GAAvD,C;AAvBAV,MAAIC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBQ,WAAxB,CAAoCf,aAApC,GAAoDA,aAApD",
+  "file": "MethodPanel.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n     * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.ui.panels.MethodPanel\", {\n  extend: qxl.apiviewer.ui.panels.AbstractMethodPanel,\n\n  construct: function() {\n    this.base(arguments, \"Members\", \"qxl/apiviewer/image/method_public18.gif\");\n  },\n\n  members : {\n    /**\n     * @Override\n     */\n    canDisplayItem: function(dao) {\n      return dao instanceof qxl.apiviewer.dao.Method && !dao.isStatic(); \n    }\n  }\n\n});\n"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/event/message/Message.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "name",
+    "data",
+    "setName",
+    "setData",
+    "properties",
+    "check",
+    "init",
+    "nullable",
+    "sender",
+    "destruct",
+    "setSender",
+    "event",
+    "message",
+    "Message"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EACA;AACEC,YAASN,GAAGO,IAAH,CAAQC,MADnB;;AAME;;;;;;AAMA;;;;AAIAC,eAAY,mBAASC,IAAT,EAAeC,IAAf,EACZ;AACE;;AAEA,UAAID,QAAQ,IAAZ,EAAkB;AAChB,aAAKE,OAAL,CAAaF,IAAb;AACD;;AAED,UAAIC,QAAQ,IAAZ,EAAkB;AAChB,aAAKE,OAAL,CAAaF,IAAb;AACD;AACF,KA3BH;;AAgCE;;;;;;AAMAG,gBACA;AACE;;;;AAIAJ,YACA;AACEK,eAAc;AADhB,OANF;;AAUE;;;AAGAJ,YACA;AACEK,cAAc,IADhB;AAEEC,kBAAc;AAFhB,OAdF;;AAmBE;;;AAGAC,cACA;AACEH,eAAc,QADhB;AAEEE,kBAAc;AAFhB;AAvBF,KAvCF;;AAoEEE,cAAW,oBACX;AACE,WAAKN,OAAL,CAAa,IAAb;AACA,WAAKO,SAAL,CAAe,IAAf;AACD;AAxEH,GADA,C;AArBApB,KAAGqB,KAAH,CAASC,OAAT,CAAiBC,OAAjB,CAAyBpB,aAAzB,GAAyCA,aAAzC",
+  "file": "Message.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007 Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger\n\n************************************************************************ */\n\n/**\n * A message to be dispatched on the message bus.\n */\nqx.Class.define(\"qx.event.message.Message\",\n{\n  extend : qx.core.Object,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param name {String} The name of the message\n   * @param data {var} Any type of data to attach\n   */\n  construct : function(name, data)\n  {\n    this.base(arguments);\n\n    if (name != null) {\n      this.setName(name);\n    }\n\n    if (data != null) {\n      this.setData(data);\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /**\n     * Event name of the message. Based on this name the message is dispatched\n     * to the event listeners.\n     */\n    name :\n    {\n      check       : \"String\"\n    },\n\n    /**\n     * Any data the sender wants to pass with the event.\n     */\n    data :\n    {\n      init        : null,\n      nullable    : true\n    },\n\n    /**\n     * A reference to the sending object.\n     */\n    sender :\n    {\n      check       : \"Object\",\n      nullable    : true\n    }\n  },\n\n  destruct : function()\n  {\n    this.setData(null);\n    this.setSender(null);\n  }\n});\n\n\n"
+  ]
+}

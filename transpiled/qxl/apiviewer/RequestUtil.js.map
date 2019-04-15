@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/RequestUtil.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "statics",
+    "get",
+    "url",
+    "opts",
+    "Promise",
+    "resolve",
+    "reject",
+    "req",
+    "io",
+    "remote",
+    "Request",
+    "setAsynchronous",
+    "setTimeout",
+    "setProhibitCaching",
+    "set",
+    "addListener",
+    "evt",
+    "getContent",
+    "send",
+    "qxl",
+    "apiviewer",
+    "RequestUtil"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAmBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EAA6C;AAC3CC,YAAQN,GAAGO,IAAH,CAAQC,MAD2B;;AAG3CC,aAAS;AACPC,WAAK,aAASC,GAAT,EAAcC,IAAd,EAAoB;AACvB,eAAO,IAAIZ,GAAGa,OAAP,CAAe,UAACC,OAAD,EAAUC,MAAV,EAAqB;AACzC,cAAIC,MAAM,IAAIhB,GAAGiB,EAAH,CAAMC,MAAN,CAAaC,OAAjB,CAAyBR,GAAzB,CAAV;;AAEAK,cAAII,eAAJ,CAAoB,IAApB;AACAJ,cAAIK,UAAJ,CAAe,MAAf;AACAL,cAAIM,kBAAJ,CAAuB,KAAvB;AACA,cAAIV,IAAJ,EACEI,IAAIO,GAAJ,CAAQX,IAAR;;AAEFI,cAAIQ,WAAJ,CAAgB,WAAhB,EAA6B,eAAO;AAClCV,oBAAQW,IAAIC,UAAJ,EAAR;AACD,WAFD;;AAIAV,cAAIQ,WAAJ,CAAgB,QAAhB,EAA0B;AAAA,mBAAMT,QAAN;AAAA,WAA1B;AACAC,cAAIQ,WAAJ,CAAgB,SAAhB,EAA2B;AAAA,mBAAMT,QAAN;AAAA,WAA3B;;AAEAC,cAAIW,IAAJ;AACD,SAjBM,CAAP;AAkBD;AApBM;AAHkC,GAA7C,C;AAnBAC,MAAIC,SAAJ,CAAcC,WAAd,CAA0B3B,aAA1B,GAA0CA,aAA1C",
+  "file": "RequestUtil.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qxl.apiviewer.RequestUtil\", {\n  extend: qx.core.Object,\n  \n  statics: {\n    get: function(url, opts) {\n      return new qx.Promise((resolve, reject) => {\n        var req = new qx.io.remote.Request(url);\n\n        req.setAsynchronous(true);\n        req.setTimeout(180000);\n        req.setProhibitCaching(false);\n        if (opts)\n          req.set(opts);\n\n        req.addListener(\"completed\", evt => {\n          resolve(evt.getContent());\n        });\n        \n        req.addListener(\"failed\", () => reject());\n        req.addListener(\"aborted\", () => reject());\n        \n        req.send();\n      });\n    }\n  }\n});\n"
+  ]
+}

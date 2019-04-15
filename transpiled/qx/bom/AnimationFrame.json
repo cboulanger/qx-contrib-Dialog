@@ -1,0 +1,304 @@
+{
+  "className": "qx.bom.AnimationFrame",
+  "packageName": "qx.bom",
+  "name": "AnimationFrame",
+  "superClass": "qx.event.Emitter",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 56,
+        "column": 0
+      },
+      "end": {
+        "line": 208,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This is a cross browser wrapper for requestAnimationFrame. For further\ninformation about the feature, take a look at spec:\nhttp://www.w3.org/TR/animation-timing/\n\nThis class offers two ways of using this feature. First, the plain\nAPI the spec describes.\n\nHere is a sample usage:\n<pre class='javascript'>var start = Date.now();\nvar cb = function(time) {\nif (time >= start + duration) {\n// ... do some last tasks\n} else {\nvar timePassed = time - start;\n// ... calculate the current step and apply it\nqx.bom.AnimationFrame.request(cb, this);\n}\n};\nqx.bom.AnimationFrame.request(cb, this);\n</pre>\n\nAnother way of using it is to use it as an instance emitting events.\n\nHere is a sample usage of that API:\n<pre class='javascript'>var frame = new qx.bom.AnimationFrame();\nframe.on(\"end\", function() {\n// ... do some last tasks\n}, this);\nframe.on(\"frame\", function(timePassed) {\n// ... calculate the current step and apply it\n}, this);\nframe.startSequence(duration);\n</pre>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Date"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "events": {
+    "end": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired as soon as the animation has ended."
+          }
+        ]
+      },
+      "name": "end",
+      "type": "undefined"
+    },
+    "frame": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired on every frame having the passed time as value\n(might be a float for higher precision)."
+          }
+        ]
+      },
+      "name": "frame",
+      "type": "Number"
+    }
+  },
+  "members": {
+    "__canceled": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "startSequence": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Method used to start a series of animation frames. The series will end as\nsoon as the given duration is over."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "duration {Number} The duration the sequence should take.",
+            "paramName": "duration",
+            "description": " The duration the sequence should take.",
+            "type": "Number"
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "performance.*"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "cancelSequence": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Cancels a started sequence of frames. It will do nothing if no\nsequence is running."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "statics": {
+    "TIMEOUT": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The default time in ms the timeout fallback implementation uses."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "calculateTiming": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 159,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Calculation of the predefined timing functions. Approximation of the real\nbezier curves has been used for easier calculation. This is good and close\nenough for the predefined functions like <code>ease</code> or\n<code>linear</code>."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {String} The defined timing function. One of the following values:\n<code>\"ease-in\"</code>, <code>\"ease-out\"</code>, <code>\"linear\"</code>,\n<code>\"ease-in-out\"</code>, <code>\"ease\"</code>.",
+            "paramName": "func",
+            "description": " The defined timing function. One of the following values:\n<code>\"ease-in\"</code>, <code>\"ease-out\"</code>, <code>\"linear\"</code>,\n<code>\"ease-in-out\"</code>, <code>\"ease\"</code>.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "x {Integer} The percent value of the function.",
+            "paramName": "x",
+            "description": " The percent value of the function.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The calculated value",
+            "type": "Integer",
+            "description": " The calculated value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "request": {
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Request for an animation frame. If the native <code>requestAnimationFrame</code>\nmethod is supported, it will be used. Otherwise, we use timeouts with a\n30ms delay. The HighResolutionTime will be used if supported but the time given\nto the callback will still be a timestamp starting at 1 January 1970 00:00:00 UTC."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} The callback function which will get the current\ntime as argument (which could be a float for higher precision).",
+            "paramName": "callback",
+            "description": " The callback function which will get the current\ntime as argument (which could be a float for higher precision).",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {var} The context of the callback.",
+            "paramName": "context",
+            "description": " The context of the callback.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The id of the request.",
+            "type": "Number",
+            "description": " The id of the request."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 200,
+        "column": 2
+      },
+      "end": {
+        "line": 207,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "performance.timing.*"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

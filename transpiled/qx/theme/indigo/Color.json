@@ -1,0 +1,35 @@
+{
+  "className": "qx.theme.indigo.Color",
+  "packageName": "qx.theme.indigo",
+  "name": "Color",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 122,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\nTristan Koch (trkoch)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Indigo color theme"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

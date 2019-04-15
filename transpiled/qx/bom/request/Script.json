@@ -1,0 +1,1516 @@
+{
+  "className": "qx.bom.request.Script",
+  "packageName": "qx.bom.request",
+  "name": "Script",
+  "superClass": null,
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 57,
+        "column": 0
+      },
+      "end": {
+        "line": 723,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTristan Koch (tristankoch)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Script loader with interface similar to\n<a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>.\n\nThe script loader can be used to load scripts from arbitrary sources.\n<span class=\"desktop\">\nFor JSONP requests, consider the {@link qx.bom.request.Jsonp} transport\nthat derives from the script loader.\n</span>\n\n<div class=\"desktop\">\nExample:\n\n<pre class=\"javascript\">\nvar req = new qx.bom.request.Script();\nreq.onload = function() {\n// Script is loaded and parsed and\n// globals set are available\n}\n\nreq.open(\"GET\", url);\nreq.send();\n</pre>\n</div>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.core, qx.core.Environment.*"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#_success"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#abort"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#dispose"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#isDisposed"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#getAllResponseHeaders"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#getResponseHeader"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#setDetermineSuccess"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#setRequestHeader"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "IO"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 61,
+        "column": 2
+      },
+      "end": {
+        "line": 79,
+        "column": 3
+      }
+    }
+  },
+  "events": {
+    "readystatechange": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired at ready state changes."
+          }
+        ]
+      },
+      "name": "readystatechange",
+      "type": "qx.bom.request.Script"
+    },
+    "error": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired on error."
+          }
+        ]
+      },
+      "name": "error",
+      "type": "qx.bom.request.Script"
+    },
+    "loadend": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired at loadend."
+          }
+        ]
+      },
+      "name": "loadend",
+      "type": "qx.bom.request.Script"
+    },
+    "timeout": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 93,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired on timeouts."
+          }
+        ]
+      },
+      "name": "timeout",
+      "type": "qx.bom.request.Script"
+    },
+    "abort": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 96,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when the request is aborted."
+          }
+        ]
+      },
+      "name": "abort",
+      "type": "qx.bom.request.Script"
+    },
+    "load": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired on successful retrieval."
+          }
+        ]
+      },
+      "name": "load",
+      "type": "qx.bom.request.Script"
+    }
+  },
+  "members": {
+    "readyState": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Ready state.\n\nStates can be:\nUNSENT:           0,\nOPENED:           1,\nLOADING:          2,\nLOADING:          3,\nDONE:             4\n\nContrary to {@link qx.bom.request.Xhr#readyState}, the script transport\ndoes not receive response headers. For compatibility, another LOADING\nstate is implemented that replaces the HEADERS_RECEIVED state."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "status": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} The status code.\n\nNote: The script transport cannot determine the HTTP status code."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "statusText": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The status text.\n\nThe script transport does not receive response headers. For compatibility,\nthe statusText property is set to the status casted to string."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "timeout": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Timeout limit in milliseconds.\n\n0 (default) means no timeout."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__determineSuccess": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 147,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Function that is executed once the script was loaded."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "on": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4
+        },
+        "end": {
+          "line": 161,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add an event listener for the given event name."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The name of the event to listen to.",
+            "paramName": "name",
+            "description": " The name of the event to listen to.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} The function to execute when the event is fired",
+            "paramName": "listener",
+            "description": " The function to execute when the event is fired",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "ctx {var?} The context of the listener.",
+            "paramName": "ctx",
+            "description": " The context of the listener.",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Script} Self for chaining.",
+            "type": "qx.bom.request.Script",
+            "description": " Self for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "open": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initializes (prepares) request."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String}\nThe HTTP method to use.\nThis parameter exists for compatibility reasons. The script transport\ndoes not support methods other than GET.",
+            "paramName": "method",
+            "description": "\nThe HTTP method to use.\nThis parameter exists for compatibility reasons. The script transport\ndoes not support methods other than GET.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String}\nThe URL to which to send the request.",
+            "paramName": "url",
+            "description": "\nThe URL to which to send the request.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setRequestHeader": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 222,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Appends a query parameter to URL.\n\nThis method exists for compatibility reasons. The script transport\ndoes not support request headers. However, many services parse query\nparameters like request headers.\n\nNote: The request must be initialized before using this method."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String}\nThe name of the header whose value is to be set.",
+            "paramName": "key",
+            "description": "\nThe name of the header whose value is to be set.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String}\nThe value to set as the body of the header.",
+            "paramName": "value",
+            "description": "\nThe value to set as the body of the header.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Script} Self for chaining.",
+            "type": "qx.bom.request.Script",
+            "description": " Self for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "send": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 255,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sends request."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Script} Self for chaining.",
+            "type": "qx.bom.request.Script",
+            "description": " Self for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "abort": {
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4
+        },
+        "end": {
+          "line": 270,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Aborts request."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Script} Self for chaining.",
+            "type": "qx.bom.request.Script",
+            "description": " Self for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_emit": {
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4
+        },
+        "end": {
+          "line": 280,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Helper to emit events and call the callback methods."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {String} The name of the event.",
+            "paramName": "event",
+            "description": " The name of the event.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "onreadystatechange": {
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4
+        },
+        "end": {
+          "line": 288,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for an event that fires at every state change.\n\nReplace with custom method to get informed about the communication progress."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onload": {
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4
+        },
+        "end": {
+          "line": 306,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for XHR event \"load\" that is fired on successful retrieval.\n\nNote: This handler is called even when an invalid script is returned.\n\nWarning: Internet Explorer < 9 receives a false \"load\" for invalid URLs.\nThis \"load\" is fired about 2 seconds after sending the request. To\ndistinguish from a real \"load\", consider defining a custom check\nfunction using {@link #setDetermineSuccess} and query the status\nproperty. However, the script loaded needs to have a known impact on\nthe global namespace. If this does not work for you, you may be able\nto set a timeout lower than 2 seconds, depending on script size,\ncomplexity and execution time.\n\nReplace with custom method to listen to the \"load\" event."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onloadend": {
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4
+        },
+        "end": {
+          "line": 316,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for XHR event \"loadend\" that is fired on retrieval.\n\nNote: This handler is called even when a network error (or similar)\noccurred.\n\nReplace with custom method to listen to the \"loadend\" event."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onerror": {
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4
+        },
+        "end": {
+          "line": 325,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for XHR event \"error\" that is fired on a network error.\n\nNote: Some browsers do not support the \"error\" event.\n\nReplace with custom method to listen to the \"error\" event."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onabort": {
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4
+        },
+        "end": {
+          "line": 333,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for XHR event \"abort\" that is fired when request\nis aborted.\n\nReplace with custom method to listen to the \"abort\" event."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "ontimeout": {
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4
+        },
+        "end": {
+          "line": 341,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for XHR event \"timeout\" that is fired when timeout\ninterval has passed.\n\nReplace with custom method to listen to the \"timeout\" event."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getResponseHeader": {
+      "location": {
+        "start": {
+          "line": 354,
+          "column": 4
+        },
+        "end": {
+          "line": 364,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get a single response header from response.\n\nNote: This method exists for compatibility reasons. The script\ntransport does not receive response headers."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String}\nKey of the header to get the value from.",
+            "paramName": "key",
+            "description": "\nKey of the header to get the value from.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Warning message or <code>null</code> if the request\nis disposed",
+            "type": "String|null",
+            "description": " Warning message or <code>null</code> if the request\nis disposed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllResponseHeaders": {
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4
+        },
+        "end": {
+          "line": 385,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get all response headers from response.\n\nNote: This method exists for compatibility reasons. The script\ntransport does not receive response headers."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Warning message or <code>null</code> if the request\nis disposed",
+            "type": "String|null",
+            "description": " Warning message or <code>null</code> if the request\nis disposed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setDetermineSuccess": {
+      "location": {
+        "start": {
+          "line": 396,
+          "column": 4
+        },
+        "end": {
+          "line": 398,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Determine if loaded script has expected impact on global namespace.\n\nThe function is called once the script was loaded and must return a\nboolean indicating if the response is to be considered successful."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "check {Function} Function executed once the script was loaded.",
+            "paramName": "check",
+            "description": " Function executed once the script was loaded.",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 4
+        },
+        "end": {
+          "line": 420,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Dispose object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.IDisposable",
+      "appearsIn": [
+        "qx.core.IDisposable"
+      ]
+    },
+    "isDisposed": {
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 4
+        },
+        "end": {
+          "line": 429,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Check if the request has already beed disposed."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the request has been disposed.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the request has been disposed."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getUrl": {
+      "location": {
+        "start": {
+          "line": 443,
+          "column": 4
+        },
+        "end": {
+          "line": 445,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nPROTECTED\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Get URL of request."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} URL of request.",
+            "type": "String",
+            "description": " URL of request."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getScriptElement": {
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4
+        },
+        "end": {
+          "line": 454,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get script element used for request."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Script element.",
+            "type": "Element",
+            "description": " Script element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onTimeout": {
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 4
+        },
+        "end": {
+          "line": 471,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Handle timeout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onNativeLoad": {
+      "location": {
+        "start": {
+          "line": 476,
+          "column": 4
+        },
+        "end": {
+          "line": 530,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Handle native load."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onNativeError": {
+      "location": {
+        "start": {
+          "line": 535,
+          "column": 4
+        },
+        "end": {
+          "line": 539,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Handle native error."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__scriptElement": {
+      "location": {
+        "start": {
+          "line": 550,
+          "column": 4
+        },
+        "end": {
+          "line": 550,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nPRIVATE\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Element} Script element"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__headElement": {
+      "location": {
+        "start": {
+          "line": 555,
+          "column": 4
+        },
+        "end": {
+          "line": 555,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Element} Head element"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__url": {
+      "location": {
+        "start": {
+          "line": 560,
+          "column": 4
+        },
+        "end": {
+          "line": 560,
+          "column": 13
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} URL"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__onNativeLoadBound": {
+      "location": {
+        "start": {
+          "line": 565,
+          "column": 4
+        },
+        "end": {
+          "line": 565,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound _onNativeLoad handler."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__onNativeErrorBound": {
+      "location": {
+        "start": {
+          "line": 570,
+          "column": 4
+        },
+        "end": {
+          "line": 570,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound _onNativeError handler."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__onTimeoutBound": {
+      "location": {
+        "start": {
+          "line": 575,
+          "column": 4
+        },
+        "end": {
+          "line": 575,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound _onTimeout handler."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__timeoutId": {
+      "location": {
+        "start": {
+          "line": 580,
+          "column": 4
+        },
+        "end": {
+          "line": 580,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Timeout timer iD."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__abort": {
+      "location": {
+        "start": {
+          "line": 585,
+          "column": 4
+        },
+        "end": {
+          "line": 585,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether request was aborted."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__disposed": {
+      "location": {
+        "start": {
+          "line": 590,
+          "column": 4
+        },
+        "end": {
+          "line": 590,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether request was disposed."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__initXhrProperties": {
+      "location": {
+        "start": {
+          "line": 601,
+          "column": 4
+        },
+        "end": {
+          "line": 605,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nHELPER\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Initialize properties."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_readyStateChange": {
+      "location": {
+        "start": {
+          "line": 612,
+          "column": 4
+        },
+        "end": {
+          "line": 615,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Change readyState."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "readyState {Number} The desired readyState",
+            "paramName": "readyState",
+            "description": " The desired readyState",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_success": {
+      "location": {
+        "start": {
+          "line": 620,
+          "column": 4
+        },
+        "end": {
+          "line": 630,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Handle success."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__failure": {
+      "location": {
+        "start": {
+          "line": 635,
+          "column": 4
+        },
+        "end": {
+          "line": 640,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Handle failure."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__supportsErrorHandler": {
+      "location": {
+        "start": {
+          "line": 647,
+          "column": 4
+        },
+        "end": {
+          "line": 654,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Looks up whether browser supports error handler."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether browser supports error handler.",
+            "type": "Boolean",
+            "description": " Whether browser supports error handler."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__createScriptElement": {
+      "location": {
+        "start": {
+          "line": 661,
+          "column": 4
+        },
+        "end": {
+          "line": 677,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Create and configure script element."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Configured script element.",
+            "type": "Element",
+            "description": " Configured script element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__disposeScriptElement": {
+      "location": {
+        "start": {
+          "line": 682,
+          "column": 4
+        },
+        "end": {
+          "line": 688,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove script element from DOM."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__environmentGet": {
+      "location": {
+        "start": {
+          "line": 697,
+          "column": 4
+        },
+        "end": {
+          "line": 715,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Proxy Environment.get to guard against env not being present yet."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} Environment key.",
+            "paramName": "key",
+            "description": " Environment key.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} Value of the queried environment key",
+            "type": "var",
+            "description": " Value of the queried environment key"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "environmentNonLiteralKey(key)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 718,
+        "column": 2
+      },
+      "end": {
+        "line": 722,
+        "column": 3
+      }
+    }
+  },
+  "descendants": [
+    "qx.bom.request.Jsonp"
+  ]
+}

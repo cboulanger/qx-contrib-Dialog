@@ -1,0 +1,100 @@
+{
+  "className": "qx.log.appender.PhoneGap",
+  "packageName": "qx.log.appender",
+  "name": "PhoneGap",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 0
+      },
+      "end": {
+        "line": 93,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2009-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\n======================================================================\n\nThis class contains code based on the following work:\n\nUnify Project\n\nHomepage:\nhttp://unify-project.org\n\nCopyright:\n2009-2010 Deutsche Telekom AG, Germany, http://telekom.com\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Processes the incoming log entry and displays it using the PhoneGap\nlogging capabilities."
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.log.appender.Util"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "debug.*"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "process": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Processes a single log entry"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 78,
+        "column": 2
+      },
+      "end": {
+        "line": 92,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDEFER\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/ObjectRegistry.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "__objectDb",
+    "register",
+    "object",
+    "hash",
+    "core",
+    "ObjectRegistry",
+    "toHashCode",
+    "getObjectFromHashCode",
+    "hashCode",
+    "qxl",
+    "apiviewer"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAmBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EACA;AACEC,aACA;AACEC,kBAAa,EADf;;AAGEC,gBAAW,kBAASC,MAAT,EACX;AACE,YAAIC,OAAOV,GAAGW,IAAH,CAAQC,cAAR,CAAuBC,UAAvB,CAAkCJ,MAAlC,CAAX;AACA,aAAKF,UAAL,CAAgBG,IAAhB,IAAwBD,MAAxB;AACD,OAPH;;AASEK,6BAAwB,+BAASC,QAAT,EAAmB;AACzC,eAAO,KAAKR,UAAL,CAAgBQ,QAAhB,CAAP;AACD;AAXH;;AAFF,GADA,C;AAnBAC,MAAIC,SAAJ,CAAcL,cAAd,CAA6BT,aAA7B,GAA6CA,aAA7C",
+  "file": "ObjectRegistry.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qxl.apiviewer.ObjectRegistry\",\n{\n  statics :\n  {\n    __objectDb : {},\n\n    register : function(object)\n    {\n      var hash = qx.core.ObjectRegistry.toHashCode(object);\n      this.__objectDb[hash] = object;\n    },\n\n    getObjectFromHashCode : function(hashCode) {\n      return this.__objectDb[hashCode];\n    }\n  }\n\n});\n"
+  ]
+}

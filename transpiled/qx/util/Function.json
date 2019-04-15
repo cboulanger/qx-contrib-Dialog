@@ -1,0 +1,144 @@
+{
+  "className": "qx.util.Function",
+  "packageName": "qx.util",
+  "name": "Function",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 0
+      },
+      "end": {
+        "line": 147,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2012 - 2014 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nAlexander Steitz (aback)\nTobias Oberrauch (toberrauch)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nUnderscore.js\nhttp://underscorejs.org\nVersion 1.5.2\n\nCopyright:\n2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Utility module to give some support to work with functions."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "debounce": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a debounced version of the given callback. The execution of the callback\nis delayed by the given delay and after no events were triggered anymore.\nThis mechanism is very useful for event handling: only after a specified delay\nthe event should be handled (e.g. at keyboard input by the user) to prevent flooding\nthe handler with a large amounts of events."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} the callback which should be executed after the given delay\nif the wrapper method is *not* called during this delay.",
+            "paramName": "callback",
+            "description": " the callback which should be executed after the given delay\nif the wrapper method is *not* called during this delay.",
+            "type": "qx.util.Function"
+          },
+          {
+            "name": "@param",
+            "body": "delay {Number} Delay in milliseconds",
+            "paramName": "delay",
+            "description": " Delay in milliseconds",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "immediate {Boolean?} whether to run the callback at the beginning and then debounce, default is <code>false</code>",
+            "paramName": "immediate",
+            "description": " whether to run the callback at the beginning and then debounce, default is <code>false</code>",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} a wrapper function which <em>shields</em> the given callback function",
+            "type": "qx.util.Function",
+            "description": " a wrapper function which <em>shields</em> the given callback function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "throttle": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a throttled version of the given callback. The execution of the callback\nis throttled which means it is only executed in the given interval.\nThis mechanism is very useful for event handling: only in specified intervals\nthe event should be handled (e.g. at resize of the browser window) to prevent flooding\nthe handler with a large amounts of events.\nAs default the <code>leading</code> and <code>trailing</code> calls are executed."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} the callback which should be executed in the given interval",
+            "paramName": "callback",
+            "description": " the callback which should be executed in the given interval",
+            "type": "qx.util.Function"
+          },
+          {
+            "name": "@param",
+            "body": "interval {Number} Interval in milliseconds",
+            "paramName": "interval",
+            "description": " Interval in milliseconds",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} the keys are <code>leading</code> and <code>trailing</code> to control the\nexecuting of the callback precisely. Default values are <code>true</code> for both options.",
+            "paramName": "options",
+            "description": " the keys are <code>leading</code> and <code>trailing</code> to control the\nexecuting of the callback precisely. Default values are <code>true</code> for both options.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} a wrapper function which <em>shields</em> the given callback function",
+            "type": "qx.util.Function",
+            "description": " a wrapper function which <em>shields</em> the given callback function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

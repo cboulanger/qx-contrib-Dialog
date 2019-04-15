@@ -1,0 +1,1027 @@
+{
+  "className": "qx.ui.virtual.selection.MModel",
+  "packageName": "qx.ui.virtual.selection",
+  "name": "MModel",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 44,
+        "column": 0
+      },
+      "end": {
+        "line": 470,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nChristian Hagendorn (chris_schmidt)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Implements the different selection modes single, multi, additive and one\nselection with there drag and quick selection.\n\nExample how to use selection:\n<pre class=\"javascript\">\nvar rawData = [];\nfor (var i = 0; i < 2500; i++) {\nrawData[i] = \"Item No \" + i;\n}\n\nvar model = qx.data.marshal.Json.createModel(rawData);\nvar list = new qx.ui.list.List(model);\n\n// Pre-Select \"Item No 20\"\nlist.getSelection().push(model.getItem(20));\n\n// log change selection\nlist.getSelection().addListener(\"change\", function(e) {\nthis.debug(\"Selection: \" + list.getSelection().getItem(0));\n}, this);\n</pre>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 46,
+        "column": 2
+      },
+      "end": {
+        "line": 51,
+        "column": 3
+      }
+    }
+  },
+  "properties": {
+    "selection": {
+      "type": "property",
+      "name": "selection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "selectionMode": {
+      "type": "property",
+      "name": "selectionMode",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "dragSelection": {
+      "type": "property",
+      "name": "dragSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "quickSelection": {
+      "type": "property",
+      "name": "quickSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    }
+  },
+  "events": {
+    "changeSelection": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 44
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This event is fired as soon as the content of the selection property changes, but\nthis is not equal to the change of the selection of the widget. If the selection\nof the widget changes, the content of the array stored in the selection property\nchanges. This means you have to listen to the change event of the selection array\nto get an event as soon as the user changes the selected item.\n<pre class=\"javascript\">obj.getSelection().addListener(\"change\", listener, this);</pre>"
+          }
+        ]
+      },
+      "name": "changeSelection",
+      "type": "qx.event.type.Data"
+    },
+    "changeValue": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires after the value was modified"
+          }
+        ]
+      },
+      "name": "changeValue",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "_manager": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 128,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.virtual.selection.Row} selection manager"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__ignoreChangeSelection": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 35
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} flag to ignore the selection change from {@link #selection}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__ignoreManagerChangeSelection": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} flag to ignore the selection change from <code>_manager</code>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__defaultSelection": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "setValue implements part of the {@link qx.ui.form.IField} interface."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selection {qx.data.IListData|null} List data to select as value.",
+            "paramName": "selection",
+            "description": " List data to select as value.",
+            "type": [
+              "qx.data.IListData",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null} The status of this operation.",
+            "type": "null",
+            "description": " The status of this operation."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "getValue implements part of the {@link qx.ui.form.IField} interface."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.IListData} The current selection.",
+            "type": "qx.data.IListData",
+            "description": " The current selection."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetValue": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "resetValue implements part of the {@link qx.ui.form.IField} interface."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_initSelectionManager": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4
+        },
+        "end": {
+          "line": 208,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initialize the selection manager with his delegate."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "setAutoScrollIntoView": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4
+        },
+        "end": {
+          "line": 220,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Determines, if automatically scrolling of selected item is active.\nSet <code>false</code> to suspend auto scrolling."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Set <code>false</code> to suspend auto scrolling.",
+            "paramName": "value",
+            "description": " Set <code>false</code> to suspend auto scrolling.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAutoScrollIntoView": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 231,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns true, if automatically scrolling of selected item is active."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>false</code> if auto scrolling is suspended.",
+            "type": "Boolean",
+            "description": " Returns <code>false</code> if auto scrolling is suspended."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_updateSelection": {
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4
+        },
+        "end": {
+          "line": 245,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Method to update the selection, this method can be used when the model has\nchanges."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applySelection": {
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4
+        },
+        "end": {
+          "line": 265,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nAPPLY ROUTINES\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "apply method"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "selection"
+      ]
+    },
+    "_applySelectionMode": {
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4
+        },
+        "end": {
+          "line": 271,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "apply method"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "selectionMode"
+      ]
+    },
+    "_applyDragSelection": {
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4
+        },
+        "end": {
+          "line": 277,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "apply method"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "dragSelection"
+      ]
+    },
+    "_applyQuickSelection": {
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4
+        },
+        "end": {
+          "line": 283,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "apply method"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "quickSelection"
+      ]
+    },
+    "_onChangeSelection": {
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4
+        },
+        "end": {
+          "line": 347,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nSELECTION HANDLERS\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Event handler for the internal selection change {@link #selection}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} the change event.",
+            "paramName": "e",
+            "description": " the change event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onManagerChangeSelection": {
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4
+        },
+        "end": {
+          "line": 368,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler for the selection change from the <code>_manager</code>."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} the change event.",
+            "paramName": "e",
+            "description": " the change event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__synchronizeSelection": {
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4
+        },
+        "end": {
+          "line": 393,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Synchronized the selection form the manager with the local one."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__replaceSelection": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 414,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Replace the current selection with the passed selection Array."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "newSelection {qx.data.Array} The new selection.",
+            "paramName": "newSelection",
+            "description": " The new selection.",
+            "type": "qx.data.Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__isSelectionEquals": {
+      "location": {
+        "start": {
+          "line": 423,
+          "column": 4
+        },
+        "end": {
+          "line": 448,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks whether the local and the manager selection are equal."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the selections are equal,\n<code>false</code> otherwise.",
+            "type": "Boolean",
+            "description": " <code>true</code> if the selections are equal,\n<code>false</code> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_applyDefaultSelection": {
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 4
+        },
+        "end": {
+          "line": 458,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Helper Method to select default item."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getSelection": {
+      "type": "function",
+      "name": "getSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>selection</code>.\n\nFor further details take a look at the property definition: {@link #selection}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.data.Array",
+            "desc": "Returns the value for selection"
+          }
+        ]
+      }
+    },
+    "setSelection": {
+      "type": "function",
+      "name": "setSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>selection</code>.\n\nFor further details take a look at the property definition: {@link #selection}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.data.Array",
+            "paramName": "value",
+            "desc": "Value for selection"
+          }
+        ]
+      }
+    },
+    "resetSelection": {
+      "type": "function",
+      "name": "resetSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selection}."
+          }
+        ]
+      }
+    },
+    "getSelectionMode": {
+      "type": "function",
+      "name": "getSelectionMode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>selectionMode</code>.\n\nFor further details take a look at the property definition: {@link #selectionMode}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for selectionMode"
+          }
+        ]
+      }
+    },
+    "setSelectionMode": {
+      "type": "function",
+      "name": "setSelectionMode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>selectionMode</code>.\n\nFor further details take a look at the property definition: {@link #selectionMode}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for selectionMode"
+          }
+        ]
+      }
+    },
+    "resetSelectionMode": {
+      "type": "function",
+      "name": "resetSelectionMode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selectionMode</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectionMode}."
+          }
+        ]
+      }
+    },
+    "getDragSelection": {
+      "type": "function",
+      "name": "getDragSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>dragSelection</code>.\n\nFor further details take a look at the property definition: {@link #dragSelection}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for dragSelection"
+          }
+        ]
+      }
+    },
+    "isDragSelection": {
+      "type": "function",
+      "name": "isDragSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>dragSelection</code>.\n\nFor further details take a look at the property definition: {@link #dragSelection}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for dragSelection"
+          }
+        ]
+      }
+    },
+    "setDragSelection": {
+      "type": "function",
+      "name": "setDragSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>dragSelection</code>.\n\nFor further details take a look at the property definition: {@link #dragSelection}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for dragSelection"
+          }
+        ]
+      }
+    },
+    "resetDragSelection": {
+      "type": "function",
+      "name": "resetDragSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dragSelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dragSelection}."
+          }
+        ]
+      }
+    },
+    "getQuickSelection": {
+      "type": "function",
+      "name": "getQuickSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>quickSelection</code>.\n\nFor further details take a look at the property definition: {@link #quickSelection}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for quickSelection"
+          }
+        ]
+      }
+    },
+    "isQuickSelection": {
+      "type": "function",
+      "name": "isQuickSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>quickSelection</code>.\n\nFor further details take a look at the property definition: {@link #quickSelection}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for quickSelection"
+          }
+        ]
+      }
+    },
+    "setQuickSelection": {
+      "type": "function",
+      "name": "setQuickSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>quickSelection</code>.\n\nFor further details take a look at the property definition: {@link #quickSelection}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for quickSelection"
+          }
+        ]
+      }
+    },
+    "resetQuickSelection": {
+      "type": "function",
+      "name": "resetQuickSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>quickSelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #quickSelection}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 462,
+        "column": 2
+      },
+      "end": {
+        "line": 469,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

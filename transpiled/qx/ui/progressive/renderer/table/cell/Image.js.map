@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/progressive/renderer/table/cell/Image.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "progressive",
+    "renderer",
+    "table",
+    "cell",
+    "Icon",
+    "construct",
+    "width",
+    "height",
+    "undefined",
+    "__imageWidth",
+    "__imageHeight",
+    "members",
+    "_identifyImage",
+    "cellInfo",
+    "imageData",
+    "imageWidth",
+    "imageHeight",
+    "cellData",
+    "url",
+    "tooltip",
+    "_imageBlank",
+    "aliasManager",
+    "util",
+    "AliasManager",
+    "getInstance",
+    "resourceManager",
+    "ResourceManager",
+    "resolved",
+    "resolve",
+    "toUri",
+    "Image"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,6CAAhB,EACA;AACEC,YAAaN,GAAGO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCC,IADrD;;AAIE;;;;;;;AAOAC,eAAY,mBAASC,KAAT,EAAgBC,MAAhB,EACZ;AACE;;AAEA,UAAID,UAAUE,SAAd,EACA;AACE,aAAKC,YAAL,GAAoBH,KAApB;AACD,OAHD,MAKA;AACE,aAAKG,YAAL,GAAoB,EAApB;AACD;;AAED,UAAIF,WAAWC,SAAf,EACA;AACE,aAAKE,aAAL,GAAqBH,MAArB;AACD,OAHD,MAKA;AACE,aAAKG,aAAL,GAAqB,EAArB;AACD;AACF,KAhCH;;AAmCEC,aACA;;AAEEF,oBAAe,IAFjB;AAGEC,qBAAgB,IAHlB;;AAKE;AACAE,sBAAiB,wBAASC,QAAT,EACjB;AACE,YAAIC,YACJ;AACEC,sBAAc,KAAKN,YADrB;AAEEO,uBAAc,KAAKN;AAFrB,SADA;;AAMA,YAAIH,MAAJ;;AAEA;AACA;AACA,YAAI,OAAOM,SAASI,QAAhB,IAA6B,QAAjC,EACA;AACEH,oBAAUI,GAAV,GAAgBL,SAASI,QAAzB;AACD,SAHD,MAKA;AACEH,oBAAUI,GAAV,GAAgBL,SAASI,QAAT,CAAkBC,GAAlC;AACAJ,oBAAUK,OAAV,GAAoBN,SAASI,QAAT,CAAkBE,OAAtC;AACAZ,mBAASM,SAASI,QAAT,CAAkBV,MAA3B;AACD;;AAED,YAAIO,UAAUI,GAAV,IAAiB,EAArB,EACA;AACEJ,oBAAUI,GAAV,GAAgB,KAAKE,WAArB;AACD,SAHD,MAKA;;AAEE,cAAIC,eAAe7B,GAAG8B,IAAH,CAAQC,YAAR,CAAqBC,WAArB,EAAnB;AACA,cAAIC,kBAAkBjC,GAAG8B,IAAH,CAAQI,eAAR,CAAwBF,WAAxB,EAAtB;AACA,cAAIG,WAAWN,aAAaO,OAAb,CAAqBd,UAAUI,GAA/B,CAAf;AACAJ,oBAAUI,GAAV,GAAgBO,gBAAgBI,KAAhB,CAAsBF,QAAtB,CAAhB;AACD;;AAED;AACA,YAAIpB,MAAJ,EACA;AACEM,mBAASN,MAAT,GAAkBA,MAAlB;AACD;;AAED,eAAOO,SAAP;AACD;AAjDH;AApCF,GADA,C;AAvBAtB,KAAGO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsC2B,KAAtC,CAA4CnC,aAA5C,GAA4DA,aAA5D",
+  "file": "Image.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007 by Tartan Solutions, Inc, http://www.tartansolutions.com\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Dan Hummon\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Table Cell Boolean Renderer.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.Image\",\n{\n  extend     : qx.ui.progressive.renderer.table.cell.Icon,\n\n\n  /**\n   * @param height {Integer ? 16}\n   *   The height of the image. The default is 16.\n   *\n   * @param width {Integer ? 16}\n   *   The width of the image. The default is 16.\n   */\n  construct : function(width, height)\n  {\n    this.base(arguments);\n\n    if (width === undefined)\n    {\n      this.__imageWidth = width;\n    }\n    else\n    {\n      this.__imageWidth = 16;\n    }\n\n    if (height === undefined)\n    {\n      this.__imageHeight = height;\n    }\n    else\n    {\n      this.__imageHeight = 16;\n    }\n  },\n\n\n  members :\n  {\n\n    __imageWidth : null,\n    __imageHeight : null,\n\n    // overridden\n    _identifyImage : function(cellInfo)\n    {\n      var imageData =\n      {\n        imageWidth  : this.__imageWidth,\n        imageHeight : this.__imageHeight\n      };\n\n      var height;\n\n      // String data is the unresolved url for the image.\n      // Object data is a map containing the url, tooltip, and a height\n      if (typeof(cellInfo.cellData) == \"string\")\n      {\n        imageData.url = cellInfo.cellData;\n      }\n      else\n      {\n        imageData.url = cellInfo.cellData.url;\n        imageData.tooltip = cellInfo.cellData.tooltip;\n        height = cellInfo.cellData.height;\n      }\n\n      if (imageData.url == \"\")\n      {\n        imageData.url = this._imageBlank;\n      }\n      else\n      {\n\n        var aliasManager = qx.util.AliasManager.getInstance();\n        var resourceManager = qx.util.ResourceManager.getInstance();\n        var resolved = aliasManager.resolve(imageData.url);\n        imageData.url = resourceManager.toUri(resolved);\n      }\n\n      // Adjust the row height, if necessary, to let this image fit\n      if (height)\n      {\n        cellInfo.height = height;\n      }\n\n      return imageData;\n    }\n  }\n});\n"
+  ]
+}

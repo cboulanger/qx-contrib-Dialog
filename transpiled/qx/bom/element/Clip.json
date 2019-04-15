@@ -1,0 +1,197 @@
+{
+  "className": "qx.bom.element.Clip",
+  "packageName": "qx.bom.element",
+  "name": "Clip",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 250,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Contains methods to control and query the element's clip property"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.String"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "compile": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Compiles the given clipping into a CSS compatible string. This\nis a simple square which describes the visible area of an DOM element.\nChanging the clipping does not change the dimensions of\nan element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "map {Map}  Map which contains <code>left</code>, <code>top</code>\n<code>width</code> and <code>height</code> of the clipped area.",
+            "paramName": "map",
+            "description": "  Map which contains <code>left</code>, <code>top</code>\n<code>width</code> and <code>height</code> of the clipped area.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS compatible string",
+            "type": "String",
+            "description": " CSS compatible string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the clipping of the given element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to query",
+            "paramName": "element",
+            "description": " DOM element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n{@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\nThe computed mode is the default one.",
+            "paramName": "mode",
+            "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n{@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\nThe computed mode is the default one.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map which contains <code>left</code>, <code>top</code>\n<code>width</code> and <code>height</code> of the clipped area.\nEach one could be null or any integer value.",
+            "type": "Map",
+            "description": " Map which contains <code>left</code>, <code>top</code>\n<code>width</code> and <code>height</code> of the clipped area.\nEach one could be null or any integer value."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the clipping of the given element. This is a simple\nsquare which describes the visible area of an DOM element.\nChanging the clipping does not change the dimensions of\nan element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "map {Map} A map with one or more of these available keys:\n<code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>.",
+            "paramName": "map",
+            "description": " A map with one or more of these available keys:\n<code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 248,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the clipping of the given DOM element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

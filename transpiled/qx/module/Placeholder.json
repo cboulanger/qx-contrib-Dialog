@@ -1,0 +1,237 @@
+{
+  "className": "qx.module.Placeholder",
+  "packageName": "qx.module",
+  "name": "Placeholder",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 0
+      },
+      "end": {
+        "line": 179,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The module supplies a fallback implementation for placeholders, which is\nused on input and textarea elements. If the browser supports native placeholders\nthe API silently ignores all calls. If not, an element will be created for every\ngiven input element and acts as placeholder. Most modern browsers support\nplaceholders which makes the fallback only relevant for IE < 10 and FF < 4.\n\n* <a href=\"http://dev.w3.org/html5/spec/single-page.html#the-placeholder-attribute\">HTML Spec</a>\n\n* <a href=\"http://caniuse.com/#feat=input-placeholder\">Browser Support</a>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Manipulating"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Css"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Attribute"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Environment"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Polyfill"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Traversing"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "PLACEHOLDER_NAME": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "String holding the property name which holds the placeholder\nelement for each input."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "update": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Queries for all input and textarea elements on the page and updates\ntheir placeholder."
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, placeholder.update}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__syncStyles": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 92,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal helper method to update the styles for a given input element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qxWeb} The input element to update.",
+            "paramName": "item",
+            "description": " The input element to update.",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__createPlaceholderElement": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates a placeholder element based on the given input element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qxWeb} The input element.",
+            "paramName": "item",
+            "description": " The input element.",
+            "type": "qxWeb"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The placeholder element.",
+            "type": "qxWeb",
+            "description": " The placeholder element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "members": {
+    "updatePlaceholder": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Updates the placeholders for input's and textarea's in the collection.\nThis includes positioning, styles and DOM positioning.\nIn case the browser supports native placeholders, this methods simply\ndoes nothing."
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 176,
+        "column": 2
+      },
+      "end": {
+        "line": 178,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

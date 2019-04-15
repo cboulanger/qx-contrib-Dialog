@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/theme/indigo/Decoration.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "simple",
+    "Decoration",
+    "aliases",
+    "decoration",
+    "decorations",
+    "style",
+    "width",
+    "color",
+    "shadowLength",
+    "shadowBlurRadius",
+    "shadowColor",
+    "backgroundColor",
+    "radius",
+    "widthBottom",
+    "widthTop",
+    "colorTop",
+    "styleTop",
+    "innerWidthBottom",
+    "innerColorBottom",
+    "colorBottom",
+    "gradientStart",
+    "gradientEnd",
+    "indigo"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACEC,YAASN,GAAGO,KAAH,CAASC,MAAT,CAAgBC,UAD3B;;AAGEC,aAAU;AACRC,kBAAa;AADL,KAHZ;;AAOEC,iBACA;AACE,gBACA;AACEC,eACA;AACEC,iBAAQ,CADV;AAEEC,iBAAQ,eAFV;AAGEC,wBAAe,CAHjB;AAIEC,4BAAmB,CAJrB;AAKEC,uBAAc,QALhB;AAMEC,2BAAkB,YANpB;AAOEC,kBAAQ;AAPV;AAFF,OAFF;;AAgBE,wBAAmB;AACjBP,eACA;AACEO,kBAAQ,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,CADV;AAEEL,iBAAO,eAFT;AAGEM,uBAAa;AAHf;AAFiB,OAhBrB;;AAyBE,+BAA0B;AACxBR,eACA;AACEO,kBAAQ,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,CADV;AAEEL,iBAAO,WAFT;AAGEM,uBAAa;AAHf;AAFwB,OAzB5B;;AAmCE,mBACA;AACER,eACA;AACEC,iBAAO,CADT;AAEEC,iBAAO,kBAFT;AAGEI,2BAAkB;AAHpB;AAFF,OApCF;;AA6CE,mBACA;AACEN,eACA;AACES,oBAAW,CADb;AAEEC,oBAAW,aAFb;AAGEC,oBAAW;AAHb;AAFF,OA9CF;;AAwDE,oBAAe;AACbX,eACA;AACEY,4BAAmB,CADrB;AAEEC,4BAAkB,iBAFpB;AAGEL,uBAAa,CAHf;AAIEM,uBAAa,WAJf;;AAMEC,yBAAgB,CAAC,SAAD,EAAY,CAAZ,CANlB;AAOEC,uBAAc,CAAC,SAAD,EAAY,GAAZ,CAPhB;;AASEV,2BAAkB;AATpB;AAFa;AAxDjB;AARF,GADA,C;AArBAnB,KAAGO,KAAH,CAASuB,MAAT,CAAgBrB,UAAhB,CAA2BN,aAA3B,GAA2CA,aAA3C",
+  "file": "Decoration.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Martin Wittemann (martinwittemann)\n\n************************************************************************* */\n\n/**\n * The indigo qooxdoo decoration theme.\n */\nqx.Theme.define(\"qx.theme.indigo.Decoration\",\n{\n  extend : qx.theme.simple.Decoration,\n\n  aliases : {\n    decoration : \"qx/decoration/Simple\"\n  },\n\n  decorations :\n  {\n    \"window\" :\n    {\n      style :\n      {\n        width : 1,\n        color : \"window-border\",\n        shadowLength : 1,\n        shadowBlurRadius : 3,\n        shadowColor : \"shadow\",\n        backgroundColor : \"background\",\n        radius: 3\n      }\n    },\n\n\n    \"window-caption\" : {\n      style :\n      {\n        radius: [3, 3, 0, 0],\n        color: \"window-border\",\n        widthBottom: 1\n      }\n    },\n\n    \"window-caption-active\" : {\n      style :\n      {\n        radius: [3, 3, 0, 0],\n        color: \"highlight\",\n        widthBottom: 3\n      }\n    },\n\n\n    \"white-box\" :\n    {\n      style :\n      {\n        width: 1,\n        color: \"white-box-border\",\n        backgroundColor : \"white\"\n      }\n    },\n\n    \"statusbar\" :\n    {\n      style :\n      {\n        widthTop : 1,\n        colorTop : \"border-main\",\n        styleTop : \"solid\"\n      }\n    },\n\n\n    \"app-header\" : {\n      style :\n      {\n        innerWidthBottom : 1,\n        innerColorBottom: \"highlight-shade\",\n        widthBottom: 9,\n        colorBottom: \"highlight\",\n\n        gradientStart : [\"#505154\", 0],\n        gradientEnd : [\"#323335\", 100],\n\n        backgroundColor : \"#323335\"\n      }\n    }\n  }\n});"
+  ]
+}

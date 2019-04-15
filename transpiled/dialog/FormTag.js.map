@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "source/class/dialog/FormTag.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "container",
+    "Composite",
+    "construct",
+    "layout",
+    "VBox",
+    "members",
+    "_createContentElement",
+    "html",
+    "Element",
+    "dialog",
+    "FormTag"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAiBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,gBAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,SAAN,CAAgBC,SAD3B;;AAGEC,eAAY,mBAASC,MAAT,EACZ;AACE,uDAAqBA,UAAU,IAAIX,GAAGO,EAAH,CAAMI,MAAN,CAAaC,IAAjB,EAA/B;AACD,KANH;;AAQEC,aACA;AACE;AACA;AACAC,6BAAwB,iCACxB;AACE,eAAO,IAAId,GAAGe,IAAH,CAAQC,OAAZ,CAAoB,MAApB,CAAP;AACD;AANH;AATF,GADA,C;AAjBAC,SAAOC,OAAP,CAAef,aAAf,GAA+BA,aAA/B",
+  "file": "FormTag.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n  \n   http://qooxdoo.org/contrib/catalog/#Dialog\n  \n   Copyright:\n     2018 Derrell Lipman\n  \n   License:\n     MIT: https://opensource.org/licenses/MIT\n  \n   Authors:\n   *  Derrell Lipman\n  \n************************************************************************ */\n\nqx.Class.define(\"dialog.FormTag\",\n{\n  extend : qx.ui.container.Composite,\n\n  construct : function(layout)\n  {\n    this.base(arguments, layout || new qx.ui.layout.VBox() );\n  },\n\n  members :\n  {\n    // overridden\n    // Instead of creating a <div> for the content element, use <form>\n    _createContentElement : function()\n    {\n      return new qx.html.Element(\"form\");\n    }\n  }\n});"
+  ]
+}

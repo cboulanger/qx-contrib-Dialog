@@ -1,0 +1,154 @@
+{
+  "className": "qx.ui.core.queue.Dispose",
+  "packageName": "qx.ui.core.queue",
+  "name": "Dispose",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 88,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nFabian Jakobs (fjakobs)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The DisposeQueue registers all widgets which are should be disposed.\nThis queue makes it possible to remove widgets from the DOM using\nthe layout and element queues and dispose them afterwards."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__queue": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} This contains all the queued widgets for the next flush."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a widget to the queue.\n\nShould only be used by {@link qx.ui.core.Widget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} The widget to add.",
+            "paramName": "widget",
+            "description": " The widget to add.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isEmpty": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the dispose queue is empty"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "flush": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Flushes the dispose queue.\n\nThis is used exclusively by the {@link qx.ui.core.queue.Manager}."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

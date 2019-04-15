@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/menubar/MenuBar.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "toolbar",
+    "ToolBar",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "menubar",
+    "MenuBar"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,OAAN,CAAcC,OADzB;;AAKE;;;;;;AAMAC,gBACA;AACE;AACAC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT;AAHF;AAZF,GADA,C;AArBAb,KAAGO,EAAH,CAAMO,OAAN,CAAcC,OAAd,CAAsBZ,aAAtB,GAAsCA,aAAtC",
+  "file": "MenuBar.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Container for menubar buttons to display a classic application menu.\n */\nqx.Class.define(\"qx.ui.menubar.MenuBar\",\n{\n  extend : qx.ui.toolbar.ToolBar,\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /** Appearance of the widget */\n    appearance :\n    {\n      refine : true,\n      init : \"menubar\"\n    }\n  }\n});\n"
+  ]
+}

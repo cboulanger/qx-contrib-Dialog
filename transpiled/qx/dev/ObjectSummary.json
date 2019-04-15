@@ -1,0 +1,103 @@
+{
+  "className": "qx.dev.ObjectSummary",
+  "packageName": "qx.dev",
+  "name": "ObjectSummary",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 160,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nFabian Jakobs (fjakobs)\nHugh Gibson\nJonathan Weiß (jonathan_rass)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Statics around created qooxdoo instances."
+        }
+      ],
+      "@deprecated": [
+        {
+          "name": "@deprecated",
+          "body": "{6.0} automatic memory management means that most objects are no\nlonger stored in the object registry; this class is no longer useful"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getInfo": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Summary of allocated objects"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} summary of allocated objects.",
+            "type": "String",
+            "description": " summary of allocated objects."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNewObjects": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Allocated objects and lists all objects, which have been newly created\nsince the last call of this function."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} summary of allocated objects.",
+            "type": "String",
+            "description": " summary of allocated objects."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

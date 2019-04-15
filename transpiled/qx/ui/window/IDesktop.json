@@ -1,0 +1,211 @@
+{
+  "className": "qx.ui.window.IDesktop",
+  "packageName": "qx.ui.window",
+  "name": "IDesktop",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 72,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nFabian Jakobs (fjakobs)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "All parent widgets of windows must implement this interface."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "setWindowManager": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the desktop's window manager"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "manager {qx.ui.window.IWindowManager} The window manager",
+            "paramName": "manager",
+            "description": " The window manager",
+            "type": "qx.ui.window.IWindowManager"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWindows": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get a list of all windows added to the desktop (including hidden windows)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.window.Window[]} Array of managed windows",
+            "type": "qx.ui.window.Window[]",
+            "description": " Array of managed windows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "supportsMaximize": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the configured layout supports a maximized window\ne.g. is a Canvas."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the layout supports maximized windows",
+            "type": "Boolean",
+            "description": " Whether the layout supports maximized windows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "blockContent": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Block direct child widgets with a zIndex below <code>zIndex</code>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "zIndex {Integer} All child widgets with a zIndex below this value\nwill be blocked",
+            "paramName": "zIndex",
+            "description": " All child widgets with a zIndex below this value\nwill be blocked",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unblock": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove the blocker."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isBlocked": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget is currently blocked"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the widget is blocked.",
+            "type": "Boolean",
+            "description": " whether the widget is blocked."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

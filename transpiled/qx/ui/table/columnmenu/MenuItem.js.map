@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/table/columnmenu/MenuItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "menu",
+    "CheckBox",
+    "implement",
+    "table",
+    "IColumnMenuItem",
+    "construct",
+    "text",
+    "bind",
+    "properties",
+    "columnVisible",
+    "check",
+    "init",
+    "event",
+    "columnmenu",
+    "MenuItem"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,YAAaN,GAAGO,EAAH,CAAMC,IAAN,CAAWC,QAD1B;AAEEC,eAAaV,GAAGO,EAAH,CAAMI,KAAN,CAAYC,eAF3B;;AAME;;;;;;AAMA;;;;;;;;AAQAC,eAAY,mBAASC,IAAT,EACZ;AACE,iDAAqBA,IAArB;;AAEA;AACA,WAAKC,IAAL,CAAU,OAAV,EAAmB,IAAnB,EAAyB,eAAzB;AACA,WAAKA,IAAL,CAAU,eAAV,EAA2B,IAA3B,EAAiC,OAAjC;AACD,KA3BH;;AA+BE;;;;;;AAMAC,gBACA;AACEC,qBACA;AACEC,eAAQ,SADV;AAEEC,cAAQ,IAFV;AAGEC,eAAQ;AAHV;AAFF;AAtCF,GADA,C;AArBApB,KAAGO,EAAH,CAAMI,KAAN,CAAYU,UAAZ,CAAuBC,QAAvB,CAAgCnB,aAAhC,GAAgDA,aAAhD",
+  "file": "MenuItem.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A menu item.\n */\nqx.Class.define(\"qx.ui.table.columnmenu.MenuItem\",\n{\n  extend     : qx.ui.menu.CheckBox,\n  implement  : qx.ui.table.IColumnMenuItem,\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * Create a new instance of an item for insertion into the table column\n   * visibility menu.\n   *\n   * @param text {String}\n   *   Text for the menu item, most typically the name of the column in the\n   *   table.\n   */\n  construct : function(text)\n  {\n    this.base(arguments, text);\n\n    // Two way binding this.columnVisible <--> this.value\n    this.bind(\"value\", this, \"columnVisible\");\n    this.bind(\"columnVisible\", this, \"value\");\n  },\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    columnVisible :\n    {\n      check : \"Boolean\",\n      init  : true,\n      event : \"changeColumnVisible\"\n    }\n  }\n});"
+  ]
+}

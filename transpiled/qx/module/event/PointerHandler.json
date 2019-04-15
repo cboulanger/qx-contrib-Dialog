@@ -1,0 +1,152 @@
+{
+  "className": "qx.module.event.PointerHandler",
+  "packageName": "qx.module.event",
+  "name": "PointerHandler",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 102,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2014 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDaniel Wagner (danielwagner)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "TODOC"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Event_Normalization"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "List of events that require a pointer handler"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "register": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates a pointer handler for the given element when a pointer event listener\nis attached to it"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element",
+            "paramName": "element",
+            "description": " DOM element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregister": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 96,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes the pointer event handler from the element if there are no more\npointer event listeners attached to it"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element",
+            "paramName": "element",
+            "description": " DOM element",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 99,
+        "column": 2
+      },
+      "end": {
+        "line": 101,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

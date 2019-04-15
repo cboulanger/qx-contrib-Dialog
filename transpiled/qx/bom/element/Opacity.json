@@ -1,0 +1,215 @@
+{
+  "className": "qx.bom.element.Opacity",
+  "packageName": "qx.bom.element",
+  "name": "Opacity",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 66,
+        "column": 0
+      },
+      "end": {
+        "line": 230,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nChristian Hagendorn (chris_schmidt)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nPrototype JS\nhttp://www.prototypejs.org/\nVersion 1.5\n\nCopyright:\n(c) 2006-2007, Prototype Core Team\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\nAuthors:\nPrototype Core Team\n\n----------------------------------------------------------------------\n\nCopyright (c) 2005-2008 Sam Stephenson\n\nPermission is hereby granted, free of charge, to any person\nobtaining a copy of this software and associated documentation\nfiles (the \"Software\"), to deal in the Software without restriction,\nincluding without limitation the rights to use, copy, modify, merge,\npublish, distribute, sublicense, and/or sell copies of the Software,\nand to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE.\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Cross-browser opacity support.\n\nOptimized for animations (contains workarounds for typical flickering\nin some browsers). Reduced class dependencies for optimal size and\nperformance."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "compile": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Compiles the given opacity value into a cross-browser CSS string.\nAccepts numbers between zero and one\nwhere \"0\" means transparent, \"1\" means opaque."
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(opacity)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "opacity {Float} A float number between 0 and 1",
+            "paramName": "opacity",
+            "description": " A float number between 0 and 1",
+            "type": "Float"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS compatible string",
+            "type": "String",
+            "description": " CSS compatible string"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets opacity of given element. Accepts numbers between zero and one\nwhere \"0\" means transparent, \"1\" means opaque."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "opacity {Float} A float number between 0 and 1",
+            "paramName": "opacity",
+            "description": " A float number between 0 and 1",
+            "type": "Float"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, opacity)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets opacity of given element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets computed opacity of given element. Accepts numbers between zero and one\nwhere \"0\" means transparent, \"1\" means opaque."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n{@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\nThe computed mode is the default one.",
+            "paramName": "mode",
+            "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n{@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\nThe computed mode is the default one.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Float} A float number between 0 and 1",
+            "type": "Float",
+            "description": " A float number between 0 and 1"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, mode)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,1073 @@
+{
+  "className": "qx.application.Routing",
+  "packageName": "qx.application",
+  "name": "Routing",
+  "superClass": null,
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 85,
+        "column": 0
+      },
+      "end": {
+        "line": 506,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\nTino Butz (tbtz)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Basic application routing manager.\n\nDefine routes to react on certain GET / POST / DELETE / PUT operations.\n\n* GET is triggered when the hash value of the url is changed. Can be called\nmanually by calling the {@link #executeGet} method.\n* POST / DELETE / PUT has to be triggered manually right now (will be changed later)\nby calling the {@link #executePost}, {@link #executeDelete}, {@link #executePut} method.\n\nThis manager can also be used to provide browser history.\n\n*Example*\n\nHere is a little example of how to use the widget.\n\n<pre class='javascript'>\nvar r = new qx.application.Routing();\n\n// show the start page, when no hash is given or the hash is \"#/\"\nr.onGet(\"/\", function(data) {\nstartPage.show();\n}, this);\n\n// whenever the url /address is called show the address book page.\nr.onGet(\"/address\", function(data) {\naddressBookPage.show();\n}, this);\n\n// address with the parameter \"id\"\nr.onGet(\"/address/{id}\", function(data) {\naddressPage.show();\nmodel.loadAddress(data.params.id);\n}, this);\n\n// Alternative you can use regExp for a route\nr.onGet(/address\\/(.*)/, function(data) {\naddressPage.show();\nmodel.loadAddress(data.params.0);\n}, this);\n\n// make sure that the data is always loaded\nr.onGet(\"/address.*\", function(data) {\nif (!model.isLoaded()) {\nmodel.loadAddresses();\n}\n}, this);\n\n// update the address\nr.onPost(\"/address/{id}\", function(data) {\nmodel.updateAddress(data.params.id);\n}, this);\n\n// delete the address and navigate back\nr.onDelete(\"/address/{id}\", function(data) {\nmodel.deleteAddress(data.params.id);\nr.executeGet(\"/address\", {reverse:true});\n}, this);\n</pre>\n\nThis example defines different routes to handle navigation events.\n\nNote this class must be disposed after use"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 88,
+        "column": 2
+      },
+      "end": {
+        "line": 94,
+        "column": 3
+      }
+    }
+  },
+  "statics": {
+    "DEFAULT_PATH": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__back": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__forward": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    }
+  },
+  "members": {
+    "__navigationHandler": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__messaging": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__currentGetPath": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initialization method used to execute the get route for the currently set history path.\nIf no path is set, either the given argument named <code>defaultPath</code>\nor the {@link #DEFAULT_PATH} will be used for initialization."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "defaultPath {String?} Optional default path for initialization.",
+            "paramName": "defaultPath",
+            "description": " Optional default path for initialization.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getPathOrFallback": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if path is valid and registered in channel \"get\" and then just returns it.\nIf the path is not valid either the <code>defaultPath</code> (if given) or the\n{@link #DEFAULT_PATH} will be returned."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} Path which gets checked.",
+            "paramName": "path",
+            "description": " Path which gets checked.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "defaultPath {String?} Optional default path.",
+            "paramName": "defaultPath",
+            "description": " Optional default path.",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} A valid path.",
+            "type": "String",
+            "description": " A valid path."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "onGet": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a route handler for the \"get\" operation. The route gets called\nwhen the {@link #executeGet} method found a match."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "route {String|RegExp} The route, used for checking if the executed path matches.",
+            "paramName": "route",
+            "description": " The route, used for checking if the executed path matches.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call, when the route matches with the executed path.",
+            "paramName": "handler",
+            "description": " The handler to call, when the route matches with the executed path.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {Object} The scope of the handler.",
+            "paramName": "scope",
+            "description": " The scope of the handler.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Event listener ID",
+            "type": "String",
+            "description": " Event listener ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "on": {
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This is a shorthand for {@link #onGet}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "route {String|RegExp} The route, used for checking if the executed path matches.",
+            "paramName": "route",
+            "description": " The route, used for checking if the executed path matches.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call, when the route matches with the executed path.",
+            "paramName": "handler",
+            "description": " The handler to call, when the route matches with the executed path.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {Object} The scope of the handler.",
+            "paramName": "scope",
+            "description": " The scope of the handler.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Event listener ID",
+            "type": "String",
+            "description": " Event listener ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onPost": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 189,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a route handler for the \"post\" operation. The route gets called\nwhen the {@link #executePost} method found a match."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "route {String|RegExp} The route, used for checking if the executed path matches.",
+            "paramName": "route",
+            "description": " The route, used for checking if the executed path matches.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call, when the route matches with the executed path.",
+            "paramName": "handler",
+            "description": " The handler to call, when the route matches with the executed path.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {Object} The scope of the handler.",
+            "paramName": "scope",
+            "description": " The scope of the handler.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Event listener ID",
+            "type": "String",
+            "description": " Event listener ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onPut": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4
+        },
+        "end": {
+          "line": 203,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a route handler for the \"put\" operation. The route gets called\nwhen the {@link #executePut} method found a match."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "route {String|RegExp} The route, used for checking if the executed path matches",
+            "paramName": "route",
+            "description": " The route, used for checking if the executed path matches",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call, when the route matches with the executed path",
+            "paramName": "handler",
+            "description": " The handler to call, when the route matches with the executed path",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {Object} The scope of the handler",
+            "paramName": "scope",
+            "description": " The scope of the handler",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Event listener ID",
+            "type": "String",
+            "description": " Event listener ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onDelete": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4
+        },
+        "end": {
+          "line": 217,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a route handler for the \"delete\" operation. The route gets called\nwhen the {@link #executeDelete} method found a match."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "route {String|RegExp} The route, used for checking if the executed path matches",
+            "paramName": "route",
+            "description": " The route, used for checking if the executed path matches",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call, when the route matches with the executed path",
+            "paramName": "handler",
+            "description": " The handler to call, when the route matches with the executed path",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {Object} The scope of the handler",
+            "paramName": "scope",
+            "description": " The scope of the handler",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Event listener ID",
+            "type": "String",
+            "description": " Event listener ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onAny": {
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4
+        },
+        "end": {
+          "line": 231,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a route handler for the \"any\" operation. The \"any\" operation is called\nbefore all other operations."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "route {String|RegExp} The route, used for checking if the executed path matches",
+            "paramName": "route",
+            "description": " The route, used for checking if the executed path matches",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call, when the route matches with the executed path",
+            "paramName": "handler",
+            "description": " The handler to call, when the route matches with the executed path",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {Object} The scope of the handler",
+            "paramName": "scope",
+            "description": " The scope of the handler",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Event listener ID",
+            "type": "String",
+            "description": " Event listener ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4
+        },
+        "end": {
+          "line": 241,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes a registered route by the given id."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the registered route",
+            "paramName": "id",
+            "description": " The id of the registered route",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__onChangeHash": {
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4
+        },
+        "end": {
+          "line": 257,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Hash change event handler."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The changeHash event.",
+            "paramName": "evt",
+            "description": " The changeHash event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_executeGet": {
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes the get operation and informs all matching route handler."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "fromEvent {var} Determines whether this method was called from history",
+            "paramName": "fromEvent",
+            "description": " Determines whether this method was called from history",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "executeGet": {
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4
+        },
+        "end": {
+          "line": 302,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes the get operation and informs all matching route handler."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "execute": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4
+        },
+        "end": {
+          "line": 313,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This is a shorthand for {@link #executeGet}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "executePost": {
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4
+        },
+        "end": {
+          "line": 325,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes the post operation and informs all matching route handler."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "executePut": {
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4
+        },
+        "end": {
+          "line": 337,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes the put operation and informs all matching route handler."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "executeDelete": {
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4
+        },
+        "end": {
+          "line": 349,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes the delete operation and informs all matching route handler."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getState": {
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4
+        },
+        "end": {
+          "line": 358,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns state value (history hash) of the navigation handler."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} State of history navigation handler",
+            "type": "String",
+            "description": " State of history navigation handler"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__addToHistory": {
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 4
+        },
+        "end": {
+          "line": 373,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds the custom data of a given path to the history."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to store.",
+            "paramName": "path",
+            "description": " The path to store.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The custom data to store",
+            "paramName": "customData",
+            "description": " The custom data to store",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__replaceCustomData": {
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4
+        },
+        "end": {
+          "line": 390,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Replaces the customData in the history objects with the recent custom data."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path to replace.",
+            "paramName": "path",
+            "description": " The path to replace.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The custom data to store.",
+            "paramName": "customData",
+            "description": " The custom data to store.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getFromHistory": {
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 4
+        },
+        "end": {
+          "line": 448,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a history entry for a certain path."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} The path of the entry",
+            "paramName": "path",
+            "description": " The path of the entry",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map|null} The retrieved entry. <code>null</code> when no entry was found.",
+            "type": "Map|null",
+            "description": " The retrieved entry. <code>null</code> when no entry was found."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "back": {
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 4
+        },
+        "end": {
+          "line": 496,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Navigates back to the previously executed path."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "customData {Map?} The given custom data that should be propagated.\nIf it contains a key <code>defaultPath</code> and no history data is\navailable, its value is used as a target path. If it does not include\nsuch a key, the routing's default path is used instead (again only for\nempty history).\nThis behavior is useful for instance when reloading a page during\ndevelopment but expecting the page's back button always to work.",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated.\nIf it contains a key <code>defaultPath</code> and no history data is\navailable, its value is used as a target path. If it does not include\nsuch a key, the routing's default path is used instead (again only for\nempty history).\nThis behavior is useful for instance when reloading a page during\ndevelopment but expecting the page's back button always to work.",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 502,
+          "column": 4
+        },
+        "end": {
+          "line": 504,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Decouples the Routing from the navigation handler."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.IDisposable",
+      "appearsIn": [
+        "qx.core.IDisposable"
+      ]
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "source/class/dialog/theme/icon/IcoMoonFree.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "title",
+    "aliases",
+    "dialog",
+    "theme",
+    "icon",
+    "IcoMoonFree"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAkBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,WAAQ,aADV;AAEEC,aAAU;AACR,cAAS,gBADD;AAER,4BAAuB,uCAFf;AAGR,wBAAuB,2CAHf;AAIR,0BAAuB,sCAJf;AAKR,2BAAuB,+CALf;AAMR,6BAAwB;AANhB;AAFZ,GADA,C;AAlBAC,SAAOC,KAAP,CAAaC,IAAb,CAAkBC,WAAlB,CAA8BR,aAA9B,GAA8CA,aAA9C",
+  "file": "IcoMoonFree.js",
+  "sourcesContent": [
+    "/**\n * Icons from the IcoMoon Free Pack\n * \n * https://icomoon.io/#preview-free\n * https://github.com/Keyamoon/IcoMoon-Free\n * \n * Dual-licences under CC BY 4.0 or GPL.\n * see https://github.com/Keyamoon/IcoMoon-Free/blob/master/License.txt\n * http://creativecommons.org/licenses/by/4.0/\n * http://www.gnu.org/licenses/gpl.html\n * \n * @asset(dialog/icon/IcoMoonFree/272-cross.svg)\n * @asset(dialog/icon/IcoMoonFree/273-checkmark.svg)\n * @asset(dialog/icon/IcoMoonFree/264-warning.svg)\n * @asset(dialog/icon/IcoMoonFree/269-info.svg)\n * @asset(dialog/icon/IcoMoonFree/270-cancel-circle.svg)\n * @asset(qx/icon/Oxygen/16/apps/office-calendar.png)\n */\nqx.Theme.define(\"dialog.theme.icon.IcoMoonFree\",\n{\n  title : \"IcoMoonFree\",\n  aliases : {\n    \"icon\" : \"qx/icon/Oxygen\",\n    \"dialog.icon.cancel\" : \"dialog/icon/IcoMoonFree/272-cross.svg\",\n    \"dialog.icon.ok\"     : \"dialog/icon/IcoMoonFree/273-checkmark.svg\",\n    \"dialog.icon.info\"   : \"dialog/icon/IcoMoonFree/269-info.svg\",\n    \"dialog.icon.error\"  : \"dialog/icon/IcoMoonFree/270-cancel-circle.svg\",\n    \"dialog.icon.warning\" : \"dialog/icon/IcoMoonFree/264-warning.svg\"\n  }\n});"
+  ]
+}

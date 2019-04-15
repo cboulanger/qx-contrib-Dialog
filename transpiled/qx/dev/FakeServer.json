@@ -1,0 +1,487 @@
+{
+  "className": "qx.dev.FakeServer",
+  "packageName": "qx.dev",
+  "name": "FakeServer",
+  "superClass": "Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 58,
+        "column": 0
+      },
+      "end": {
+        "line": 280,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2013 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDaniel Wagner (danielwagner)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "A wrapper around Sinon.JS's FakeXMLHttpRequest and FakeServer features that\nallows quick and simple configuration of mock HTTP backends for testing and\ndevelopment.\nAutomatically creates URL filtering rules to ensure that only configured\nrequests are faked while others will be processed normally by the browser's\nXHR implementation.\n\nThe following example shows how to configure mock responses for two different\nrequests:\n<pre class=\"javascript\">\nvar responseData = [\n{\nmethod: \"GET\",\nurl: /\\/api\\/resource\\/\\d+/,\nresponse : function(request) {\nvar status = 200;\nvar headers = { \"Content-Type\": \"application/json\" };\nvar responseData = {\ndescription: \"Mock REST response for resource \" + request.url\n};\nvar body = qx.lang.Json.stringify(responseData);\nrequest.respond(status, headers, body);\n}\n},\n{\nmethod: \"GET\",\nurl: \"/users/{userId}\",\nresponse: [\n200,\n{ \"Content-Type\": \"application/json\" },\nqx.lang.Json.stringify({userId: 'someUser'})\n]\n}\n];\n\nqx.dev.FakeServer.getInstance().configure(responseData);\n</pre>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 62,
+        "column": 2
+      },
+      "end": {
+        "line": 73,
+        "column": 3
+      }
+    }
+  },
+  "statics": {
+    "$$instance": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "$$allowconstruct": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getInstance": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Helper method to handle singletons"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The singleton instance",
+            "type": "Object",
+            "description": " The singleton instance"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__sinon": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__fakeServer": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__responses": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__filter": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "configure": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 147,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Configures a set of fake HTTP responses. Each response is defined as a map\nthat must provide the following keys:\n<ul>\n<li><code>method</code> HTTP method to respond to, e.g. <code>PUT</code></li>\n<li><code>url</code> URL used to match requests to fake responses. Can be\na RegExp or a String. REST-style parameter placeholders in curly braces\nwill be replaced with wildcards, e.g. the string \"/resource/{resourceId}\"\nis interpreted as the RegExp <code>/\\/resource\\/\\{.*?\\}/</code>\n<li><code>response</code> This can be either:\n<ul>\n<li>a string: This will be the response body, status code will be 200</li>\n<li>an array containing the status code, a map of response headers and\nthe response text, e.g. <code>[200, { \"Content-Type\": \"text/html\" }, \"OK\"]</code>\n</li>\n<li>a function: This will be called with a FakeXMLHttpRequest object as\nthe only argument. Its <code>respond</code> method must be called to send a response.\nSee <a href=\"http://sinonjs.org/docs/#respond\">Sinon.JS: Respond</a> for details.\n</li>\n</ul>\n</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "responseData {Map[]} An array of response description maps.",
+            "paramName": "responseData",
+            "description": " An array of response description maps.",
+            "type": "Map[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addFilter": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a URL filtering function to decide whether a request should be handled\nby the FakeServer or passed to the regular XMLHttp implementation.\nSee <a href=\"http://sinonjs.org/docs/#filtered-requests\">Sinon.JS: Filtered Requests</a>\nfor details."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filter {Function} URL filter function. Will be called with the\nfollowing arguments: <code>method</code>, <code>url</code>, <code>async</code>,\n<code>username</code>, <code>password</code>. Must return <code>true</code>\nif the request should not be faked.",
+            "paramName": "filter",
+            "description": " URL filter function. Will be called with the\nfollowing arguments: <code>method</code>, <code>url</code>, <code>async</code>,\n<code>username</code>, <code>password</code>. Must return <code>true</code>\nif the request should not be faked.",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeFilter": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 176,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove a filter that was added with {@link #addFilter}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filter {Function} filter function to remove",
+            "paramName": "filter",
+            "description": " filter function to remove",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeResponse": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4
+        },
+        "end": {
+          "line": 198,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes a response that was configured with {@link #configure}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} HTTP method of the response",
+            "paramName": "method",
+            "description": " HTTP method of the response",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String|RegExp} URL of the response",
+            "paramName": "url",
+            "description": " URL of the response",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "respondWith": {
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4
+        },
+        "end": {
+          "line": 211,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Defines a fake XHR response to a matching request."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} HTTP method to respond to, e.g. \"GET\"",
+            "paramName": "method",
+            "description": " HTTP method to respond to, e.g. \"GET\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "urlRegExp {RegExp} Request URL must match match this expression",
+            "paramName": "urlRegExp",
+            "description": " Request URL must match match this expression",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "response {Function|Array|String} Response to send. See\n<a href=\"http://sinonjs.org/docs/#fakeServer\">Sinon.JS: Fake Server</a> for details.",
+            "paramName": "response",
+            "description": " Response to send. See\n<a href=\"http://sinonjs.org/docs/#fakeServer\">Sinon.JS: Fake Server</a> for details.",
+            "type": [
+              "Function",
+              "Array",
+              "String"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFakeServer": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 227,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates and configures a FakeServer if necessary and returns it."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} FakeServer object",
+            "type": "Object",
+            "description": " FakeServer object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "restore": {
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4
+        },
+        "end": {
+          "line": 239,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Stops the FakeServer and removes all configured responses and/or filters."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getRegExp": {
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4
+        },
+        "end": {
+          "line": 252,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a RegExp using the given pattern. Curly brackets and anything\nbetween are replaced with wildcards (.*?)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pattern {String} RegExp pattern",
+            "paramName": "pattern",
+            "description": " RegExp pattern",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{RegExp} Regular Expression",
+            "type": "RegExp",
+            "description": " Regular Expression"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__getCombinedFilter": {
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4
+        },
+        "end": {
+          "line": 272,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a filter function that ensures only requests matching configured\nfake responses will be intercepted."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} filter function",
+            "type": "Function",
+            "description": " filter function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 275,
+        "column": 2
+      },
+      "end": {
+        "line": 278,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

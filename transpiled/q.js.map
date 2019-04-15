@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/q.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "qxWeb",
+    "q"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGC,SAAH,CAAaG,MAAb,CAAoB,GAApB,EAAyB;AACvBC,YAASC;AADc,GAAzB,C;AArBAC,IAAEJ,aAAF,GAAkBA,aAAlB;;;AAwBA;AACAI,IAAID,KAAJ",
+  "file": "q.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * Compatibility class for {@link qxWeb}.\n */\nqx.Bootstrap.define(\"q\", {\n  extend : qxWeb\n});\n// make sure it's the same\nq = qxWeb;"
+  ]
+}

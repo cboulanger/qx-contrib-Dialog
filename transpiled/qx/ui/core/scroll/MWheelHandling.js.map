@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/core/scroll/MWheelHandling.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "members",
+    "_onMouseWheel",
+    "e",
+    "showX",
+    "_isChildControlVisible",
+    "showY",
+    "scrollbarY",
+    "getChildControl",
+    "scrollbarX",
+    "deltaY",
+    "getWheelDelta",
+    "deltaX",
+    "endY",
+    "endX",
+    "steps",
+    "parseInt",
+    "scrollBySteps",
+    "position",
+    "getPosition",
+    "max",
+    "getMaximum",
+    "stop",
+    "ui",
+    "core",
+    "scroll",
+    "MWheelHandling"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAyBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EACA;AACEC,aACA;AACE;;;;;AAKAC,qBAAgB,uBAASC,CAAT,EAChB;AACE,YAAIC,QAAQ,KAAKC,sBAAL,CAA4B,aAA5B,CAAZ;AACA,YAAIC,QAAQ,KAAKD,sBAAL,CAA4B,aAA5B,CAAZ;;AAEA,YAAIE,aAAaD,QAAQ,KAAKE,eAAL,CAAqB,aAArB,EAAoC,IAApC,CAAR,GAAoD,IAArE;AACA,YAAIC,aAAaL,QAAQ,KAAKI,eAAL,CAAqB,aAArB,EAAoC,IAApC,CAAR,GAAoD,IAArE;;AAEA,YAAIE,SAASP,EAAEQ,aAAF,CAAgB,GAAhB,CAAb;AACA,YAAIC,SAAST,EAAEQ,aAAF,CAAgB,GAAhB,CAAb;;AAEA,YAAIE,OAAO,CAACP,KAAZ;AACA,YAAIQ,OAAO,CAACV,KAAZ;;AAEA;AACA,YAAIG,UAAJ,EAAgB;;AAEd,cAAIQ,QAAQC,SAASN,MAAT,CAAZ;AACA,cAAIK,UAAU,CAAd,EAAiB;AACfR,uBAAWU,aAAX,CAAyBF,KAAzB;AACD;;AAED,cAAIG,WAAWX,WAAWY,WAAX,EAAf;AACA,cAAIC,MAAMb,WAAWc,UAAX,EAAV;;AAEA;AACA,cAAIN,QAAQ,CAAR,IAAaG,YAAY,CAAzB,IAA8BH,QAAQ,CAAR,IAAaG,YAAYE,GAA3D,EAAgE;AAC9DP,mBAAO,IAAP;AACD;AACF;;AAED;AACA,YAAIJ,UAAJ,EAAgB;AACd,cAAIM,QAAQC,SAASJ,MAAT,CAAZ;AACA,cAAIG,UAAU,CAAd,EAAiB;AACfN,uBAAWQ,aAAX,CAAyBF,KAAzB;AACD;;AAED,cAAIG,WAAWT,WAAWU,WAAX,EAAf;AACA,cAAIC,MAAMX,WAAWY,UAAX,EAAV;AACA;AACA,cAAIN,QAAQ,CAAR,IAAaG,YAAY,CAAzB,IAA8BH,QAAQ,CAAR,IAAaG,YAAYE,GAA3D,EAAgE;AAC9DN,mBAAO,IAAP;AACD;AACF;;AAED;AACA,YAAK,CAACD,IAAD,IAASD,WAAW,CAArB,IACC,CAACE,IAAD,IAASJ,WAAW,CADrB,IAEC,CAAC,CAACI,IAAD,IAAS,CAACD,IAAX,KAAqBD,WAAW,CAAhC,IAAqCF,WAAW,CAFrD,EAEyD;AACvD;AACAP,YAAEmB,IAAF;AACD;AACF;AA3DH;AAFF,GADA,C;AAzBA3B,KAAG4B,EAAH,CAAMC,IAAN,CAAWC,MAAX,CAAkBC,cAAlB,CAAiC5B,aAAjC,GAAiDA,aAAjD",
+  "file": "MWheelHandling.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Mixin holding the handler for the two axis mouse wheel scrolling. Please\n * keep in mind that the including widget has to have the scroll bars\n * implemented as child controls named <code>scrollbar-x</code> and\n * <code>scrollbar-y</code> to get the handler working. Also, you have to\n * attach the listener yourself.\n */\nqx.Mixin.define(\"qx.ui.core.scroll.MWheelHandling\",\n{\n  members :\n  {\n    /**\n     * Mouse wheel event handler\n     *\n     * @param e {qx.event.type.Mouse} Mouse event\n     */\n    _onMouseWheel : function(e)\n    {\n      var showX = this._isChildControlVisible(\"scrollbar-x\");\n      var showY = this._isChildControlVisible(\"scrollbar-y\");\n\n      var scrollbarY = showY ? this.getChildControl(\"scrollbar-y\", true) : null;\n      var scrollbarX = showX ? this.getChildControl(\"scrollbar-x\", true) : null;\n\n      var deltaY = e.getWheelDelta(\"y\");\n      var deltaX = e.getWheelDelta(\"x\");\n\n      var endY = !showY;\n      var endX = !showX;\n\n      // y case\n      if (scrollbarY) {\n\n        var steps = parseInt(deltaY);\n        if (steps !== 0) {\n          scrollbarY.scrollBySteps(steps);\n        }\n\n        var position = scrollbarY.getPosition();\n        var max = scrollbarY.getMaximum();\n\n        // pass the event to the parent if the scrollbar is at an edge\n        if (steps < 0 && position <= 0 || steps > 0 && position >= max) {\n          endY = true;\n        }\n      }\n\n      // x case\n      if (scrollbarX) {\n        var steps = parseInt(deltaX);\n        if (steps !== 0) {\n          scrollbarX.scrollBySteps(steps);\n        }\n\n        var position = scrollbarX.getPosition();\n        var max = scrollbarX.getMaximum();\n        // pass the event to the parent if the scrollbar is at an edge\n        if (steps < 0 && position <= 0 || steps > 0 && position >= max) {\n          endX = true;\n        }\n      }\n\n      // pass the event to the parent if both scrollbars are at the end\n      if ((!endY && deltaX === 0) ||\n          (!endX && deltaY === 0) ||\n          ((!endX || !endY ) && deltaX !== 0 && deltaY !== 0)) {\n        // Stop bubbling and native event only if a scrollbar is visible\n        e.stop();\n      }\n    }\n  }\n});\n"
+  ]
+}

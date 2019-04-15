@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/dev/unit/RequirementError.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "Error",
+    "construct",
+    "requirement",
+    "message",
+    "__message",
+    "__requirement",
+    "inst",
+    "call",
+    "stack",
+    "stacktrace",
+    "members",
+    "getRequirement",
+    "toString",
+    "msg",
+    "dev",
+    "unit",
+    "RequirementError"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EAAgD;;AAE9CC,YAASC,KAFqC;;AAK9C;;;;;;AAMA;;;;AAIAC,eAAY,mBAASC,WAAT,EAAsBC,OAAtB,EAA+B;;AAEzC,WAAKC,SAAL,GAAiBD,WAAW,qBAA5B;AACA,WAAKE,aAAL,GAAqBH,WAArB;;AAEA,UAAII,OAAON,MAAMO,IAAN,CAAW,IAAX,EAAiB,KAAKH,SAAtB,CAAX;AACA;AACA,UAAIE,KAAKE,KAAT,EAAgB;AACd,aAAKA,KAAL,GAAaF,KAAKE,KAAlB;AACD;AACD,UAAIF,KAAKG,UAAT,EAAqB;AACnB,aAAKA,UAAL,GAAkBH,KAAKG,UAAvB;AACD;AACF,KA5B6C;;AA+B9C;;;;;AAKAC,aACA;AACEN,iBAAY,IADd;AAEEC,qBAAgB,IAFlB;;AAKE;;;;;AAKAM,sBAAiB,0BACjB;AACE,eAAO,KAAKN,aAAZ;AACD,OAbH;;AAgBE;;;;;AAKAO,gBAAW,oBACX;AACE,YAAIC,MAAM,KAAKT,SAAf;AACA,YAAI,KAAKC,aAAT,EAAwB;AACtBQ,iBAAO,OAAO,KAAKR,aAAnB;AACD;AACD,eAAOQ,GAAP;AACD;AA5BH;AArC8C,GAAhD,C;AAvBApB,KAAGqB,GAAH,CAAOC,IAAP,CAAYC,gBAAZ,CAA6BpB,aAA7B,GAA6CA,aAA7C",
+  "file": "RequirementError.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (d_wagner)\n\n************************************************************************ */\n\n/**\n * This error is thrown by the unit test class if an infrastructure requirement\n * is not met. The unit testing framework should skip the test and visually mark\n * the test as not having been executed.\n */\nqx.Class.define(\"qx.dev.unit.RequirementError\", {\n\n  extend : Error,\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param requirement {String?} The requirement ID, e.g. \"SSL\"\n   * @param message {String?} Optional error message\n   */\n  construct : function(requirement, message) {\n\n    this.__message = message || \"Requirement not met\";\n    this.__requirement = requirement;\n\n    var inst = Error.call(this, this.__message);\n    // map stack trace properties since they're not added by Error's constructor\n    if (inst.stack) {\n      this.stack = inst.stack;\n    }\n    if (inst.stacktrace) {\n      this.stacktrace = inst.stacktrace;\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n  members :\n  {\n    __message : null,\n    __requirement : null,\n\n\n    /**\n     * Returns the ID of the requirement that was not satisfied.\n     *\n     * @return {String} The requirement ID\n     */\n    getRequirement : function()\n    {\n      return this.__requirement;\n    },\n\n\n    /**\n     * Returns a string representation of the error.\n     *\n     * @return {String} Error message\n     */\n    toString : function()\n    {\n      var msg = this.__message;\n      if (this.__requirement) {\n        msg += \": \" + this.__requirement;\n      }\n      return msg;\n    }\n  }\n});"
+  ]
+}

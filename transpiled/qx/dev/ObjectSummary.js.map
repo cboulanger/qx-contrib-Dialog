@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/dev/ObjectSummary.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "getInfo",
+    "vData",
+    "vCounter",
+    "vObject",
+    "vDb",
+    "core",
+    "ObjectRegistry",
+    "getRegistry",
+    "key",
+    "isDisposed",
+    "classname",
+    "vArrData",
+    "vClassName",
+    "push",
+    "number",
+    "sort",
+    "a",
+    "b",
+    "vMsg",
+    "i",
+    "length",
+    "getNewObjects",
+    "mHashCode",
+    "ar",
+    "sClassName",
+    "toHashCode",
+    "_m_dObjectList",
+    "dMore",
+    "aHashCode",
+    "join",
+    "dev",
+    "ObjectSummary"
+  ],
+  "mappings": "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",
+  "file": "ObjectSummary.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n     * Hugh Gibson\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * Statics around created qooxdoo instances.\n * @deprecated {6.0} automatic memory management means that most objects are no\n * longer stored in the object registry; this class is no longer useful\n */\nqx.Class.define(\"qx.dev.ObjectSummary\",\n{\n  statics:\n  {\n    /**\n     * Summary of allocated objects\n     *\n     * @return {String} summary of allocated objects.\n     */\n    getInfo : function()\n    {\n      var vData = {};\n      var vCounter = 0;\n      var vObject;\n      var vDb = qx.core.ObjectRegistry.getRegistry();\n\n      for (var key in vDb)\n      {\n        vObject = vDb[key];\n\n        if (vObject && vObject.isDisposed() === false)\n        {\n          if (vData[vObject.classname] == null) {\n            vData[vObject.classname] = 1;\n          } else {\n            vData[vObject.classname]++;\n          }\n\n          vCounter++;\n        }\n      }\n\n      var vArrData = [];\n\n      for (var vClassName in vData)\n      {\n        vArrData.push(\n        {\n          classname : vClassName,\n          number    : vData[vClassName]\n        });\n      }\n\n      vArrData.sort(function(a, b) {\n        return b.number - a.number;\n      });\n\n      var vMsg = \"Summary: (\" + vCounter + \" Objects)\\n\\n\";\n\n      for (var i=0; i<vArrData.length; i++) {\n        vMsg += vArrData[i].number + \": \" + vArrData[i].classname + \"\\n\";\n      }\n\n      return vMsg;\n    },\n\n\n    /**\n     * Allocated objects and lists all objects, which have been newly created\n     * since the last call of this function.\n     *\n     * @return {String} summary of allocated objects.\n     */\n    getNewObjects : function()\n    {\n      var vData = {};\n      var vCounter = 0;\n      var vObject;\n      var vDb = qx.core.ObjectRegistry.getRegistry();\n      var mHashCode = {};\n      var ar;\n\n      for (var key in vDb)\n      {\n        vObject = vDb[key];\n\n        if (vObject && vObject.isDisposed() === false)\n        {\n          var sClassName = vObject.classname;\n          if (vData[sClassName] == null) {\n            vData[sClassName] = 1;\n          } else {\n            vData[sClassName]++;\n          }\n          ar = mHashCode[sClassName];\n          if (ar == null) {\n            ar = mHashCode[sClassName] = [];\n          }\n          ar[ar.length] = vObject.toHashCode();\n          vCounter++;\n        }\n      }\n\n      if (! this._m_dObjectList) {\n        this._m_dObjectList = {};\n      }\n      var dMore = {};\n      for (var sClassName in vData)\n      {\n        if (!(sClassName in this._m_dObjectList)) {\n          this._m_dObjectList[sClassName] = 0;\n        }\n        if (this._m_dObjectList[sClassName] >= 0 && this._m_dObjectList[sClassName] < vData[sClassName]) {\n          dMore[sClassName] = vData[sClassName] - this._m_dObjectList[sClassName];\n        }\n      }\n\n      this._m_dObjectList = vData;\n\n      var vArrData = [];\n      for (var vClassName in dMore) {\n        vArrData.push({\n          classname : vClassName,\n          number    : dMore[vClassName],\n          aHashCode : mHashCode[vClassName]\n        });\n      }\n\n      vArrData.sort(function(a, b) {\n        return b.number - a.number;\n      });\n\n      var vMsg = \"Summary: (\" + vCounter + \" Objects)\\r\\n\\r\\n\";\n      for (var i=0; i<vArrData.length; i++)\n      {\n        vMsg +=\n          vArrData[i].number + \": \" + vArrData[i].classname +\n          \" (\" + vArrData[i].aHashCode.join(\", \") + \")\\r\\n\";\n      }\n      return vMsg;\n    }\n\n  }\n});\n"
+  ]
+}

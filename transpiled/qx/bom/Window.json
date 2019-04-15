@@ -1,0 +1,526 @@
+{
+  "className": "qx.bom.Window",
+  "packageName": "qx.bom",
+  "name": "Window",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 392,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nAlexander Steitz (aback)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Includes library functions to work with browser windows"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__blocker": {
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 29,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal blocker instance for all browsers which need an additional\nblocker for modal windows because they do not support it natively."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__blockerWindow": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Window handle which is currently blocked."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__timer": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Timer instance to poll for unblocking if the modal window was closed"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__modalOptions": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Supported options and their mapping to window options"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__modelessOptions": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Supported options for modeless windows"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__isCapableToOpenModalWindows": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the browser can open native modal window."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Capability of open modal windows",
+            "type": "Boolean",
+            "description": " Capability of open modal windows"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "open": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 199,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Opens a native window with the given options.\n\nModal windows can have the following options:\n\n* top\n\n* left\n\n* width\n\n* height\n\n* scrollbars\n\n* resizable\n\nModeless windows have the following options:\n\n* top\n\n* left\n\n* width\n\n* height\n\n* dependent\n\n* resizable\n\n* status\n\n* location\n\n* menubar\n\n* scrollbars\n\n* toolbar\n\nExcept of dimension and location options all other options are boolean\nvalues.\n\n*Important infos for native modal windows*\n\nIf you want to reference the opened window from within the native modal\nwindow you need to use\n\n<pre class='javascript'>\nvar opener = window.dialogArguments[0];\n</pre>\n\nsince a reference to the opener is passed automatically to the modal window.\n\n*Passing window arguments*\n\nThis is only working if the page of the modal window is from the same origin.\nThis is at least true for Firefox browsers."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} URL of the window",
+            "paramName": "url",
+            "description": " URL of the window",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the window",
+            "paramName": "name",
+            "description": " Name of the window",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} Window options",
+            "paramName": "options",
+            "description": " Window options",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "modal {Boolean} Whether the window should be opened modal",
+            "paramName": "modal",
+            "description": " Whether the window should be opened modal",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "useNativeModalDialog {Boolean} controls if modal windows are opened\nusing the native method or a blocker\nshould be used to fake modality.\nDefault is <b>true</b>",
+            "paramName": "useNativeModalDialog",
+            "description": " controls if modal windows are opened\nusing the native method or a blocker\nshould be used to fake modality.\nDefault is <b>true</b>",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function ?} listener function for onload event on the new window",
+            "paramName": "listener",
+            "description": " listener function for onload event on the new window",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ?} Reference to the 'this' variable inside\nthe event listener. When not given, 'this' variable will be the new window",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\nthe event listener. When not given, 'this' variable will be the new window",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Window} native window object",
+            "type": "qx.bom.Window",
+            "description": " native window object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__generateConfigurationString": {
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4
+        },
+        "end": {
+          "line": 260,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the given config as string for direct use for the \"window.open\" method"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "options {Array} Array with all configuration options",
+            "paramName": "options",
+            "description": " Array with all configuration options",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "modality {Boolean} whether the config should be for a modal window",
+            "paramName": "modality",
+            "description": " whether the config should be for a modal window",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} configuration as string representation",
+            "type": "qx.bom.String",
+            "description": " configuration as string representation"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__checkForUnblocking": {
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4
+        },
+        "end": {
+          "line": 274,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Interval method which checks if the native window was closed to also\nstop the associated timer."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getBlocker": {
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4
+        },
+        "end": {
+          "line": 296,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "If a modal window is opened with the option\n\n<pre class='javascript'>\nuseNativeModalWindow = false;\n</pre>\n\nan instance of <b>qx.bom.Blocker</b> is used to fake modality. This method\ncan be used to get a reference to the blocker to style it."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.Blocker?null} Blocker instance or null if no blocker is used",
+            "type": "qx.bom.Blocker?null",
+            "description": " Blocker instance or null if no blocker is used"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "close": {
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4
+        },
+        "end": {
+          "line": 311,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Closes the given window"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window} Native window object",
+            "paramName": "win",
+            "description": " Native window object",
+            "type": "qx.bom.Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value (if any) of the window's native\n<code>close</code> method",
+            "type": "var",
+            "description": " The return value (if any) of the window's native\n<code>close</code> method"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isClosed": {
+      "location": {
+        "start": {
+          "line": 320,
+          "column": 4
+        },
+        "end": {
+          "line": 332,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the window is closed"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window} Native window object",
+            "paramName": "win",
+            "description": " Native window object",
+            "type": "qx.bom.Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Closed state",
+            "type": "Boolean",
+            "description": " Closed state"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "moveTo": {
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4
+        },
+        "end": {
+          "line": 361,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Moving an opened window is not allowed in the most browsers anymore."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window} Native window object",
+            "paramName": "win",
+            "description": " Native window object",
+            "type": "qx.bom.Window"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer} Y-coordinate",
+            "paramName": "top",
+            "description": " Y-coordinate",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer} X-coordinate",
+            "paramName": "left",
+            "description": " X-coordinate",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resizeTo": {
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4
+        },
+        "end": {
+          "line": 390,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resizing an opened window is not allowed in the most browsers anymore."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window} Native window object",
+            "paramName": "win",
+            "description": " Native window object",
+            "type": "qx.bom.Window"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} New width",
+            "paramName": "width",
+            "description": " New width",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} New height",
+            "paramName": "height",
+            "description": " New height",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

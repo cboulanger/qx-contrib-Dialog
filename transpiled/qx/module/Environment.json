@@ -1,0 +1,158 @@
+{
+  "className": "qx.module.Environment",
+  "packageName": "qx.module",
+  "name": "Environment",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 0
+      },
+      "end": {
+        "line": 87,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Module for querying information about the environment / runtime.\nIt adds a static key <code>env</code> to qxWeb and offers the given methods.\n\nThe following values are predefined:\n\n* <code>browser.name</code> : The name of the browser\n* <code>browser.version</code> : The version of the browser\n* <code>browser.quirksmode</code>  : <code>true</code> if the browser is in quirksmode\n* <code>browser.documentmode</code> : The document mode of the browser\n\n* <code>device.name</code> : The name of the device e.g. <code>iPad</code>.\n* <code>device.type</code> : Either <code>desktop</code>, <code>tablet</code> or <code>mobile</code>.\n\n* <code>engine.name</code> : The name of the browser engine\n* <code>engine.version</code> : The version of the browser engine\n\n* <code>event.touch</code> : Checks if touch events are supported\n* <code>event.mspointer</code> : Checks if MSPointer events are available"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Core"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "get": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the value stored for the given key."
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, env.get}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key to check for.",
+            "paramName": "key",
+            "description": " The key to check for.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value stored for the given key.",
+            "type": "var",
+            "description": " The value stored for the given key."
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "environmentNonLiteralKey(key)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a new environment setting which can be queried via {@link #get}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key to store the value for.",
+            "paramName": "key",
+            "description": " The key to store the value for.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to store.",
+            "paramName": "value",
+            "description": " The value to store.",
+            "type": "var"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, env.add}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 69,
+        "column": 2
+      },
+      "end": {
+        "line": 86,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

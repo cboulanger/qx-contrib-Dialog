@@ -1,0 +1,278 @@
+{
+  "className": "qx.bom.Style",
+  "packageName": "qx.bom",
+  "name": "Style",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 162,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\nDaniel Wagner (danielwagner)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Responsible class for everything concerning styles without the need of\nan element.\n\nIf you want to query or modify styles of HTML elements,\ntake a look at {@link qx.bom.element.Style}."
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.lang.String"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "VENDOR_PREFIXES": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 59
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Vendor-specific style property prefixes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__cssName": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal lookup table to map property names to CSS names"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__supports": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "A reference to the native CSS.supports function (supportsCSS in Opera)"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getPropertyName": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Takes the name of a style property and returns the name the browser uses\nfor its implementation, which might include a vendor prefix."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyName {String} Style property name to check",
+            "paramName": "propertyName",
+            "description": " Style property name to check",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} The supported property name or <code>null</code> if\nnot supported",
+            "type": "String|null",
+            "description": " The supported property name or <code>null</code> if\nnot supported"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCssName": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Takes the name of a JavaScript style property and returns the\ncorresponding CSS name.\n\nThe name of the style property is taken as is, i.e. it gets not\nextended by vendor prefixes. The conversion into the CSS name is\ndone by string manipulation, not involving the DOM.\n\nExample:\n<pre class='javascript'>qx.bom.Style.getCssName(\"MozTransform\"); //returns \"-moz-transform\"</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyName {String} JavaScript style property",
+            "paramName": "propertyName",
+            "description": " JavaScript style property",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS property",
+            "type": "qx.bom.String",
+            "description": " CSS property"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAppliedStyle": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4
+        },
+        "end": {
+          "line": 152,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Detects CSS support by using the native CSS.supports function or by\napplying a style to a DOM element of the given type and verifying\nthe result. Also checks for vendor-prefixed variants of the\nvalue, e.g. \"linear-gradient\" -> \"-webkit-linear-gradient\". Returns the\n(possibly vendor-prefixed) value if successful or <code>null</code> if\nthe property and/or value are not supported."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to be used for the detection",
+            "paramName": "element",
+            "description": " element to be used for the detection",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} the style property to be tested",
+            "paramName": "propertyName",
+            "description": " the style property to be tested",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} style property value to be tested",
+            "paramName": "value",
+            "description": " style property value to be tested",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "prefixed {Boolean?} try to determine the appropriate vendor prefix\nfor the value. Default: <code>true</code>",
+            "paramName": "prefixed",
+            "description": " try to determine the appropriate vendor prefix\nfor the value. Default: <code>true</code>",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} prefixed style value or <code>null</code> if not supported",
+            "type": "String|null",
+            "description": " prefixed style value or <code>null</code> if not supported"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 155,
+        "column": 2
+      },
+      "end": {
+        "line": 161,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

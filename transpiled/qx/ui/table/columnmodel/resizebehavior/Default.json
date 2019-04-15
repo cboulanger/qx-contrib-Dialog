@@ -1,0 +1,1170 @@
+{
+  "className": "qx.ui.table.columnmodel.resizebehavior.Default",
+  "packageName": "qx.ui.table.columnmodel.resizebehavior",
+  "name": "Default",
+  "superClass": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 52,
+        "column": 0
+      },
+      "end": {
+        "line": 575,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2007 Derrell Lipman\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDerrell Lipman (derrell)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The default resize behavior.  Until a resize model is loaded, the default\nbehavior is to:\n<ol>\n<li>\nUpon the table initially appearing, and upon any window resize, divide\nthe table space equally between the visible columns.\n</li>\n<li>\nWhen a column is increased in width, all columns to its right are\npushed to the right with no change to their widths.  This may push some\ncolumns off the right edge of the table, causing a horizontal scroll\nbar to appear.\n</li>\n<li>\nWhen a column is decreased in width, if the total width of all columns\nis <i>greater than</i> the table width, no additional column width\nchange is made.\n</li>\n<li>\nWhen a column is decreased in width, if the total width of all columns\nis <i>less than</i> the table width, the visible column\nimmediately to the right of the column which decreased in width has its\nwidth increased to fill the remaining space.\n</li>\n</ol>\n\nA resize model may be loaded to provide more guidance on how to adjust\ncolumn width upon each of the events: initial appear, window resize, and\ncolumn resize. *** TO BE FILLED IN ***"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.ui.core.ColumnData"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 57,
+        "column": 2
+      },
+      "end": {
+        "line": 76,
+        "column": 3
+      }
+    }
+  },
+  "properties": {
+    "newResizeBehaviorColumnData": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "A function to instantiate a resize behavior column data object."
+          }
+        ]
+      },
+      "name": "newResizeBehaviorColumnData",
+      "propertyType": "new",
+      "check": "Function"
+    },
+    "initializeWidthsOnEveryAppear": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether to reinitialize default widths on each appear event.\nTypically, one would want to initialize the default widths only upon\nthe first appearance of the table, but the original behavior was to\nreinitialize it even if the table is hidden and then reshown\n(e.g. it's in a pageview and the page is switched and then switched\nback)."
+          }
+        ]
+      },
+      "name": "initializeWidthsOnEveryAppear",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "tableColumnModel": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 122,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The table column model in use.  Of particular interest is the method\n<i>getTable</i> which is a reference to the table widget.  This allows\naccess to any other features of the table, for use in calculating widths\nof columns."
+          }
+        ]
+      },
+      "name": "tableColumnModel",
+      "propertyType": "new",
+      "check": "qx.ui.table.columnmodel.Resize"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "members": {
+    "__layout": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__layoutChildren": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeColumnData": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__deferredComputeColumnsFlexWidth": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 139,
+          "column": 44
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__widthsInitialized": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4
+        },
+        "end": {
+          "line": 144,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether we have initialized widths on the first appear yet"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "setWidth": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the width of a column."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} The column whose width is to be set",
+            "paramName": "col",
+            "description": " The column whose width is to be set",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer|String}\nThe width of the specified column.  The width may be specified as\ninteger number of pixels (e.g. 100), a string representing percentage\nof the inner width of the Table (e.g. \"25%\"), or a string\nrepresenting a flex width (e.g. \"1*\").",
+            "paramName": "width",
+            "description": "\nThe width of the specified column.  The width may be specified as\ninteger number of pixels (e.g. 100), a string representing percentage\nof the inner width of the Table (e.g. \"25%\"), or a string\nrepresenting a flex width (e.g. \"1*\").",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "flex {Integer?0} Optional flex value of the column",
+            "paramName": "flex",
+            "description": " Optional flex value of the column",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error}\nError is thrown if the provided column number is out of the range.",
+            "type": "Error",
+            "description": "\nError is thrown if the provided column number is out of the range."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setMinWidth": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 199,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the minimum width of a column."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer}\nThe column whose minimum width is to be set",
+            "paramName": "col",
+            "description": "\nThe column whose minimum width is to be set",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer}\nThe minimum width of the specified column.",
+            "paramName": "width",
+            "description": "\nThe minimum width of the specified column.",
+            "type": "Integer"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error}\nError is thrown if the provided column number is out of the range.",
+            "type": "Error",
+            "description": "\nError is thrown if the provided column number is out of the range."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setMaxWidth": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4
+        },
+        "end": {
+          "line": 225,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the maximum width of a column."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer}\nThe column whose maximum width is to be set",
+            "paramName": "col",
+            "description": "\nThe column whose maximum width is to be set",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer}\nThe maximum width of the specified column.",
+            "paramName": "width",
+            "description": "\nThe maximum width of the specified column.",
+            "type": "Integer"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error}\nError is thrown if the provided column number is out of the range.",
+            "type": "Error",
+            "description": "\nError is thrown if the provided column number is out of the range."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4
+        },
+        "end": {
+          "line": 267,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set any or all of the width, minimum width, and maximum width of a\ncolumn in a single call."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer}\nThe column whose attributes are to be changed",
+            "paramName": "col",
+            "description": "\nThe column whose attributes are to be changed",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "map {Map}\nA map containing any or all of the property names \"width\", \"minWidth\",\nand \"maxWidth\".  The property values are as described for\n{@link #setWidth}, {@link #setMinWidth} and {@link #setMaxWidth}\nrespectively.",
+            "paramName": "map",
+            "description": "\nA map containing any or all of the property names \"width\", \"minWidth\",\nand \"maxWidth\".  The property values are as described for\n{@link #setWidth}, {@link #setMinWidth} and {@link #setMaxWidth}\nrespectively.",
+            "type": "Map"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error}\nError is thrown if the provided column number is out of the range.",
+            "type": "Error",
+            "description": "\nError is thrown if the provided column number is out of the range."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    },
+    "onAppear": {
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4
+        },
+        "end": {
+          "line": 282,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overloaded"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>onappear</i> event object.",
+            "paramName": "event",
+            "description": " The <i>onappear</i> event object.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "forceRefresh {Boolean?false} Whether a refresh should be forced",
+            "paramName": "forceRefresh",
+            "description": " Whether a refresh should be forced",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.resizebehavior.Abstract"
+      ]
+    },
+    "onTableWidthChanged": {
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4
+        },
+        "end": {
+          "line": 287,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overloaded"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>tableWidthChanged</i> event object.",
+            "paramName": "event",
+            "description": " The <i>tableWidthChanged</i> event object.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.resizebehavior.Abstract"
+      ]
+    },
+    "onVerticalScrollBarChanged": {
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4
+        },
+        "end": {
+          "line": 292,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overloaded"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>verticalScrollBarChanged</i> event object.  This event has data,\nobtained via event.getValue(), which is a boolean indicating whether a\nvertical scroll bar is now present.",
+            "paramName": "event",
+            "description": " The <i>verticalScrollBarChanged</i> event object.  This event has data,\nobtained via event.getValue(), which is a boolean indicating whether a\nvertical scroll bar is now present.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.resizebehavior.Abstract"
+      ]
+    },
+    "onColumnWidthChanged": {
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4
+        },
+        "end": {
+          "line": 299,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overloaded"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>widthChanged</i> event object.  This event has data, obtained via\nevent.getValue(), which is an object with three properties: the column\nwhich changed width (data.col), the old width (data.oldWidth) and the new\nwidth (data.newWidth).",
+            "paramName": "event",
+            "description": " The <i>widthChanged</i> event object.  This event has data, obtained via\nevent.getValue(), which is an object with three properties: the column\nwhich changed width (data.col), the old width (data.oldWidth) and the new\nwidth (data.newWidth).",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.resizebehavior.Abstract"
+      ]
+    },
+    "onVisibilityChanged": {
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4
+        },
+        "end": {
+          "line": 316,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overloaded"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>visibilityChanged</i> event object.  This event has data, obtained\nvia event.getValue(), which is an object with two properties: the column\nwhich changed width (data.col) and the new visibility of the column\n(data.visible).",
+            "paramName": "event",
+            "description": " The <i>visibilityChanged</i> event object.  This event has data, obtained\nvia event.getValue(), which is an object with two properties: the column\nwhich changed width (data.col) and the new visibility of the column\n(data.visible).",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.resizebehavior.Abstract"
+      ]
+    },
+    "_setNumColumns": {
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4
+        },
+        "end": {
+          "line": 337,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overloaded"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "numColumns {Integer} The number of columns in use.",
+            "paramName": "numColumns",
+            "description": " The number of columns in use.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.resizebehavior.Abstract"
+      ]
+    },
+    "getLayoutChildren": {
+      "location": {
+        "start": {
+          "line": 346,
+          "column": 4
+        },
+        "end": {
+          "line": 348,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This method is required by the box layout. If returns an array of items\nto relayout."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.ColumnData[]} The list of column data object to layout.",
+            "type": "qx.ui.core.ColumnData[]",
+            "description": " The list of column data object to layout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_computeColumnsFlexWidth": {
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4
+        },
+        "end": {
+          "line": 397,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Computes the width of all flexible children."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__clearLayoutCaches": {
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 4
+        },
+        "end": {
+          "line": 410,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Clear all layout caches of the column datas."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_extendNextColumn": {
+      "location": {
+        "start": {
+          "line": 428,
+          "column": 4
+        },
+        "end": {
+          "line": 482,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Extend the visible column to right of the column which just changed\nwidth, to fill any available space within the inner width of the table.\nThis means that if the sum of the widths of all columns exceeds the\ninner width of the table, no change is made.  If, on the other hand,\nthe sum of the widths of all columns is less than the inner width of\nthe table, the visible column to the right of the column which just\nchanged width is extended to take up the width available within the\ninner width of the table."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Data}\nThe event object.",
+            "paramName": "event",
+            "description": "\nThe event object.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_extendLastColumn": {
+      "location": {
+        "start": {
+          "line": 499,
+          "column": 4
+        },
+        "end": {
+          "line": 547,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "If a column was just made invisible, extend the last column to fill any\navailable space within the inner width of the table.  This means that\nif the sum of the widths of all columns exceeds the inner width of the\ntable, no change is made.  If, on the other hand, the sum of the widths\nof all columns is less than the inner width of the table, the last\ncolumn is extended to take up the width available within the inner\nwidth of the table."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Data}\nThe event object.",
+            "paramName": "event",
+            "description": "\nThe event object.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getResizeColumnData": {
+      "location": {
+        "start": {
+          "line": 555,
+          "column": 4
+        },
+        "end": {
+          "line": 558,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns an array of the resizing information of a column."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.ColumnData[]} array of the resizing information of a column.",
+            "type": "qx.ui.core.ColumnData[]",
+            "description": " array of the resizing information of a column."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+      "property": "reset"
+    },
+    "getNewResizeBehaviorColumnData": {
+      "type": "function",
+      "name": "getNewResizeBehaviorColumnData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>newResizeBehaviorColumnData</code>.\n\nFor further details take a look at the property definition: {@link #newResizeBehaviorColumnData}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Function",
+            "desc": "Returns the value for newResizeBehaviorColumnData"
+          }
+        ]
+      }
+    },
+    "setNewResizeBehaviorColumnData": {
+      "type": "function",
+      "name": "setNewResizeBehaviorColumnData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>newResizeBehaviorColumnData</code>.\n\nFor further details take a look at the property definition: {@link #newResizeBehaviorColumnData}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Function",
+            "paramName": "value",
+            "desc": "Value for newResizeBehaviorColumnData"
+          }
+        ]
+      }
+    },
+    "resetNewResizeBehaviorColumnData": {
+      "type": "function",
+      "name": "resetNewResizeBehaviorColumnData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newResizeBehaviorColumnData</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newResizeBehaviorColumnData}."
+          }
+        ]
+      }
+    },
+    "getInitializeWidthsOnEveryAppear": {
+      "type": "function",
+      "name": "getInitializeWidthsOnEveryAppear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>initializeWidthsOnEveryAppear</code>.\n\nFor further details take a look at the property definition: {@link #initializeWidthsOnEveryAppear}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for initializeWidthsOnEveryAppear"
+          }
+        ]
+      }
+    },
+    "isInitializeWidthsOnEveryAppear": {
+      "type": "function",
+      "name": "isInitializeWidthsOnEveryAppear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>initializeWidthsOnEveryAppear</code>.\n\nFor further details take a look at the property definition: {@link #initializeWidthsOnEveryAppear}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for initializeWidthsOnEveryAppear"
+          }
+        ]
+      }
+    },
+    "setInitializeWidthsOnEveryAppear": {
+      "type": "function",
+      "name": "setInitializeWidthsOnEveryAppear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>initializeWidthsOnEveryAppear</code>.\n\nFor further details take a look at the property definition: {@link #initializeWidthsOnEveryAppear}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for initializeWidthsOnEveryAppear"
+          }
+        ]
+      }
+    },
+    "resetInitializeWidthsOnEveryAppear": {
+      "type": "function",
+      "name": "resetInitializeWidthsOnEveryAppear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>initializeWidthsOnEveryAppear</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #initializeWidthsOnEveryAppear}."
+          }
+        ]
+      }
+    },
+    "getTableColumnModel": {
+      "type": "function",
+      "name": "getTableColumnModel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>tableColumnModel</code>.\n\nFor further details take a look at the property definition: {@link #tableColumnModel}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.ui.table.columnmodel.Resize",
+            "desc": "Returns the value for tableColumnModel"
+          }
+        ]
+      }
+    },
+    "setTableColumnModel": {
+      "type": "function",
+      "name": "setTableColumnModel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>tableColumnModel</code>.\n\nFor further details take a look at the property definition: {@link #tableColumnModel}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.ui.table.columnmodel.Resize",
+            "paramName": "value",
+            "desc": "Value for tableColumnModel"
+          }
+        ]
+      }
+    },
+    "resetTableColumnModel": {
+      "type": "function",
+      "name": "resetTableColumnModel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tableColumnModel</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tableColumnModel}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 570,
+        "column": 2
+      },
+      "end": {
+        "line": 574,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDESTRUCTOR\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

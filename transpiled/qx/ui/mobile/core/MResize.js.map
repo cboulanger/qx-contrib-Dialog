@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/mobile/core/MResize.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "properties",
+    "fireDomUpdatedOnResize",
+    "check",
+    "init",
+    "members",
+    "__lastHeight",
+    "__lastWidth",
+    "releaseFixedSize",
+    "parent",
+    "getLayoutParent",
+    "getContainerElement",
+    "element",
+    "bom",
+    "Style",
+    "set",
+    "fixSize",
+    "height",
+    "offsetHeight",
+    "width",
+    "offsetWidth",
+    "getFireDomUpdatedOnResize",
+    "_setHeight",
+    "_setWidth",
+    "_domUpdated",
+    "core",
+    "Environment",
+    "get",
+    "ui",
+    "mobile",
+    "MResize"
+  ],
+  "mappings": "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",
+  "file": "MResize.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * This mixin resizes the container element to the height of the parent element.\n * Use this when the height can not be set by CSS.\n *\n */\nqx.Mixin.define(\"qx.ui.mobile.core.MResize\",\n{\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /** Whether the resize should fire the \"domupdated\" event. Set this to \"true\"\n     *  whenever other elements should react on this size change (e.g. when the size\n     *  change does not infect the size of the application, but other widgets should\n     *  react).\n     */\n    fireDomUpdatedOnResize : {\n      check : \"Boolean\",\n      init : false\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    __lastHeight : null,\n    __lastWidth : null,\n\n\n    /**\n     * Removes fixed size from container.\n     */\n    releaseFixedSize : function() {\n      var parent = this.getLayoutParent();\n\n      if (parent && parent.getContainerElement()) {\n        var element = this.getContainerElement();\n        qx.bom.element.Style.set(element, \"height\", \"auto\");\n        qx.bom.element.Style.set(element, \"width\", \"auto\");\n      }\n    },\n\n\n    /**\n     * Resizes the container element to the height of the parent element.\n     */\n    fixSize : function()\n    {\n      var parent = this.getLayoutParent();\n\n      if (parent && parent.getContainerElement()) {\n        var height = parent.getContainerElement().offsetHeight;\n        var width = parent.getContainerElement().offsetWidth;\n\n        // Only fix size, when value are above zero.\n        if(height === 0 || width === 0) {\n          return;\n        }\n\n        if (!this.getFireDomUpdatedOnResize()) {\n          this._setHeight(height);\n          this._setWidth(width);\n        } else if (this.__lastHeight != height && this.__lastWidth != width) {\n          this._setHeight(height);\n          this._setWidth(width);\n          this.__lastWidth = width;\n          this.__lastHeight = height;\n          this._domUpdated();\n        }\n      }\n    },\n\n\n    /**\n     * Sets the height of the container element.\n     *\n     * @param height {Integer} The height to set\n     */\n    _setHeight : function(height)\n    {\n      var element = this.getContainerElement();\n      if (qx.core.Environment.get(\"qx.mobile.nativescroll\"))\n      {\n        qx.bom.element.Style.set(element, \"minHeight\", height + \"px\");\n      } else {\n        qx.bom.element.Style.set(element, \"height\", height + \"px\");\n      }\n    },\n\n\n\n    /**\n     * Sets the width of the container element.\n     *\n     * @param width {Integer} The width to set\n     */\n    _setWidth : function(width)\n    {\n      var element = this.getContainerElement();\n      if (qx.core.Environment.get(\"qx.mobile.nativescroll\"))\n      {\n        qx.bom.element.Style.set(element, \"minWidth\", width + \"px\");\n      } else {\n        qx.bom.element.Style.set(element, \"width\", width + \"px\");\n      }\n    }\n  }\n});"
+  ]
+}

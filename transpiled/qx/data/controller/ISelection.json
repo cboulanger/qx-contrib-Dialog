@@ -1,0 +1,120 @@
+{
+  "className": "qx.data.controller.ISelection",
+  "packageName": "qx.data.controller",
+  "name": "ISelection",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 45,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Interface for data binding classes offering a selection."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "setSelection": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Setter for the selection."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.data.IListData} The data of the selection.",
+            "paramName": "value",
+            "description": " The data of the selection.",
+            "type": "qx.data.IListData"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSelection": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 32
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Getter for the selection list."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.IListData} The current selection.",
+            "type": "qx.data.IListData",
+            "description": " The current selection."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetSelection": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 34
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the selection to its default value."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

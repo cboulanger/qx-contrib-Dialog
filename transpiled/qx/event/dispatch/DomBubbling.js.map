@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/event/dispatch/DomBubbling.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "dispatch",
+    "AbstractBubbling",
+    "statics",
+    "PRIORITY",
+    "Registration",
+    "PRIORITY_NORMAL",
+    "members",
+    "_getParent",
+    "target",
+    "parentNode",
+    "canDispatchEvent",
+    "type",
+    "nodeType",
+    "undefined",
+    "getBubbles",
+    "defer",
+    "addDispatcher",
+    "DomBubbling"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,YAASN,GAAGO,KAAH,CAASC,QAAT,CAAkBC,gBAD7B;;AAIEC,aACA;AACE;AACAC,gBAAWX,GAAGO,KAAH,CAASK,YAAT,CAAsBC;AAFnC,KALF;;AAWEC,aACA;AACE;AACAC,kBAAa,oBAASC,MAAT,EAAiB;AAC5B,eAAOA,OAAOC,UAAd;AACD,OAJH;;AAOE;AACAC,wBAAmB,0BAASF,MAAT,EAAiBT,KAAjB,EAAwBY,IAAxB,EAA8B;AAC/C,eAAOH,OAAOI,QAAP,KAAoBC,SAApB,IAAiCd,MAAMe,UAAN,EAAxC;AACD;AAVH,KAZF;;AA0BEC,WAAQ,eAASb,OAAT,EAAkB;AACxBV,SAAGO,KAAH,CAASK,YAAT,CAAsBY,aAAtB,CAAoCd,OAApC;AACD;AA5BH,GADA,C;AAtBAV,KAAGO,KAAH,CAASC,QAAT,CAAkBiB,WAAlB,CAA8BtB,aAA9B,GAA8CA,aAA9C",
+  "file": "DomBubbling.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Event dispatcher for all bubbling events on DOM elements.\n */\nqx.Class.define(\"qx.event.dispatch.DomBubbling\",\n{\n  extend : qx.event.dispatch.AbstractBubbling,\n\n\n  statics :\n  {\n    /** @type {Integer} Priority of this dispatcher */\n    PRIORITY : qx.event.Registration.PRIORITY_NORMAL\n  },\n\n\n  members :\n  {\n    // overridden\n    _getParent : function(target) {\n      return target.parentNode;\n    },\n\n\n    // interface implementation\n    canDispatchEvent : function(target, event, type) {\n      return target.nodeType !== undefined && event.getBubbles();\n    }\n  },\n\n\n  defer : function(statics) {\n    qx.event.Registration.addDispatcher(statics);\n  }\n});\n"
+  ]
+}

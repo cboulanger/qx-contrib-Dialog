@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/html/Root.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "html",
+    "Element",
+    "construct",
+    "elem",
+    "useElement",
+    "members",
+    "setRoot",
+    "_modified",
+    "$$hash",
+    "Root"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EA4BAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,cAAhB,EACA;AACEC,YAASN,GAAGO,IAAH,CAAQC,OADnB;;AAKE;;;;;;AAMA;;;;;AAKAC,eAAY,mBAASC,IAAT,EACZ;AACE;;AAEA,UAAIA,QAAQ,IAAZ,EAAkB;AAChB,aAAKC,UAAL,CAAgBD,IAAhB;AACD;AACF,KAvBH;;AA4BE;;;;;;AAMAE,aACA;AACE;;;;;;;;AAQAD,kBAAa,oBAASD,IAAT,EACb;AACE;AACA,0DAAqBA,IAArB;;AAEA;AACA,aAAKG,OAAL,CAAa,IAAb;;AAEA;AACAb,WAAGO,IAAH,CAAQC,OAAR,CAAgBM,SAAhB,CAA0B,KAAKC,MAA/B,IAAyC,IAAzC;AACD;AAnBH;AAnCF,GADA,C;AA5BAf,KAAGO,IAAH,CAAQS,IAAR,CAAab,aAAb,GAA6BA,aAA7B",
+  "file": "Root.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * This is the root element for a set of {@link qx.html.Element}s.\n *\n * To make other elements visible these elements must be inserted\n * into an root element at any level.\n *\n * A root element uses an existing DOM element where is assumed that\n * this element is always visible. In the easiest case, the root element\n * is identical to the document's body.\n */\nqx.Class.define(\"qx.html.Root\",\n{\n  extend : qx.html.Element,\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * Creates a root element\n   *\n   * @param elem {Element?null} DOM element to use\n   */\n  construct : function(elem)\n  {\n    this.base(arguments);\n\n    if (elem != null) {\n      this.useElement(elem);\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Sets the element to an already existing node. It will be\n     * assumed that this DOM element is already visible e.g.\n     * like a normal displayed element in the document's body.\n     *\n     * @param elem {Element} the dom element to set\n     * @throws {Error} if the element is assigned again\n     */\n    useElement : function(elem)\n    {\n      // Base call\n      this.base(arguments, elem);\n\n      // Mark as root\n      this.setRoot(true);\n\n      // Register for synchronization\n      qx.html.Element._modified[this.$$hash] = this;\n    }\n  }\n});\n"
+  ]
+}

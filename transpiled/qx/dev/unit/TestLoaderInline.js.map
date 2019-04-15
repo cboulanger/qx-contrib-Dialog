@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/dev/unit/TestLoaderInline.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "application",
+    "Inline",
+    "include",
+    "dev",
+    "unit",
+    "MTestLoader",
+    "members",
+    "main",
+    "log",
+    "appender",
+    "Console",
+    "setTestNamespace",
+    "_getClassNameFromUrl",
+    "window",
+    "top",
+    "jsUnitTestSuite",
+    "runJsUnit",
+    "runStandAlone",
+    "TestLoaderInline"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EACA;AACEC,YAASN,GAAGO,WAAH,CAAeC,MAD1B;;AAGEC,aAAU,CAACT,GAAGU,GAAH,CAAOC,IAAP,CAAYC,WAAb,CAHZ;;AAME;;;;;;AAMAC,aACA;AACE;AACAC,YAAO,gBACP;AACE;;AAEA;AACAd,WAAGe,GAAH,CAAOC,QAAP,CAAgBC,OAAhB;;AAEA,aAAKC,gBAAL,CAAsB,KAAKC,oBAAL,EAAtB;;AAEA,YAAIC,OAAOC,GAAP,CAAWC,eAAf,EACA;AACE,eAAKC,SAAL;AACA;AACD;;AAED,YAAIH,UAAUA,OAAOC,GAArB,EACA;AACE,eAAKG,aAAL;AACA;AACD;AACF;AAtBH;AAbF,GADA,C;AAtBAxB,KAAGU,GAAH,CAAOC,IAAP,CAAYc,gBAAZ,CAA6BtB,aAA7B,GAA6CA,aAA7C",
+  "file": "TestLoaderInline.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The test loader is the base class of a native application, which can be used\n * to run tests from a non-GUI application or from within JSUnit.\n */\nqx.Class.define(\"qx.dev.unit.TestLoaderInline\",\n{\n  extend : qx.application.Inline,\n\n  include : [qx.dev.unit.MTestLoader],\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    main : function()\n    {\n      this.base(arguments);\n\n      // Dependencies to loggers\n      qx.log.appender.Console;\n\n      this.setTestNamespace(this._getClassNameFromUrl());\n\n      if (window.top.jsUnitTestSuite)\n      {\n        this.runJsUnit();\n        return;\n      }\n\n      if (window == window.top)\n      {\n        this.runStandAlone();\n        return;\n      }\n    }\n  }\n});\n"
+  ]
+}

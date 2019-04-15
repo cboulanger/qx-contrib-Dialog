@@ -1,0 +1,91 @@
+{
+  "className": "qx.bom.client.Idle",
+  "packageName": "qx.bom.client",
+  "name": "Idle",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 45,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2016 GONICUS GmbH, Germany, http://www.gonicus.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nCajus Pollmeier (cajus)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Responsible for checking whether the browser supports cooperative\nscheduling.\n\nSpec: https://www.w3.org/TR/requestidlecallback/"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getSupport": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the client supports cooperative scheduling of background tasks."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if API is supported",
+            "type": "Boolean",
+            "description": " <code>true</code> if API is supported"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2
+      },
+      "end": {
+        "line": 44,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

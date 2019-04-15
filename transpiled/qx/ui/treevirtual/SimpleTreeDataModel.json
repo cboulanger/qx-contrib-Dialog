@@ -1,0 +1,1880 @@
+{
+  "className": "qx.ui.treevirtual.SimpleTreeDataModel",
+  "packageName": "qx.ui.treevirtual",
+  "name": "SimpleTreeDataModel",
+  "superClass": "qx.ui.table.model.Abstract",
+  "interfaces": [],
+  "mixins": [
+    "qx.ui.treevirtual.MTreePrimitive"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 86,
+        "column": 0
+      },
+      "end": {
+        "line": 1211,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2007-2010 Derrell Lipman\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nDerrell Lipman (derrell)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "A simple tree data model used as the table model\n\nThe object structure of a single node of the tree is:\n\n<pre class='javascript'>\n{\n// USER-PROVIDED ATTRIBUTES\n// ------------------------\ntype           : qx.ui.treevirtual.MTreePrimitive.Type.LEAF,\nparentNodeId   : 23,    // index of the parent node in _nodeArr\n\nlabel          : \"My Documents\",\nbSelected      : true,  // true if node is selected; false otherwise.\nbOpened        : true,  // true (-), false (+)\nbHideOpenClose : false, // whether to hide the open/close button\nicon           : \"images/folder.gif\",\niconSelected   : \"images/folder_selected.gif\",\n\ncellStyle      : \"background-color:cyan\"\nlabelStyle     : \"background-color:red;color:white\"\n\n// USER-PROVIDED COLUMN DATA\ncolumnData     : [\nnull, // null at index of tree column (typically 0)\n\"text of column 1\",\n\"text of column 2\"\n],\n\n// APPLICATION-, MIXIN-, and SUBCLASS-PROVIDED CUSTOM DATA\ndata           : {\napplication :\n{\n// application-specific user data goes in here\nfoo: \"bar\",\n...\n},\nMDragAndDropSupport :\n{\n// Data required for the Drag & Drop mixin.\n// When a mixin is included, its constructor\n// should create this object, named according\n// to the mixin or subclass name (empty or\n// otherwise)\n},\n... // Additional mixins or subclasses.\n},\n\n// INTERNALLY-CALCULATED ATTRIBUTES\n// --------------------------------\n// The following properties need not (and should not) be set by the\n// caller, but are automatically calculated.  Some are used internally,\n// while others may be of use to event listeners.\n\nnodeId         : 42,   // The index in _nodeArr, useful to event listeners.\nchildren       : [ ],  // each value is an index into _nodeArr\n\nlevel          : 2,    // The indentation level of this tree node\n\nbFirstChild    : true,\nlastChild      : [ false ],  // Array where the index is the column of\n// indentation, and the value is a boolean.\n// These are used to locate the\n// appropriate \"tree line\" icon.\n}\n</pre>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 99,
+        "column": 2
+      },
+      "end": {
+        "line": 120,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nCONSTRUCTOR\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "filter": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gives the user the opportunity to filter the model. The filter\nfunction is called for every node in the model. It gets as an argument the\n<code>node</code> object and has to return\n<code>true</code> if the given data should be shown and\n<code>false</code> if the given data should be ignored."
+          }
+        ]
+      },
+      "name": "filter",
+      "propertyType": "new",
+      "apply": "_applyFilter",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Function"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "members": {
+    "__tree": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__editableColArr": {
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__tempTreeData": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 152,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__recalculateLastChildFlags": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 153,
+          "column": 38
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_rowArr": {
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Rows, resorted into tree order as necessary"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_nodeArr": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4
+        },
+        "end": {
+          "line": 159,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Tree nodes, organized with hierarchy"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_nodeRowMap": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Map nodeArr index to rowArr index.  The index of this array is the\nindex of _nodeArr, and the values in this array are the indexes into\n_rowArr."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_treeColumn": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 169,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Column for tree nodes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_selections": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "list of indexes of selected nodes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "setTree": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 184,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set the tree object for which this data model is used."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tree {qx.ui.treevirtual.TreeVirtual}\nThe tree used to render the data in this model.",
+            "paramName": "tree",
+            "description": "\nThe tree used to render the data in this model.",
+            "type": "qx.ui.treevirtual.TreeVirtual"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTree": {
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the tree object for which this data model is used."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.treevirtual.TreeVirtual}",
+            "type": "qx.ui.treevirtual.TreeVirtual",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setEditable": {
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4
+        },
+        "end": {
+          "line": 213,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets all columns editable or not editable."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "editable {Boolean}\nWhether all columns are editable.",
+            "paramName": "editable",
+            "description": "\nWhether all columns are editable.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setColumnEditable": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4
+        },
+        "end": {
+          "line": 239,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets whether a column is editable."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer}\nThe column of which to set the editable state.",
+            "paramName": "columnIndex",
+            "description": "\nThe column of which to set the editable state.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "editable {Boolean}\nWhether the column should be editable.",
+            "paramName": "editable",
+            "description": "\nWhether the column should be editable.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isColumnEditable": {
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4
+        },
+        "end": {
+          "line": 253,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to check.",
+            "paramName": "columnIndex",
+            "description": " the column to check.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the column is editable.",
+            "type": "Boolean",
+            "description": " whether the column is editable."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "isColumnSortable": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4
+        },
+        "end": {
+          "line": 260,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to check.",
+            "paramName": "columnIndex",
+            "description": " the column to check.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the column is sortable.",
+            "type": "Boolean",
+            "description": " whether the column is sortable."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "sortByColumn": {
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4
+        },
+        "end": {
+          "line": 273,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sorts the model by a column."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to sort by.",
+            "paramName": "columnIndex",
+            "description": " the column to sort by.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "ascending {Boolean} whether to sort ascending.",
+            "paramName": "ascending",
+            "description": " whether to sort ascending.",
+            "type": "Boolean"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If one tries to sort the tree by column",
+            "type": "Error",
+            "description": " If one tries to sort the tree by column"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "getSortColumnIndex": {
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4
+        },
+        "end": {
+          "line": 286,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the column index the model is sorted by. This model is never\nsorted, so -1 is returned."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\n-1, to indicate that the model is not sorted.",
+            "type": "Integer",
+            "description": "\n-1, to indicate that the model is not sorted."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "setTreeColumn": {
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4
+        },
+        "end": {
+          "line": 313,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Specifies which column the tree is to be displayed in.  The tree is\ndisplayed using the SimpleTreeDataCellRenderer.  Other columns may be\nprovided which use different cell renderers.\n\nSetting the tree column involves more than simply setting this column\nindex; it also requires setting an appropriate cell renderer for this\ncolumn, that knows how to render a tree. The expected and typical\nmethod of setting the tree column is to provide it in the 'custom'\nparameter to the TreeVirtual constructor, which also initializes the\nproper cell renderers. This method does not set any cell renderers. If\nyou wish to call this method on your own, you should also manually set\nthe cell renderer for the specified column, and likely also set the\ncell renderer for column 0 (the former tree column) to something\nappropriate to your data."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer}\nThe index of the column in which the tree should be displayed.",
+            "paramName": "columnIndex",
+            "description": "\nThe index of the column in which the tree should be displayed.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTreeColumn": {
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4
+        },
+        "end": {
+          "line": 325,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get the column in which the tree is to be displayed."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\nThe column in which the tree is to be displayed",
+            "type": "Integer",
+            "description": "\nThe column in which the tree is to be displayed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRowCount": {
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4
+        },
+        "end": {
+          "line": 331,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the number of rows.",
+            "type": "Integer",
+            "description": " the number of rows."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "getRowData": {
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 4
+        },
+        "end": {
+          "line": 337,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer} the model index of the row.",
+            "paramName": "rowIndex",
+            "description": " the model index of the row.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the row data as an object or null if the model does not support row data\nobjects. The details on the object returned are determined by the model\nimplementation only.",
+            "type": "Object",
+            "description": " the row data as an object or null if the model does not support row data\nobjects. The details on the object returned are determined by the model\nimplementation only."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4
+        },
+        "end": {
+          "line": 368,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a cell value by column index."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the row index is out of bounds.",
+            "type": "Error",
+            "description": " if the row index is out of bounds."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the index of the column.",
+            "paramName": "columnIndex",
+            "description": " the index of the column.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer} the index of the row.",
+            "paramName": "rowIndex",
+            "description": " the index of the row.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value of the cell.",
+            "type": "var",
+            "description": " The value of the cell."
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#getValueById"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4
+        },
+        "end": {
+          "line": 402,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} index of the column",
+            "paramName": "columnIndex",
+            "description": " index of the column",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer} index of the row",
+            "paramName": "rowIndex",
+            "description": " index of the row",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} Value to be set",
+            "paramName": "value",
+            "description": " Value to be set",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "getNode": {
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 4
+        },
+        "end": {
+          "line": 430,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the node object specific to a currently visible row. In this\nsimple tree data model, that's the same as retrieving the value of the\ntree column of the specified row."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error}\nThrown if the row index is out of bounds.",
+            "type": "Error",
+            "description": "\nThrown if the row index is out of bounds."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer}\nThe index of the row.",
+            "paramName": "rowIndex",
+            "description": "\nThe index of the row.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}\nThe node object associated with the specified row.",
+            "type": "Object",
+            "description": "\nThe node object associated with the specified row."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addBranch": {
+      "location": {
+        "start": {
+          "line": 461,
+          "column": 4
+        },
+        "end": {
+          "line": 477,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a branch to the tree."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parentNodeId {Integer}\nThe node id of the parent of the node being added",
+            "paramName": "parentNodeId",
+            "description": "\nThe node id of the parent of the node being added",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "label {String}\nThe string to display as the label for this node",
+            "paramName": "label",
+            "description": "\nThe string to display as the label for this node",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "bOpened {Boolean}\n<i>True</i> if the branch should be rendered in its opened state;\n<i>false</i> otherwise.",
+            "paramName": "bOpened",
+            "description": "\n<i>True</i> if the branch should be rendered in its opened state;\n<i>false</i> otherwise.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "bHideOpenCloseButton {Boolean}\n<i>True</i> if the open/close button should not be displayed;\n<i>false</i> if the open/close button should be displayed",
+            "paramName": "bHideOpenCloseButton",
+            "description": "\n<i>True</i> if the open/close button should not be displayed;\n<i>false</i> if the open/close button should be displayed",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "icon {String}\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is not a selected node.",
+            "paramName": "icon",
+            "description": "\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is not a selected node.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "iconSelected {String}\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is a selected node.",
+            "paramName": "iconSelected",
+            "description": "\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is a selected node.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\nThe node id of the newly-added branch.",
+            "type": "Integer",
+            "description": "\nThe node id of the newly-added branch."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addLeaf": {
+      "location": {
+        "start": {
+          "line": 499,
+          "column": 4
+        },
+        "end": {
+          "line": 513,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a leaf to the tree."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parentNodeId {Integer}\nThe node id of the parent of the node being added",
+            "paramName": "parentNodeId",
+            "description": "\nThe node id of the parent of the node being added",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "label {String}\nThe string to display as the label for this node",
+            "paramName": "label",
+            "description": "\nThe string to display as the label for this node",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "icon {String}\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is not a selected node.",
+            "paramName": "icon",
+            "description": "\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is not a selected node.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "iconSelected {String}\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is a selected node.",
+            "paramName": "iconSelected",
+            "description": "\nThe relative (subject to alias expansion) or full path of the icon to\ndisplay for this node when it is a selected node.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The node id of the newly-added leaf.",
+            "type": "Integer",
+            "description": " The node id of the newly-added leaf."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "prune": {
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 4
+        },
+        "end": {
+          "line": 576,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Prune the tree by removing, recursively, all of a node's children.  If\nrequested, also remove the node itself."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\nThe node to be pruned from the tree.  The node can be represented\neither by the node object, or the node id (as would have been\nreturned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\nThe node to be pruned from the tree.  The node can be represented\neither by the node object, or the node id (as would have been\nreturned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "bSelfAlso {Boolean}\nIf <i>true</i> then remove the node identified by <i>nodeId</i> as\nwell as all of the children.",
+            "paramName": "bSelfAlso",
+            "description": "\nIf <i>true</i> then remove the node identified by <i>nodeId</i> as\nwell as all of the children.",
+            "type": "Boolean"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the node object or id is not valid.",
+            "type": "Error",
+            "description": " If the node object or id is not valid."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "move": {
+      "location": {
+        "start": {
+          "line": 596,
+          "column": 4
+        },
+        "end": {
+          "line": 652,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Move a node in the tree."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "moveNodeReference {Object | Integer}\nThe node to be moved.  The node can be represented\neither by the node object, or the node id (as would have been\nreturned by addBranch(), addLeaf(), etc.)",
+            "paramName": "moveNodeReference",
+            "description": "\nThe node to be moved.  The node can be represented\neither by the node object, or the node id (as would have been\nreturned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "parentNodeReference {Object | Integer}\nThe new parent node, which must not be a LEAF.  The node can be\nrepresented either by the node object, or the node id (as would have\nbeen returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "parentNodeReference",
+            "description": "\nThe new parent node, which must not be a LEAF.  The node can be\nrepresented either by the node object, or the node id (as would have\nbeen returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the node object or id is not valid.",
+            "type": "Error",
+            "description": " If the node object or id is not valid."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one tries to add a child to a non-existent parent.",
+            "type": "Error",
+            "description": " If one tries to add a child to a non-existent parent."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one tries to add a node to a leaf.",
+            "type": "Error",
+            "description": " If one tries to add a node to a leaf."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__inorder": {
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 4
+        },
+        "end": {
+          "line": 765,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Orders the node and creates all data needed to render the tree."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeId {Integer}\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "paramName": "nodeId",
+            "description": "\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "level {Integer} the level in the hierarchy",
+            "paramName": "level",
+            "description": " the level in the hierarchy",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__calculateLastChildFlags": {
+      "location": {
+        "start": {
+          "line": 776,
+          "column": 4
+        },
+        "end": {
+          "line": 792,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Calculates the lastChild flags to the nodes, so that the tree can render the\ntree lines right."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeId {Integer}\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "paramName": "nodeId",
+            "description": "\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__setLastChildFlag": {
+      "location": {
+        "start": {
+          "line": 801,
+          "column": 4
+        },
+        "end": {
+          "line": 816,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the last child flag for a node and all it's parents."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Object} the node object",
+            "paramName": "node",
+            "description": " the node object",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "isLastChild {Boolean} whether the node is the last child",
+            "paramName": "isLastChild",
+            "description": " whether the node is the last child",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__render": {
+      "location": {
+        "start": {
+          "line": 822,
+          "column": 4
+        },
+        "end": {
+          "line": 863,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Renders the tree data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "setData": {
+      "location": {
+        "start": {
+          "line": 887,
+          "column": 4
+        },
+        "end": {
+          "line": 911,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the whole data en bulk, or notifies the data model that node\nmodifications are complete."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeArr {Array | null}\nPass either an Array of node objects, or null.\n\nIf non-null, nodeArr is an array of node objects containing the\nentire tree to be displayed.  If loading the whole data en bulk in\nthis way, it is assumed that the data is correct!  No error checking\nor validation is done.  You'd better know what you're doing!  Caveat\nemptor.\n\n\nIf nodeArr is null, then this call is a notification that the user\nhas completed building or modifying a tree by issuing a series of\ncalls to {@link #addBranch} and/or {@link #addLeaf}.",
+            "paramName": "nodeArr",
+            "description": "\nPass either an Array of node objects, or null.\n\nIf non-null, nodeArr is an array of node objects containing the\nentire tree to be displayed.  If loading the whole data en bulk in\nthis way, it is assumed that the data is correct!  No error checking\nor validation is done.  You'd better know what you're doing!  Caveat\nemptor.\n\n\nIf nodeArr is null, then this call is a notification that the user\nhas completed building or modifying a tree by issuing a series of\ncalls to {@link #addBranch} and/or {@link #addLeaf}.",
+            "type": [
+              "Array",
+              "null"
+            ]
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the parameter has the wrong type.",
+            "type": "Error",
+            "description": " If the parameter has the wrong type."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getData": {
+      "location": {
+        "start": {
+          "line": 922,
+          "column": 4
+        },
+        "end": {
+          "line": 925,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Return the array of node data."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}\nArray of node objects.\nSee {@link qx.ui.treevirtual.SimpleTreeDataModel} for a description\nnodes in this array.",
+            "type": "Array",
+            "description": "\nArray of node objects.\nSee {@link qx.ui.treevirtual.SimpleTreeDataModel} for a description\nnodes in this array."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearData": {
+      "location": {
+        "start": {
+          "line": 932,
+          "column": 4
+        },
+        "end": {
+          "line": 936,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Clears the tree of all nodes"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setColumnData": {
+      "location": {
+        "start": {
+          "line": 954,
+          "column": 4
+        },
+        "end": {
+          "line": 957,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add data to an additional column (a column other than the tree column)\nof the tree."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeId {Integer}\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "paramName": "nodeId",
+            "description": "\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer}\nThe column number to which the provided data applies",
+            "paramName": "columnIndex",
+            "description": "\nThe column number to which the provided data applies",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}\nThe cell data for the specified column",
+            "paramName": "data",
+            "description": "\nThe cell data for the specified column",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getColumnData": {
+      "location": {
+        "start": {
+          "line": 973,
+          "column": 4
+        },
+        "end": {
+          "line": 976,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Retrieve the data from an additional column (a column other than the\ntree column) of the tree."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeId {Integer}\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "paramName": "nodeId",
+            "description": "\nA node identifier, as previously returned by {@link #addBranch} or\n{@link #addLeaf}.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer}\nThe column number to which the provided data applies",
+            "paramName": "columnIndex",
+            "description": "\nThe column number to which the provided data applies",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The cell data for the specified column",
+            "type": "var",
+            "description": " The cell data for the specified column"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setState": {
+      "location": {
+        "start": {
+          "line": 995,
+          "column": 4
+        },
+        "end": {
+          "line": 1112,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set state attributes of a node."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\nThe node to have its attributes set.  The node can be represented\neither by the node object, or the node id (as would have been\nreturned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\nThe node to have its attributes set.  The node can be represented\neither by the node object, or the node id (as would have been\nreturned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map}\nEach property name in the map may correspond to the property names of\na node which are specified as <i>USER-PROVIDED ATTRIBUTES</i> in\n{@link SimpleTreeDataModel}.  Each property value will be assigned\nto the corresponding property of the node specified by nodeId.",
+            "paramName": "attributes",
+            "description": "\nEach property name in the map may correspond to the property names of\na node which are specified as <i>USER-PROVIDED ATTRIBUTES</i> in\n{@link SimpleTreeDataModel}.  Each property value will be assigned\nto the corresponding property of the node specified by nodeId.",
+            "type": "Map"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the node object or id is not valid.",
+            "type": "Error",
+            "description": " If the node object or id is not valid."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNodeRowMap": {
+      "location": {
+        "start": {
+          "line": 1123,
+          "column": 4
+        },
+        "end": {
+          "line": 1126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Return the mapping of nodes to rendered rows.  This function is intended\nfor use by the cell renderer, not by users of this class.\nIt is also useful to select a node."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}\nThe array containing mappings of nodes to rendered rows.",
+            "type": "Array",
+            "description": "\nThe array containing mappings of nodes to rendered rows."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRowFromNodeId": {
+      "location": {
+        "start": {
+          "line": 1136,
+          "column": 4
+        },
+        "end": {
+          "line": 1139,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This operation maps nodes to rowIndexes.  It does the opposite job to {@link #getNodeFromRow}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeId {Integer}\nThe id of the node (as would have been returned by addBranch(),\naddLeaf(), etc.) to get the row index for.",
+            "paramName": "nodeId",
+            "description": "\nThe id of the node (as would have been returned by addBranch(),\naddLeaf(), etc.) to get the row index for.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} row index for the given node ID",
+            "type": "Integer",
+            "description": " row index for the given node ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNodeFromRow": {
+      "location": {
+        "start": {
+          "line": 1148,
+          "column": 4
+        },
+        "end": {
+          "line": 1151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This operation maps rowIndexes to nodes.  It does the opposite job to {@link #getRowFromNodeId}.\nThis function is useful to map selection (row based) to nodes."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer} zero-based row index.",
+            "paramName": "rowIndex",
+            "description": " zero-based row index.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} node associated to <tt>rowIndex</tt>.",
+            "type": "Object",
+            "description": " node associated to <tt>rowIndex</tt>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_clearSelections": {
+      "location": {
+        "start": {
+          "line": 1160,
+          "column": 4
+        },
+        "end": {
+          "line": 1170,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Clear all selections in the data model.  This method does not clear\nselections displayed in the widget, and is intended for internal use,\nnot by users of this class."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getSelectedNodes": {
+      "location": {
+        "start": {
+          "line": 1179,
+          "column": 4
+        },
+        "end": {
+          "line": 1189,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Return the nodes that are currently selected."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}\nAn array containing the nodes that are currently selected.",
+            "type": "Array",
+            "description": "\nAn array containing the nodes that are currently selected."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyFilter": {
+      "location": {
+        "start": {
+          "line": 1193,
+          "column": 4
+        },
+        "end": {
+          "line": 1196,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "property apply"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "filter"
+      ]
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "reset"
+    },
+    "getFilter": {
+      "type": "function",
+      "name": "getFilter",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>filter</code>.\n\nFor further details take a look at the property definition: {@link #filter}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Function",
+            "desc": "Returns the value for filter"
+          }
+        ]
+      }
+    },
+    "setFilter": {
+      "type": "function",
+      "name": "setFilter",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>filter</code>.\n\nFor further details take a look at the property definition: {@link #filter}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Function",
+            "paramName": "value",
+            "desc": "Value for filter"
+          }
+        ]
+      }
+    },
+    "resetFilter": {
+      "type": "function",
+      "name": "resetFilter",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>filter</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #filter}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 1199,
+        "column": 2
+      },
+      "end": {
+        "line": 1203,
+        "column": 3
+      }
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 1205,
+        "column": 2
+      },
+      "end": {
+        "line": 1210,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

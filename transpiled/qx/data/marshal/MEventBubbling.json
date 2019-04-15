@@ -1,0 +1,189 @@
+{
+  "className": "qx.data.marshal.MEventBubbling",
+  "packageName": "qx.data.marshal",
+  "name": "MEventBubbling",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 177,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Mixin used for the bubbling events. If you want to use this in your own model\nclasses, be sure that every property will call the\n{@link #_applyEventPropagation} function on every change."
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "events": {
+    "changeBubble": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The change event which will be fired on every change in the model no\nmatter what property changes. This event bubbles so the root model will\nfire a change event on every change of its children properties too.\n\nNote that properties are required to call\n{@link #_applyEventPropagation} on apply for changes to be tracked as\ndesired. It is already taken care of that properties created with the\n{@link qx.data.marshal.Json} marshaler call this method.\n\nThe data will contain a map with the following four keys\n<li>value: The new value of the property</li>\n<li>old: The old value of the property.</li>\n<li>name: The name of the property changed including its parent\nproperties separated by dots.</li>\n<li>item: The item which has the changed property.</li>\nDue to that, the <code>getOldData</code> method will always return null\nbecause the old data is contained in the map."
+          }
+        ]
+      },
+      "name": "changeBubble",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "_applyEventPropagation": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Apply function for every property created with the\n{@link qx.data.marshal.Json} marshaler. It fires and\n{@link #changeBubble} event on every change. It also adds the chaining\nlistener if possible which is necessary for the bubbling of the events."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The new value of the property.",
+            "paramName": "value",
+            "description": " The new value of the property.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var} The old value of the property.",
+            "paramName": "old",
+            "description": " The old value of the property.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} The name of the changed property.",
+            "paramName": "name",
+            "description": " The name of the changed property.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_registerEventChaining": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 112,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Registers for the given parameters the changeBubble listener, if\npossible. It also removes the old listener, if an old item with\na changeBubble event is given."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The new value of the property.",
+            "paramName": "value",
+            "description": " The new value of the property.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var} The old value of the property.",
+            "paramName": "old",
+            "description": " The old value of the property.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} The name of the changed property.",
+            "paramName": "name",
+            "description": " The name of the changed property.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__changePropertyListener": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Listener responsible for formating the name and firing the change event\nfor the changed property."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The name of the former properties.",
+            "paramName": "name",
+            "description": " The name of the former properties.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The date event fired by the property\nchange.",
+            "paramName": "e",
+            "description": " The date event fired by the property\nchange.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

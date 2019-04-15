@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/application/Native.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "application",
+    "IApplication",
+    "members",
+    "main",
+    "finalize",
+    "close",
+    "terminate",
+    "Native"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAwBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,YAASN,GAAGO,IAAH,CAAQC,MADnB;AAEEC,eAAY,CAACT,GAAGU,WAAH,CAAeC,YAAhB,CAFd;;AAOE;;;;;;AAMAC,aACA;AACE;AACAC,YAAO,gBACP;AACE;AACD,OALH;;AAQE;AACAC,gBAAW,oBACX;AACE;AACD,OAZH;;AAeE;AACAC,aAAQ,iBACR;AACE;AACD,OAnBH;;AAqBE;AACAC,iBAAY,qBACZ;AACE;AACD;AAzBH;AAdF,GADA,C;AAxBAhB,KAAGU,WAAH,CAAeO,MAAf,CAAsBd,aAAtB,GAAsCA,aAAtC",
+  "file": "Native.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * For a Non-GUI application, supporting low-level DOM operations and AJAX\n * communication.\n *\n * @require(qx.core.Init)\n */\nqx.Class.define(\"qx.application.Native\",\n{\n  extend : qx.core.Object,\n  implement : [qx.application.IApplication],\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // interface method\n    main : function()\n    {\n      // empty\n    },\n\n\n    // interface method\n    finalize : function()\n    {\n      // empty\n    },\n\n\n    // interface method\n    close : function()\n    {\n      // empty\n    },\n\n    // interface method\n    terminate : function()\n    {\n      // empty\n    }\n  }\n});\n"
+  ]
+}

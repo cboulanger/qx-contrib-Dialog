@@ -1,0 +1,450 @@
+{
+  "className": "qx.ui.core.MChildrenHandling",
+  "packageName": "qx.ui.core",
+  "name": "MChildrenHandling",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 212,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nFabian Jakobs (fjakobs)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This mixin exposes all basic methods to manage widget children as public methods.\nIt can only be included into instances of {@link Widget}.\n\nTo optimize the method calls the including widget should call the method\n{@link #remap} in its defer function. This will map the protected\nmethods to the public ones and save one method call for each function."
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "getChildren": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the children list"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem[]} The children array (Arrays are\nreference types, please do not modify them in-place)",
+            "type": "qx.ui.core.LayoutItem[]",
+            "description": " The children array (Arrays are\nreference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasChildren": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget contains children."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children.",
+            "type": "Boolean",
+            "description": " Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "indexOf": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the index position of the given widget if it is\na child widget. Otherwise it returns <code>-1</code>.\n\nThis method works on the widget's children list. Some layout managers\n(e.g. {@link qx.ui.layout.HBox}) use the children order as additional\nlayout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\nignore the children order for the layout process."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} the widget to query for",
+            "paramName": "child",
+            "description": " the widget to query for",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\nthe given widget is no child of this layout.",
+            "type": "Integer",
+            "description": " The index position or <code>-1</code> when\nthe given widget is no child of this layout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a new child widget.\n\nThe supported keys of the layout options map depend on the layout manager\nused to position the widget. The options are documented in the class\ndocumentation of each layout manager {@link qx.ui.layout}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the widget to add.",
+            "paramName": "child",
+            "description": " the widget to add.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for widget.",
+            "paramName": "options",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAt": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a child widget at the specified index\n\nThis method works on the widget's children list. Some layout managers\n(e.g. {@link qx.ui.layout.HBox}) use the children order as additional\nlayout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\nignore the children order for the layout process."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} Widget to add",
+            "paramName": "child",
+            "description": " Widget to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the widget will be inserted",
+            "paramName": "index",
+            "description": " Index, at which the widget will be inserted",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for widget.",
+            "paramName": "options",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addBefore": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 123,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a widget before another already inserted widget\n\nThis method works on the widget's children list. Some layout managers\n(e.g. {@link qx.ui.layout.HBox}) use the children order as additional\nlayout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\nignore the children order for the layout process."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} Widget to add",
+            "paramName": "child",
+            "description": " Widget to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.LayoutItem} Widget before the new widget will be inserted.",
+            "paramName": "before",
+            "description": " Widget before the new widget will be inserted.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for widget.",
+            "paramName": "options",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAfter": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a widget after another already inserted widget\n\nThis method works on the widget's children list. Some layout managers\n(e.g. {@link qx.ui.layout.HBox}) use the children order as additional\nlayout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\nignore the children order for the layout process."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} Widget to add",
+            "paramName": "child",
+            "description": " Widget to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.LayoutItem} Widget, after which the new widget will be inserted",
+            "paramName": "after",
+            "description": " Widget, after which the new widget will be inserted",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for widget.",
+            "paramName": "options",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove the given child widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the widget to remove",
+            "paramName": "child",
+            "description": " the widget to remove",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAt": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove the widget at the specified index.\n\nThis method works on the widget's children list. Some layout managers\n(e.g. {@link qx.ui.layout.HBox}) use the children order as additional\nlayout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\nignore the children order for the layout process."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the widget to remove.",
+            "paramName": "index",
+            "description": " Index of the widget to remove.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The child removed.",
+            "type": "qx.ui.core.LayoutItem",
+            "description": " The child removed."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAll": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 176,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove all children."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array of the removed children.",
+            "type": "Array",
+            "description": " An array of the removed children."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "statics": {
+    "remap": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4
+        },
+        "end": {
+          "line": 210,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Mapping of protected methods to public.\nThis omits an additional function call when using these methods. Call\nthis methods in the defer block of the including class."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "members {Map} The including classes members map",
+            "paramName": "members",
+            "description": " The including classes members map",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

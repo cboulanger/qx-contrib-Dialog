@@ -1,0 +1,569 @@
+{
+  "className": "qx.core.MEvent",
+  "packageName": "qx.core",
+  "name": "MEvent",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 240,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This mixin offers basic event handling capabilities. It includes the\ncommonly known methods for managing event listeners and firing events."
+        }
+      ],
+      "@use": [
+        {
+          "name": "@use",
+          "body": "qx.event.dispatch.Direct"
+        },
+        {
+          "name": "@use",
+          "body": "qx.event.handler.Object"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "__Registration": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Class} Pointer to the regular event registration class"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addListener": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add event listener to this object."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} event callback function",
+            "paramName": "listener",
+            "description": " event callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} Reference to the 'this' variable inside\nthe event listener. When not given, the corresponding dispatcher\nusually falls back to a default, which is the target\nby convention. Note this is not a strict requirement, i.e.\ncustom dispatchers can follow a different strategy.",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\nthe event listener. When not given, the corresponding dispatcher\nusually falls back to a default, which is the target\nby convention. Note this is not a strict requirement, i.e.\ncustom dispatchers can follow a different strategy.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to attach the event to the\ncapturing phase or the bubbling phase of the event. The default is\nto attach the event handler to the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\ncapturing phase or the bubbling phase of the event. The default is\nto attach the event handler to the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} An opaque id, which can be used to remove the event listener\nusing the {@link #removeListenerById} method.",
+            "type": "String",
+            "description": " An opaque id, which can be used to remove the event listener\nusing the {@link #removeListenerById} method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addListenerOnce": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 92,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add event listener to this object, which is only called once. After the\nlistener is called the event listener gets removed."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} event callback function",
+            "paramName": "listener",
+            "description": " event callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object ? window} reference to the 'this' variable inside the callback",
+            "paramName": "context",
+            "description": " reference to the 'this' variable inside the callback",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to attach the event to the\ncapturing phase or the bubbling phase of the event. The default is\nto attach the event handler to the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\ncapturing phase or the bubbling phase of the event. The default is\nto attach the event handler to the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} An opaque id, which can be used to remove the event listener\nusing the {@link #removeListenerById} method.",
+            "type": "String",
+            "description": " An opaque id, which can be used to remove the event listener\nusing the {@link #removeListenerById} method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeListener": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove event listener from this object"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} event callback function",
+            "paramName": "listener",
+            "description": " event callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} reference to the 'this' variable inside the callback",
+            "paramName": "self",
+            "description": " reference to the 'this' variable inside the callback",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to remove the event listener of\nthe bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to remove the event listener of\nthe bubbling or of the capturing phase.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed successfully (has existed)",
+            "type": "Boolean",
+            "description": " Whether the event was removed successfully (has existed)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeListenerById": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes an event listener from an event target by an id returned by\n{@link #addListener}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id returned by {@link #addListener}",
+            "paramName": "id",
+            "description": " The id returned by {@link #addListener}",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed successfully (has existed)",
+            "type": "Boolean",
+            "description": " Whether the event was removed successfully (has existed)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasListener": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Check if there are one or more listeners for an event type."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to check for listeners of\nthe bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to check for listeners of\nthe bubbling or of the capturing phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the object has a listener of the given type.",
+            "type": "Boolean",
+            "description": " Whether the object has a listener of the given type."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispatchEvent": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Dispatch an event on this object"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Event} event to dispatch",
+            "paramName": "evt",
+            "description": " event to dispatch",
+            "type": "qx.event.type.Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented.",
+            "type": "Boolean",
+            "description": " Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fireEvent": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4
+        },
+        "end": {
+          "line": 185,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates and dispatches an event on this object."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\nthe event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\nthe event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented.",
+            "type": "Boolean",
+            "description": " Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fireNonBubblingEvent": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4
+        },
+        "end": {
+          "line": 207,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Create an event object and dispatch it on this object.\nThe event dispatched with this method does never bubble! Use only if you\nare sure that bubbling is not required."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\nthe event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\nthe event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented.",
+            "type": "Boolean",
+            "description": " Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fireDataEvent": {
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates and dispatches an non-bubbling data event on this object."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\naction prevented. The default action can either be the browser's\ndefault action of a native event (e.g. open the context menu on a\nright click) or the default action of a qooxdoo class (e.g. close\nthe window widget). The default action can be prevented by calling\n{@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\naction prevented. The default action can either be the browser's\ndefault action of a native event (e.g. open the context menu on a\nright click) or the default action of a qooxdoo class (e.g. close\nthe window widget). The default action can be prevented by calling\n{@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented.",
+            "type": "Boolean",
+            "description": " Whether the event default was prevented or not.\nReturns true, when the event was NOT prevented."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/dev/unit/TestLoaderMobile.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "application",
+    "Mobile",
+    "include",
+    "dev",
+    "unit",
+    "MTestLoader",
+    "members",
+    "main",
+    "log",
+    "appender",
+    "Console",
+    "url",
+    "_getClassNameFromUrl",
+    "setTestNamespace",
+    "window",
+    "top",
+    "jsUnitTestSuite",
+    "runJsUnit",
+    "runStandAlone",
+    "TestLoaderMobile"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EACA;AACEC,YAASN,GAAGO,WAAH,CAAeC,MAD1B;;AAGEC,aAAU,CAACT,GAAGU,GAAH,CAAOC,IAAP,CAAYC,WAAb,CAHZ;;AAME;;;;;;AAMAC,aACA;AACE;AACAC,YAAO,gBACP;AACE;;AAEA;AACAd,WAAGe,GAAH,CAAOC,QAAP,CAAgBC,OAAhB;;AAEA,YAAIC,MAAM,KAAKC,oBAAL,EAAV;AACA,YAAID,QAAQ,mBAAZ,EAAiC;AAC/B,eAAKE,gBAAL,CAAsB,KAAKD,oBAAL,EAAtB;AACD;;AAED,YAAIE,OAAOC,GAAP,CAAWC,eAAf,EACA;AACE,eAAKC,SAAL;AACA;AACD;;AAED,YAAIH,UAAUA,OAAOC,GAArB,EACA;AACE,eAAKG,aAAL;AACA;AACD;AACF;AAzBH;AAbF,GADA,C;AAtBAzB,KAAGU,GAAH,CAAOC,IAAP,CAAYe,gBAAZ,CAA6BvB,aAA7B,GAA6CA,aAA7C",
+  "file": "TestLoaderMobile.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The test loader is the base class of a native application, which can be used\n * to run tests from a non-GUI application or from within JSUnit.\n */\nqx.Class.define(\"qx.dev.unit.TestLoaderMobile\",\n{\n  extend : qx.application.Mobile,\n\n  include : [qx.dev.unit.MTestLoader],\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    main : function()\n    {\n      this.base(arguments);\n\n      // Dependencies to loggers\n      qx.log.appender.Console;\n\n      var url = this._getClassNameFromUrl();\n      if (url !== \"__unknown_class__\") {\n        this.setTestNamespace(this._getClassNameFromUrl());\n      }\n\n      if (window.top.jsUnitTestSuite)\n      {\n        this.runJsUnit();\n        return;\n      }\n\n      if (window == window.top)\n      {\n        this.runStandAlone();\n        return;\n      }\n    }\n  }\n});\n"
+  ]
+}

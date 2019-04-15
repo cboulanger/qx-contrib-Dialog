@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/UiModel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "properties",
+    "showInherited",
+    "check",
+    "init",
+    "event",
+    "showIncluded",
+    "expandProperties",
+    "showProtected",
+    "showPrivate",
+    "showInternal",
+    "qxl",
+    "apiviewer",
+    "UiModel"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,KAAGC,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,YAASN,GAAGO,IAAH,CAAQC,MADnB;AAEEC,UAAO,WAFT;;AAIEC,gBACA;AACE;AACAC,qBACA;AACEC,eAAO,SADT;AAEEC,cAAM,KAFR;AAGEC,eAAQ;AAHV,OAHF;;AASE;AACAC,oBACA;AACEH,eAAO,SADT;AAEEC,cAAM,IAFR;AAGEC,eAAQ;AAHV,OAXF;;AAiBE;AACAE,wBACA;AACEJ,eAAO,SADT;AAEEC,cAAM,KAFR;AAGEC,eAAQ;AAHV,OAnBF;;AAyBE;AACAG,qBACA;AACEL,eAAO,SADT;AAEEC,cAAM,KAFR;AAGEC,eAAQ;AAHV,OA3BF;;AAiCE;AACAI,mBACA;AACEN,eAAO,SADT;AAEEC,cAAM,KAFR;AAGEC,eAAQ;AAHV,OAnCF;;AAyCE;AACAK,oBACA;AACEP,eAAO,SADT;AAEEC,cAAM,KAFR;AAGEC,eAAQ;AAHV;AA3CF;AALF,GADA,C;AAAAM,MAAIC,SAAJ,CAAcC,OAAd,CAAsBnB,aAAtB,GAAsCA,aAAtC",
+  "file": "UiModel.js",
+  "sourcesContent": [
+    "qx.Class.define(\"qxl.apiviewer.UiModel\",\n{\n  extend : qx.core.Object,\n  type : \"singleton\",\n\n  properties :\n  {\n    /** whether to display inherited items */\n    showInherited :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowInherited\"\n    },\n\n    /** whether to display included items */\n    showIncluded :\n    {\n      check: \"Boolean\",\n      init: true,\n      event : \"changeShowIncluded\"\n    },\n\n    /** whether to display protected items */\n    expandProperties :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeExpandProperties\"\n    },\n\n    /** whether to display protected items */\n    showProtected :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowProtected\"\n    },\n\n    /** whether to display private items */\n    showPrivate :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowPrivate\"\n    },\n\n    /** whether to display internal items */\n    showInternal :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowInternal\"\n    }\n  }\n});"
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "className": "qx.event.handler.OrientationCore",
+  "packageName": "qx.event.handler",
+  "name": "OrientationCore",
+  "superClass": "Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 0
+      },
+      "end": {
+        "line": 158,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTino Butz (tbtz)\nDaniel Wagner (danielwagner)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nUnify Project\n\nHomepage:\nhttp://unify-project.org\n\nCopyright:\n2009-2010 Deutsche Telekom AG, Germany, http://telekom.com\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Listens for native orientation change events\n\nNOTE: Instances of this class must be disposed of after use"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 51,
+        "column": 2
+      },
+      "end": {
+        "line": 56,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "targetWindow {Window} DOM window object",
+          "paramName": "targetWindow",
+          "description": " DOM window object",
+          "type": "qx.event.handler.Window"
+        },
+        {
+          "name": "@param",
+          "body": "emitter {qx.event.Emitter} Event emitter object",
+          "paramName": "emitter",
+          "description": " Event emitter object",
+          "type": "qx.event.Emitter"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__emitter": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_window": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_currentOrientation": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__onNativeWrapper": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__nativeEventType": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_initObserver": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 92,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nOBSERVER INIT\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Initializes the native orientation change event listeners."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_stopObserver": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nOBSERVER STOP\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Disconnects the native orientation change event listeners."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onNative": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nNATIVE EVENT OBSERVERS\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Handler for the native orientation change event."
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The touch event from the browser.",
+            "paramName": "domEvent",
+            "description": " The touch event from the browser.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "dispose": {
+      "type": "function",
+      "name": "dispose",
+      "abstract": true,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.IDisposable"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 152,
+        "column": 2
+      },
+      "end": {
+        "line": 156,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDESTRUCTOR\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "abstract": true,
+  "descendants": []
+}

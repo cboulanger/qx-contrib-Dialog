@@ -1,0 +1,83 @@
+{
+  "className": "qx.ui.table.ICellRenderer",
+  "packageName": "qx.ui.table",
+  "name": "ICellRenderer",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 70,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2006 STZ-IDA, Germany, http://www.stz-ida.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTil Schneider (til132)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "A cell renderer for data cells."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "createDataCellHtml": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates the HTML for a data cell.\n\nThe cellInfo map contains the following properties:\n<ul>\n<li>value (var): the cell's value.</li>\n<li>rowData (var): contains the row data for the row, the cell belongs to.\nThe kind of this object depends on the table model, see\n{@link qx.ui.table.ITableModel#getRowData}</li>\n<li>row (int): the model index of the row the cell belongs to.</li>\n<li>col (int): the model index of the column the cell belongs to.</li>\n<li>table (qx.ui.table.Table): the table the cell belongs to.</li>\n<li>xPos (int): the x position of the cell in the table pane.</li>\n<li>selected (boolean): whether the cell is selected.</li>\n<li>focusedRow (boolean): whether the cell is in the same row as the\nfocused cell.</li>\n<li>editable (boolean): whether the cell is editable.</li>\n<li>style (string): The CSS styles that should be applied to the outer HTML\nelement.</li>\n<li>styleLeft (string): The left position of the cell.</li>\n<li>styleWidth (string): The cell's width (pixel).</li>\n<li>styleHeight (string): The cell's height (pixel).</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} A map containing the information about the cell to\ncreate.",
+            "paramName": "cellInfo",
+            "description": " A map containing the information about the cell to\ncreate.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "htmlArr {String[]} Target string container. The HTML of the data\ncell should be appended to this array.",
+            "paramName": "htmlArr",
+            "description": " Target string container. The HTML of the data\ncell should be appended to this array.",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|undefined}\nA return value of <i>true</i> specifies that no additional cells in\nthe row shall be rendered. This may be used, for example, for\nseparator rows or for other special rendering purposes. Traditional\ncell renderers had no defined return value, so returned nothing\n(undefined). If this method returns either false or nothing, then\nrendering continues with the next cell in the row, which the normal\nmode of operation.",
+            "type": "Boolean|undefined",
+            "description": "\nA return value of <i>true</i> specifies that no additional cells in\nthe row shall be rendered. This may be used, for example, for\nseparator rows or for other special rendering purposes. Traditional\ncell renderers had no defined return value, so returned nothing\n(undefined). If this method returns either false or nothing, then\nrendering continues with the next cell in the row, which the normal\nmode of operation."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

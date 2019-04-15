@@ -1,0 +1,114 @@
+{
+  "className": "qx.ui.virtual.core.IWidgetCellProvider",
+  "packageName": "qx.ui.virtual.core",
+  "name": "IWidgetCellProvider",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 47,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nFabian Jakobs (fjakobs)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "EXPERIMENTAL!\n\nA widget cell provider provides the {@link qx.ui.virtual.layer.WidgetCell}\nwith configured widgets to render the cells and pools/releases unused\ncell widgets."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "getCellWidget": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 44
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This method returns the configured cell for the given cell. The return\nvalue may be <code>null</code> to indicate that the cell should be empty."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {Integer} The cell's row index.",
+            "paramName": "row",
+            "description": " The cell's row index.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "column {Integer} The cell's column index.",
+            "paramName": "column",
+            "description": " The cell's column index.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The configured widget for the given cell.",
+            "type": "qx.ui.core.LayoutItem",
+            "description": " The configured widget for the given cell."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "poolCellWidget": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Release the given cell widget. Either pool or destroy the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.LayoutItem} The cell widget to pool.",
+            "paramName": "widget",
+            "description": " The cell widget to pool.",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

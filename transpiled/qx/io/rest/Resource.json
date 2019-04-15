@@ -1,0 +1,1182 @@
+{
+  "className": "qx.io.rest.Resource",
+  "packageName": "qx.io.rest",
+  "name": "Resource",
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 122,
+        "column": 0
+      },
+      "end": {
+        "line": 696,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTristan Koch (tristankoch)\nRichard Sternagel (rsternagel)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Client-side wrapper of a REST resource.\n\nEach instance represents a resource in terms of REST. A number of actions\n(usually HTTP methods) unique to the resource can be defined and invoked.\nA resource with its actions is configured declaratively by passing a resource\ndescription to the constructor, or programmatically using {@link #map}.\n\nEach action is associated to a route. A route is a combination of method,\nURL pattern and optional parameter constraints.\n\nAn action is invoked by calling a method with the same name. When a URL\npattern of a route contains positional parameters, those parameters must be\npassed when invoking the associated action. Also, constraints defined in the\nroute must be satisfied.\n\nWhen an action is invoked, a request is configured according to the associated\nroute, is passed the URL parameters, request body data, and finally send.\nWhat kind of request is send can be configured by overwriting {@link #_getRequest}.\n\nNo constraints on the action's name or the scope of the URLs are imposed. However,\nif you want to follow RESTful design patterns it is recommended to name actions\nthe same as the HTTP action.\n\n<pre class=\"javascript\">\nvar description = {\n\"get\": { method: \"GET\", url: \"/photo/{id}\" },\n\"put\": { method: \"PUT\", url: \"/photo/{id}\"},\n\"post\": { method: \"POST\", url: \"/photos/\"}\n};\nvar photo = new qx.io.rest.Resource(description);\n// Can also be written: photo.invoke(\"get\", {id: 1});\nphoto.get({id: 1});\n\n// Additionally sets request data (provide it as string or set the content type)\n// In a RESTful environment this creates a new resource with the given 'id'\nphoto.configureRequest(function(req) {\nreq.setRequestHeader(\"Content-Type\", \"application/json\");\n});\nphoto.put({id: 1}, {title: \"Monkey\"});\n\n// Additionally sets request data (provide it as string or set the content type)\n// In a RESTful environment this adds a new resource to the resource collection 'photos'\nphoto.configureRequest(function(req) {\nreq.setRequestHeader(\"Content-Type\", \"application/json\");\n});\nphoto.post(null, {title: \"Monkey\"});\n</pre>\n\nTo check for existence of URL parameters or constrain them to a certain format, you\ncan add a <code>check</code> property to the description. See {@link #map} for details.\n\n<pre class=\"javascript\">\nvar description = {\n\"get\": { method: \"GET\", url: \"/photo/{id}\", check: { id: /\\d+/ } }\n};\nvar photo = new qx.io.rest.Resource(description);\n// photo.get({id: \"FAIL\"});\n// -- Error: \"Parameter 'id' is invalid\"\n</pre>\n\nIf your description happens to use the same action more than once, consider\ndefining another resource.\n\n<pre class=\"javascript\">\nvar description = {\n\"get\": { method: \"GET\", url: \"/photos\"},\n};\n// Distinguish \"photo\" (singular) and \"photos\" (plural) resource\nvar photos = new qx.io.rest.Resource(description);\nphotos.get();\n</pre>\n\nBasically, all routes of a resource should point to the same URL (resource in\nterms of HTTP). One acceptable exception of this constraint are resources where\nrequired parameters are part of the URL (<code>/photos/1/</code>) or filter\nresources. For instance:\n\n<pre class=\"javascript\">\nvar description = {\n\"get\": { method: \"GET\", url: \"/photos/{tag}\" }\n};\nvar photos = new qx.io.rest.Resource(description);\nphotos.get();\nphotos.get({tag: \"wildlife\"})\n</pre>\n\nStrictly speaking, the <code>photos</code> instance represents two distinct resources\nand could therefore just as well mapped to two distinct resources (for instance,\nnamed photos and photosTagged). What style to choose depends on the kind of data\nreturned. For instance, it seems sensible to stick with one resource if the filter\nonly limits the result set (i.e. the individual results have the same properties).\n\nIn order to respond to successful (or erroneous) invocations of actions,\neither listen to the generic \"success\" or \"error\" event and get the action\nfrom the event data, or listen to action specific events defined at runtime.\nAction specific events follow the pattern \"&lt;action&gt;Success\" and\n\"&lt;action&gt;Error\", e.g. \"indexSuccess\".\n\nNOTE: Instances of this class must be disposed of after use"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 142,
+        "column": 2
+      },
+      "end": {
+        "line": 163,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "description {Map?} Each key of the map is interpreted as\n<code>action</code> name. The value associated to the key must be a map\nwith the properties <code>method</code> and <code>url</code>.\n<code>check</code> is optional. Also see {@link #map}.\n\nFor example:\n\n<pre class=\"javascript\">\n{ get: {method: \"GET\", url: \"/photos/{id}\", check: { id: /\\d+/ }} }\n</pre>",
+          "paramName": "description",
+          "description": " Each key of the map is interpreted as\n<code>action</code> name. The value associated to the key must be a map\nwith the properties <code>method</code> and <code>url</code>.\n<code>check</code> is optional. Also see {@link #map}.\n\nFor example:\n\n<pre class=\"javascript\">\n{ get: {method: \"GET\", url: \"/photos/{id}\", check: { id: /\\d+/ }} }\n</pre>",
+          "optional": true,
+          "type": "Map"
+        }
+      ],
+      "@see": [
+        {
+          "name": "@see",
+          "body": "qx.bom.rest"
+        },
+        {
+          "name": "@see",
+          "body": "qx.io.rest"
+        }
+      ]
+    }
+  },
+  "events": {
+    "success": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 35
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when any request was successful.\n\nThe action the successful request is associated to, as well as the\nrequest itself, can be retrieved from the event’s properties.\nAdditionally, an action specific event is fired that follows the pattern\n\"<action>Success\", e.g. \"indexSuccess\"."
+          }
+        ]
+      },
+      "name": "success",
+      "type": "qx.event.type.Rest"
+    },
+    "actionSuccess": {
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
+          "column": 41
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when request associated to action given in prefix was successful.\n\nFor example, \"indexSuccess\" is fired when <code>index()</code> was\nsuccessful."
+          }
+        ]
+      },
+      "name": "actionSuccess",
+      "type": "qx.event.type.Rest"
+    },
+    "error": {
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4
+        },
+        "end": {
+          "line": 193,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when any request fails.\n\nThe action the failed request is associated to, as well as the\nrequest itself, can be retrieved from the event’s properties.\nAdditionally, an action specific event is fired that follows the pattern\n\"<action>Error\", e.g. \"indexError\"."
+          }
+        ]
+      },
+      "name": "error",
+      "type": "qx.event.type.Rest"
+    },
+    "actionError": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when any request associated to action given in prefix fails.\n\nFor example, \"indexError\" is fired when <code>index()</code> failed."
+          }
+        ]
+      },
+      "name": "actionError",
+      "type": "qx.event.type.Rest"
+    }
+  },
+  "statics": {
+    "POLL_THROTTLE_LIMIT": {
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4
+        },
+        "end": {
+          "line": 209,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Number of milliseconds below a long-poll request is considered immediate and\nsubject to throttling checks."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "POLL_THROTTLE_COUNT": {
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4
+        },
+        "end": {
+          "line": 214,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Number of immediate long-poll responses accepted before throttling takes place."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "REQUIRED": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 219,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "A symbol used in checks to declare required parameter."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "placeholdersFromUrl": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 229,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get placeholders from URL."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} The URL to parse for placeholders.",
+            "paramName": "url",
+            "description": " The URL to parse for placeholders.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array of placeholders without the placeholder prefix.",
+            "type": "Array",
+            "description": " Array of placeholders without the placeholder prefix."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "_resource": {
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4
+        },
+        "end": {
+          "line": 234,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__longPollHandlers": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 235,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__pollTimers": {
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4
+        },
+        "end": {
+          "line": 236,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__routes": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 237,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_getResource": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 248,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get resource.\n\nMay be overridden to change type of resource."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "description {Map?} See construct.",
+            "paramName": "description",
+            "description": " See construct.",
+            "optional": true,
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.rest.Resource} Resource implementation which does the heavy lifting.",
+            "type": "qx.bom.rest.Resource",
+            "description": " Resource implementation which does the heavy lifting."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_tailorResource": {
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4
+        },
+        "end": {
+          "line": 293,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Tailors (apply dependency injection) the given resource to fit our needs."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resource {qx.bom.rest.Resource} Resource.",
+            "paramName": "resource",
+            "description": " Resource.",
+            "type": "qx.bom.rest.Resource"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.rest.Resource} Tailored resource.",
+            "type": "qx.bom.rest.Resource",
+            "description": " Tailored resource."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "configureRequest": {
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4
+        },
+        "end": {
+          "line": 315,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "Request"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "Configure request."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} Function called before request is send.\nReceives request, action, params and data.\n\n<pre class=\"javascript\">\nres.configureRequest(function(req, action, params, data) {\nif (action === \"index\") {\nreq.setAccept(\"application/json\");\n}\n});\n</pre>",
+            "paramName": "callback",
+            "description": " Function called before request is send.\nReceives request, action, params and data.\n\n<pre class=\"javascript\">\nres.configureRequest(function(req, action, params, data) {\nif (action === \"index\") {\nreq.setAccept(\"application/json\");\n}\n});\n</pre>",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getRequest": {
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4
+        },
+        "end": {
+          "line": 325,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get request.\n\nMay be overridden to change type of request."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.request.Xhr} Xhr object",
+            "type": "qx.io.request.Xhr",
+            "description": " Xhr object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "map": {
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4
+        },
+        "end": {
+          "line": 356,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "Routes and actions"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "Map action to combination of method and URL pattern.\n\n<pre class=\"javascript\">\nres.map(\"get\", \"GET\", \"/photos/{id}\", {id: /\\d+/});\n\n// GET /photos/123\nres.get({id: \"123\"});\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action to associate to request.",
+            "paramName": "action",
+            "description": " Action to associate to request.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "method {String} Method to configure request with.",
+            "paramName": "method",
+            "description": " Method to configure request with.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String} URL to configure request with. May contain positional\nparameters (<code>{param}</code>) that are replaced by values given when the action\nis invoked. Parameters are optional, unless a check is defined. A default\nvalue can be provided (<code>{param=default}</code>).",
+            "paramName": "url",
+            "description": " URL to configure request with. May contain positional\nparameters (<code>{param}</code>) that are replaced by values given when the action\nis invoked. Parameters are optional, unless a check is defined. A default\nvalue can be provided (<code>{param=default}</code>).",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "check {Map?} Map defining parameter constraints, where the key is\nthe URL parameter and the value a regular expression (to match string) or\n<code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).",
+            "paramName": "check",
+            "description": " Map defining parameter constraints, where the key is\nthe URL parameter and the value a regular expression (to match string) or\n<code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__addAction": {
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4
+        },
+        "end": {
+          "line": 398,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Map actions to members."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action to associate to request.",
+            "paramName": "action",
+            "description": " Action to associate to request.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "method {String} Method to configure request with.",
+            "paramName": "method",
+            "description": " Method to configure request with.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String} URL to configure request with. May contain positional\nparameters (<code>{param}</code>) that are replaced by values given when the action\nis invoked. Parameters are optional, unless a check is defined. A default\nvalue can be provided (<code>{param=default}</code>).",
+            "paramName": "url",
+            "description": " URL to configure request with. May contain positional\nparameters (<code>{param}</code>) that are replaced by values given when the action\nis invoked. Parameters are optional, unless a check is defined. A default\nvalue can be provided (<code>{param=default}</code>).",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "check {Map?} Map defining parameter constraints, where the key is\nthe URL parameter and the value a regular expression (to match string) or\n<code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).",
+            "paramName": "check",
+            "description": " Map defining parameter constraints, where the key is\nthe URL parameter and the value a regular expression (to match string) or\n<code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "invoke": {
+      "location": {
+        "start": {
+          "line": 416,
+          "column": 4
+        },
+        "end": {
+          "line": 423,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Invoke action with parameters.\n\nInternally called by actions dynamically created.\n\nMay be overridden to customize action and parameter handling."
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreUnused(successHandler, failHandler, loadEndHandler)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action to invoke.",
+            "paramName": "action",
+            "description": " Action to invoke.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} Map of parameters inserted into URL when a matching\npositional parameter is found.",
+            "paramName": "params",
+            "description": " Map of parameters inserted into URL when a matching\npositional parameter is found.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "data {Map|String} Data to be send as part of the request.\nSee {@link qx.io.request.AbstractRequest#requestData}.",
+            "paramName": "data",
+            "description": " Data to be send as part of the request.\nSee {@link qx.io.request.AbstractRequest#requestData}.",
+            "type": [
+              "Map",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Id of the action's invocation.",
+            "type": "Number",
+            "description": " Id of the action's invocation."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setBaseUrl": {
+      "location": {
+        "start": {
+          "line": 433,
+          "column": 4
+        },
+        "end": {
+          "line": 435,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Set base URL.\n\nThe base URL is prepended to the URLs given in the description.\nChanges affect all future invocations."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "baseUrl {String} Base URL.",
+            "paramName": "baseUrl",
+            "description": " Base URL.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "abort": {
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4
+        },
+        "end": {
+          "line": 458,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Abort action.\n\nExample:\n\n<pre class=\"javascript\">\n// Abort all invocations of action\nres.get({id: 1});\nres.get({id: 2});\nres.abort(\"get\");\n\n// Abort specific invocation of action (by id)\nvar actionId = res.get({id: 1});\nres.abort(actionId);\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {String|Number} Action of which all invocations to abort\n(when string), or a single invocation of an action to abort (when number)",
+            "paramName": "varargs",
+            "description": " Action of which all invocations to abort\n(when string), or a single invocation of an action to abort (when number)",
+            "type": [
+              "String",
+              "Number"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 467,
+          "column": 4
+        },
+        "end": {
+          "line": 469,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resend request associated to action.\n\nReplays parameters given when action was invoked originally."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action to refresh.",
+            "paramName": "action",
+            "description": " Action to refresh.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "poll": {
+      "location": {
+        "start": {
+          "line": 497,
+          "column": 4
+        },
+        "end": {
+          "line": 530,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Periodically invoke action.\n\nReplays parameters given when action was invoked originally. When the\naction was not yet invoked and requires parameters, parameters must be\ngiven.\n\nPlease note that IE tends to cache overly aggressive. One work-around is\nto disable caching on the client side by configuring the request with\n<code>setCache(false)</code>. If you control the server, a better\nwork-around is to include appropriate headers to explicitly control\ncaching. This way you still avoid requests that can be correctly answered\nfrom cache (e.g. when nothing has changed since the last poll). Please\nrefer to <a href=\"http://www.mnot.net/javascript/xmlhttprequest/cache.html\">\nXMLHttpRequest Caching Test</a> for available options."
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreUnused(intervalListener)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action to poll.",
+            "paramName": "action",
+            "description": " Action to poll.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "interval {Number} Interval in ms.",
+            "paramName": "interval",
+            "description": " Interval in ms.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map?} Map of parameters. See {@link #invoke}.",
+            "paramName": "params",
+            "description": " Map of parameters. See {@link #invoke}.",
+            "optional": true,
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "immediately {Boolean?false} <code>true</code>, if the poll should\ninvoke a call immediately.",
+            "paramName": "immediately",
+            "description": " <code>true</code>, if the poll should\ninvoke a call immediately.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.Timer} Timer that periodically invokes action. Use to\nstop or resume. Is automatically disposed on disposal of object.",
+            "type": "qx.event.Timer",
+            "description": " Timer that periodically invokes action. Use to\nstop or resume. Is automatically disposed on disposal of object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "longPoll": {
+      "location": {
+        "start": {
+          "line": 554,
+          "column": 4
+        },
+        "end": {
+          "line": 599,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Long-poll action.\n\nUse Ajax long-polling to continuously fetch a resource as soon as the\nserver signals new data. The server determines when new data is available,\nwhile the client keeps open a request. Requires configuration on the\nserver side. Basically, the server must not close a connection until\nnew data is available. For a high level introduction to long-polling,\nrefer to <a href=\"http://en.wikipedia.org/wiki/Comet_(programming)#Ajax_with_long_polling\">\nAjax with long polling</a>.\n\nUses {@link #refresh} internally. Make sure you understand the\nimplications of IE's tendency to cache overly aggressive.\n\nNote no interval is given on the client side."
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreUnused(longPollHandler)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action to poll.",
+            "paramName": "action",
+            "description": " Action to poll.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Id of handler responsible for long-polling. To stop\npolling, remove handler using {@link qx.core.Object#removeListenerById}.",
+            "type": "String",
+            "description": " Id of handler responsible for long-polling. To stop\npolling, remove handler using {@link qx.core.Object#removeListenerById}."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getRequestConfig": {
+      "location": {
+        "start": {
+          "line": 611,
+          "column": 4
+        },
+        "end": {
+          "line": 613,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Get request configuration for action and parameters.\n\nThis is were placeholders are replaced with parameters."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} Action associated to request.",
+            "paramName": "action",
+            "description": " Action associated to request.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} Parameters to embed in request.",
+            "paramName": "params",
+            "description": " Parameters to embed in request.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of configuration settings. Has the properties\n<code>method</code>, <code>url</code> and <code>check</code>.",
+            "type": "Map",
+            "description": " Map of configuration settings. Has the properties\n<code>method</code>, <code>url</code> and <code>check</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getThrottleLimit": {
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 4
+        },
+        "end": {
+          "line": 621,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Override to adjust the throttle limit."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Throttle limit in milliseconds",
+            "type": "Integer",
+            "description": " Throttle limit in milliseconds"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getThrottleCount": {
+      "location": {
+        "start": {
+          "line": 627,
+          "column": 4
+        },
+        "end": {
+          "line": 629,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Override to adjust the throttle count."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Throttle count",
+            "type": "Integer",
+            "description": " Throttle count"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__mapFromDescription": {
+      "location": {
+        "start": {
+          "line": 638,
+          "column": 4
+        },
+        "end": {
+          "line": 652,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Map actions from description.\n\nAllows to decoratively define routes."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "description {Map} Map that defines the routes.",
+            "paramName": "description",
+            "description": " Map that defines the routes.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__declareEvent": {
+      "location": {
+        "start": {
+          "line": 659,
+          "column": 4
+        },
+        "end": {
+          "line": 667,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Declare event at runtime."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Type of event.",
+            "paramName": "type",
+            "description": " Type of event.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 675,
+        "column": 2
+      },
+      "end": {
+        "line": 695,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "Destructs the Resource.\n\nAll created requests, routes and pollTimers will be disposed."
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

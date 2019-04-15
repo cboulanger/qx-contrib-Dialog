@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/virtual/selection/CellLines.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "selection",
+    "CellRectangle",
+    "members",
+    "_getSelectableRange",
+    "item1",
+    "item2",
+    "selectables",
+    "columnCount",
+    "_pane",
+    "getColumnConfig",
+    "getItemCount",
+    "row",
+    "column",
+    "start",
+    "end",
+    "i",
+    "cell",
+    "Math",
+    "floor",
+    "_isSelectable",
+    "push",
+    "CellLines"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAyBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,mCAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,OAAN,CAAcC,SAAd,CAAwBC,aADnC;;AAIE;;;;;;AAMAC,aACA;AACE;;;;;;AAOA;AACAC,2BAAsB,6BAASC,KAAT,EAAgBC,KAAhB,EACtB;AACE,YAAIC,cAAc,EAAlB;AACA,YAAIC,cAAc,KAAKC,KAAL,CAAWC,eAAX,GAA6BC,YAA7B,EAAlB;;AAEA,YACEN,MAAMO,GAAN,GAAYN,MAAMM,GAAlB,IACAP,MAAMO,GAAN,IAAaN,MAAMM,GAAnB,IAA0BP,MAAMQ,MAAN,GAAeP,MAAMO,MAFjD,EAIA;AACE,cAAIC,QAAQT,MAAMO,GAAN,GAAYJ,WAAZ,GAA0BH,MAAMQ,MAA5C;AACA,cAAIE,MAAMT,MAAMM,GAAN,GAAYJ,WAAZ,GAA0BF,MAAMO,MAA1C;AACD,SAPD,MASA;AACE,cAAIC,QAAQR,MAAMM,GAAN,GAAYJ,WAAZ,GAA0BF,MAAMO,MAA5C;AACA,cAAIE,MAAMV,MAAMO,GAAN,GAAYJ,WAAZ,GAA0BH,MAAMQ,MAA1C;AACD;;AAGD,aAAK,IAAIG,IAAEF,KAAX,EAAkBE,KAAGD,GAArB,EAA0BC,GAA1B,EACA;AACE,cAAIC,OAAO;AACPL,iBAAKM,KAAKC,KAAL,CAAWH,IAAER,WAAb,CADE;AAEPK,oBAAQG,IAAIR;AAFL,WAAX;AAIA,cAAI,KAAKY,aAAL,CAAmBH,IAAnB,CAAJ,EAA8B;AAC5BV,wBAAYc,IAAZ,CAAiBJ,IAAjB;AACD;AACF;AACD,eAAOV,WAAP;AACD;AAxCH;AAXF,GADA,C;AAzBAf,KAAGO,EAAH,CAAMC,OAAN,CAAcC,SAAd,CAAwBqB,SAAxB,CAAkC3B,aAAlC,GAAkDA,aAAlD",
+  "file": "CellLines.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n\n/**\n * EXPERIMENTAL!\n *\n * Cell selection manager\n */\nqx.Class.define(\"qx.ui.virtual.selection.CellLines\",\n{\n  extend : qx.ui.virtual.selection.CellRectangle,\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      IMPLEMENT ABSTRACT METHODS\n    ---------------------------------------------------------------------------\n    */\n\n\n    // overridden\n    _getSelectableRange : function(item1, item2)\n    {\n      var selectables = [];\n      var columnCount = this._pane.getColumnConfig().getItemCount();\n\n      if (\n        item1.row < item2.row ||\n        item1.row == item2.row && item1.column < item2.column\n      )\n      {\n        var start = item1.row * columnCount + item1.column;\n        var end = item2.row * columnCount + item2.column;\n      }\n      else\n      {\n        var start = item2.row * columnCount + item2.column;\n        var end = item1.row * columnCount + item1.column;\n      }\n\n\n      for (var i=start; i<=end; i++)\n      {\n        var cell = {\n            row: Math.floor(i/columnCount),\n            column: i % columnCount\n        };\n        if (this._isSelectable(cell)) {\n          selectables.push(cell);\n        }\n      }\n      return selectables;\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/mobile/toolbar/Button.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "form",
+    "Button",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "toolbar"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,MAD7B;;AAGE;;;;;;AAMAC,gBACA;AACE;AACAC,uBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT;AAHF;;AAVF,GADA,C;AAtBAd,KAAGO,EAAH,CAAMC,MAAN,CAAaO,OAAb,CAAqBL,MAArB,CAA4BP,aAA5B,GAA4CA,aAA5C",
+  "file": "Button.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Gabriel Munteanu (gabios)\n\n************************************************************************ */\n\n/**\n * A button used in toolbars.\n *\n */\nqx.Class.define(\"qx.ui.mobile.toolbar.Button\",\n{\n  extend : qx.ui.mobile.form.Button,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"toolbar-button\"\n    }\n  }\n\n});"
+  ]
+}

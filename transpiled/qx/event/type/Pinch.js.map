@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/event/type/Pinch.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "type",
+    "Pointer",
+    "members",
+    "_cloneNativeEvent",
+    "nativeEvent",
+    "clone",
+    "scale",
+    "getScale",
+    "_native",
+    "Pinch"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACIC,YAASN,GAAGO,KAAH,CAASC,IAAT,CAAcC,OAD3B;;AAIIC,aAAU;;AAER;AACAC,yBAAoB,2BAASC,WAAT,EAAsBC,KAAtB,EACpB;AACE,YAAIA,wEAA6BD,WAA7B,EAA0CC,KAA1C,CAAJ;;AAEAA,cAAMC,KAAN,GAAcF,YAAYE,KAA1B;;AAEA,eAAOD,KAAP;AACD,OAVO;;AAaR;;;;;AAKAE,gBAAW,oBAAW;AACpB,eAAO,KAAKC,OAAL,CAAaF,KAApB;AACD;AApBO;AAJd,GADA,C;AAvBAd,KAAGO,KAAH,CAASC,IAAT,CAAcS,KAAd,CAAoBd,aAApB,GAAoCA,aAApC",
+  "file": "Pinch.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n\n/**\n * Pinch is a multi pointer gesture fired when two finger moved towards\n * or away from each other. It contains the scaling factor of the pinch.\n */\nqx.Class.define(\"qx.event.type.Pinch\",\n{\n    extend : qx.event.type.Pointer,\n\n\n    members : {\n\n      // overridden\n      _cloneNativeEvent : function(nativeEvent, clone)\n      {\n        var clone = this.base(arguments, nativeEvent, clone);\n\n        clone.scale = nativeEvent.scale;\n\n        return clone;\n      },\n\n\n      /**\n       * Returns the calculated scale of this event.\n       *\n       * @return {Float} the scale value of this event.\n       */\n      getScale : function() {\n        return this._native.scale;\n      }\n    }\n});\n"
+  ]
+}

@@ -1,0 +1,570 @@
+{
+  "className": "qx.lang.Function",
+  "packageName": "qx.lang",
+  "name": "Function",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 0
+      },
+      "end": {
+        "line": 464,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\nAndreas Ecker (ecker)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nMootools\nhttp://mootools.net\nVersion 1.1.1\n\nCopyright:\n2007 Valerio Proietti\n\nLicense:\nMIT: http://www.opensource.org/licenses/mit-license.php\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Collection of helper methods operating on functions."
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.core.Object"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.lang.Array"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getCaller": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Extract the caller of a function from the arguments variable.\nThis will not work in Opera < 9.6."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {arguments} The local arguments variable",
+            "paramName": "args",
+            "description": " The local arguments variable",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} A reference to the calling function or \"undefined\" if caller is not supported.",
+            "type": "qx.lang.Function",
+            "description": " A reference to the calling function or \"undefined\" if caller is not supported."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getName": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Try to get a sensible textual description of a function object.\nThis may be the class/mixin and method name of a function\nor at least the signature of the function."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fcn {Function} function the get the name for.",
+            "paramName": "fcn",
+            "description": " function the get the name for.",
+            "type": "qx.lang.Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Name of the function.",
+            "type": "qx.lang.String",
+            "description": " Name of the function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "globalEval": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 139,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Evaluates JavaScript code globally"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreDeprecated(eval)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {String} JavaScript commands",
+            "paramName": "data",
+            "description": " JavaScript commands",
+            "type": "qx.lang.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} Result of the execution",
+            "type": "var",
+            "description": " Result of the execution"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "create": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4
+        },
+        "end": {
+          "line": 235,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Base function for creating functional closures which is used by most other methods here.\n\n*Syntax*\n\n<pre class='javascript'>var createdFunction = qx.lang.Function.create(myFunction, [options]);</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?} Map of options\n<ul>\n<li><strong>self</strong>: The object that the \"this\" of the function will refer to. Default is the same as the wrapper function is called.</li>\n<li><strong>args</strong>: An array of arguments that will be passed as arguments to the function when called.\nDefault is no custom arguments; the function will receive the standard arguments when called.</li>\n<li><strong>delay</strong>: If set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.\nDefault is no delay.</li>\n<li><strong>periodical</strong>: If set the returned function will periodically perform the actual execution with this specified interval\nand return a timer handle when called. Default is no periodical execution.</li>\n<li><strong>attempt</strong>: If set to true, the returned function will try to execute and return either the results or false on error. Default is false.</li>\n</ul>",
+            "paramName": "options",
+            "description": " Map of options\n<ul>\n<li><strong>self</strong>: The object that the \"this\" of the function will refer to. Default is the same as the wrapper function is called.</li>\n<li><strong>args</strong>: An array of arguments that will be passed as arguments to the function when called.\nDefault is no custom arguments; the function will receive the standard arguments when called.</li>\n<li><strong>delay</strong>: If set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.\nDefault is no delay.</li>\n<li><strong>periodical</strong>: If set the returned function will periodically perform the actual execution with this specified interval\nand return a timer handle when called. Default is no periodical execution.</li>\n<li><strong>attempt</strong>: If set to true, the returned function will try to execute and return either the results or false on error. Default is false.</li>\n</ul>",
+            "optional": true,
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} Wrapped function",
+            "type": "qx.lang.Function",
+            "description": " Wrapped function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "bind": {
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 4
+        },
+        "end": {
+          "line": 285,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a function whose \"this\" is altered.\n\n\n*Native way*\n\nThis is also a feature of JavaScript 1.8.5 and will be supplied\nby modern browsers. Including {@link qx.lang.normalize.Function}\nwill supply a cross browser normalization of the native\nimplementation. We like to encourage you to use the native function!\n\n\n*Syntax*\n\n<pre class='javascript'>qx.lang.Function.bind(myFunction, [self, [varargs...]]);</pre>\n\n*Example*\n\n<pre class='javascript'>\nfunction myFunction()\n{\nthis.setStyle('color', 'red');\n// note that 'this' here refers to myFunction, not an element\n// we'll need to bind this function to the element we want to alter\n};\n\nvar myBoundFunction = qx.lang.Function.bind(myFunction, myElement);\nmyBoundFunction(); // this will make the element myElement red.\n</pre>\n\nIf you find yourself using this static method a lot, you may be\ninterested in the bindTo() method in the mixin qx.core.MBindTo."
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.core.MBindTo"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} The object that the \"this\" of the function will refer to.",
+            "paramName": "self",
+            "description": " The object that the \"this\" of the function will refer to.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments ? null} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The bound function.",
+            "type": "qx.lang.Function",
+            "description": " The bound function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "curry": {
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4
+        },
+        "end": {
+          "line": 315,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a function whose arguments are pre-configured.\n\n*Syntax*\n\n<pre class='javascript'>qx.lang.Function.curry(myFunction, [varargs...]);</pre>\n\n*Example*\n\n<pre class='javascript'>\nfunction myFunction(elem) {\nelem.setStyle('color', 'red');\n};\n\nvar myBoundFunction = qx.lang.Function.curry(myFunction, myElement);\nmyBoundFunction(); // this will make the element myElement red.\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The pre-configured function.",
+            "type": "var",
+            "description": " The pre-configured function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "listener": {
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4
+        },
+        "end": {
+          "line": 355,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a function which could be used as a listener for a native event callback.\n\n*Syntax*\n\n<pre class='javascript'>qx.lang.Function.listener(myFunction, [self, [varargs...]]);</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} The object that the \"this\" of the function will refer to.",
+            "paramName": "self",
+            "description": " The object that the \"this\" of the function will refer to.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments ? null} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The bound function.",
+            "type": "var",
+            "description": " The bound function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "attempt": {
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 4
+        },
+        "end": {
+          "line": 395,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Tries to execute the function.\n\n*Syntax*\n\n<pre class='javascript'>var result = qx.lang.Function.attempt(myFunction, [self, [varargs...]]);</pre>\n\n*Example*\n\n<pre class='javascript'>\nvar myObject = {\n'cow': 'moo!'\n};\n\nvar myFunction = function()\n{\nfor(var i = 0; i < arguments.length; i++) {\nif(!this[arguments[i]]) throw('doh!');\n}\n};\n\nvar result = qx.lang.Function.attempt(myFunction, myObject, 'pig', 'cow'); // false\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} The object that the \"this\" of the function will refer to.",
+            "paramName": "self",
+            "description": " The object that the \"this\" of the function will refer to.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments ? null} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|var} <code>false</code> if an exception is thrown, else the function's return.",
+            "type": "Boolean|var",
+            "description": " <code>false</code> if an exception is thrown, else the function's return."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "delay": {
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 4
+        },
+        "end": {
+          "line": 430,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Delays the execution of a function by a specified duration.\n\n*Syntax*\n\n<pre class='javascript'>var timeoutID = qx.lang.Function.delay(myFunction, [delay, [self, [varargs...]]]);</pre>\n\n*Example*\n\n<pre class='javascript'>\nvar myFunction = function(){ alert('moo! Element id is: ' + this.id); };\n//wait 50 milliseconds, then call myFunction and bind myElement to it\nqx.lang.Function.delay(myFunction, 50, myElement); // alerts: 'moo! Element id is: ... '\n\n// An anonymous function, example\nqx.lang.Function.delay(function(){ alert('one second later...'); }, 1000); //wait a second and alert\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "delay {Integer} The duration to wait (in milliseconds).",
+            "paramName": "delay",
+            "description": " The duration to wait (in milliseconds).",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} The object that the \"this\" of the function will refer to.",
+            "paramName": "self",
+            "description": " The object that the \"this\" of the function will refer to.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments ? null} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The JavaScript Timeout ID (useful for clearing delays).",
+            "type": "Integer",
+            "description": " The JavaScript Timeout ID (useful for clearing delays)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "periodical": {
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 4
+        },
+        "end": {
+          "line": 462,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Executes a function in the specified intervals of time\n\n*Syntax*\n\n<pre class='javascript'>var intervalID = qx.lang.Function.periodical(myFunction, [period, [self, [varargs...]]]);</pre>\n\n*Example*\n\n<pre class='javascript'>\nvar Site = { counter: 0 };\nvar addCount = function(){ this.counter++; };\nqx.lang.Function.periodical(addCount, 1000, Site); // will add the number of seconds at the Site\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "qx.lang.Function"
+          },
+          {
+            "name": "@param",
+            "body": "interval {Integer} The duration of the intervals between executions.",
+            "paramName": "interval",
+            "description": " The duration of the intervals between executions.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} The object that the \"this\" of the function will refer to.",
+            "paramName": "self",
+            "description": " The object that the \"this\" of the function will refer to.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments ? null} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The Interval ID (useful for clearing a periodical).",
+            "type": "Integer",
+            "description": " The Interval ID (useful for clearing a periodical)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

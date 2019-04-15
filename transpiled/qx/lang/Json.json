@@ -1,0 +1,155 @@
+{
+  "className": "qx.lang.Json",
+  "packageName": "qx.lang",
+  "name": "Json",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 62,
+        "column": 0
+      },
+      "end": {
+        "line": 210,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2013 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nFabian Jakobs (fjakobs)\nRichard Sternagel (rsternagel)\n\n======================================================================\n\nThis class contains code from:\n\nJSON 3 (v3.2.5)\n\nCode:\nhttps://github.com/bestiejs/json3\n\nCopyright:\n(c) 2012-2013, Kit Cambridge\n\nLicense:\nMIT: https://raw.github.com/bestiejs/json3/gh-pages/LICENSE\n\n----------------------------------------------------------------------\n\nCopyright (c) 2012-2013 Kit Cambridge.\nhttp://kitcambridge.be/\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Exposes (potentially polyfilled or patched) window.JSON to qooxdoo\n(enabled by <a href=\"https://github.com/bestiejs/json3\">JSON 3</a>)."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "stringify": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This method produces a JSON text from a JavaScript value.\n\nWhen an object value is found, if the object contains a toJSON\nmethod, its toJSON method will be called and the result will be\nstringified. A toJSON method does not serialize: it returns the\nvalue represented by the name/value pair that should be serialized,\nor undefined if nothing should be serialized. The toJSON method\nwill be passed the key associated with the value, and this will be\nbound to the object holding the key.\n\nFor example, this would serialize Dates as ISO strings.\n\n<pre class=\"javascript\">\nDate.prototype.toJSON = function (key) {\nfunction f(n) {\n// Format integers to have at least two digits.\nreturn n < 10 ? '0' + n : n;\n}\n\nreturn this.getUTCFullYear()   + '-' +\nf(this.getUTCMonth() + 1) + '-' +\nf(this.getUTCDate())      + 'T' +\nf(this.getUTCHours())     + ':' +\nf(this.getUTCMinutes())   + ':' +\nf(this.getUTCSeconds())   + 'Z';\n};\n</pre>\n\nYou can provide an optional replacer method. It will be passed the\nkey and value of each member, with this bound to the containing\nobject. The value that is returned from your method will be\nserialized. If your method returns undefined, then the member will\nbe excluded from the serialization.\n\nIf the replacer parameter is an array of strings, then it will be\nused to select the members to be serialized. It filters the results\nsuch that only members with keys listed in the replacer array are\nstringified.\n\nValues that do not have JSON representations, such as undefined or\nfunctions, will not be serialized. Such values in objects will be\ndropped; in arrays they will be replaced with null. You can use\na replacer function to replace those with JSON values.\nJSON.stringify(undefined) returns undefined.\n\nThe optional space parameter produces a stringification of the\nvalue that is filled with line breaks and indentation to make it\neasier to read.\n\nIf the space parameter is a non-empty string, then that string will\nbe used for indentation. If the space parameter is a number, then\nthe indentation will be that many spaces.\n\nExample:\n\n<pre class=\"javascript\">\ntext = JSON.stringify(['e', {pluribus: 'unum'}]);\n// text is '[\"e\",{\"pluribus\":\"unum\"}]'\n\n\ntext = JSON.stringify(['e', {pluribus: 'unum'}], null, '\\t');\n// text is '[\\n\\t\"e\",\\n\\t{\\n\\t\\t\"pluribus\": \"unum\"\\n\\t}\\n]'\n\ntext = JSON.stringify([new Date()], function (key, value) {\nreturn this[key] instanceof Date ?\n'Date(' + this[key] + ')' : value;\n});\n// text is '[\"Date(---current time---)\"]'\n</pre>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(value, replacer, space)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} any JavaScript value, usually an object or array.",
+            "paramName": "value",
+            "description": " any JavaScript value, usually an object or array.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "replacer {Function?} an optional parameter that determines how\nobject values are stringified for objects. It can be a function or an\narray of strings.",
+            "paramName": "replacer",
+            "description": " an optional parameter that determines how\nobject values are stringified for objects. It can be a function or an\narray of strings.",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "space {String?} an optional parameter that specifies the\nindentation of nested structures. If it is omitted, the text will\nbe packed without extra whitespace. If it is a number, it will specify\nthe number of spaces to indent at each level. If it is a string\n(such as '\\t' or '&nbsp;'), it contains the characters used to indent\nat each level.",
+            "paramName": "space",
+            "description": " an optional parameter that specifies the\nindentation of nested structures. If it is omitted, the text will\nbe packed without extra whitespace. If it is a number, it will specify\nthe number of spaces to indent at each level. If it is a string\n(such as '\\t' or '&nbsp;'), it contains the characters used to indent\nat each level.",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The JSON string of the value",
+            "type": "qx.lang.String",
+            "description": " The JSON string of the value"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "parse": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 208,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "will be set after the polyfill"
+          },
+          {
+            "name": "@description",
+            "body": "This method parses a JSON text to produce an object or array.\nIt can throw a SyntaxError exception.\n\nThe optional reviver parameter is a function that can filter and\ntransform the results. It receives each of the keys and values,\nand its return value is used instead of the original value.\nIf it returns what it received, then the structure is not modified.\nIf it returns undefined then the member is deleted.\n\nExample:\n\n<pre class=\"javascript\">\n// Parse the text. Values that look like ISO date strings will\n// be converted to Date objects.\n\nmyData = JSON.parse(text, function (key, value)\n{\nif (typeof value === 'string')\n{\nvar a = /^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2}(?:\\.\\d*)?)Z$/.exec(value);\nif (a) {\nreturn new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]));\n}\n}\nreturn value;\n});\n\nmyData = JSON.parse('[\"Date(09/09/2001)\"]', function (key, value) {\nvar d;\nif (typeof value === 'string' &&\nvalue.slice(0, 5) === 'Date(' &&\nvalue.slice(-1) === ')') {\nd = new Date(value.slice(5, -1));\nif (d) {\nreturn d;\n}\n}\nreturn value;\n});\n</pre>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(text, reviver)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text {String} JSON string to parse",
+            "paramName": "text",
+            "description": " JSON string to parse",
+            "type": "qx.lang.String"
+          },
+          {
+            "name": "@param",
+            "body": "reviver {Function?} Optional reviver function to filter and\ntransform the results",
+            "paramName": "reviver",
+            "description": " Optional reviver function to filter and\ntransform the results",
+            "optional": true,
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The parsed JSON object",
+            "type": "qx.lang.Object",
+            "description": " The parsed JSON object"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

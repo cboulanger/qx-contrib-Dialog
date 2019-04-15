@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/core/DragDropScrolling.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "include",
+    "ui",
+    "MDragDropScrolling",
+    "construct",
+    "widget",
+    "_widget",
+    "members",
+    "_getWidget",
+    "Init",
+    "getApplication",
+    "getRoot",
+    "DragDropScrolling"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAqBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EACA;AACEC,YAASN,GAAGO,IAAH,CAAQC,MADnB;;AAGEC,aAAU,CAACT,GAAGU,EAAH,CAAMH,IAAN,CAAWI,kBAAZ,CAHZ;;AAMEC,eAAY,mBAASC,MAAT,EACZ;AACE;;AAEA,WAAKC,OAAL,GAAeD,MAAf;AACD,KAXH;;AAaEE,aACA;AACED,eAAU,IADZ;;AAIE;;;;;;;;AAQAE,kBAAa,sBACb;AACE,eAAO,KAAKF,OAAL,IAAgBd,GAAGO,IAAH,CAAQU,IAAR,CAAaC,cAAb,GAA8BC,OAA9B,EAAvB;AACD;AAfH;AAdF,GADA,C;AArBAnB,KAAGU,EAAH,CAAMH,IAAN,CAAWa,iBAAX,CAA6BjB,aAA7B,GAA6CA,aAA7C",
+  "file": "DragDropScrolling.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Mustafa Sak (msak)\n\n************************************************************************ */\n\n/**\n * Provides scrolling ability during drag session to the widget.\n */\nqx.Class.define(\"qx.ui.core.DragDropScrolling\",\n{\n  extend : qx.core.Object,\n\n  include : [qx.ui.core.MDragDropScrolling],\n\n\n  construct : function(widget)\n  {\n    this.base(arguments);\n\n    this._widget = widget;\n  },\n\n  members :\n  {\n    _widget : null,\n\n\n    /**\n     * Returns the root widget whose children will have scroll on drag session\n     * behavior. Widget was set on constructor or will be application root by\n     * default.\n     *\n     * @return {qx.ui.core.Widget} The root widget whose children will have\n     * scroll on drag session\n     */\n    _getWidget : function()\n    {\n      return this._widget || qx.core.Init.getApplication().getRoot();\n    }\n  }\n});\n"
+  ]
+}

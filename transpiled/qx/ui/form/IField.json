@@ -1,0 +1,167 @@
+{
+  "className": "qx.ui.form.IField",
+  "packageName": "qx.ui.form",
+  "name": "IField",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 0
+      },
+      "end": {
+        "line": 99,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2017 Martijn Evers, The Netherlands\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartijn Evers (mever)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Field interface.\n\nThis interface allows any value to be set as long as the following constraint\nis met: any value returned by {@link getValue} can be set by {@link setValue}.\n\nThis specifies the interface for handling the model value of a field.\nThe model value is always in a consistent state (see duration example), and\nshould only handle model values of a type that correctly represents the\ndata available through its UI. E.g.: duration can ideally be modeled by a number\nof time units, like seconds. When using a date the duration may be\nunclear (since Unix time?). Type conversions should be handled by data binding.\n\nThe model value is not necessary what is shown to the end-user\nby implementing class. A good example is the {@link qx.ui.form.TextField}\nwhich is able to operate with or without live updating the model value.\n\nDuration example: a field for duration may use two date pickers for begin\nand end dates. When the end date is before the start date the model is in\ninconsistent state. getValue should never return such state. And calling\nit must result in either null or the last consistent value (depending\non implementation or setting)."
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "events": {
+    "changeValue": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when the model value was modified"
+          }
+        ]
+      },
+      "name": "changeValue",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nVALUE PROPERTY\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Sets the field model value. Should also update the UI."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var|null} Updates the field with the new model value.",
+            "paramName": "value",
+            "description": " Updates the field with the new model value.",
+            "type": [
+              "var",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|Error} Should return an error when the type of\nmodel value is not compatible with the implementing class (the concrete field).",
+            "type": "null|Error",
+            "description": " Should return an error when the type of\nmodel value is not compatible with the implementing class (the concrete field)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetValue": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the model value to its initial value. Should also update the UI."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a consistent and up-to-date model value.\n\nNote: returned value can also be a promise of type <code>Promise&lt;*|null&gt;</code>."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var|null} The model value plain or as promise.",
+            "type": "var|null",
+            "description": " The model value plain or as promise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": [
+    "qx.ui.form.IArrayForm",
+    "qx.ui.form.IBooleanForm",
+    "qx.ui.form.IColorForm",
+    "qx.ui.form.IDateForm",
+    "qx.ui.form.IModelForm",
+    "qx.ui.form.INumberForm",
+    "qx.ui.form.IStringForm"
+  ]
+}

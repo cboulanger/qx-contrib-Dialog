@@ -1,0 +1,35 @@
+{
+  "className": "qxl.apiviewer.Appearance",
+  "packageName": "qxl.apiviewer",
+  "name": "Appearance",
+  "superClass": "qx.theme.indigo.Appearance",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 115,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n2006 STZ-IDA, Germany, http://www.stz-ida.de\n2018 Zenesis Limited, http://www.zenesis.com\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nJohn Spackman (johnspackman)\nJonathan Weiß (jonathan_rass)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Extends the default qooxdoo appearance theme."
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

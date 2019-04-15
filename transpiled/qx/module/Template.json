@@ -1,0 +1,265 @@
+{
+  "className": "qx.module.Template",
+  "packageName": "qx.module",
+  "name": "Template",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 107,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2012 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "HTML templating module. This is a wrapper for mustache.js which is a\n\"framework-agnostic way to render logic-free views\".\n\nFor further details, please visit the mustache.js documentation here:\nhttps://github.com/janl/mustache.js/blob/master/README.md"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "get": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Helper method which provides direct access to templates stored as HTML in\nthe DOM. The DOM node with the given ID will be treated as a template,\nparsed and a new DOM element will be returned containing the parsed data.\nKeep in mind that templates can only have one root element.\nAdditionally, you should not put the template into a regular, hidden\nDOM element because the template may not be valid HTML due to the containing\nmustache tags. We suggest to put it into a script tag with the type\n<code>text/template</code>."
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, template.get}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the HTML template in the DOM.",
+            "paramName": "id",
+            "description": " The id of the HTML template in the DOM.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "view {Object} The object holding the data to render.",
+            "paramName": "view",
+            "description": " The object holding the data to render.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "partials {Object} Object holding parts of a template.",
+            "paramName": "partials",
+            "description": " Object holding parts of a template.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing a single DOM element with the parsed\ntemplate data.",
+            "type": "qxWeb",
+            "description": " Collection containing a single DOM element with the parsed\ntemplate data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Original and only template method of mustache.js. For further\ndocumentation, please visit <a href=\"https://github.com/janl/mustache.js\">mustache.js</a>."
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, template.render}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "template {String} The String containing the template.",
+            "paramName": "template",
+            "description": " The String containing the template.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "view {Object} The object holding the data to render.",
+            "paramName": "view",
+            "description": " The object holding the data to render.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "partials {Object} Object holding parts of a template.",
+            "paramName": "partials",
+            "description": " Object holding parts of a template.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The parsed template.",
+            "type": "String",
+            "description": " The parsed template."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "renderToNode": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Combines {@link #render} and {@link #get}. Input is equal to {@link #render}\nand output is equal to {@link #get}. The advantage over {@link #get}\nis that you don't need a HTML template but can use a template\nstring and still get a collection. Keep in mind that templates\ncan only have one root element."
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, template.renderToNode}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "template {String} The String containing the template.",
+            "paramName": "template",
+            "description": " The String containing the template.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "view {Object} The object holding the data to render.",
+            "paramName": "view",
+            "description": " The object holding the data to render.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "partials {Object} Object holding parts of a template.",
+            "paramName": "partials",
+            "description": " Object holding parts of a template.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing a single DOM element with the parsed\ntemplate data.",
+            "type": "qxWeb",
+            "description": " Collection containing a single DOM element with the parsed\ntemplate data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__wrap": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "If the given node is a DOM text node, wrap it in a span element and return\nthe wrapper."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Node} a DOM node",
+            "paramName": "el",
+            "description": " a DOM node",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Original element or wrapper",
+            "type": "Element",
+            "description": " Original element or wrapper"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 104,
+        "column": 2
+      },
+      "end": {
+        "line": 106,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

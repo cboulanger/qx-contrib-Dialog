@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/table/cellrenderer/Debug.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "table",
+    "cellrenderer",
+    "Abstract",
+    "members",
+    "_getContentHtml",
+    "cellInfo",
+    "html",
+    "styleHeight",
+    "dev",
+    "Debug",
+    "debugObjectToString",
+    "value",
+    "row",
+    "col"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,KAAN,CAAYC,YAAZ,CAAyBC,QADpC;;AAGEC,aACA;AACE;AACAC,uBAAkB,yBAASC,QAAT,EAClB;AACE,YAAIC,OACF,wBAAwBD,SAASE,WAAjC,GAA+C,qBAA/C,GACAf,GAAGgB,GAAH,CAAOC,KAAP,CAAaC,mBAAb,CACEL,SAASM,KADX,EAEE,SAASN,SAASO,GAAlB,GAAwB,QAAxB,GAAmCP,SAASQ,GAF9C,EAGE,EAHF,EAIE,IAJF,CADA,GAMA,QAPF;AAQA,eAAOP,IAAP;AACD;AAbH;AAJF,GADA,C;AAvBAd,KAAGO,EAAH,CAAMC,KAAN,CAAYC,YAAZ,CAAyBQ,KAAzB,CAA+Bd,aAA/B,GAA+CA,aAA/C",
+  "file": "Debug.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A debug cell editor.  This displays cellInfo.value using\n * {@link qx.dev.Debug#debugObjectToString} so is useful as a starting point\n * during development of a table, before writing each of the cell renderers.\n */\nqx.Class.define(\"qx.ui.table.cellrenderer.Debug\",\n{\n  extend : qx.ui.table.cellrenderer.Abstract,\n\n  members :\n  {\n    // overridden\n    _getContentHtml : function(cellInfo)\n    {\n      var html =\n        \"<div style='height:\" + cellInfo.styleHeight + \"px;overflow:auto;'>\" +\n        qx.dev.Debug.debugObjectToString(\n          cellInfo.value,\n          \"row=\" + cellInfo.row + \", col=\" + cellInfo.col,\n          10,\n          true) +\n        \"</div>\";\n      return html;\n    }\n  }\n});\n"
+  ]
+}

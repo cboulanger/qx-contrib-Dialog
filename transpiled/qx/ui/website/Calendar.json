@@ -1,0 +1,999 @@
+{
+  "className": "qx.ui.website.Calendar",
+  "packageName": "qx.ui.website",
+  "name": "Calendar",
+  "superClass": "qx.ui.website.Widget",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 126,
+        "column": 0
+      },
+      "end": {
+        "line": 906,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2013 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (wittemann)\nDaniel Wagner (danielwagner)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This is a calendar widget used to select a date. It contain a set of\nbuttons to switch to the next or previous month as well as a button for\neach day in the month.\n\n<h2>CSS Classes</h2>\n<table>\n<thead>\n<tr>\n<td>Class Name</td>\n<td>Applied to</td>\n<td>Description</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>qx-calendar</code></td>\n<td>Container element</td>\n<td>Identifies the Calendar widget</td>\n</tr>\n<tr>\n<td><code>qx-calendar-container</code></td>\n<td>Container element (<code>table</code>)</td>\n<td>Identifies the table container of the Calendar widget</td>\n</tr>\n<tr>\n<td><code>qx-calendar-prev</code></td>\n<td><code>button</code></td>\n<td>Identifies and styles the \"previous month\" button</td>\n</tr>\n<tr>\n<td><code>qx-calendar-prev-container</code></td>\n<td>Container element (<code>td</code>)</td>\n<td>Identifies and styles the \"previous month\" container</td>\n</tr>\n<tr>\n<td><code>qx-calendar-next</code></td>\n<td><code>button</code></td>\n<td>Identifies and styles the \"next month\" button</td>\n</tr>\n<tr>\n<td><code>qx-calendar-next-container</code></td>\n<td>Container element (<code>td</code>)</td>\n<td>Identifies and styles the \"next month\" container</td>\n</tr>\n<tr>\n<td><code>qx-calendar-previous-month</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles calendar cells for days from the previous month</td>\n</tr>\n<tr>\n<td><code>qx-calendar-next-month</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles calendar cells for days from the next month</td>\n</tr>\n<tr>\n<td><code>qx-calendar-dayname</code></td>\n<td>Day name (<code>td</code>)</td>\n<td>Identifies and styles the day name cell</td>\n</tr>\n<tr>\n<td><code>qx-calendar-day</code></td>\n<td>Day (<code>button</code>)</td>\n<td>Identifies and styles the day buttons</td>\n</tr>\n<tr>\n<td><code>qx-calendar-weekday</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles the weekday cells</td>\n</tr>\n<tr>\n<td><code>qx-calendar-weekend</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles the weekend cells</td>\n</tr>\n<tr>\n<td><code>qx-calendar-selected</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles the cell containing the selected day's button</td>\n</tr>\n<tr>\n<td><code>qx-calendar-today</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles the cell containing the current day button</td>\n</tr>\n<tr>\n<td><code>qx-calendar-past</code></td>\n<td>Day cell (<code>td</code>)</td>\n<td>Identifies and styles all cells containing day buttons in the past</td>\n</tr>\n<tr>\n<td><code>qx-hidden</code></td>\n<td>Day (<code>button</code>)</td>\n<td>Added to days of previous / next month if the configuration <code>hideDaysOtherMonth</code>\nis set to <code>true</code> <br /> The default style property used is <code>visibility: hidden</code>\n</td>\n</tr>\n</tbody>\n</table>\n\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Template"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Widget"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "_templates": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "*controls*\n\nTemplate for the controls. This should be a <code>tr</code> tag containing\nthe first row of the calendar.\n\nDefault value:\n<pre><tr>\n<td colspan='1' class='{{cssPrefix}}-prev-container'><button class='{{cssPrefix}}-prev' title='Previous Month'>&lt;</button></td>\n<td colspan='5'>{{month}} {{year}}</td>\n<td colspan='1' class='{{cssPrefix}}-next-container'><button class='{{cssPrefix}}-next' title='Next Month'>&gt;</button></td>\n</tr></pre>\n\n\n*dayRow*\n\nTemplate for the row of each day. This should be a tr tag containing the day names.\n\nDefault value:\n<pre><tr>\n{{#row}}<td class='{{cssPrefix}}-dayname'>{{.}}</td>{{/row}}\n</tr></pre>\n\n\n*row*\n\nTemplate for the row of days. This should be a <code>tr</code> tag containing\na <code>button</code> for each day.\n\nDefault value:\n<pre><tr>\n{{#row}}<td class='{{cssClass}}'>\n<button class='{{cssPrefix}}-day {{hidden}}' value='{{date}}'>{{day}}</button>\n</td>{{/row}}\n</tr></pre>\n\n\n*table*\n\nWrapper template for all other templates. This should be a table.\n\nDefault value:\n<pre><table class='{{cssPrefix}}-container'><thead>{{{thead}}}</thead><tbody>{{{tbody}}}</tbody></table></pre>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_config": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "*monthNames*\n\nArray of strings containing the names of the month.\n\nDefault value:\n<pre>[\"January\", \"February\", \"March\", \"April\", \"May\", \"June\",\n\"July\", \"August\", \"September\", \"October\", \"November\", \"December\"]</pre>\n\n\n*dayNames*\n\nArray of strings containing the day names.\n\nDefault values:\n<pre>[\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]</pre>\n\n*minDate*\n\nEarliest user-selectable date (<code>Date</code> object). Default: <code>null</code> (no restriction).\n\n*maxDate*\n\nLatest user-selectable date (<code>Date</code> object). Default: <code>null</code> (no restriction).\n\n*selectableWeekDays*\n\nArray of user-selectable week days (Sunday is 0). Default: <code>[0, 1, 2, 3, 4, 5, 6]</code> (no restrictions).\n\n*selectionMode*\n\nThe Selection mode the calendar will use. Possible values are 'single' and 'range' . Default: <code>single</code>\n\n*hideDaysOtherMonth*\n\nHide all days of the previous/next month. If the entire last row of the calendar are days of\nthe next month the whole row is not rendered. Default: <code>false</code> <br /> <br />\n<strong>Important: </strong>If you like to have a <em>mixed</em> mode like displaying the days\nof the previous month and hiding the days of the next month you should work with the\n<code>rendered</code> event to manipulate the DOM nodes after the rendering. Take a look at\nthe samples to get a idea of it.\n\n*disableDaysOtherMonth*\n\nDisable all days of the previous/next month. The days are visible, but are not responding to\nuser input. Default: <code>false</code>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "calendar": {
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4
+        },
+        "end": {
+          "line": 267,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Factory method which converts the current collection into a collection of\nCalendar widgets. Therefore, an initialization process needs to be done which\ncan be configured with some parameter."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date?null} The initial Date of the calendar.",
+            "paramName": "date",
+            "description": " The initial Date of the calendar.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Calendar} A new calendar collection.",
+            "type": "qx.ui.website.Calendar",
+            "description": " A new calendar collection."
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 271,
+        "column": 2
+      },
+      "end": {
+        "line": 273,
+        "column": 3
+      }
+    }
+  },
+  "events": {
+    "changeValue": {
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 4
+        },
+        "end": {
+          "line": 278,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired at each value change"
+          }
+        ]
+      },
+      "name": "changeValue",
+      "type": "Date"
+    },
+    "rendered": {
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4
+        },
+        "end": {
+          "line": 282,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired whenvever a render process finished. This event can be used as hook to add\ncustom markup and/or manipulate existing."
+          }
+        ]
+      },
+      "name": "rendered",
+      "type": ""
+    }
+  },
+  "members": {
+    "__range": {
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4
+        },
+        "end": {
+          "line": 287,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_value": {
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4
+        },
+        "end": {
+          "line": 288,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_shownValue": {
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4
+        },
+        "end": {
+          "line": 289,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4
+        },
+        "end": {
+          "line": 304,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the widget has been initialized",
+            "type": "Boolean",
+            "description": " <code>true</code> if the widget has been initialized"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4
+        },
+        "end": {
+          "line": 319,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
+            "type": "qx.ui.website.Widget",
+            "description": " The widget collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "setEnabled": {
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4
+        },
+        "end": {
+          "line": 335,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "overridden"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} The enabled value.",
+            "paramName": "value",
+            "description": " The enabled value.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Widget} The collection for chaining",
+            "type": "qx.ui.website.Widget",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 4
+        },
+        "end": {
+          "line": 392,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the given date as the current value displays it"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Date|Array} Date or array of dates to be displayed.",
+            "paramName": "value",
+            "description": " Date or array of dates to be displayed.",
+            "type": [
+              "Date",
+              "Array"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Calendar} The collection for chaining.",
+            "type": "qx.ui.website.Calendar",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 404,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the currently selected date of the first\ncalendar widget in the collection."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Calendar} The collection for chaining.",
+            "type": "qx.ui.website.Calendar",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "showValue": {
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4
+        },
+        "end": {
+          "line": 445,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Displays the given date"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Date} Date to display.",
+            "paramName": "value",
+            "description": " Date to display.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Calendar} The collection for chaining.",
+            "type": "qx.ui.website.Calendar",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_prevMonth": {
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 4
+        },
+        "end": {
+          "line": 454,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Displays the previous month"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_nextMonth": {
+      "location": {
+        "start": {
+          "line": 460,
+          "column": 4
+        },
+        "end": {
+          "line": 463,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Displays the next month"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_selectDay": {
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 4
+        },
+        "end": {
+          "line": 500,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the current value to the day selected by the user"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The tap event.",
+            "paramName": "e",
+            "description": " The tap event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getTable": {
+      "location": {
+        "start": {
+          "line": 509,
+          "column": 4
+        },
+        "end": {
+          "line": 520,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Renders the calendar for the given date."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} The date to render.",
+            "paramName": "date",
+            "description": " The date to render.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The calendar HTML.",
+            "type": "String",
+            "description": " The calendar HTML."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getControlsData": {
+      "location": {
+        "start": {
+          "line": 529,
+          "column": 4
+        },
+        "end": {
+          "line": 556,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the month and year to be displayed in the calendar controls."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} The date to be displayed.",
+            "paramName": "date",
+            "description": " The date to be displayed.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map containing the month and year.",
+            "type": "Map",
+            "description": " A map containing the month and year."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getDayRowData": {
+      "location": {
+        "start": {
+          "line": 564,
+          "column": 4
+        },
+        "end": {
+          "line": 569,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the week day names to be displayed in the calendar."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} Array of day names.",
+            "type": "String[]",
+            "description": " Array of day names."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getWeekRows": {
+      "location": {
+        "start": {
+          "line": 578,
+          "column": 4
+        },
+        "end": {
+          "line": 679,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the table rows displaying the days of the month."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} The date to be displayed.",
+            "paramName": "date",
+            "description": " The date to be displayed.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The table rows as an HTML string.",
+            "type": "String",
+            "description": " The table rows as an HTML string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getHelpDate": {
+      "location": {
+        "start": {
+          "line": 688,
+          "column": 4
+        },
+        "end": {
+          "line": 699,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a date instance for the first visible day to be displayed"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} Current date",
+            "paramName": "date",
+            "description": " Current date",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Date} Helper date",
+            "type": "Date",
+            "description": " Helper date"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getNormalizedDate": {
+      "location": {
+        "start": {
+          "line": 709,
+          "column": 4
+        },
+        "end": {
+          "line": 716,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a Date object with hours, minutes and seconds set to 0\nto facilitate date comparisons."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dateIn {Date} Date to normalize",
+            "paramName": "dateIn",
+            "description": " Date to normalize",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Date} normalized",
+            "type": "Date",
+            "description": " normalized"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onFocus": {
+      "location": {
+        "start": {
+          "line": 724,
+          "column": 4
+        },
+        "end": {
+          "line": 726,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Attaches the keydown listener."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} focus event",
+            "paramName": "e",
+            "description": " focus event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onBlur": {
+      "location": {
+        "start": {
+          "line": 734,
+          "column": 4
+        },
+        "end": {
+          "line": 738,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes the keydown listener if the focus moves outside of the calendar."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} blur event",
+            "paramName": "e",
+            "description": " blur event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onKeyDown": {
+      "location": {
+        "start": {
+          "line": 746,
+          "column": 4
+        },
+        "end": {
+          "line": 787,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Keyboard handling."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The keydown event.",
+            "paramName": "e",
+            "description": " The keydown event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_focusNextDay": {
+      "location": {
+        "start": {
+          "line": 795,
+          "column": 4
+        },
+        "end": {
+          "line": 813,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Focuses the day button following the given one."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "currentDay {qxWeb} The button for the current day.",
+            "paramName": "currentDay",
+            "description": " The button for the current day.",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_focusPrevDay": {
+      "location": {
+        "start": {
+          "line": 821,
+          "column": 4
+        },
+        "end": {
+          "line": 839,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Focuses the day button preceding the given one."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "currentDay {qxWeb} The button for the current day.",
+            "paramName": "currentDay",
+            "description": " The button for the current day.",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_generateRange": {
+      "location": {
+        "start": {
+          "line": 847,
+          "column": 4
+        },
+        "end": {
+          "line": 882,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Generates a date list depending on the given range"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "range {Array} Array containing the start and end values on the range",
+            "paramName": "range",
+            "description": " Array containing the start and end values on the range",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array with all the date objects contained in the given range",
+            "type": "Array",
+            "description": " Array with all the date objects contained in the given range"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 885,
+          "column": 4
+        },
+        "end": {
+          "line": 898,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget",
+        "qx.core.IDisposable"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Plain qxWeb collection",
+            "type": "qxWeb",
+            "description": " Plain qxWeb collection"
+          }
+        ]
+      }
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 903,
+        "column": 2
+      },
+      "end": {
+        "line": 905,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

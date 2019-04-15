@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "sources": [
+    "contrib/qooxdoo_qxl.apiviewer_v0.1.12/source/class/qxl/apiviewer/Appearance.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "title",
+    "extend",
+    "theme",
+    "indigo",
+    "Appearance",
+    "appearances",
+    "style",
+    "states",
+    "width",
+    "decorator",
+    "backgroundColor",
+    "padding",
+    "include",
+    "alias",
+    "contentPadding",
+    "textColor",
+    "font",
+    "minHeight",
+    "marginBottom",
+    "barBottom",
+    "marginTop",
+    "barTop",
+    "marginLeft",
+    "barLeft",
+    "marginRight",
+    "barRight",
+    "qxl",
+    "apiviewer"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAwBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EACA;AACEC,WAAO,sBADT;AAEEC,YAASP,GAAGQ,KAAH,CAASC,MAAT,CAAgBC,UAF3B;;AAIEC,iBACA;AACE,oBACA;AACEC,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLC,mBAAQ,GADH;AAELC,uBAAY;AAFP,WAAP;AAID;AAPH,OAFF;;AAYE,sBACA;AACEH,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLG,6BAAkB,OADb;AAELD,uBAAY,MAFP;AAGLE,qBAAU,CAAC,EAAD,EAAK,CAAL,EAAQ,EAAR,EAAY,CAAZ;AAHL,WAAP;AAKD;AARH,OAbF;;AAwBE,gBACA;AACEC,iBAAU,YADZ;AAEEC,eAAQ,YAFV;;AAIEP,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLO,4BAAiB,CAAE,EAAF,EAAM,EAAN,EAAU,EAAV,EAAc,EAAd,CADZ;AAELJ,6BAAiB;AAFZ,WAAP;AAID;AAVH,OAzBF;;AAsCE,oCACA;AACEJ,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLQ,uBAAW,SADN;AAELC,kBAAO;AAFF,WAAP;AAID;AAPH,OAvCF;;AAiDE,0BACA;AACEV,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLQ,uBAAW;AADN,WAAP;AAGD;AANH,OAlDF;;AA2DE,iBACA;AACET,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLO,4BAAiB;AADZ,WAAP;AAGD;AANH,OA5DF;;AAqEE,sBACA;AACER,eAAQ,eAASC,MAAT,EACR;AACE,iBAAO;AACLU,uBAAY,GADP;;AAGLC,0BAAeX,OAAOY,SAAP,GAAmB,CAAC,CAApB,GAAwB,CAHlC;AAILC,uBAAYb,OAAOc,MAAP,GAAgB,CAAC,CAAjB,GAAqB,CAJ5B;AAKLC,wBAAaf,OAAOgB,OAAP,GAAiB,CAAC,CAAlB,GAAsB,CAL9B;AAMLC,yBAAcjB,OAAOkB,QAAP,GAAkB,CAAC,CAAnB,GAAuB;AANhC,WAAP;AAQD;AAXH;AAtEF;AALF,GADA,C;AAxBAC,MAAIC,SAAJ,CAAcvB,UAAd,CAAyBP,aAAzB,GAAyCA,aAAzC",
+  "file": "Appearance.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * Extends the default qooxdoo appearance theme.\n */\nqx.Theme.define(\"qxl.apiviewer.Appearance\",\n{\n  title: \"Theme for API Viewer\",\n  extend : qx.theme.indigo.Appearance,\n\n  appearances :\n  {\n    \"toggleview\" :\n    {\n      style : function(states)\n      {\n        return {\n          width : 240,\n          decorator : \"main\"\n        };\n      }\n    },\n\n    \"detailviewer\" :\n    {\n      style : function(states)\n      {\n        return {\n          backgroundColor : \"white\",\n          decorator : \"main\",\n          padding : [10, 0, 10, 0]\n        }\n      }\n    },\n\n    \"legend\" :\n    {\n      include : \"scrollarea\",\n      alias : \"scrollarea\",\n\n      style : function(states)\n      {\n        return {\n          contentPadding : [ 10, 10, 10, 10 ],\n          backgroundColor: \"white\"\n        };\n      }\n    },\n\n    \"legendview-label-important\" :\n    {\n      style : function(states)\n      {\n        return {\n          textColor: \"#134275\",\n          font : \"bold\"\n        };\n      }\n    },\n\n    \"legendview-label\" :\n    {\n      style : function(states)\n      {\n        return {\n          textColor: \"#134275\"\n        };\n      }\n    },\n\n    \"tabview\" :\n    {\n      style : function(states)\n      {\n        return {\n          contentPadding : 0\n        }\n      }\n    },\n\n    \"tabview/pane\" :\n    {\n      style : function(states)\n      {\n        return {\n          minHeight : 100,\n\n          marginBottom : states.barBottom ? -1 : 0,\n          marginTop : states.barTop ? -1 : 0,\n          marginLeft : states.barLeft ? -1 : 0,\n          marginRight : states.barRight ? -1 : 0\n        };\n      }\n    }\n  }\n});"
+  ]
+}

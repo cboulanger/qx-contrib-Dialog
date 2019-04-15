@@ -1,0 +1,5077 @@
+{
+  "className": "qx.ui.mobile.core.Widget",
+  "packageName": "qx.ui.mobile.core",
+  "name": "Widget",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [
+    "qx.locale.MTranslation"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 1676,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nTino Butz (tbtz)\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "This is the base class for all mobile widgets."
+        }
+      ],
+      "@use": [
+        {
+          "name": "@use",
+          "body": "qx.ui.mobile.core.EventHandler"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2
+      },
+      "end": {
+        "line": 51,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nCONSTRUCTOR\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "events": {
+    "mousemove": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if the mouse cursor moves over the widget."
+          }
+        ]
+      },
+      "name": "mousemove",
+      "type": "qx.event.type.Mouse"
+    },
+    "mouseover": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if the mouse cursor enters the widget."
+          }
+        ]
+      },
+      "name": "mouseover",
+      "type": "qx.event.type.Mouse"
+    },
+    "mouseout": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if the mouse cursor leaves widget."
+          }
+        ]
+      },
+      "name": "mouseout",
+      "type": "qx.event.type.Mouse"
+    },
+    "mousedown": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Mouse button is pressed on the widget."
+          }
+        ]
+      },
+      "name": "mousedown",
+      "type": "qx.event.type.Mouse"
+    },
+    "mouseup": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 35
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Mouse button is released on the widget."
+          }
+        ]
+      },
+      "name": "mouseup",
+      "type": "qx.event.type.Mouse"
+    },
+    "click": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Widget is clicked using left or middle button.\n{@link qx.event.type.Mouse#getButton} for more details."
+          }
+        ]
+      },
+      "name": "click",
+      "type": "qx.event.type.Mouse"
+    },
+    "dblclick": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 85,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Widget is double clicked using left or middle button.\n{@link qx.event.type.Mouse#getButton} for more details."
+          }
+        ]
+      },
+      "name": "dblclick",
+      "type": "qx.event.type.Mouse"
+    },
+    "contextmenu": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 88,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Widget is clicked using the right mouse button."
+          }
+        ]
+      },
+      "name": "contextmenu",
+      "type": "qx.event.type.Mouse"
+    },
+    "beforeContextmenuOpen": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 49
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired before the context menu is opened."
+          }
+        ]
+      },
+      "name": "beforeContextmenuOpen",
+      "type": "qx.event.type.Mouse"
+    },
+    "mousewheel": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 43
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if the mouse wheel is used over the widget."
+          }
+        ]
+      },
+      "name": "mousewheel",
+      "type": "qx.event.type.MouseWheel"
+    },
+    "touchstart": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 38
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if a touch at the screen is started."
+          }
+        ]
+      },
+      "name": "touchstart",
+      "type": "qx.event.type.Touch"
+    },
+    "touchend": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if a touch at the screen has ended."
+          }
+        ]
+      },
+      "name": "touchend",
+      "type": "qx.event.type.Touch"
+    },
+    "touchmove": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired during a touch at the screen."
+          }
+        ]
+      },
+      "name": "touchmove",
+      "type": "qx.event.type.Touch"
+    },
+    "touchcancel": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired if a touch at the screen is canceled."
+          }
+        ]
+      },
+      "name": "touchcancel",
+      "type": "qx.event.type.Touch"
+    },
+    "tap": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when a finger taps on the screen."
+          }
+        ]
+      },
+      "name": "tap",
+      "type": "qx.event.type.Tap"
+    },
+    "longtap": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 112,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when a finger holds on the screen."
+          }
+        ]
+      },
+      "name": "longtap",
+      "type": "qx.event.type.Tap"
+    },
+    "swipe": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when a finger swipes over the screen."
+          }
+        ]
+      },
+      "name": "swipe",
+      "type": "qx.event.type.Touch"
+    },
+    "rotate": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 35
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when two pointers performing a rotate gesture on the screen."
+          }
+        ]
+      },
+      "name": "rotate",
+      "type": "qx.event.type.Rotate"
+    },
+    "pinch": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when two pointers performing a pinch in/out gesture on the screen."
+          }
+        ]
+      },
+      "name": "pinch",
+      "type": "qx.event.type.Pinch"
+    },
+    "track": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when an active pointer moves on the screen (after pointerdown till pointerup)."
+          }
+        ]
+      },
+      "name": "track",
+      "type": "qx.event.type.Track"
+    },
+    "keyup": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This event if fired if a keyboard key is released."
+          }
+        ]
+      },
+      "name": "keyup",
+      "type": "qx.event.type.KeySequence"
+    },
+    "keydown": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 41
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This event if fired if a keyboard key is pressed down. This event is\nonly fired once if the user keeps the key pressed for a while."
+          }
+        ]
+      },
+      "name": "keydown",
+      "type": "qx.event.type.KeySequence"
+    },
+    "keypress": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This event is fired any time a key is pressed. It will be repeated if\nthe user keeps the key pressed. The pressed key can be determined using\n{@link qx.event.type.KeySequence#getKeyIdentifier}."
+          }
+        ]
+      },
+      "name": "keypress",
+      "type": "qx.event.type.KeySequence"
+    },
+    "keyinput": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 153,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This event is fired if the pressed key or keys result in a printable\ncharacter. Since the character is not necessarily associated with a\nsingle physical key press, the event does not have a key identifier\ngetter. This event gets repeated if the user keeps pressing the key(s).\n\nThe unicode code of the pressed key can be read using\n{@link qx.event.type.KeyInput#getCharCode}."
+          }
+        ]
+      },
+      "name": "keyinput",
+      "type": "qx.event.type.KeyInput"
+    },
+    "domupdated": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4
+        },
+        "end": {
+          "line": 161,
+          "column": 38
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired after a massive DOM manipulation, e.g. when DOM elements were\nadded or styles were changed. Listen to this event, if you need to\nrecalculate a layout or have to update your view."
+          }
+        ]
+      },
+      "name": "domupdated",
+      "type": "qx.event.type.Event"
+    },
+    "appear": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 34
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired after the widget appears on the screen."
+          }
+        ]
+      },
+      "name": "appear",
+      "type": "qx.event.type.Event"
+    },
+    "disappear": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired after the widget disappears from the screen."
+          }
+        ]
+      },
+      "name": "disappear",
+      "type": "qx.event.type.Event"
+    },
+    "focus": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4
+        },
+        "end": {
+          "line": 177,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The event is fired when the widget gets focused."
+          }
+        ]
+      },
+      "name": "focus",
+      "type": "qx.event.type.Focus"
+    },
+    "blur": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 32
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The event is fired when the widget gets blurred."
+          }
+        ]
+      },
+      "name": "blur",
+      "type": "qx.event.type.Focus"
+    },
+    "focusin": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 35
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "When the widget itself or any child of the widget receive the focus."
+          }
+        ]
+      },
+      "name": "focusin",
+      "type": "qx.event.type.Focus"
+    },
+    "focusout": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "When the widget itself or any child of the widget lost the focus."
+          }
+        ]
+      },
+      "name": "focusout",
+      "type": "qx.event.type.Focus"
+    },
+    "activate": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4
+        },
+        "end": {
+          "line": 197,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "When the widget gets active (receives keyboard events etc.)"
+          }
+        ]
+      },
+      "name": "activate",
+      "type": "qx.event.type.Focus"
+    },
+    "deactivate": {
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4
+        },
+        "end": {
+          "line": 202,
+          "column": 38
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "When the widget gets inactive"
+          }
+        ]
+      },
+      "name": "deactivate",
+      "type": "qx.event.type.Focus"
+    },
+    "roll": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4
+        },
+        "end": {
+          "line": 207,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fired when an active pointer moves on the screen or the mouse wheel is used."
+          }
+        ]
+      },
+      "name": "roll",
+      "type": "qx.event.type.Roll"
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The default CSS class used for this widget. The default CSS class\nshould contain the common appearance of the widget.\nIt is set to the container element of the widget. Use {@link #addCssClass}\nto enhance the default appearance of the widget."
+          }
+        ]
+      },
+      "name": "defaultCssClass",
+      "propertyType": "new",
+      "apply": "_applyDefaultCssClass",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "enabled": {
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether this widget is enabled or not"
+          }
+        ]
+      },
+      "name": "enabled",
+      "propertyType": "new",
+      "event": "changeEnabled",
+      "apply": "_applyEnabled",
+      "nullable": false,
+      "init": true,
+      "allowNull": false,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4
+        },
+        "end": {
+          "line": 259,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The name attribute of the container element. Useful when you want to find\nan element by its name attribute."
+          }
+        ]
+      },
+      "name": "name",
+      "propertyType": "new",
+      "apply": "_applyAttribute",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "anonymous": {
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4
+        },
+        "end": {
+          "line": 273,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget should be the target of an event. Set this property\nto <code>false</code> when the widget is a child of another widget and\nshouldn't react on events."
+          }
+        ]
+      },
+      "name": "anonymous",
+      "propertyType": "new",
+      "apply": "_applyStyle",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Boolean"
+    },
+    "id": {
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4
+        },
+        "end": {
+          "line": 288,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "The ID of the widget. When the ID is set to <code>null</code> an auto\nid will be generated."
+          }
+        ]
+      },
+      "name": "id",
+      "propertyType": "new",
+      "event": "changeId",
+      "apply": "_applyId",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "visibility": {
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4
+        },
+        "end": {
+          "line": 306,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Controls the visibility. Valid values are:\n\n<ul>\n<li><b>visible</b>: Render the widget</li>\n<li><b>hidden</b>: Hide the widget. The space will be still available.</li>\n<li><b>excluded</b>: Hide the widget. The space will be released.</li>\n</ul>"
+          }
+        ]
+      },
+      "name": "visibility",
+      "propertyType": "new",
+      "event": "changeVisibility",
+      "apply": "_applyVisibility",
+      "init": "visible",
+      "possibleValues": [
+        "visible",
+        "hidden",
+        "excluded"
+      ],
+      "defaultValue": "visible"
+    },
+    "activatable": {
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4
+        },
+        "end": {
+          "line": 319,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget can be activated or not. When the widget is activated\na css class <code>active</code> is automatically added to the widget, which\ncan indicate the activation status."
+          }
+        ]
+      },
+      "name": "activatable",
+      "propertyType": "new",
+      "apply": "_applyAttribute",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "rotation": {
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4
+        },
+        "end": {
+          "line": 331,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Rotates the widget. Negative and positive values are allowed."
+          }
+        ]
+      },
+      "name": "rotation",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Number"
+    },
+    "transformUnit": {
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 4
+        },
+        "end": {
+          "line": 344,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "This property controls whether the transformation uses the length unit <code>px<code> or <code>rem</code>.\nThis feature is important for creating a resolution independent transformation."
+          }
+        ]
+      },
+      "name": "transformUnit",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": false,
+      "init": "rem",
+      "allowNull": false,
+      "possibleValues": [
+        "rem",
+        "px"
+      ],
+      "defaultValue": "rem"
+    },
+    "scaleX": {
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 4
+        },
+        "end": {
+          "line": 356,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Scales the widget in X direction (width)."
+          }
+        ]
+      },
+      "name": "scaleX",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Number"
+    },
+    "scaleY": {
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4
+        },
+        "end": {
+          "line": 368,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Scales the widget in Y direction (height)."
+          }
+        ]
+      },
+      "name": "scaleY",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Number"
+    },
+    "translateX": {
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4
+        },
+        "end": {
+          "line": 380,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Moves the widget on X axis."
+          }
+        ]
+      },
+      "name": "translateX",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": true,
+      "init": 0,
+      "allowNull": true,
+      "check": "Number",
+      "defaultValue": 0
+    },
+    "translateY": {
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4
+        },
+        "end": {
+          "line": 392,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Moves the widget on Y axis."
+          }
+        ]
+      },
+      "name": "translateY",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": true,
+      "init": 0,
+      "allowNull": true,
+      "check": "Number",
+      "defaultValue": 0
+    },
+    "translateZ": {
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4
+        },
+        "end": {
+          "line": 404,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Moves the widget on Z axis."
+          }
+        ]
+      },
+      "name": "translateZ",
+      "propertyType": "new",
+      "apply": "_transform",
+      "nullable": true,
+      "init": 0,
+      "allowNull": true,
+      "check": "Number",
+      "defaultValue": 0
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "statics": {
+    "ID_PREFIX": {
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 4
+        },
+        "end": {
+          "line": 419,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} Prefix for the auto id"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__registry": {
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 4
+        },
+        "end": {
+          "line": 422,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Internal data structure to store widgets"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__idCounter": {
+      "location": {
+        "start": {
+          "line": 425,
+          "column": 4
+        },
+        "end": {
+          "line": 425,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Incremental counter of the current id"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__domUpdatedScheduleId": {
+      "location": {
+        "start": {
+          "line": 428,
+          "column": 4
+        },
+        "end": {
+          "line": 428,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} ID of the timeout for the DOM update"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "onShutdown": {
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4
+        },
+        "end": {
+          "line": 438,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Event handler. Called when the application is in shutdown."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCurrentId": {
+      "location": {
+        "start": {
+          "line": 446,
+          "column": 4
+        },
+        "end": {
+          "line": 449,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the current widget id of the registry."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The current id",
+            "type": "Integer",
+            "description": " The current id"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "registerWidget": {
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 4
+        },
+        "end": {
+          "line": 467,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Registers a widget with its id for internal widget handling."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} The widget to register",
+            "paramName": "widget",
+            "description": " The widget to register",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregisterWidget": {
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4
+        },
+        "end": {
+          "line": 480,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Unregisters the widget with the given id."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the widget to unregister",
+            "paramName": "id",
+            "description": " The id of the widget to unregister",
+            "type": "String"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWidgetById": {
+      "location": {
+        "start": {
+          "line": 489,
+          "column": 4
+        },
+        "end": {
+          "line": 491,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the widget with the given id."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the widget",
+            "paramName": "id",
+            "description": " The id of the widget",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The widget with the given id",
+            "type": "qx.ui.core.Widget",
+            "description": " The widget with the given id"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "scheduleDomUpdated": {
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4
+        },
+        "end": {
+          "line": 509,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Schedules the {@link #domUpdated} method. The method will be called after a timeout\nto prevent the triggered events to be fired too often, during massive DOM manipulations."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "domUpdated": {
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 4
+        },
+        "end": {
+          "line": 526,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Fires the DOM updated event directly. Triggers the {@link qx.event.handler.Appear#refresh} and\n{@link qx.ui.mobile.core.DomUpdatedHandler#refresh} methods. Do not use this\nmethod during massive DOM manipulations. Use {@link #scheduleDomUpdated} instead."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "addAttributeMapping": {
+      "location": {
+        "start": {
+          "line": 551,
+          "column": 4
+        },
+        "end": {
+          "line": 563,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds an attribute mapping entry. This entry is used by the {@link #_applyAttribute}\nmethod. Shortcut when the property name differs from the real\nattribute name. Use this method if you want to add an attribute entry to the mapping\nfrom the defer function of a different widget.\n\ne.g.:\n\"selectable\" :\n{\nattribute : \"data-selectable\",\nvalues :\n{\n\"true\" : null,\n\"false\" : \"false\"\n}\n}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "property {String} The property name",
+            "paramName": "property",
+            "description": " The property name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "attribute {String} The real attribute name",
+            "paramName": "attribute",
+            "description": " The real attribute name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "values {Map} Values of the property to the real attribute value.\nUse null, when you want not to set the attribute.",
+            "paramName": "values",
+            "description": " Values of the property to the real attribute value.\nUse null, when you want not to set the attribute.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addStyleMapping": {
+      "location": {
+        "start": {
+          "line": 588,
+          "column": 4
+        },
+        "end": {
+          "line": 600,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a style mapping entry. This entry is used by the {@link #_applyStyle}\nmethod. Shortcut when the property name differs from the real\nstyle name. Use this method if you want to add a style entry to the mapping\nfrom the defer function of a different widget.\n\ne.g.:\n\"anonymous\" :\n{\nstyle : \"pointer-events\",\nvalues :\n{\n\"true\" : \"none\",\n\"false\" : null\n}\n}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "property {String} The property name",
+            "paramName": "property",
+            "description": " The property name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "style {String} The real style name",
+            "paramName": "style",
+            "description": " The real style name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "values {Map} Values of the property to the real style value.\nUse null, when you want not to set the style.",
+            "paramName": "values",
+            "description": " Values of the property to the real style value.\nUse null, when you want not to set the style.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "ATTRIBUTE_MAPPING": {
+      "location": {
+        "start": {
+          "line": 608,
+          "column": 4
+        },
+        "end": {
+          "line": 632,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Mapping of attribute properties to their real attribute name."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "STYLE_MAPPING": {
+      "location": {
+        "start": {
+          "line": 640,
+          "column": 4
+        },
+        "end": {
+          "line": 651,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Mapping of style properties to their real style name."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__containerElement": {
+      "location": {
+        "start": {
+          "line": 665,
+          "column": 4
+        },
+        "end": {
+          "line": 665,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__contentElement": {
+      "location": {
+        "start": {
+          "line": 666,
+          "column": 4
+        },
+        "end": {
+          "line": 666,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__layoutParent": {
+      "location": {
+        "start": {
+          "line": 668,
+          "column": 4
+        },
+        "end": {
+          "line": 668,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__children": {
+      "location": {
+        "start": {
+          "line": 669,
+          "column": 4
+        },
+        "end": {
+          "line": 669,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__layoutManager": {
+      "location": {
+        "start": {
+          "line": 670,
+          "column": 4
+        },
+        "end": {
+          "line": 670,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_getTagName": {
+      "location": {
+        "start": {
+          "line": 683,
+          "column": 4
+        },
+        "end": {
+          "line": 686,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nBasic Template\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Returns the tag name of the container element of this widget.\nOverride this method if you want to create a custom widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The container element's tag name",
+            "type": "String",
+            "description": " The container element's tag name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createContainerElement": {
+      "location": {
+        "start": {
+          "line": 695,
+          "column": 4
+        },
+        "end": {
+          "line": 698,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Creates the container DOM element of the widget.\nOverride this method if you want to create a custom widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the container element.",
+            "type": "Element",
+            "description": " the container element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_domUpdated": {
+      "location": {
+        "start": {
+          "line": 705,
+          "column": 4
+        },
+        "end": {
+          "line": 708,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Triggers the {@link #scheduleDomUpdated} method. This method needs to be called\nwhen the DOM has changed, e.g. an element was added / removed / styled."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_transformId": {
+      "location": {
+        "start": {
+          "line": 725,
+          "column": 4
+        },
+        "end": {
+          "line": 733,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nID Handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Transforms the value of the ID property. When the value is null, an auto\ngenerated ID is set. This makes sure that an ID is always set."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The set id of the widget",
+            "paramName": "value",
+            "description": " The set id of the widget",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The transformed ID",
+            "type": "String",
+            "description": " The transformed ID"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyId": {
+      "location": {
+        "start": {
+          "line": 737,
+          "column": 4
+        },
+        "end": {
+          "line": 750,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "property apply"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "id"
+      ]
+    },
+    "_applyEnabled": {
+      "location": {
+        "start": {
+          "line": 758,
+          "column": 4
+        },
+        "end": {
+          "line": 770,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the enable property to the new value"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean}, the new value of the widget",
+            "paramName": "value",
+            "description": ", the new value of the widget",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "old {Boolean?}, the old value of the widget",
+            "paramName": "old",
+            "description": ", the old value of the widget",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "enabled"
+      ]
+    },
+    "_add": {
+      "location": {
+        "start": {
+          "line": 786,
+          "column": 4
+        },
+        "end": {
+          "line": 801,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nChild Handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Adds a new child widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} the widget to add.",
+            "paramName": "child",
+            "description": " the widget to add.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget.",
+            "paramName": "layoutProperties",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_addAt": {
+      "location": {
+        "start": {
+          "line": 813,
+          "column": 4
+        },
+        "end": {
+          "line": 827,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a child widget at the specified index"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} widget to add",
+            "paramName": "child",
+            "description": " widget to add",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the widget will be inserted. If no\nwidget exists at the given index, the new widget gets appended to the\ncurrent list of children.",
+            "paramName": "index",
+            "description": " Index, at which the widget will be inserted. If no\nwidget exists at the given index, the new widget gets appended to the\ncurrent list of children.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for widget.",
+            "paramName": "options",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_addBefore": {
+      "location": {
+        "start": {
+          "line": 837,
+          "column": 4
+        },
+        "end": {
+          "line": 858,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a widget before another already inserted widget"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} widget to add",
+            "paramName": "child",
+            "description": " widget to add",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "beforeWidget {qx.ui.core.Widget} widget before the new widget will be inserted.",
+            "paramName": "beforeWidget",
+            "description": " widget before the new widget will be inserted.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget.",
+            "paramName": "layoutProperties",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_addAfter": {
+      "location": {
+        "start": {
+          "line": 868,
+          "column": 4
+        },
+        "end": {
+          "line": 900,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Add a widget after another already inserted widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} The widget to add.",
+            "paramName": "child",
+            "description": " The widget to add.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "afterWidget {qx.ui.core.Widget} Widget, after which the new widget will be inserted.",
+            "paramName": "afterWidget",
+            "description": " Widget, after which the new widget will be inserted.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget.",
+            "paramName": "layoutProperties",
+            "description": " Optional layout data for widget.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_remove": {
+      "location": {
+        "start": {
+          "line": 909,
+          "column": 4
+        },
+        "end": {
+          "line": 913,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes a given child from the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} The widget to remove.",
+            "paramName": "child",
+            "description": " The widget to remove.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_removeAt": {
+      "location": {
+        "start": {
+          "line": 921,
+          "column": 4
+        },
+        "end": {
+          "line": 929,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Remove the widget at the specified index."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the widget to remove.",
+            "paramName": "index",
+            "description": " Index of the widget to remove.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_removeAll": {
+      "location": {
+        "start": {
+          "line": 936,
+          "column": 4
+        },
+        "end": {
+          "line": 944,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes all children from the widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An Array including the removed children.",
+            "type": "Array",
+            "description": " An Array including the removed children."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_indexOf": {
+      "location": {
+        "start": {
+          "line": 955,
+          "column": 4
+        },
+        "end": {
+          "line": 963,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the index position of the given widget if it is\na child widget. Otherwise it returns <code>-1</code>."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} the widget to query for",
+            "paramName": "child",
+            "description": " the widget to query for",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\nthe given widget is no child of this layout.",
+            "type": "Integer",
+            "description": " The index position or <code>-1</code> when\nthe given widget is no child of this layout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "setLayoutParent": {
+      "location": {
+        "start": {
+          "line": 973,
+          "column": 4
+        },
+        "end": {
+          "line": 985,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal method. Sets the layout parent."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parent {qx.ui.mobile.core.Widget} The parent widget",
+            "paramName": "parent",
+            "description": " The parent widget",
+            "type": "qx.ui.mobile.core.Widget"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeChild": {
+      "location": {
+        "start": {
+          "line": 995,
+          "column": 4
+        },
+        "end": {
+          "line": 1003,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Internal method. Removes a given child widget and the corresponding DOM element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} The widget to remove",
+            "paramName": "child",
+            "description": " The widget to remove",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLayoutParent": {
+      "location": {
+        "start": {
+          "line": 1011,
+          "column": 4
+        },
+        "end": {
+          "line": 1014,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the parent widget of this widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The parent of the widget",
+            "type": "qx.ui.core.Widget",
+            "description": " The parent of the widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getChildren": {
+      "location": {
+        "start": {
+          "line": 1022,
+          "column": 4
+        },
+        "end": {
+          "line": 1024,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the children of the widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} The children of the widget",
+            "type": "qx.ui.core.Widget[]",
+            "description": " The children of the widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_hasChildren": {
+      "location": {
+        "start": {
+          "line": 1032,
+          "column": 4
+        },
+        "end": {
+          "line": 1034,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget has child widgets."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the widget has children or not.",
+            "type": "Boolean",
+            "description": " Whether the widget has children or not."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_setLayout": {
+      "location": {
+        "start": {
+          "line": 1051,
+          "column": 4
+        },
+        "end": {
+          "line": 1072,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nLayout handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Set a layout manager for the widget. A layout manager can only be connected\nwith one widget. Reset the connection with a previous widget first, if you\nlike to use it in another widget instead."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {qx.ui.mobile.layout.Abstract} The new layout or\n<code>null</code> to reset the layout.",
+            "paramName": "layout",
+            "description": " The new layout or\n<code>null</code> to reset the layout.",
+            "type": "qx.ui.mobile.layout.Abstract"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_initializeChildLayout": {
+      "location": {
+        "start": {
+          "line": 1082,
+          "column": 4
+        },
+        "end": {
+          "line": 1090,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Initializes the layout of the given child widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} The child widget",
+            "paramName": "child",
+            "description": " The child widget",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget",
+            "paramName": "layoutProperties",
+            "description": " Optional layout data for widget",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getLayout": {
+      "location": {
+        "start": {
+          "line": 1098,
+          "column": 4
+        },
+        "end": {
+          "line": 1100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the set layout manager for the widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.layout.Abstract} the layout manager of the widget.",
+            "type": "qx.ui.mobile.layout.Abstract",
+            "description": " the layout manager of the widget."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "setLayoutProperties": {
+      "location": {
+        "start": {
+          "line": 1108,
+          "column": 4
+        },
+        "end": {
+          "line": 1115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Stores the given layout properties."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "properties {Map} Incoming layout property data",
+            "paramName": "properties",
+            "description": " Incoming layout property data",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateLayoutProperties": {
+      "location": {
+        "start": {
+          "line": 1126,
+          "column": 4
+        },
+        "end": {
+          "line": 1133,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Updates the layout properties of a given widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The widget that should be updated",
+            "paramName": "widget",
+            "description": " The widget that should be updated",
+            "type": "qx.ui.mobile.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "properties {Map} Incoming layout property data",
+            "paramName": "properties",
+            "description": " Incoming layout property data",
+            "type": "Map"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateLayout": {
+      "location": {
+        "start": {
+          "line": 1145,
+          "column": 4
+        },
+        "end": {
+          "line": 1151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Updates the layout with the given arguments."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The target widget",
+            "paramName": "widget",
+            "description": " The target widget",
+            "type": "qx.ui.mobile.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "action {String} The causing action that triggered the layout update.",
+            "paramName": "action",
+            "description": " The causing action that triggered the layout update.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "properties {Map} The animation properties to set. Key / value pairs.",
+            "paramName": "properties",
+            "description": " The animation properties to set. Key / value pairs.",
+            "type": "Map"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_setHtml": {
+      "location": {
+        "start": {
+          "line": 1167,
+          "column": 4
+        },
+        "end": {
+          "line": 1171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nContent handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Sets the innerHTML of the content element and calls the {@link #_domUpdated}\nmethod."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String?\"\"} The html to set in the content element.",
+            "paramName": "value",
+            "description": " The html to set in the content element.",
+            "optional": true,
+            "defaultValue": "\"\"",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_transform": {
+      "location": {
+        "start": {
+          "line": 1177,
+          "column": 4
+        },
+        "end": {
+          "line": 1202,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Transforms this widget (rotate, scale, translate3d)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "rotation",
+        "transformUnit",
+        "scaleX",
+        "scaleY",
+        "translateX",
+        "translateY",
+        "translateZ"
+      ]
+    },
+    "_applyAttribute": {
+      "location": {
+        "start": {
+          "line": 1222,
+          "column": 4
+        },
+        "end": {
+          "line": 1225,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nAttributes handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Shortcut for each property that should change a certain attribute of the\ncontainer element.\nUse the {@link #addAttributeMapping} method to add a property to attribute\nmapping when the attribute name or value differs from the property name or\nvalue."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The set value",
+            "paramName": "value",
+            "description": " The set value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var} The old value",
+            "paramName": "old",
+            "description": " The old value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "attribute {String} The property name",
+            "paramName": "attribute",
+            "description": " The property name",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "name",
+        "activatable"
+      ]
+    },
+    "_setAttribute": {
+      "location": {
+        "start": {
+          "line": 1235,
+          "column": 4
+        },
+        "end": {
+          "line": 1254,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets an attribute with the given value of the container element. The\n<code>null</code> value resets the attribute."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "attribute {String} The attribute name.",
+            "paramName": "attribute",
+            "description": " The attribute name.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The attribute value. <code>Null</code> will reset the attribute.",
+            "paramName": "value",
+            "description": " The attribute value. <code>Null</code> will reset the attribute.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getAttribute": {
+      "location": {
+        "start": {
+          "line": 1263,
+          "column": 4
+        },
+        "end": {
+          "line": 1267,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the set value of the given attribute."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "attribute {String} The attribute name",
+            "paramName": "attribute",
+            "description": " The attribute name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The attribute's value",
+            "type": "var",
+            "description": " The attribute's value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyStyle": {
+      "location": {
+        "start": {
+          "line": 1284,
+          "column": 4
+        },
+        "end": {
+          "line": 1287,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nStyles handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Shortcut for each property that should change a certain style of the container\nelement.\nUse the {@link #addStyleMapping} method to add a property to style\nmapping when the style name or value differs from the property name or\nvalue."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "anonymous"
+      ]
+    },
+    "_setStyle": {
+      "location": {
+        "start": {
+          "line": 1297,
+          "column": 4
+        },
+        "end": {
+          "line": 1315,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the value of a certain style of the container element. The\n<code>null</code> value resets the attribute."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {String} The style of which the value should be set",
+            "paramName": "style",
+            "description": " The style of which the value should be set",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value of the style. <code>Null</code> will reset the attribute.",
+            "paramName": "value",
+            "description": " The value of the style. <code>Null</code> will reset the attribute.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getStyle": {
+      "location": {
+        "start": {
+          "line": 1324,
+          "column": 4
+        },
+        "end": {
+          "line": 1328,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the value of a certain style of the container element."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {String} The style name of which the value should be returned",
+            "paramName": "style",
+            "description": " The style name of which the value should be returned",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value of the style",
+            "type": "var",
+            "description": " The value of the style"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyDefaultCssClass": {
+      "location": {
+        "start": {
+          "line": 1337,
+          "column": 4
+        },
+        "end": {
+          "line": 1345,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nCSS Handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "property apply"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "defaultCssClass"
+      ]
+    },
+    "addCssClass": {
+      "location": {
+        "start": {
+          "line": 1354,
+          "column": 4
+        },
+        "end": {
+          "line": 1357,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds a CSS class to the container element of the widget. Use this method\nto enhance the default appearance of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssClass {String} The CSS class to add",
+            "paramName": "cssClass",
+            "description": " The CSS class to add",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addCssClasses": {
+      "location": {
+        "start": {
+          "line": 1366,
+          "column": 4
+        },
+        "end": {
+          "line": 1371,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Adds an array of CSS classes to the container element of the widget. Use this method\nto enhance the default appearance of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssClasses {String[]} The CSS classes to add, wrapped by an array.",
+            "paramName": "cssClasses",
+            "description": " The CSS classes to add, wrapped by an array.",
+            "type": "String[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeCssClass": {
+      "location": {
+        "start": {
+          "line": 1379,
+          "column": 4
+        },
+        "end": {
+          "line": 1384,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes a CSS class from the container element of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssClass {String} The CSS class to remove",
+            "paramName": "cssClass",
+            "description": " The CSS class to remove",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeCssClasses": {
+      "location": {
+        "start": {
+          "line": 1392,
+          "column": 4
+        },
+        "end": {
+          "line": 1397,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Removes an array of CSS classes from the container element of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssClasses {String[]} The CSS classes to remove from widget.",
+            "paramName": "cssClasses",
+            "description": " The CSS classes to remove from widget.",
+            "type": "String[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toggleCssClass": {
+      "location": {
+        "start": {
+          "line": 1405,
+          "column": 4
+        },
+        "end": {
+          "line": 1411,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Toggles the given CSS. Adds or removes the CSS class from the container element of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssClass {String} The CSS class to toggle",
+            "paramName": "cssClass",
+            "description": " The CSS class to toggle",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasCssClass": {
+      "location": {
+        "start": {
+          "line": 1420,
+          "column": 4
+        },
+        "end": {
+          "line": 1422,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Checks if the widget has a certain CSS class set."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssClass {String} The CSS class to check",
+            "paramName": "cssClass",
+            "description": " The CSS class to check",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the CSS class is set or not",
+            "type": "Boolean",
+            "description": " Whether the CSS class is set or not"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyVisibility": {
+      "location": {
+        "start": {
+          "line": 1433,
+          "column": 4
+        },
+        "end": {
+          "line": 1447,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nVisibility handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "property apply"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "visibility"
+      ]
+    },
+    "__setVisibility": {
+      "location": {
+        "start": {
+          "line": 1456,
+          "column": 4
+        },
+        "end": {
+          "line": 1463,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the visibility of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} The causing action that triggered the layout update.",
+            "paramName": "action",
+            "description": " The causing action that triggered the layout update.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "properties {Map} The animation properties to set. Key / value pairs.",
+            "paramName": "properties",
+            "description": " The animation properties to set. Key / value pairs.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 1472,
+          "column": 4
+        },
+        "end": {
+          "line": 1474,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Make this widget visible."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "properties {Map} The animation properties to set. Key / value pairs.",
+            "paramName": "properties",
+            "description": " The animation properties to set. Key / value pairs.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hide": {
+      "location": {
+        "start": {
+          "line": 1483,
+          "column": 4
+        },
+        "end": {
+          "line": 1485,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Hide this widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "properties {Map} The animation properties to set. Key / value pairs.",
+            "paramName": "properties",
+            "description": " The animation properties to set. Key / value pairs.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "exclude": {
+      "location": {
+        "start": {
+          "line": 1494,
+          "column": 4
+        },
+        "end": {
+          "line": 1496,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Hide this widget and exclude it from the underlying layout."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "properties {Map} The animation properties to set. Key / value pairs.",
+            "paramName": "properties",
+            "description": " The animation properties to set. Key / value pairs.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isVisible": {
+      "location": {
+        "start": {
+          "line": 1506,
+          "column": 4
+        },
+        "end": {
+          "line": 1508,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget is locally visible.\n\nNote: This method does not respect the hierarchy."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget is visible",
+            "type": "Boolean",
+            "description": " Returns <code>true</code> when the widget is visible"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isHidden": {
+      "location": {
+        "start": {
+          "line": 1518,
+          "column": 4
+        },
+        "end": {
+          "line": 1520,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget is locally hidden.\n\nNote: This method does not respect the hierarchy."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget is hidden",
+            "type": "Boolean",
+            "description": " Returns <code>true</code> when the widget is hidden"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isExcluded": {
+      "location": {
+        "start": {
+          "line": 1530,
+          "column": 4
+        },
+        "end": {
+          "line": 1532,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the widget is locally excluded.\n\nNote: This method does not respect the hierarchy."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget is excluded",
+            "type": "Boolean",
+            "description": " Returns <code>true</code> when the widget is excluded"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isSeeable": {
+      "location": {
+        "start": {
+          "line": 1542,
+          "column": 4
+        },
+        "end": {
+          "line": 1545,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Detects if the widget and all its parents are visible.\n\nWarning: forces rendering of the browser. Do not use this method during\nanimations or performance critical tasks."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>if the widget is seeable",
+            "type": "Boolean",
+            "description": " <code>true</code>if the widget is seeable"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_setContainerElement": {
+      "location": {
+        "start": {
+          "line": 1559,
+          "column": 4
+        },
+        "end": {
+          "line": 1562,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nElement handling\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Sets the container DOM element of the widget."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The container DOM element of the widget",
+            "paramName": "element",
+            "description": " The container DOM element of the widget",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getContainerElement": {
+      "location": {
+        "start": {
+          "line": 1572,
+          "column": 4
+        },
+        "end": {
+          "line": 1575,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the container DOM element of the widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the container DOM element of the widget",
+            "type": "Element",
+            "description": " the container DOM element of the widget"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getContentElement": {
+      "location": {
+        "start": {
+          "line": 1585,
+          "column": 4
+        },
+        "end": {
+          "line": 1591,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the content DOM element of the widget."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the content DOM element of the widget",
+            "type": "Element",
+            "description": " the content DOM element of the widget"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getContentElement": {
+      "location": {
+        "start": {
+          "line": 1605,
+          "column": 4
+        },
+        "end": {
+          "line": 1608,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the content DOM element of the widget.\nOverride this method, to define another element as the content element.\n\nNote: Most times this element points to to the container element.\nWhen the widget has a more complex element structure,\nthe function should return a reference of the element that should contain\nthe content."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the content DOM element of the widget",
+            "type": "Element",
+            "description": " the content DOM element of the widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "destroy": {
+      "location": {
+        "start": {
+          "line": 1620,
+          "column": 4
+        },
+        "end": {
+          "line": 1631,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "---------------------------------------------------------------------------\nENHANCED DISPOSE SUPPORT\n---------------------------------------------------------------------------"
+          },
+          {
+            "name": "@description",
+            "body": "Removes this widget from its parent and disposes it."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "tr": {
+      "type": "function",
+      "name": "tr",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Translate a message\nMark the message for translation."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "trn": {
+      "type": "function",
+      "name": "trn",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Translate a plural message\nMark the messages for translation.\n\nDepending on the third argument the plural or the singular form is chosen."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+            "paramName": "count",
+            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "trc": {
+      "type": "function",
+      "name": "trc",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Translate a message with translation hint\nMark the messages for translation."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "trnc": {
+      "type": "function",
+      "name": "trnc",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Translate a plural message with translation hint\nMark the messages for translation.\n\nDepending on the third argument the plural or the singular form is chosen."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+            "paramName": "count",
+            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "marktr": {
+      "type": "function",
+      "name": "marktr",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Mark the message for translation but return the original message."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} the message ID",
+            "paramName": "messageId",
+            "description": " the message ID",
+            "type": "qx.locale.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} messageId",
+            "type": "qx.locale.String",
+            "description": " messageId"
+          }
+        ]
+      }
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getDefaultCssClass": {
+      "type": "function",
+      "name": "getDefaultCssClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for defaultCssClass"
+          }
+        ]
+      }
+    },
+    "setDefaultCssClass": {
+      "type": "function",
+      "name": "setDefaultCssClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for defaultCssClass"
+          }
+        ]
+      }
+    },
+    "resetDefaultCssClass": {
+      "type": "function",
+      "name": "resetDefaultCssClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
+          }
+        ]
+      }
+    },
+    "getEnabled": {
+      "type": "function",
+      "name": "getEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for enabled"
+          }
+        ]
+      }
+    },
+    "isEnabled": {
+      "type": "function",
+      "name": "isEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for enabled"
+          }
+        ]
+      }
+    },
+    "setEnabled": {
+      "type": "function",
+      "name": "setEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for enabled"
+          }
+        ]
+      }
+    },
+    "resetEnabled": {
+      "type": "function",
+      "name": "resetEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
+    },
+    "getName": {
+      "type": "function",
+      "name": "getName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for name"
+          }
+        ]
+      }
+    },
+    "setName": {
+      "type": "function",
+      "name": "setName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for name"
+          }
+        ]
+      }
+    },
+    "resetName": {
+      "type": "function",
+      "name": "resetName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ]
+      }
+    },
+    "getAnonymous": {
+      "type": "function",
+      "name": "getAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for anonymous"
+          }
+        ]
+      }
+    },
+    "isAnonymous": {
+      "type": "function",
+      "name": "isAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for anonymous"
+          }
+        ]
+      }
+    },
+    "setAnonymous": {
+      "type": "function",
+      "name": "setAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for anonymous"
+          }
+        ]
+      }
+    },
+    "resetAnonymous": {
+      "type": "function",
+      "name": "resetAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
+    },
+    "getId": {
+      "type": "function",
+      "name": "getId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for id"
+          }
+        ]
+      }
+    },
+    "setId": {
+      "type": "function",
+      "name": "setId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for id"
+          }
+        ]
+      }
+    },
+    "resetId": {
+      "type": "function",
+      "name": "resetId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
+          }
+        ]
+      }
+    },
+    "getVisibility": {
+      "type": "function",
+      "name": "getVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for visibility"
+          }
+        ]
+      }
+    },
+    "setVisibility": {
+      "type": "function",
+      "name": "setVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for visibility"
+          }
+        ]
+      }
+    },
+    "resetVisibility": {
+      "type": "function",
+      "name": "resetVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
+    },
+    "getActivatable": {
+      "type": "function",
+      "name": "getActivatable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for activatable"
+          }
+        ]
+      }
+    },
+    "isActivatable": {
+      "type": "function",
+      "name": "isActivatable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for activatable"
+          }
+        ]
+      }
+    },
+    "setActivatable": {
+      "type": "function",
+      "name": "setActivatable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for activatable"
+          }
+        ]
+      }
+    },
+    "resetActivatable": {
+      "type": "function",
+      "name": "resetActivatable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
+          }
+        ]
+      }
+    },
+    "getRotation": {
+      "type": "function",
+      "name": "getRotation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for rotation"
+          }
+        ]
+      }
+    },
+    "setRotation": {
+      "type": "function",
+      "name": "setRotation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for rotation"
+          }
+        ]
+      }
+    },
+    "resetRotation": {
+      "type": "function",
+      "name": "resetRotation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
+          }
+        ]
+      }
+    },
+    "getTransformUnit": {
+      "type": "function",
+      "name": "getTransformUnit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for transformUnit"
+          }
+        ]
+      }
+    },
+    "setTransformUnit": {
+      "type": "function",
+      "name": "setTransformUnit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for transformUnit"
+          }
+        ]
+      }
+    },
+    "resetTransformUnit": {
+      "type": "function",
+      "name": "resetTransformUnit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
+          }
+        ]
+      }
+    },
+    "getScaleX": {
+      "type": "function",
+      "name": "getScaleX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for scaleX"
+          }
+        ]
+      }
+    },
+    "setScaleX": {
+      "type": "function",
+      "name": "setScaleX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for scaleX"
+          }
+        ]
+      }
+    },
+    "resetScaleX": {
+      "type": "function",
+      "name": "resetScaleX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
+          }
+        ]
+      }
+    },
+    "getScaleY": {
+      "type": "function",
+      "name": "getScaleY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for scaleY"
+          }
+        ]
+      }
+    },
+    "setScaleY": {
+      "type": "function",
+      "name": "setScaleY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for scaleY"
+          }
+        ]
+      }
+    },
+    "resetScaleY": {
+      "type": "function",
+      "name": "resetScaleY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
+          }
+        ]
+      }
+    },
+    "getTranslateX": {
+      "type": "function",
+      "name": "getTranslateX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for translateX"
+          }
+        ]
+      }
+    },
+    "setTranslateX": {
+      "type": "function",
+      "name": "setTranslateX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for translateX"
+          }
+        ]
+      }
+    },
+    "resetTranslateX": {
+      "type": "function",
+      "name": "resetTranslateX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
+          }
+        ]
+      }
+    },
+    "getTranslateY": {
+      "type": "function",
+      "name": "getTranslateY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for translateY"
+          }
+        ]
+      }
+    },
+    "setTranslateY": {
+      "type": "function",
+      "name": "setTranslateY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for translateY"
+          }
+        ]
+      }
+    },
+    "resetTranslateY": {
+      "type": "function",
+      "name": "resetTranslateY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
+          }
+        ]
+      }
+    },
+    "getTranslateZ": {
+      "type": "function",
+      "name": "getTranslateZ",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for translateZ"
+          }
+        ]
+      }
+    },
+    "setTranslateZ": {
+      "type": "function",
+      "name": "setTranslateZ",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for translateZ"
+          }
+        ]
+      }
+    },
+    "resetTranslateZ": {
+      "type": "function",
+      "name": "resetTranslateZ",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 1643,
+        "column": 2
+      },
+      "end": {
+        "line": 1662,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDESTRUCTOR\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 1673,
+        "column": 2
+      },
+      "end": {
+        "line": 1675,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "****************************************************************************\nDEFER\n****************************************************************************"
+        }
+      ]
+    }
+  },
+  "descendants": [
+    "qx.ui.mobile.basic.Atom",
+    "qx.ui.mobile.basic.Image",
+    "qx.ui.mobile.basic.Label",
+    "qx.ui.mobile.container.Collapsible",
+    "qx.ui.mobile.container.Composite",
+    "qx.ui.mobile.core.Blocker",
+    "qx.ui.mobile.dialog.Popup",
+    "qx.ui.mobile.embed.Canvas",
+    "qx.ui.mobile.embed.Html",
+    "qx.ui.mobile.form.Input",
+    "qx.ui.mobile.form.Label",
+    "qx.ui.mobile.form.SelectBox",
+    "qx.ui.mobile.form.Slider",
+    "qx.ui.mobile.form.TextArea",
+    "qx.ui.mobile.form.ToggleButton",
+    "qx.ui.mobile.form.renderer.AbstractRenderer",
+    "qx.ui.mobile.list.List",
+    "qx.ui.mobile.tabbar.TabBar",
+    "qx.ui.mobile.toolbar.Separator"
+  ]
+}

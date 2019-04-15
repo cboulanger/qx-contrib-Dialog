@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/form/IRadioItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "events",
+    "members",
+    "setValue",
+    "value",
+    "getValue",
+    "setGroup",
+    "assertInstance",
+    "ui",
+    "form",
+    "RadioGroup",
+    "getGroup",
+    "IRadioItem"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,SAAH,CAAaC,MAAb,CAAoB,uBAApB,EACA;;AAEE;;;;;;AAMAC,YACA;AACE;AACA,qBAAgB;AAFlB,KATF;;AAgBE;;;;;;AAMAC,aACA;AACE;;;;;AAKAC,gBAAW,kBAASC,KAAT,EAAgB,CAAE,CAN/B;;AASE;;;;;AAKAC,gBAAW,oBAAW,CAAE,CAd1B;;AAiBE;;;;;;AAMAC,gBAAW,kBAASF,KAAT,EAAgB;AACzB,aAAKG,cAAL,CAAoBH,KAApB,EAA2BT,GAAGa,EAAH,CAAMC,IAAN,CAAWC,UAAtC;AACD,OAzBH;;AA4BE;;;;;AAKAC,gBAAW,oBAAW,CAAE;AAjC1B;AAvBF,GADA,C;AAvBAhB,KAAGa,EAAH,CAAMC,IAAN,CAAWG,UAAX,CAAsBd,aAAtB,GAAsCA,aAAtC",
+  "file": "IRadioItem.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Each object, which should be managed by a {@link RadioGroup} have to\n * implement this interface.\n */\nqx.Interface.define(\"qx.ui.form.IRadioItem\",\n{\n\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events :\n  {\n    /** Fired when the item was checked or unchecked */\n    \"changeValue\" : \"qx.event.type.Data\"\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Set whether the item is checked\n     *\n     * @param value {Boolean} whether the item should be checked\n     */\n    setValue : function(value) {},\n\n\n    /**\n     * Get whether the item is checked\n     *\n     * @return {Boolean} whether the item it checked\n     */\n    getValue : function() {},\n\n\n    /**\n     * Set the radiogroup, which manages this item\n     *\n     * @param value {qx.ui.form.RadioGroup} The radiogroup, which should\n     *     manage the item.\n     */\n    setGroup : function(value) {\n      this.assertInstance(value, qx.ui.form.RadioGroup);\n    },\n\n\n    /**\n     * Get the radiogroup, which manages this item\n     *\n     * @return {qx.ui.form.RadioGroup} The radiogroup, which manages the item.\n     */\n    getGroup : function() {}\n  }\n});\n"
+  ]
+}

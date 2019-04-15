@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/toolbar/PartContainer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "container",
+    "Composite",
+    "construct",
+    "_setLayout",
+    "layout",
+    "HBox",
+    "events",
+    "changeChildren",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "show",
+    "check",
+    "inheritable",
+    "event",
+    "members",
+    "_afterAddChild",
+    "child",
+    "fireEvent",
+    "_afterRemoveChild",
+    "toolbar",
+    "PartContainer"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAyBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,SAAN,CAAgBC,SAD3B;;AAIEC,eAAY,qBACZ;AACE;AACA,WAAKC,UAAL,CAAgB,IAAIX,GAAGO,EAAH,CAAMK,MAAN,CAAaC,IAAjB,EAAhB;AACD,KARH;;AAWEC,YAAS;AACP;AACAC,sBAAiB;AAFV,KAXX;;AAgBEC,gBACA;AACEC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT,OAFF;;AAOE;AACAC,YACA;AACED,cAAO,MADT;AAEEE,eAAQ,CAAE,MAAF,EAAU,OAAV,EAAmB,MAAnB,CAFV;AAGEC,qBAAc,IAHhB;AAIEC,eAAQ;AAJV;AATF,KAjBF;;AAmCEC,aAAU;AACR;AACAC,sBAAiB,wBAASC,KAAT,EAAgB;AAC/B,aAAKC,SAAL,CAAe,gBAAf;AACD,OAJO;;AAOR;AACAC,yBAAoB,2BAASF,KAAT,EAAgB;AAClC,aAAKC,SAAL,CAAe,gBAAf;AACD;AAVO;AAnCZ,GADA,C;AAzBA3B,KAAGO,EAAH,CAAMsB,OAAN,CAAcC,aAAd,CAA4B3B,aAA5B,GAA4CA,aAA5C",
+  "file": "PartContainer.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * The container used by {@link Part} to insert the buttons.\n *\n * @internal\n */\nqx.Class.define(\"qx.ui.toolbar.PartContainer\",\n{\n  extend : qx.ui.container.Composite,\n\n\n  construct : function()\n  {\n    this.base(arguments);\n    this._setLayout(new qx.ui.layout.HBox);\n  },\n\n\n  events : {\n    /** Fired if a child has been added or removed */\n    changeChildren : \"qx.event.type.Event\"\n  },\n\n  properties :\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"toolbar/part/container\"\n    },\n\n    /** Whether icons, labels, both or none should be shown. */\n    show :\n    {\n      init : \"both\",\n      check : [ \"both\", \"label\", \"icon\" ],\n      inheritable : true,\n      event : \"changeShow\"\n    }\n  },\n\n\n  members : {\n    // overridden\n    _afterAddChild : function(child) {\n      this.fireEvent(\"changeChildren\");\n    },\n\n\n    // overridden\n    _afterRemoveChild : function(child) {\n      this.fireEvent(\"changeChildren\");\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "className": "dialog.theme.icon.IcoMoonFree",
+  "packageName": "dialog.theme.icon",
+  "name": "IcoMoonFree",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 19,
+        "column": 0
+      },
+      "end": {
+        "line": 30,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "Icons from the IcoMoon Free Pack\n\nhttps://icomoon.io/#preview-free\nhttps://github.com/Keyamoon/IcoMoon-Free\n\nDual-licences under CC BY 4.0 or GPL.\nsee https://github.com/Keyamoon/IcoMoon-Free/blob/master/License.txt\nhttp://creativecommons.org/licenses/by/4.0/\nhttp://www.gnu.org/licenses/gpl.html"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "dialog/icon/IcoMoonFree/272-cross.svg"
+        },
+        {
+          "name": "@asset",
+          "body": "dialog/icon/IcoMoonFree/273-checkmark.svg"
+        },
+        {
+          "name": "@asset",
+          "body": "dialog/icon/IcoMoonFree/264-warning.svg"
+        },
+        {
+          "name": "@asset",
+          "body": "dialog/icon/IcoMoonFree/269-info.svg"
+        },
+        {
+          "name": "@asset",
+          "body": "dialog/icon/IcoMoonFree/270-cancel-circle.svg"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Oxygen/16/apps/office-calendar.png"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "aliases": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 2
+      },
+      "end": {
+        "line": 29,
+        "column": 3
+      }
+    },
+    "aliasMap": {
+      "icon": "qx/icon/Oxygen",
+      "dialog.icon.cancel": "dialog/icon/IcoMoonFree/272-cross.svg",
+      "dialog.icon.ok": "dialog/icon/IcoMoonFree/273-checkmark.svg",
+      "dialog.icon.info": "dialog/icon/IcoMoonFree/269-info.svg",
+      "dialog.icon.error": "dialog/icon/IcoMoonFree/270-cancel-circle.svg",
+      "dialog.icon.warning": "dialog/icon/IcoMoonFree/264-warning.svg"
+    }
+  },
+  "descendants": []
+}

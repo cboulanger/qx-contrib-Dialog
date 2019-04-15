@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/dev/unit/MRequirementsBasic.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "members",
+    "require",
+    "featureList",
+    "core",
+    "Assert",
+    "assertArray",
+    "i",
+    "l",
+    "length",
+    "feature",
+    "hasMethodName",
+    "lang",
+    "String",
+    "capitalize",
+    "dev",
+    "unit",
+    "RequirementError",
+    "Environment",
+    "getChecks",
+    "envValue",
+    "get",
+    "Error",
+    "getAsyncChecks",
+    "MRequirementsBasic"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAsBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EAAkD;;AAGhD;;;;;AAKAC,aACA;;AAEE;;;;;;;;;;;;;;;;AAgBAC,eAAU,iBAASC,WAAT,EAAsB;AAEW;AACvCR,aAAGS,IAAH,CAAQC,MAAR,CAAeC,WAAf,CAA2BH,WAA3B;AACD;;AAED,aAAK,IAAII,IAAE,CAAN,EAAQC,IAAEL,YAAYM,MAA3B,EAAmCF,IAAEC,CAArC,EAAwCD,GAAxC,EAA6C;AAC3C,cAAIG,UAAUP,YAAYI,CAAZ,CAAd;AACA,cAAII,gBAAgB,QAAQhB,GAAGiB,IAAH,CAAQC,MAAR,CAAeC,UAAf,CAA0BJ,OAA1B,CAA5B;;AAEA,cAAI,KAAKC,aAAL,CAAJ,EAAyB;AACvB,gBAAI,KAAKA,aAAL,QAA0B,IAA9B,EAAoC;AAClC;AACD,aAFD,MAGK;AACH,oBAAM,IAAIhB,GAAGoB,GAAH,CAAOC,IAAP,CAAYC,gBAAhB,CAAiCP,OAAjC,CAAN;AACD;AACF;;AAED,cAAIf,GAAGS,IAAH,CAAQc,WAAR,CAAoBC,SAApB,GAAgCT,OAAhC,CAAJ,EAA8C;AAC5C,gBAAIU,WAAWzB,GAAGS,IAAH,CAAQc,WAAR,CAAoBG,GAApB,CAAwBX,OAAxB,CAAf;AACA,gBAAIU,aAAa,IAAjB,EAAuB;AACrB;AACD;AACD,gBAAIA,aAAa,KAAjB,EAAwB;AACtB,oBAAM,IAAIzB,GAAGoB,GAAH,CAAOC,IAAP,CAAYC,gBAAhB,CAAiCP,OAAjC,CAAN;AACD,aAFD,MAGK;AACH,oBAAM,IAAIY,KAAJ,CAAU,yBAAyBZ,OAAzB,GAAmC,iBAAnC,GACb,wDADG,CAAN;AAED;AACF;;AAED,cAAIf,GAAGS,IAAH,CAAQc,WAAR,CAAoBK,cAApB,GAAqCb,OAArC,CAAJ,EAAmD;AACjD,kBAAM,IAAIY,KAAJ,CAAU,kCAAkCZ,OAAlC,GAA4C,IAA5C,GACd,oDADI,CAAN;AAED;;AAED,gBAAM,IAAIY,KAAJ,CAAU,8CACZX,aADY,GACI,8BADJ,GACqCD,OADrC,GAC+C,SADzD,CAAN;AAED;AACF;AA3DH;;AATgD,GAAlD,C;AAtBAf,KAAGoB,GAAH,CAAOC,IAAP,CAAYQ,kBAAZ,CAA+B1B,aAA/B,GAA+CA,aAA/C",
+  "file": "MRequirementsBasic.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Adds support for verification of infrastructure requirements to unit test\n * classes.\n */\nqx.Mixin.define(\"qx.dev.unit.MRequirementsBasic\", {\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n  members :\n  {\n\n    /**\n     * Verifies a list of infrastructure requirements by checking for\n     * corresponding \"has\" methods. If no such method was found,\n     * {@link qx.core.Environment} will be checked for a key matching the given\n     * feature name. Note that asynchronous environment checks are not supported!\n     *\n     * See the manual for further details:\n     * <a href=\"http://manual.qooxdoo.org/current/pages/development/frame_apps_testrunner.html#defining-test-requirements\">Defining Test Requirements</a>\n     *\n     * @throws {qx.dev.unit.RequirementError} if any requirement check returned\n     *   <code>false</code>\n     * @throws {Error} if no valid check was found for a feature.\n     *\n     * @param featureList {String[]} List of infrastructure requirements\n     * @lint environmentNonLiteralKey(feature)\n     */\n    require : function(featureList) {\n\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        qx.core.Assert.assertArray(featureList);\n      }\n\n      for (var i=0,l=featureList.length; i<l; i++) {\n        var feature = featureList[i];\n        var hasMethodName = \"has\" + qx.lang.String.capitalize(feature);\n\n        if (this[hasMethodName]) {\n          if (this[hasMethodName]() === true) {\n            continue;\n          }\n          else {\n            throw new qx.dev.unit.RequirementError(feature);\n          }\n        }\n\n        if (qx.core.Environment.getChecks()[feature]) {\n          var envValue = qx.core.Environment.get(feature);\n          if (envValue === true) {\n            continue;\n          }\n          if (envValue === false) {\n            throw new qx.dev.unit.RequirementError(feature);\n          }\n          else {\n            throw new Error(\"The Environment key \" + feature + \" cannot be used\"\n             + \" as a Test Requirement since its value is not boolean!\");\n          }\n        }\n\n        if (qx.core.Environment.getAsyncChecks()[feature]) {\n          throw new Error('Unable to verify requirement ' + feature + ': '\n          + 'Asynchronous environment checks are not supported!');\n        }\n\n        throw new Error('Unable to verify requirement: No method \"'\n          + hasMethodName + '\" or valid Environment key \"' + feature + '\" found');\n      }\n    }\n  }\n\n});\n"
+  ]
+}

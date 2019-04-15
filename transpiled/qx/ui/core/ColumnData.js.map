@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/core/ColumnData.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "LayoutItem",
+    "construct",
+    "setColumnWidth",
+    "members",
+    "__computedWidth",
+    "renderLayout",
+    "left",
+    "top",
+    "width",
+    "height",
+    "getComputedWidth",
+    "getFlex",
+    "getLayoutProperties",
+    "flex",
+    "percent",
+    "setWidth",
+    "match",
+    "parseFloat",
+    "setLayoutProperties",
+    "environment",
+    "ColumnData"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAyBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,IAAN,CAAWC,UADtB;;AAIEC,eAAY,qBACZ;AACE;AACA,WAAKC,cAAL,CAAoB,MAApB;AACD,KARH;;AAWEC,aACA;AACEC,uBAAkB,IADpB;;AAIE;AACAC,oBAAe,sBAASC,IAAT,EAAeC,GAAf,EAAoBC,KAApB,EAA2BC,MAA3B,EAAmC;AAChD,aAAKL,eAAL,GAAuBI,KAAvB;AACD,OAPH;;AAUE;;;;AAIAE,wBAAmB,4BAAW;AAC5B,eAAO,KAAKN,eAAZ;AACD,OAhBH;;AAmBE;;;;;AAKAO,eAAU,mBACV;AACE,eAAO,KAAKC,mBAAL,GAA2BC,IAA3B,IAAmC,CAA1C;AACD,OA3BH;;AA8BE;;;;;;;;;;;;AAYAX,sBAAiB,wBAASM,KAAT,EAAgBK,IAAhB,EACjB;AACE,YAAIA,OAAOA,QAAQ,CAAnB;AACA,YAAIC,UAAU,IAAd;;AAEA,YAAI,OAAON,KAAP,IAAgB,QAApB,EACA;AACE,eAAKO,QAAL,CAAcP,KAAd;AACD,SAHD,MAIK,IAAI,OAAOA,KAAP,IAAgB,QAApB,EACL;AACE,cAAIA,SAAS,MAAb,EAAqB;AACnBK,mBAAO,CAAP;AACD,WAFD,MAIA;AACE,gBAAIG,QAAQR,MAAMQ,KAAN,CAAY,8BAAZ,CAAZ;AACA,gBAAIA,KAAJ,EACA;AACE,kBAAIA,MAAM,CAAN,KAAY,GAAhB,EAAqB;AACnBH,uBAAOI,WAAWT,KAAX,CAAP;AACD,eAFD,MAEO;AACLM,0BAAUN,KAAV;AACD;AACF;AACF;AACF;AACD,aAAKU,mBAAL,CAAyB;AACvBL,gBAAMA,IADiB;AAEvBL,iBAAOM;AAFgB,SAAzB;AAID;AAzEH,KAZF;;AAwFEK,iBACA;AACE,6BAAwB;AAD1B;AAzFF,GADA,C;AAzBA5B,KAAGO,EAAH,CAAMC,IAAN,CAAWqB,UAAX,CAAsB1B,aAAtB,GAAsCA,aAAtC",
+  "file": "ColumnData.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * All of the resizing information about a column.\n *\n *  This is used internally by qx.ui.table and qx.ui.progressive's table and\n *  may be used for other widgets as well.\n */\nqx.Class.define(\"qx.ui.core.ColumnData\",\n{\n  extend : qx.ui.core.LayoutItem,\n\n\n  construct : function()\n  {\n    this.base(arguments);\n    this.setColumnWidth(\"auto\");\n  },\n\n\n  members :\n  {\n    __computedWidth : null,\n\n\n    // overridden\n    renderLayout : function(left, top, width, height) {\n      this.__computedWidth = width;\n    },\n\n\n    /**\n     * Get the computed width of the column.\n     * @return {Integer} Computed column width\n     */\n    getComputedWidth : function() {\n      return this.__computedWidth;\n    },\n\n\n    /**\n     * Get the column's flex value\n     *\n     * @return {Integer} The column's flex value\n     */\n    getFlex : function()\n    {\n      return this.getLayoutProperties().flex || 0;\n    },\n\n\n    /**\n     * Set the column width. The column width can be one of the following\n     * values:\n     *\n     * * Pixels: e.g. <code>23</code>\n     * * Autosized: <code>\"auto\"</code>\n     * * Flex: e.g. <code>\"1*\"</code>\n     * * Percent: e.g. <code>\"33%\"</code>\n     *\n     * @param width {Integer|String} The column width\n     * @param flex {Integer?0} Optional flex value of the column\n     */\n    setColumnWidth : function(width, flex)\n    {\n      var flex = flex || 0;\n      var percent = null;\n\n      if (typeof width == \"number\")\n      {\n        this.setWidth(width);\n      }\n      else if (typeof width == \"string\")\n      {\n        if (width == \"auto\") {\n          flex = 1;\n        }\n        else\n        {\n          var match = width.match(/^[0-9]+(?:\\.[0-9]+)?([%\\*])$/);\n          if (match)\n          {\n            if (match[1] == \"*\") {\n              flex = parseFloat(width);\n            } else {\n              percent = width;\n            }\n          }\n        }\n      }\n      this.setLayoutProperties({\n        flex: flex,\n        width: percent\n      });\n    }\n  },\n\n  environment :\n  {\n    \"qx.tableResizeDebug\" : false\n  }\n});\n"
+  ]
+}

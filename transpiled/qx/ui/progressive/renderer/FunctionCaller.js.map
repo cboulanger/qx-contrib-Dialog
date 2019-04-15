@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/progressive/renderer/FunctionCaller.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "progressive",
+    "renderer",
+    "Abstract",
+    "members",
+    "render",
+    "state",
+    "element",
+    "data",
+    "getUserData",
+    "FunctionCaller"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,2CAAhB,EACA;AACEC,YAAaN,GAAGO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,QAD1C;;AAGEC,aACA;AACE;AACAC,cAAS,gBAASC,KAAT,EAAgBC,OAAhB,EACT;AACEA,gBAAQC,IAAR,CAAaF,MAAMG,WAAN,EAAb;AACD;AALH;AAJF,GADA,C;AAvBAhB,KAAGO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BQ,cAA3B,CAA0Cd,aAA1C,GAA0DA,aAA1D",
+  "file": "FunctionCaller.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Function \"renderer\" for Progressive.\n * This is a renderer that simply calls the function provided by the data\n * element.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.FunctionCaller\",\n{\n  extend     : qx.ui.progressive.renderer.Abstract,\n\n  members :\n  {\n    // overridden\n    render : function(state, element)\n    {\n      element.data(state.getUserData());\n    }\n  }\n});\n"
+  ]
+}

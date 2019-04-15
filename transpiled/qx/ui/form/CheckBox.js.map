@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/cboulanger/qx-contrib-Dialog/node_modules/qxcompiler/node_modules/qooxdoo-sdk/framework/source/class/qx/ui/form/CheckBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "form",
+    "ToggleButton",
+    "include",
+    "MForm",
+    "MModelProperty",
+    "implement",
+    "IForm",
+    "IModel",
+    "construct",
+    "label",
+    "assertArgumentsCount",
+    "arguments",
+    "setValue",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "allowGrowX",
+    "members",
+    "_forwardStates",
+    "invalid",
+    "focused",
+    "undetermined",
+    "checked",
+    "hovered",
+    "_bindableProperties",
+    "CheckBox"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,KAAGC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC,EAuBAH,GAAGI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,YAASN,GAAGO,EAAH,CAAMC,IAAN,CAAWC,YADtB;AAEEC,aAAU,CACRV,GAAGO,EAAH,CAAMC,IAAN,CAAWG,KADH,EAERX,GAAGO,EAAH,CAAMC,IAAN,CAAWI,cAFH,CAFZ;AAMEC,eAAY,CACVb,GAAGO,EAAH,CAAMC,IAAN,CAAWM,KADD,EAEVd,GAAGO,EAAH,CAAMC,IAAN,CAAWO,MAFD,CANd;;AAWE;;;;;;AAMA;;;AAGAC,eAAY,mBAASC,KAAT,EACZ;AAC2C;AACvC,aAAKC,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACD;;AAED,qDAAqBF,KAArB;;AAEA;AACA;AACA,WAAKG,QAAL,CAAc,KAAd;AACD,KA/BH;;AAoCE;;;;;;AAMAC,gBACA;AACE;AACAC,kBACA;AACEC,gBAAS,IADX;AAEEC,cAAO;AAFT,OAHF;;AAQE;AACAC,kBACA;AACEF,gBAAS,IADX;AAEEC,cAAO;AAFT;AAVF,KA3CF;;AA2DEE,aACA;AACE;;;AAGAC,sBACA;AACEC,iBAAU,IADZ;AAEEC,iBAAU,IAFZ;AAGEC,sBAAe,IAHjB;AAIEC,iBAAU,IAJZ;AAKEC,iBAAU;AALZ,OALF;;AAaE;;;;AAIAC,2BACA,CACE,SADF,EAEE,OAFF,EAGE,aAHF,EAIE,OAJF,EAKE,MALF;AAlBF;AA5DF,GADA,C;AAvBAjC,KAAGO,EAAH,CAAMC,IAAN,CAAW0B,QAAX,CAAoB/B,aAApB,GAAoCA,aAApC",
+  "file": "CheckBox.js",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A check box widget with an optional label.\n */\nqx.Class.define(\"qx.ui.form.CheckBox\",\n{\n  extend : qx.ui.form.ToggleButton,\n  include : [\n    qx.ui.form.MForm,\n    qx.ui.form.MModelProperty\n  ],\n  implement : [\n    qx.ui.form.IForm,\n    qx.ui.form.IModel\n  ],\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param label {String?null} An optional label for the check box.\n   */\n  construct : function(label)\n  {\n    if (qx.core.Environment.get(\"qx.debug\")) {\n      this.assertArgumentsCount(arguments, 0, 1);\n    }\n\n    this.base(arguments, label);\n\n    // Initialize the checkbox to a valid value (the default is null which\n    // is invalid)\n    this.setValue(false);\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    appearance :\n    {\n      refine : true,\n      init : \"checkbox\"\n    },\n\n    // overridden\n    allowGrowX :\n    {\n      refine : true,\n      init : false\n    }\n  },\n\n  members :\n  {\n    /**\n     * @lint ignoreReferenceField(_forwardStates)\n     */\n    _forwardStates :\n    {\n      invalid : true,\n      focused : true,\n      undetermined : true,\n      checked : true,\n      hovered : true\n    },\n\n    /**\n     * overridden (from MExecutable to keep the icon out of the binding)\n     * @lint ignoreReferenceField(_bindableProperties)\n     */\n    _bindableProperties :\n    [\n      \"enabled\",\n      \"label\",\n      \"toolTipText\",\n      \"value\",\n      \"menu\"\n    ]\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "className": "qx.core.Wrapper",
+  "packageName": "qx.core",
+  "name": "Wrapper",
+  "superClass": "Array",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 19,
+        "column": 0
+      },
+      "end": {
+        "line": 68,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2014-2015 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Generic wrapper instance which wrapps a set of objects and forwards the API of\nthe first object to all objects in the array."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 21,
+        "column": 2
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    }
+  },
+  "descendants": []
+}

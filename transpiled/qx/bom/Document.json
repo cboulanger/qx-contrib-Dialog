@@ -1,0 +1,207 @@
+{
+  "className": "qx.bom.Document",
+  "packageName": "qx.bom",
+  "name": "Document",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 70,
+        "column": 0
+      },
+      "end": {
+        "line": 190,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nSebastian Werner (wpbasti)\n\n======================================================================\n\nThis class contains code based on the following work:\n\nYahoo! UI Library\nhttp://developer.yahoo.com/yui\nVersion 2.2.0\n\nCopyright:\n(c) 2007, Yahoo! Inc.\n\nLicense:\nBSD: http://developer.yahoo.com/yui/license.txt\n\n----------------------------------------------------------------------\n\nhttp://developer.yahoo.com/yui/license.html\n\nCopyright (c) 2009, Yahoo! Inc.\nAll rights reserved.\n\nRedistribution and use of this software in source and binary forms,\nwith or without modification, are permitted provided that the\nfollowing conditions are met:\n\nRedistributions of source code must retain the above copyright\nnotice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright\nnotice, this list of conditions and the following disclaimer in\nthe documentation and/or other materials provided with the\ndistribution.\nNeither the name of Yahoo! Inc. nor the names of its contributors\nmay be used to endorse or promote products derived from this\nsoftware without specific prior written permission of Yahoo! Inc.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\nFOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\nCOPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\nHOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,\nSTRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED\nOF THE POSSIBILITY OF SUCH DAMAGE.\n\n***********************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "Includes library functions to work with the current document."
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "isQuirksMode": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the document is in quirks mode (e.g. non XHTML, HTML4 Strict or missing doctype)"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(win)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true when containing document is in quirks mode",
+            "type": "Boolean",
+            "description": " true when containing document is in quirks mode"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "isStandardMode": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Whether the document is in standard mode (e.g. XHTML, HTML4 Strict or doctype defined)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true when containing document is in standard mode",
+            "type": "Boolean",
+            "description": " true when containing document is in standard mode"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWidth": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 153,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the width of the document.\n\nInternet Explorer in standard mode stores the proprietary <code>scrollWidth</code> property\non the <code>documentElement</code>, but in quirks mode on the body element. All\nother known browsers simply store the correct value on the <code>documentElement</code>.\n\nIf the viewport is wider than the document the viewport width is returned.\n\nAs the html element has no visual appearance it also can not scroll. This\nmeans that we must use the body <code>scrollWidth</code> in all non mshtml clients.\n\nVerified to correctly work with:\n\n* Mozilla Firefox 2.0.0.4\n* Opera 9.2.1\n* Safari 3.0 beta (3.0.2)\n* Internet Explorer 7.0"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The width of the actual document (which includes the body and its margin).\n\nNOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\nif an element use negative value for top and left to be outside the viewport!\nSee: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869",
+            "type": "Integer",
+            "description": " The width of the actual document (which includes the body and its margin).\n\nNOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\nif an element use negative value for top and left to be outside the viewport!\nSee: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getHeight": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4
+        },
+        "end": {
+          "line": 188,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns the height of the document.\n\nInternet Explorer in standard mode stores the proprietary <code>scrollHeight</code> property\non the <code>documentElement</code>, but in quirks mode on the body element. All\nother known browsers simply store the correct value on the <code>documentElement</code>.\n\nIf the viewport is higher than the document the viewport height is returned.\n\nAs the html element has no visual appearance it also can not scroll. This\nmeans that we must use the body <code>scrollHeight</code> in all non mshtml clients.\n\nVerified to correctly work with:\n\n* Mozilla Firefox 2.0.0.4\n* Opera 9.2.1\n* Safari 3.0 beta (3.0.2)\n* Internet Explorer 7.0"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "win {Window?window} The window to query",
+            "paramName": "win",
+            "description": " The window to query",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The height of the actual document (which includes the body and its margin).\n\nNOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\nif an element use negative value for top and left to be outside the viewport!\nSee: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869",
+            "type": "Integer",
+            "description": " The height of the actual document (which includes the body and its margin).\n\nNOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\nif an element use negative value for top and left to be outside the viewport!\nSee: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

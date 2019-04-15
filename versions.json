@@ -1,0 +1,9 @@
+{
+  "compiler": "0.2.73",
+  "libraries": {
+    "dialog": "2.0.1",
+    "qxl.apiviewer": "0.1.12",
+    "qxl.versionlabel": "0.1.2",
+    "qx": "6.0.0-alpha-20190409-f79cc78"
+  }
+}

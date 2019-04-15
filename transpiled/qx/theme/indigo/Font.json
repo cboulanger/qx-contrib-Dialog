@@ -1,0 +1,49 @@
+{
+  "className": "qx.theme.indigo.Font",
+  "packageName": "qx.theme.indigo",
+  "name": "Font",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 0
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\nqooxdoo - the new era of web development\n\nhttp://qooxdoo.org\n\nCopyright:\n2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\nLicense:\nMIT: https://opensource.org/licenses/MIT\nSee the LICENSE file in the project's top-level directory for details.\n\nAuthors:\nMartin Wittemann (martinwittemann)\n\n************************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "***********************************************************************\n\n\n************************************************************************"
+        },
+        {
+          "name": "@description",
+          "body": "The simple qooxdoo font theme."
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Indigo/font/JosefinSlab-SemiBold.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Indigo/font/JosefinSlab-SemiBold.ttf"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

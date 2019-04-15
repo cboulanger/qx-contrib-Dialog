@@ -1,0 +1,64 @@
+{
+  "className": "dialog.theme.Theme",
+  "packageName": "dialog.theme",
+  "name": "Theme",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 10,
+        "column": 0
+      },
+      "end": {
+        "line": 20,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "The theme(s) of the demo application"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "dialog.theme.icon.IcoMoonFree"
+        },
+        {
+          "name": "@require",
+          "body": "dialog.theme.icon.Oxygen"
+        },
+        {
+          "name": "@require",
+          "body": "dialog.theme.icon.Tango"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "themeMeta": {
+    "location": {
+      "start": {
+        "line": 12,
+        "column": 2
+      },
+      "end": {
+        "line": 19,
+        "column": 3
+      }
+    },
+    "themeMetaMap": {
+      "color": "qx.theme.modern.Color",
+      "decoration": "qx.theme.modern.Decoration",
+      "font": "qx.theme.modern.Font",
+      "icon": "dialog.theme.icon.IcoMoonFree",
+      "appearance": "qx.theme.modern.Appearance"
+    }
+  },
+  "descendants": []
+}
