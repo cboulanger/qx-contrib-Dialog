@@ -1,6 +1,6 @@
 {
   "name": "qx-contrib-dialog",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "see http://cboulanger.github.io/qx-contrib-Dialog/",
   "dependencies": {
     "@qooxdoo/framework": "^6.0.0-alpha-20190511-1022"
