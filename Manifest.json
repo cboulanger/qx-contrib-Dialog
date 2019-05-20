@@ -22,6 +22,7 @@
     "type": "contribution"
   },
   "requires": {
-    "qooxdoo-sdk": "^6.0.0-alpha-20181204-f98112fe || 6.0.0-alpha"
+    "@qooxdoo/framework": "^6.0.0-alpha",
+    "@qooxdoo/compiler": "^1.0.0-beta"
   }
 }

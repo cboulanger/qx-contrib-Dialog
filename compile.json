@@ -21,6 +21,7 @@
         "qx.module.Placement"
       ],
       "environment": {
+        "qx.icontheme": "Tango",
         "excludeFromAPIViewer": [
           "qxl.apiviewer.*"
         ]

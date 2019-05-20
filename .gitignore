@@ -1,6 +1,6 @@
 # compiler
 compiled/
-contrib/
+qx_packages/
 
 # other stuff
 qooxdoo/
