@@ -1,11 +1,18 @@
+
+
+## *** Deprecation Notice *** 
+
+The qooxdoo dialog package has moved to https://github.com/qooxdoo/qxl.dialog.
+While this repo/package is still functional, it won't be maintained any longer.
+If you are using the Dialog package, please migrate at your earliest
+convenience. The only code migration necessary is to install
+`qooxdoo/qxl.dialog` instead of `cboulanger/qx-contrib-Dialog` and replace the
+`dialog` top-level namespace uses in your apps with `qxl.dialog`.
+
 # Qooxdoo Dialog Widgets
 
-Build Status: Master branch [![Master](https://travis-ci.org/cboulanger/qx-contrib-Dialog.svg?branch=master)](https://travis-ci.org/cboulanger/qx-contrib-Dialog) | Development branch [![Develop](https://travis-ci.org/cboulanger/qx-contrib-Dialog.svg?branch=develop)](https://travis-ci.org/cboulanger/qx-contrib-Dialog)
-
->Note: This is version 2 which only works with the new JavaScript compiler and qooxdoo v6. qooxdoo v5 and the 
-python toolchain are no longer supported.
-
-see http://cboulanger.github.io/qx-contrib-Dialog/
+> This is version 2 which only works with the new JavaScript compiler and
+qooxdoo v6. qooxdoo v5 and the python toolchain are no longer supported.
 
 A set of often used dialog widgets for the qooxdoo framework.
 
