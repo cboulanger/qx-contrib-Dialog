@@ -1,9 +1,18 @@
+
+
+## *** Deprecation Notice *** 
+
+The qooxdoo dialog package has moved to https://github.com/qooxdoo/qxl.dialog.
+While this repo/package is still functional, it won't be maintained any longer.
+If you are using the Dialog package, please migrate at your earliest
+convenience. The only code migration necessary is to install
+`qooxdoo/qxl.dialog` instead of `cboulanger/qx-contrib-Dialog` and replace the
+`dialog` top-level namespace uses in your apps with `qxl.dialog`.
+
 # Qooxdoo Dialog Widgets
 
-Build Status: Master branch [![Master](https://travis-ci.org/cboulanger/qx-contrib-Dialog.svg?branch=master)](https://travis-ci.org/cboulanger/qx-contrib-Dialog) | Development branch [![Develop](https://travis-ci.org/cboulanger/qx-contrib-Dialog.svg?branch=develop)](https://travis-ci.org/cboulanger/qx-contrib-Dialog)
-
->Note: This is version 2 which only works with the new JavaScript compiler and qooxdoo v6. qooxdoo v5 and the 
-python toolchain are no longer supported.
+> This is version 2 which only works with the new JavaScript compiler and
+qooxdoo v6. qooxdoo v5 and the python toolchain are no longer supported.
 
 A set of often used dialog widgets for the qooxdoo framework.
 
@@ -16,11 +25,11 @@ A set of often used dialog widgets for the qooxdoo framework.
 - Wizard
 - Progress
 
-Demo: http://cboulanger.github.io/qx-contrib-Dialog/dialog.demo/index.html
+Demo: http://cboulanger.github.io/qx-contrib-Dialog/build/index.html
 
-API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/apiviewer/index.html#dialog
+API Viewer: http://cboulanger.github.io/qx-contrib-Dialog/api/index.html#dialog
 
-See [Demo app](source/class/dialog/demo/Application.js) for
+See [Demo app](demo/default/source/class/dialog/demo/Application.js) for
 examples how to use the widgets.
 
 ## Installation:
