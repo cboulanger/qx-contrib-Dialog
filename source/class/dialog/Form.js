@@ -218,6 +218,7 @@ qx.Class.define("dialog.Form", {
           case "password":
             formElement = new qx.ui.form.PasswordField();
             formElement.getContentElement().setAttribute("autocomplete", "password");
+            formElement.setLiveUpdate(true);
             break;
           case "combobox":
             formElement = new qx.ui.form.ComboBox();
