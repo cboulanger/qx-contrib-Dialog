@@ -6,7 +6,7 @@
     "@qooxdoo/framework": "^6.0.0-alpha-20190511-1022"
   },
   "devDependencies": {
-    "testcafe": "^0.20.5"
+    "testcafe": "^2.2.0"
   },
   "scripts": {
     "test": "npx testcafe chrome,firefox tests/testcafe.js  --app-init-delay 10000",
